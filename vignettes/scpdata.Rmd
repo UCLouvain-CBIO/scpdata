@@ -1,0 +1,48 @@
+--- 
+title: "The single cell proteomics data"
+author:
+- name: Christophe Vanderaa
+  affiliation: Computational Biology, UCLouvain
+- name: Laurent Gatto
+  affiliation: Computational Biology, UCLouvain
+date: "`r Sys.Date()`"
+output:
+  BiocStyle::html_document:
+    toc_float: true
+vignette: >
+  %\VignetteIndexEntry{scpdata}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+---
+
+```{r style, echo = FALSE, results = 'asis'}
+BiocStyle::markdown()
+```
+
+```{r, echo = FALSE}
+# suppressPackageStartupMessages(library("dplyr"))
+```
+
+# Introduction 
+
+# Installation instruction 
+
+# Available data 
+
+## Specht et al. 2019
+
+*Specht, Harrison, Emmott, Koller, Slavov. 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of Macrophage Heterogeneity.” bioRxiv. https://doi.org/10.1101/665307.*
+
+The quantitative data was downloaded from the [MassIVE](https://massive.ucsd.edu/ProteoSAFe/static/massive.jsp)
+with accession number **MSV000083945**. 
+
+```{r, echo = TRUE, include=TRUE}
+
+```
+
+
+
+
+
+
+https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=de6aace2096845378ab9ef288e43aa75
