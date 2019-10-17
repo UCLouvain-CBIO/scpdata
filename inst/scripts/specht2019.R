@@ -16,7 +16,6 @@ pepn <- dat$peptide
 # Create the MSnSet object holding the SCP data from Specht et al. 2019
 x <- readMSnSet2(dat, 
                  ecol = -c(1,2)) # 1 and 2 are protein and peptide names, resp.
-# TODO add cell data !!
 
 # Add experiment data to the MSnSet object
 experimentData(x) <- new("MIAPE",
@@ -33,12 +32,12 @@ experimentData(x) <- new("MIAPE",
                          switchingCriteria = "After a precursor scan from 450 to 1600 m/z at 70,000 resolving power, the top 5 most intense precursor ions with charges 2 to 4 and above the AGC min threshold of 20,000 were isolated for MS2 analysis via a 0.7 Th isolation window",
                          ionSource = "ESI",
                          ionSourceDetails = "Electrospray voltage was set to 2,200V, applied at the end of the analytical column. To reduce atmospheric background ions and enhance peptide signal to noise ratio, an Active Background Ion Reduction Device (ABIRD, by ESI Source Solutons, LLC, Woburn MA, USA) was used at the nanospray interface. The temperature of ion transfer tube was 250 degrees Celsius and the S-lens RF level set to 80.",
-                         analyser = "ion trap",
+                         analyser = "orbitrap",
                          analyserDetails = "Precursor ions were accumulated for at most 300ms. Then they were fragmented via HCD at a and the fragments analyzed at 70,000 resolving power. Dynamic exclusion was used with a duration of 30 seconds with a mass tolerance of 10ppm.",
                          collisionEnergy = "33 eV (normalized to m/z 500, z=1)")
 
 # Annotate fields
-featureNames(x) <- fData(x)[, 1] 
+featureNames(x) <- make.unique(as.character(fData(x)[, 1]))
 
 # Save data as Rda file
 stopifnot(validObject(x))

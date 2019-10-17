@@ -27,22 +27,43 @@ BiocStyle::markdown()
 
 # Installation instruction 
 
-# Available data 
-
-## Specht et al. 2019
+# Specht et al. 2019
 
 *Specht, Harrison, Emmott, Koller, Slavov. 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of Macrophage Heterogeneity.” bioRxiv. https://doi.org/10.1101/665307.*
 
-The quantitative data was downloaded from the [MassIVE](https://massive.ucsd.edu/ProteoSAFe/static/massive.jsp)
-with accession number **MSV000083945**. 
+The quantitative data was downloaded from the [MassIVE](https://massive.ucsd.edu/ProteoSAFe/static/massive.jsp) database with accession number *MSV000083945*. 
 
-```{r, echo = TRUE, include=TRUE}
+<!-- ### Processing the raw data into count data -->
 
+## Data transformation 
+
+```{r, echo = FALSE, include=TRUE}
+load("../data/specht2019.rda")
+sc <- specht2019
 ```
 
+The `specht2019` data has already been processed to some extent. The `*.raw` files were analyzed with MaxQuant + DART-ID and the output `.txt` file was parsed into R. This output was further processed as follows:
+
+- Only the single cell runs were kept for further analysis (experiment FP94 and FP97, no experimental information supplied)
+- TMT reporter itensities (RI) were corrected for isotopic cross contamination. This is performed as follows: $cM = (C^{-1} M^T)^T$, where $M$ is the matrix containing the RI (cells $\times$ TMT reporter), and $C$ is **no idea, this is a file loaded in the script called te269088_lot_correction.csv** (cells $\times$ cells).
+- Filter out reverse hits (identified by MaxQuant), contaminants (identified by MaxQuant), and contaminated spectra (`PIF > 0.8`)
+- Filter out peptides with low identification score  (`FDR \geq 1\%` or `PEP \geq 0.02`)
+- Filter out cells with less than 300 peptides
+- Filter out peptides that are more than 10\% the intensity of the carrier
+- Divide peptide intensities in every channel by the reference channel
+- Zero or infinite intensities are replaced by `NA`'s
+- Filter out cells that have a median CV larger than 0.43, for which the 30th quantile of the log10 transformed relative RIs is smaller than -2.5, or for which the median of the log10 transformed relative RI is larger than -1.3
+- Divide column (cells) with median intensity and divide rows with mean intensity
+- Remove rows then columns that contain more than 99\% of missing data
+- Log2 transform the data 
+
+### Normalization 
+
+The first step of the normalization is dividing again the rows (peptides) by the 
 
 
 
+to collapse the peptide data into protein data by 
 
 
-https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=de6aace2096845378ab9ef288e43aa75
+
