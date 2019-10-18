@@ -1,5 +1,5 @@
 --- 
-title: "The single cell proteomics data"
+title: "The single cell proteomics data package"
 author:
 - name: Christophe Vanderaa
   affiliation: Computational Biology, UCLouvain
@@ -20,7 +20,10 @@ BiocStyle::markdown()
 ```
 
 ```{r, echo = FALSE}
-# suppressPackageStartupMessages(library("dplyr"))
+suppressPackageStartupMessages(library("MSnbase"))
+suppressPackageStartupMessages(library("ggplot2"))
+suppressPackageStartupMessages(library(gridExtra))
+source("../R/specht2019_funs.R")
 ```
 
 # Introduction 
@@ -37,7 +40,7 @@ The quantitative data was downloaded from the [MassIVE](https://massive.ucsd.edu
 
 ## Data transformation 
 
-```{r, echo = FALSE, include=TRUE}
+```{r loading_data, echo = TRUE, include=TRUE}
 load("../data/specht2019.rda")
 sc <- specht2019
 ```
@@ -45,25 +48,90 @@ sc <- specht2019
 The `specht2019` data has already been processed to some extent. The `*.raw` files were analyzed with MaxQuant + DART-ID and the output `.txt` file was parsed into R. This output was further processed as follows:
 
 - Only the single cell runs were kept for further analysis (experiment FP94 and FP97, no experimental information supplied)
-- TMT reporter itensities (RI) were corrected for isotopic cross contamination. This is performed as follows: $cM = (C^{-1} M^T)^T$, where $M$ is the matrix containing the RI (cells $\times$ TMT reporter), and $C$ is **no idea, this is a file loaded in the script called te269088_lot_correction.csv** (cells $\times$ cells).
+- TMT reporter itensities (RI) were corrected for isotopic cross contamination. This is performed as follows: $cM = (C^{-1} M^T)^T$, where $M$ is the matrix containing the RI (cells $\times$ TMT reporter), and $C$ is 
+$\mathbf{\color{red}{\text{no idea, this is a file loaded in the script called te269088_lot_correction.csv}}}$, (cells $\times$ cells).
 - Filter out reverse hits (identified by MaxQuant), contaminants (identified by MaxQuant), and contaminated spectra (`PIF > 0.8`)
-- Filter out peptides with low identification score  (`FDR \geq 1\%` or `PEP \geq 0.02`)
+- Filter out peptides with low identification score  (`FDR >= 1%` or `PEP >= 0.02`)
 - Filter out cells with less than 300 peptides
 - Filter out peptides that are more than 10\% the intensity of the carrier
 - Divide peptide intensities in every channel by the reference channel
 - Zero or infinite intensities are replaced by `NA`'s
 - Filter out cells that have a median CV larger than 0.43, for which the 30th quantile of the log10 transformed relative RIs is smaller than -2.5, or for which the median of the log10 transformed relative RI is larger than -1.3
 - Divide column (cells) with median intensity and divide rows with mean intensity
-- Remove rows then columns that contain more than 99\% of missing data
+- Remove rows (peptides) then columns (cells) that contain more than 99\% of missing data
 - Log2 transform the data 
 
 ### Normalization 
 
-The first step of the normalization is dividing again the rows (peptides) by the 
+The first step of the normalization is dividing again the rows (peptides) by the mean intensity of the row
+
+```{r peptide_normalization, echo = FALSE, include=TRUE}
+scNorm <- row.normalize(sc)
+```
+
+Next, the rows are collapsed by proteins, meaning that measurements for peptides that belong to the same proteins are merged using the median value of those measurements.
+
+```{r peptide_aggregation, echo = FALSE, include = TRUE}
+scNorm <- aggregateByProtein(scNorm)
+```
+
+Columns and rows are finally normalized again
+
+```{r protein_cell_normalization, echo = FALSE, include=TRUE}
+scNorm <- row.normalize(scNorm)
+scNorm <- col.normalize(scNorm)
+```
+
+### Imputation 
+
+The imputation technique used by Specht and colleagues is the k-nearest neighbour imputation:
+
+```{r imputation, echo = FALSE, include=TRUE}
+scImput <- imputeKNN(scNorm)
+```
+
+### Batch correction
+
+### Quality control 
+
+Let's check how the normalization, imputation, and batch correction affects the data. 
+
+#### Normalization
+
+```{r}
+plotCV(sc)
+```
 
 
+First, let's look at the mean and sd distribution of the peptide data:
 
-to collapse the peptide data into protein data by 
+```{r}
+p1 <- ggplot(data = data.frame(mean = apply(exprs(sc), 1, mean,  na.rm = TRUE),
+                         StdDev = apply(exprs(sc), 1, sd, na.rm = TRUE))) + 
+  geom_point(aes(x = mean, y = StdDev), col = rgb(0, 0, 0.5, 0.5)) +
+  ggtitle("Mean vs standard deviation \ndistribution for peptides")
+p2 <- ggplot(data = data.frame(median = apply(exprs(sc), 2, median,  na.rm = TRUE),
+                               StdDev = apply(exprs(sc), 2, sd, na.rm = TRUE))) + 
+  geom_point(aes(x = median, y = StdDev), col = rgb(0, 0, 0.5, 0.5)) +
+  ggtitle("Median vs standard deviation \ndistribution for single cells")
+grid.arrange(p1, p2, nrow = 1)
+```
+The 
+
+Now, after the data normalization:
+
+```{r}
+p1 <- ggplot(data = data.frame(mean = apply(exprs(scNorm), 1, mean,  na.rm = TRUE),
+                         StdDev = apply(exprs(scNorm), 1, sd, na.rm = TRUE))) + 
+  geom_point(aes(x = mean, y = StdDev), col = rgb(0, 0, 0.5, 0.5)) +
+  ggtitle("Mean vs standard deviation \ndistribution for peptides")
+p2 <- ggplot(data = data.frame(median = round(apply(exprs(scNorm), 2, median,  na.rm = TRUE), 3),
+                               StdDev = apply(exprs(scNorm), 2, sd, na.rm = TRUE))) + 
+  geom_point(aes(x = median, y = StdDev), col = rgb(0, 0, 0.5, 0.5)) +
+  ggtitle("Median vs standard deviation \ndistribution for single cells")
+grid.arrange(p1, p2, nrow = 1)
+```
+
 
 
 
