@@ -69,20 +69,19 @@ $\mathbf{\color{red}{\text{no idea, this is a file loaded in the script called t
 The first step of the normalization is subtracting from each row (peptides) the mean intensity of that row. 
 
 ```{r peptide_normalization, echo = TRUE, include=TRUE}
-scNorm <- row.normalize(sc)
+scNorm <- scp_normalize(sc, what = "row")
 ```
 
 Next, the rows are collapsed by proteins, meaning that measurements for peptides that belong to the same proteins are merged in a single rozw. The rows from different peptides are summarized using the median value of the peptides.
 
 ```{r peptide_aggregation}
-scNorm <- aggregateByProtein(scNorm)
+scNorm <- scp_aggregateByProtein(scNorm)
 ```
 
-Rows than columns are finally normalized again, divi
+Rows than columns are finally normalized again. For the rows the **mean** value is subtracted; for the columns the **median** value is subtracted. Note that the argument `"both"` implies that rows then colmuns are normalized.
 
 ```{r protein_cell_normalization}
-scNorm <- row.normalize(scNorm)
-scNorm <- col.normalize(scNorm)
+scNorm <- scp_normalize(scNorm, what = "both")
 ```
 
 ### Imputation 

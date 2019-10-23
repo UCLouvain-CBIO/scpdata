@@ -13,7 +13,9 @@ scpdata <- function(){
   data(package = "scpdata")
 }
 
+
 ####---- SPECHT ET AL. 2019 ----####
+
 
 #' 356 cells x 6787 peptides data containing macrophages and monocytes (Specht et al. 2019)
 #'
@@ -61,3 +63,6 @@ scpdata <- function(){
 #' \href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website.
 #'
 "specht2019"
+
+
+####---- DOU ET AL. 2019

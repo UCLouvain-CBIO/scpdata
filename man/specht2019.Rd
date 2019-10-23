@@ -6,15 +6,18 @@
 \title{356 cells x 6787 peptides data containing macrophages and monocytes (Specht et al. 2019)}
 \format{An object of class \code{"\link{MSnSet}"}}
 \source{
-\href{https://scope2.slavovlab.net/docs/data}{Slavov Lab}
+The original data can be downloaded from the 
+\href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website.
 }
 \usage{
 data("specht2019")
 }
 \description{
 Single cell proteomics data produced and published by Specht et al. from the 
-Slavov Lab (see references). It contains peptide quantitation and was 
-formated to an MSnSet object with no further modification.
+Slavov Lab (see references). It contains quantitative information for 6787 
+peptides in 356 cells. Cells can be either macrophages (n = 259) or monocytes
+(n = 97). The data is formated to an MSnSet object with no further 
+modification of the original data.
 }
 \details{
 \strong{Title}: High-throughput single-cell proteomics quantifies the emergence of macrophage heterogeneity

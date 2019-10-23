@@ -30,16 +30,16 @@ Several articles have been published including single-cell proteomics data. We h
 
 * **Raw data** is composed of MS output files and was not processed
 * **Peptide data** is the peptide quantitative data obtained after processing the raw data
-* **Protein data** is the protein quantitative data obtained after aggregating the peptides belonging to the same protein
+* **Protein data** is the protein quantitative data obtained after aggregating the peptides belonging to the same protein. **Or final expression data after data normalization, imputation, batch correction,... ?**
 
 This is an overview of the available data in this package: 
 
 Publ. Date | Data set name | Raw data | Peptide data | Protein data 
 ---------- | ------------- | -------- | ------------ | ------------
 2019-06-09 | specht2019    | Yes      | Yes          | Yes
-<!-- 2019-09-11 | dou2019_hd    | Yes      | No           | Yes -->
-<!-- 2019-09-11 | dou2019_tbr   | Yes      | No           | Yes -->
-<!-- 2019-09-11 | dou2019_ilsc  | Yes      | No           | Yes -->
+2019-09-11 | dou2019_1     | Yes      | No           | Yes 
+<!--2019-09-11 | dou2019_2     | Yes      | No           | Yes
+2019-09-11 | dou2019_3     | Yes      | No           | Yes -->
 
 ## Data set description 
   

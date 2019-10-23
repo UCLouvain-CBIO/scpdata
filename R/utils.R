@@ -1,30 +1,81 @@
 #' Normalization of single-cell proteomics data
 #'
-#' The function
+#' The function \code{scp_normalise} (and identically \code{scp_normalize}) 
+#' performs normalization of cells or peptides/proteins or both of quantified
+#' expression data (\code{MSnSet} objects). Different normalization methods are 
+#' implemented (see Details). 
 #'
 #' @param obj 
 #' An MSnSet object
 #' @param what 
 #' A character indicating whether columns (\code{"col"}), rows (\code{"row"}) or
 #' both (\code{"both"}) should be normalized
+#' @param method 
+#' The type of normalization (see Details)
 #'
+#' @details 
+#' 
+#' \code{method == 1}: each row (if \code{what == "row"}) or column (if 
+#' \code{what == "col"}) is subtracted by summary of the corresponding values. 
+#' The summary function is the mean for rows and the median for columns. 
 #'
 #' @return
+#' 
+#' An \code{MSnSet} object similar to the input object \code{obj}, but where the 
+#' expression values have been replaced by normalized expression values. 
+#' 
 #' @export
 #'
 #' @examples
-scp_normalize <- scp_normalise <- function(obj, what = "col"){
+#' data(specht2019)
+#' scpNorm <- scp_normalize(specht2019, what = "both")
+#' 
+scp_normalize <- scp_normalise <- function(obj, what = "col", method = 1){
   # Check arguments
   if(!inherits(obj, "MSnSet")) stop("'obj' should be an MSnSet object." )
   what <- match.arg(what, choices = c("col", "row", "both"))
   
-  # Normalize rows
-  if(what %in% c("row", "both")) obj <- rowNormalize(obj)
-  # Normalize columns
-  if(what %in% c("col", "both")) obj <- colNormalize(obj)
-  
+  ## Method 1: implemented by Specht et al. 2019
+  if(method == 1){
+    # Normalize rows
+    if(what %in% c("row", "both")) obj <- rowNormalize(obj)
+    # Normalize columns
+    if(what %in% c("col", "both")) obj <- colNormalize(obj)
+  } else {
+    stop("Method '", method, "' not implemented.")
+  }
   return(obj)
 }
+
+
+#' Aggregation of peptide expression data into protein expression data
+#'
+#' The \code{scp_AggregateByProtein} function takes an \code{MSnSet} object and 
+#' merges the peptides (rows) of the expression data into proteins. This merging
+#' is performed by taking the median value for each cell (column) for a given
+#' protein group. The peptide to protein mapping should be present in the 
+#' feature data of the \code{\link{MSnSet}} object.
+#'
+#' @param obj 
+#' An \code{MSnSet} object containing the peptide expression data.
+#'
+#' @return
+#' A new \code{MSnSet} object containing the aggregated protein expression data.
+#' Note that the feature data is adapted and will contain only protein 
+#' annotations.
+#' 
+#' @export
+#'
+#' @examples
+#' data(specht2019)
+#' scProt <- scp_aggregateByProtein(specht2019)
+#' 
+scp_aggregateByProtein <- function(obj){
+  if(nrow(fData) == 0) stop("'fData(obj)' cannot be empty")
+  return(aggregateByProtein(obj))
+}
+
+
 
 ####---- SPECHT ET AL. 2019 FUNCTIONS ----####
 
@@ -54,6 +105,11 @@ aggregateByProtein <- function(obj){
   return(obj.new)
 }
 
+
+#' Impute missing values using K-nearest neighbours
+#' 
+#' Internal function 
+#' @export
 imputeKNN <- function(obj, k = 3){
   dat <- exprs(obj)
   
