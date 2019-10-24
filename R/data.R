@@ -10,20 +10,23 @@
 #' @export
 #'
 scpdata <- function(){
-  data(package = "scpdata")
+  out <- data(package = "scpdata")
+  return(out)
 }
 
 
 ####---- SPECHT ET AL. 2019 ----####
 
 
-#' 356 cells x 6787 peptides data containing macrophages and monocytes (Specht et al. 2019)
+#' 6787 peptides x 356 cells data containing macrophages and monocytes (Specht et al. 2019)
 #'
 #' Single cell proteomics data produced and published by Specht et al. from the 
 #' Slavov Lab (see references). It contains quantitative information for 6787 
 #' peptides in 356 cells. Cells can be either macrophages (n = 259) or monocytes
-#' (n = 97). The data is formated to an MSnSet object with no further 
-#' modification of the original data. 
+#' (n = 97). The data are formated to an MSnSet object with no further 
+#' modification. 
+#' 
+#' @details
 #' 
 #' \strong{Title}: High-throughput single-cell proteomics quantifies the emergence of macrophage heterogeneity
 #' 
@@ -65,4 +68,83 @@ scpdata <- function(){
 "specht2019"
 
 
-####---- DOU ET AL. 2019
+####---- DOU ET AL. 2019 ----####
+
+
+#' Deep proteome coverage for single cell analysis using nanoPOTS combined with
+#' TMT isobaric labeling method (Dou et al. 2019)
+#' 
+#' @description 
+#' Single cell proteomics data produced and published by Dou et al. (see 
+#' references). The article comes with 3 supplementary datasets: \code{dou2019_1},
+#' \code{dou2019_2}, and \code{dou2019_3} (see Details for more information).
+#' All data are formated to an MSnSet object with no further modification. 
+#' 
+#' @aliases dou2019_1 dou2019_2 dou2019_3
+#' 
+#' @details  
+#' \strong{Title}: High-Throughput Single Cell Proteomics Enabled by Multiplex 
+#' Isobaric Labeling in a Nanodroplet Sample Preparation Platform.
+#' 
+#' \strong{Abstract}:  Effective extension of mass spectrometry-based proteomics 
+#' to single cells remains challenging. Herein we combined microfluidic 
+#' nanodroplet technology with tandem mass tag (TMT) isobaric labeling to 
+#' significantly improve analysis throughput and proteome coverage for single 
+#' mammalian cells. Isobaric labeling facilitated multiplex analysis of single 
+#' cell-sized protein quantities to a depth of ∼1 600 proteins with a median CV 
+#' of 10.9% and correlation coefficient of 0.98. To demonstrate in-depth high 
+#' throughput single cell analysis, the platform was applied to measure protein 
+#' expression in 72 single cells from three murine cell populations (epithelial, 
+#' immune, and endothelial cells) in <2 days instrument time with over 2 300 
+#' proteins identified. Principal component analysis grouped the single cells 
+#' into three distinct populations based on protein expression with each 
+#' population characterized by well-known cell-type specific markers. Our 
+#' platform enables high throughput and unbiased characterization of single cell 
+#' heterogeneity at the proteome level.
+#' 
+#' \strong{\code{dou2019_1}}: Supplementary data set 1, raw data for HeLa 
+#' digest. The expression matrix containing 1641 proteins x 20 single-cell digests. Note that the samples are not truly 
+#' single cells but are commercial Hela digest diluted to single cell amounts
+#' (0.2ng). The boost wells contain the same digest but at hihgher dose (10 ng).
+#' 
+#' \strong{\code{dou2019_2}}: Supplementary data set 2, raw data for testing 
+#' boosting ratios. The expression matrix contains 1436 proteins x 60 single 
+#' cells. The cell type are either \code{"Raw"} (macrophage cells), \code{"C10"}
+#' (epihelial cells), or \code{"SVEC"} (endothelial cells). Each cell was 
+#' replicated 2 or 3x. When boosting (5ng or 50ng) was applied, 1 reference 
+#' well and 1 boosting well were added, otherwise (no boosting) 1 empty well 
+#' was added. Each boosting setting (no boosting, 5ng, 50ng) was run twice.
+#' 
+#' \strong{\code{dou2019_3}}: Supplementary data set 3, raw data for isobaric 
+#' labelling-based single cell quantification and bulk-scale label free 
+#' quantification 
+#' 
+#' @docType data
+#' 
+#' @usage 
+#' dou2019()
+#' data("dou2019_1")
+#' data("dou2019_2")
+#' data("dou2019_3")
+#' 
+#' @format  
+#' \code{dou2019()} loads all three data sets at once. Each data set
+#' is an object of class \code{"\link{MSnSet}"}.
+#' 
+#' @keywords datasets
+#' 
+#' @references Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B. 
+#' Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell 
+#' Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample 
+#' Preparation Platform.” Analytical Chemistry, September. 
+#' https://doi.org/10.1021/acs.analchem.9b03349.
+#' 
+#' @source The original data can be downloaded from the [ACS Publications](https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349) 
+#' website (Supplementary information section).
+#' 
+#' @export
+dou2019 <- function(){
+  data("dou2019_1")
+  data("dou2019_2")
+  data("dou2019_3")
+}

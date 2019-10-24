@@ -2,12 +2,10 @@
 % Please edit documentation in R/utils.R
 \name{imputeKNN}
 \alias{imputeKNN}
-\title{Impute missing values using K-nearest neighbours
-Internal function}
+\title{Impute missing values using K-nearest neighbours}
 \usage{
 imputeKNN(obj, k = 3)
 }
 \description{
-Impute missing values using K-nearest neighbours
 Internal function
 }
