@@ -3,7 +3,8 @@
 \docType{data}
 \name{specht2019}
 \alias{specht2019}
-\title{6787 peptides x 356 cells data containing macrophages and monocytes (Specht et al. 2019)}
+\title{Quantifying the emergence of macrophage heterogeneity using the SCoPE2 
+ pipeline (Specht et al. 2019)}
 \format{An object of class \code{"\link{MSnSet}"}}
 \source{
 The original data can be downloaded from the 
@@ -15,9 +16,8 @@ data("specht2019")
 \description{
 Single cell proteomics data produced and published by Specht et al. from the 
 Slavov Lab (see references). It contains quantitative information for 6787 
-peptides in 356 cells. Cells can be either macrophages (n = 259) or monocytes
-(n = 97). The data are formated to an MSnSet object with no further 
-modification.
+peptides x 356 cells. Cells can be either macrophages (n = 259) or monocytes
+(n = 97). The data are formated to an MSnSet object.
 }
 \details{
 \strong{Title}: High-throughput single-cell proteomics quantifies the emergence of macrophage heterogeneity
@@ -44,7 +44,6 @@ at single-cell resolution.
 \references{
 Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 
 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of 
-Macrophage Heterogeneity.” bioRxiv. https://doi.org/10.1101/665307.
-(\href{https://www.biorxiv.org/content/10.1101/665307v2}{bioRxiv})
+Macrophage Heterogeneity.” bioRxiv (\href{https://doi.org/10.1101/665307}{DOI}).
 }
 \keyword{datasets}

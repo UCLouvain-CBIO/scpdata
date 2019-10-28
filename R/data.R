@@ -18,13 +18,13 @@ scpdata <- function(){
 ####---- SPECHT ET AL. 2019 ----####
 
 
-#' 6787 peptides x 356 cells data containing macrophages and monocytes (Specht et al. 2019)
+#'  Quantifying the emergence of macrophage heterogeneity using the SCoPE2 
+#'  pipeline (Specht et al. 2019)
 #'
 #' Single cell proteomics data produced and published by Specht et al. from the 
 #' Slavov Lab (see references). It contains quantitative information for 6787 
-#' peptides in 356 cells. Cells can be either macrophages (n = 259) or monocytes
-#' (n = 97). The data are formated to an MSnSet object with no further 
-#' modification. 
+#' peptides x 356 cells. Cells can be either macrophages (n = 259) or monocytes
+#' (n = 97). The data are formated to an MSnSet object. 
 #' 
 #' @details
 #' 
@@ -59,11 +59,10 @@ scpdata <- function(){
 #'
 #' @references Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 
 #' 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of 
-#' Macrophage Heterogeneity.” bioRxiv. https://doi.org/10.1101/665307.
-#' (\href{https://www.biorxiv.org/content/10.1101/665307v2}{bioRxiv})
+#' Macrophage Heterogeneity.” bioRxiv (\href{https://doi.org/10.1101/665307}{DOI}).
 #'
 #' @source The original data can be downloaded from the 
-#' \href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website.
+  #' \href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website.
 #'
 "specht2019"
 
@@ -78,7 +77,7 @@ scpdata <- function(){
 #' Single cell proteomics data produced and published by Dou et al. (see 
 #' references). The article comes with 3 supplementary datasets: \code{dou2019_1},
 #' \code{dou2019_2}, and \code{dou2019_3} (see Details for more information).
-#' All data are formated to an MSnSet object with no further modification. 
+#' All data are formated to an MSnSet object. 
 #' 
 #' @aliases dou2019_1 dou2019_2 dou2019_3
 #' 
@@ -103,7 +102,7 @@ scpdata <- function(){
 #' heterogeneity at the proteome level.
 #' 
 #' \strong{\code{dou2019_1}}: Supplementary data set 1, raw data for HeLa 
-#' digest. The expression matrix containing 1641 proteins x 20 single-cell digests. Note that the samples are not truly 
+#' digest. The expression matrix contains 1641 proteins x 20 single-cell digests. Note that the samples are not truly 
 #' single cells but are commercial Hela digest diluted to single cell amounts
 #' (0.2ng). The boost wells contain the same digest but at hihgher dose (10 ng).
 #' 
@@ -114,6 +113,15 @@ scpdata <- function(){
 #' replicated 2 or 3x. When boosting (5ng or 50ng) was applied, 1 reference 
 #' well and 1 boosting well were added, otherwise (no boosting) 1 empty well 
 #' was added. Each boosting setting (no boosting, 5ng, 50ng) was run twice.
+#' 
+#' \strong{\code{dou2019_3}}: Supplementary data set 3, raw data for isobaric 
+#' labelling-based single cell quantification and bulk-scale label free 
+#' quantification. The expression matrix contains 2331 proteins x 132 wells. Among 
+#' the 132 well, 72 contained single cells, corresponding to 24 C10 cells, 24 RAW cells, 
+#' and 24 SVEC. The other wells are eithers boosting channels (12), empty channels
+#' (36) or reference channels (12). Note that the different cell types where
+#' evenly distributed across 4 nanoPOTS chips. Samples were 11-plexed with
+#' TMT ions. 
 #' 
 #' \strong{\code{dou2019_3}}: Supplementary data set 3, raw data for isobaric 
 #' labelling-based single cell quantification and bulk-scale label free 
@@ -136,10 +144,10 @@ scpdata <- function(){
 #' @references Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B. 
 #' Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell 
 #' Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample 
-#' Preparation Platform.” Analytical Chemistry, September. 
-#' https://doi.org/10.1021/acs.analchem.9b03349.
+#' Preparation Platform.” Analytical Chemistry, September 
+#' (\href{https://doi.org/10.1021/acs.analchem.9b03349}{DOI}).
 #' 
-#' @source The original data can be downloaded from the [ACS Publications](https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349) 
+#' @source The original data can be downloaded from the \href{https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349}{ACS Publications}
 #' website (Supplementary information section).
 #' 
 #' @export

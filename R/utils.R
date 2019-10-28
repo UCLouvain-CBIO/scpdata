@@ -71,10 +71,131 @@ scp_normalize <- scp_normalise <- function(obj, what = "col", method = 1){
 #' scProt <- scp_aggregateByProtein(specht2019)
 #' 
 scp_aggregateByProtein <- function(obj){
-  if(nrow(fData) == 0) stop("'fData(obj)' cannot be empty")
+  if(nrow(fData(obj)) == 0) stop("'fData(obj)' cannot be empty")
   return(aggregateByProtein(obj))
 }
 
+
+
+scp_image <- function(obj, row.ord = NULL, col.ord = NULL){
+  M <- exprs(obj)
+  
+  # Order the rows
+  if(!is.null(row.ord)){
+    if(!row.ord %in% colnames(fData(obj))) stop("'row.ord' should be a column name in 'fData(obj)'")
+    M <- M[order(fData(obj)[, row.ord]), ]
+  }
+  
+  # Order the columns 
+  if(!is.null(col.ord)){
+    if(!col.ord %in% colnames(pData(obj))) stop("'col.ord' should be a column name in 'pData(obj)'")
+    M <- M[, order(pData(obj)[, col.ord])]
+  }
+  
+  # Create the heatmap
+  image(t(M), xlab = "Cell index", ylab = "Feature index", useRaster = TRUE,
+        col = colorRampPalette(c("coral", "gold1", "#08306B"))(1000),
+        axes = FALSE)
+  
+}
+
+scp_plotStats <- function(obj, what = c("both", "cells", "features"), 
+                          xstat = "mean", ystat = "sd"){
+  # Check and format arguments 
+  what <- match.arg(what, c("both", "cells", "features"))
+  if(is.character(xstat)){
+    xstat <- switch(xstat, 
+                    mean = list(fun = function(x) mean(x, na.rm = TRUE), title = "Mean"),
+                    median = list(fun = function(x) round(median(x, na.rm = TRUE), 15), title = "Median"),
+                    sd = list(fun = function(x) sd(x, na.rm = TRUE), title = "Standard deviation"))
+  }
+  if(is.character(ystat)){
+    ystat <- switch(ystat, 
+                    mean = list(fun = function(x) mean(x, na.rm = TRUE), title = "Mean"),
+                    median = list(fun = function(x) round(median(x, na.rm = TRUE), 15), title = "Median"),
+                    sd = list(fun = function(x) sd(x, na.rm = TRUE), title = "Standard deviation"))
+  }
+  M <- exprs(obj)
+  
+  # Generate plots
+  if(what %in% c("both", "features")){
+    p1 <- ggplot(data = data.frame(var1 = apply(M, 1, xstat$fun),
+                                   var2 = apply(M, 1, ystat$fun))) + 
+      geom_point(aes(x = var1, y = var2), col = rgb(0, 0, 0.5, 0.5)) +
+      xlab(xstat$title) + ylab(ystat$title) +
+      ggtitle("Distribution statistics for features")
+  }
+  if(what %in% c("both", "cells")){
+    p2 <- ggplot(data = data.frame(var1 = apply(M, 2, xstat$fun),
+                                   var2 = apply(M, 2, ystat$fun))) + 
+      geom_point(aes(x = var1, y = var2), col = rgb(0, 0, 0.5, 0.5)) +
+      ggtitle("Distribution statistics for single cells") +
+      xlab(xstat$title) + ylab(ystat$title)
+  }
+  
+  # Print plots
+  if(what == "both"){
+    grid.arrange(p1, p2, nrow = 1)
+  } else if (what == "features"){
+    print(p1)
+  } else if (what == "cells"){
+    print(p2)
+  }
+}
+
+
+scp_plotMissing <- function(obj, what = c("both", "cells", "features")){
+  # Check and format arguments 
+  what <- match.arg(what, c("both", "cells", "features")) 
+  
+  M <- exprs(obj)
+  
+  if(what %in% c("both", "features")){
+    mis <- apply(M, 1, function(x) sum(is.na(x))/length(x))
+    p1 <- ggplot(data = data.frame(mis), mapping = aes(x = mis)) + 
+      geom_histogram(binwidth = 0.025, fill = "grey60", col = "grey40") +
+      xlim(0, 1) + xlab("Missingness (%)") + ggtitle("Missing data among features")
+  }
+  if(what %in% c("both", "cells")){
+    mis <- apply(M, 2, function(x) sum(is.na(x))/length(x))
+    p2 <- ggplot(data = data.frame(mis), mapping = aes(x = mis)) + 
+      geom_histogram(binwidth = 0.025, fill = "grey60", col = "grey40") +
+      xlim(0, 1) + xlab("Missingness (%)") + ggtitle("Missing data among cells")
+  }
+  
+  # Print plots
+  if(what == "both"){
+    grid.arrange(p1, p2, nrow = 1)
+  } else if (what == "features"){
+    print(p1)
+  } else if (what == "cells"){
+    print(p2)
+  }
+  
+  
+}
+
+
+scp_plotCV <- function(obj, colorBy = NULL){
+  dat <- exprs(obj)
+  prots <- as.character(fData(obj)[,1])
+  CVs <- do.call(rbind, lapply(unique(prots), function(prot){
+    .idx <- prots == prot
+    if(sum(.idx) <= 1) return(NULL)
+    xx <- 2^dat[.idx,]
+    CV <- apply(xx, 2, sd, na.rm = TRUE)/apply(xx, 2, mean, na.rm = TRUE)
+    return(CV)
+  }))
+  dimnames(CVs) <- list(NULL, NULL)
+  CVs <- melt(CVs)
+  # CVs <- cbind(CVs, type = pData(obj)$celltype[CVs$Var2])
+  ggplot(data = CVs, aes(x = Var2, y = value)) +
+    geom_point(col = rgb(0.3,0.3,0.3,0.2)) + 
+    stat_summary(aes(y = value,group=1), fun.y = median, colour = "red",
+                 geom = "point",  size = 0.5, group = 1) +
+    xlab("Cell index") + ylab("Coefficient of variation") +
+    ggtitle("Protein CV distribution per cell (black = peptides; red = median)")
+}
 
 
 ####---- SPECHT ET AL. 2019 FUNCTIONS ----####
@@ -180,34 +301,5 @@ batchCorrect <- function(obj, batch, target){
   }
   exprs(obj) <- ComBat(dat = exprs(obj), batch = batch, mod = target, par.prior = T)
   return(obj)
-}
-
-plotCV <- function(obj){
-  dat <- exprs(obj)
-  prots <- as.character(fData(obj)[,1])
-  CVs <- do.call(rbind, lapply(unique(prots), function(prot){
-    .idx <- prots == prot
-    if(sum(.idx) <= 1) return(NULL)
-    xx <- 2^dat[.idx,]
-    CV <- apply(xx, 2, sd, na.rm = TRUE)/apply(xx, 2, mean, na.rm = TRUE)
-    return(CV)
-  }))
-  dimnames(CVs) <- list(NULL, colnames(dat))
-  meds <- apply(CVs, 1, median, na.rm = TRUE)
-  CVs <- melt(CVs)
-  CVs$Var2 <- as.numeric(gsub(CVs$Var2, pattern = "[a-z]", replacement = ""))
-  ggplot(data = CVs, aes(x = Var2, y = value)) +
-    geom_point(col = rgb(0.3,0.3,0.3,0.2)) + 
-    stat_summary(aes(y = value,group=1), fun.y = median, colour = "red",
-                 geom = "point",  size = 0.5, group = 1) +
-    # geom_hline(yintercept = 0.43,  col = "grey40") +
-    xlab("Cell index") + ylab("Coefficient of variation") +
-    ggtitle("Protein CV distribution per cell (black = peptides; red = median)")
-  
-}
-
-show_heatmap <- function(obj, xlab = "Peptide index", ylab = "Cell index", ...){
-  dat <- exprs(obj)
-  image(x = 1:nrow(dat), y = 1:ncol(dat), z = dat, xlab = xlab, ylab = ylab, ...)
 }
 

@@ -13,6 +13,7 @@
 # dou2019_2: Supplementary data set 2, raw data for testing boosting ratios (XLSX)
 # dou2019_3: Supplementary data set 3, raw data for isobaric labelling-based single cell quantification and bulk-scale label free quantification (XLSX)
 
+rm(list = ls())
 library(openxlsx)
 library(MSnbase)
 # setwd("./inst/scripts/")
@@ -54,16 +55,16 @@ fd[, 2:3] <- sapply(fd[, 2:3], as.numeric)
 
 # Extract the phenotype data
 run <- unlist(dat[1, -(1:3)])
-welltype <- paste0(unlist(dat[2, -(1:3)]), c(1:7, 1:2, ""))
+sample_type <- paste0(unlist(dat[2, -(1:3)]), c(1:7, 1:2, ""))
 TMT_ion <- sapply(dat[3, -(1:3)], function(x) strsplit(x, "_")[[1]][2])
 dataset_id <- sapply(dat[3, -(1:3)], function(x) strsplit(x, "_")[[1]][4])
-pd <- data.frame(welltype, run, TMT_ion, dataset_id)
-rownames(pd) <- paste0(welltype, "_", run)
+pd <- data.frame(sample_type, run, TMT_ion, dataset_id)
+rownames(pd) <- paste0(sample_type, "_", run)
 
 # Extract the expression data
 ed <- apply(dat[-(1:3), -(1:3)], 2, as.numeric)
 rownames(ed) <- rownames(fd)
-colnames(ed) <- rownames(pd$celltype)
+colnames(ed) <- rownames(pd$sample_type)
 
 # Create MSnSet object
 x <- MSnSet(exprs = ed, fData = fd, pData = pd)
@@ -81,7 +82,7 @@ save(dou2019_1, file = file.path("../../data/dou2019_1.rda"),
 
 
 # Clear environment
-rm(list = ls())
+rm(list = ls())  # but reassign expdat at beginning of script
 
 # Download the data
 dataFile <- "https://pubs.acs.org/doi/suppl/10.1021/acs.analchem.9b03349/suppl_file/ac9b03349_si_004.xlsx"
@@ -110,11 +111,11 @@ fd_50b <- extractFeatData(dat_50b)
 # Internal function
 extractPhenoData <- function(dat, boosting){
   run <- rep(paste0("run", 1:2), each = 10)
-  celltype <- sapply(unlist(dat[1, -(1:3)]), function(x) strsplit(x, "_")[[1]][1])
+  sample_type <- sapply(unlist(dat[1, -(1:3)]), function(x) strsplit(x, "_")[[1]][1])
   TMT_ion <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][2])
   dataset_id <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][4])
-  pd <- data.frame(celltype, run, TMT_ion, dataset_id, boosting)
-  rownames(pd) <- make.unique(paste0(celltype, "_", run, "_", boosting), sep = "_")
+  pd <- data.frame(sample_type, run, TMT_ion, dataset_id, boosting)
+  rownames(pd) <- make.unique(paste0(sample_type, "_", run, "_", boosting), sep = "_")
   return(pd)
 }
 # No boosting
@@ -147,9 +148,9 @@ fd <- data.frame(Protein = prots, fd)
 # Combine expression data 
 ed <- matrix(NA, nrow = nrow(fd), ncol = nrow(pd),
              dimnames = list(rownames(fd), rownames(pd)))
-ed[match(fd_nb$Protein, prots, nomatch = 0), 1:20] <- ed_nb
-ed[match(fd_5b$Protein, prots, nomatch = 0), 21:40] <- ed_5b
-ed[match(fd_50b$Protein, prots, nomatch = 0), 41:60] <- ed_50b
+ed[match(fd_nb$Protein, prots, nomatch = 0), 1:20] <- as.numeric(ed_nb)
+ed[match(fd_5b$Protein, prots, nomatch = 0), 21:40] <- as.numeric(ed_5b)
+ed[match(fd_50b$Protein, prots, nomatch = 0), 41:60] <- as.numeric(ed_50b)
 
 # Create MSnSet object
 x <- MSnSet(exprs = ed, fData = fd, pData = pd)
@@ -167,13 +168,43 @@ save(dou2019_2, file = file.path("../../data/dou2019_2.rda"),
 
 
 # Clear environment
-rm(list = ls())
+rm(list = ls()) # but reassign expdat at beginning of script
 
 # Download the data
 dataFile <- "https://pubs.acs.org/doi/suppl/10.1021/acs.analchem.9b03349/suppl_file/ac9b03349_si_005.xlsx"
 dat_xlsx <- loadWorkbook(dataFile)
-dat_nb <- read.xlsx(dat_xlsx, sheet = 2, colNames = FALSE)
-dat_5b <- read.xlsx(dat_xlsx, sheet = 4, colNames = FALSE)
-dat_50b <- read.xlsx(dat_xlsx, sheet = 6, colNames = FALSE)
+dat <- read.xlsx(dat_xlsx, sheet = 2, colNames = FALSE)
+
+# Extract the feature data
+fd <- dat[, 1:3]
+colnames(fd) <- fd[2, ]
+fd <- fd[-(1:2), ]
+rownames(fd) <- fd$Protein
+fd[, 2:3] <- sapply(fd[, 2:3], as.numeric)
+
+# Extract the phenotype data
+sample_type <- unlist(dat[1, -(1:3)])
+TMT_ion <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][2])
+dataset_id <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][4])
+pd <- data.frame(sample_type, dataset_id, TMT_ion)
+rownames(pd) <- paste0(sample_type, "_", dataset_id, "_", TMT_ion)
+
+# Extract the expression data
+ed <- apply(dat[-(1:2), -(1:3)], 2, as.numeric)
+rownames(ed) <- rownames(fd)
+colnames(ed) <- rownames(pd$sample_type)
+
+# Create MSnSet object
+x <- MSnSet(exprs = ed, fData = fd, pData = pd)
+experimentData(x) <- expdat
+
+# Save data as Rda file
+stopifnot(validObject(x))
+assign("dou2019_3", x)
+save(dou2019_3, file = file.path("../../data/dou2019_3.rda"),
+     compress = "xz", compression_level = 9)
+# Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
+
+
 
 

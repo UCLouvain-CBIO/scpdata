@@ -36,10 +36,10 @@ This is an overview of the available data in this package:
 
 Publ. Date | Data set name | Raw data | Peptide data | Protein data 
 ---------- | ------------- | -------- | ------------ | ------------
-2019-06-09 | specht2019    | Yes      | Yes          | Yes
+2019-06-09 | specht2019    | Yes      | +/- Yes      | Yes
 2019-09-11 | dou2019_1     | Yes      | No           | Yes 
-<!--2019-09-11 | dou2019_2     | Yes      | No           | Yes
-2019-09-11 | dou2019_3     | Yes      | No           | Yes -->
+2019-09-11 | dou2019_2     | Yes      | No           | Yes
+2019-09-11 | dou2019_3     | Yes      | No           | Yes 
 
 ## Data set description 
   
@@ -49,9 +49,12 @@ desc <- scpdata()$result[, -c(1,2), drop=F]
 colnames(desc) <- c("Data", "Description")
 knitr::kable(desc) 
 -->
-|Data       |Description                                                                              |
-|:----------|:----------------------------------------------------------------------------------------|
-|specht2019 |356 cells x 6787 peptides data containing macrophages and monocytes (Specht et al. 2019) |
 
+|Data       |Description                                                                                                                 |
+|:----------|:---------------------------------------------------------------------------------------------------------------------------|
+|dou2019_1  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
+|dou2019_2  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
+|dou2019_3  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
+|specht2019 |Quantifying the emergence of macrophage heterogeneity using the SCoPE2 pipeline (Specht et al. 2019)                        |
 
 

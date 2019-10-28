@@ -21,52 +21,69 @@ BiocStyle::markdown()
 
 ```{r, echo = FALSE}
 suppressPackageStartupMessages(library(MSnbase))
+suppressPackageStartupMessages(library(magrittr))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(gridExtra))
 suppressPackageStartupMessages(library(reshape2))
 suppressPackageStartupMessages(library(sva))
-source("../R/specht2019_funs.R")
+
+suppressPackageStartupMessages(library(scpdata))
+# source("../R/specht2019_funs.R")
 ```
 
 # Introduction 
 
 
 
+# Dou et al. 2019 
+
+
+
 
 # Specht et al. 2019
 
-*Specht, Harrison, Emmott, Koller, Slavov. 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of Macrophage Heterogeneity.” bioRxiv. https://doi.org/10.1101/665307.*
+We will show some quality control figures and processing steps for the single cell data set produced by Specht and colleagues (Specht et al. 2019). Information about the data set can be found in `scpdata/inst/README.md` or in the data set help file: 
 
-The quantitative data was downloaded from the [MassIVE](https://massive.ucsd.edu/ProteoSAFe/static/massive.jsp) database with accession number *MSV000083945*. 
+```{r data_info}
+library(scpdata)
+?specht2019
+```
 
-<!-- ### Processing the raw data into count data -->
+Reference: *Specht, Harrison, Emmott, Koller, Slavov. 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of Macrophage Heterogeneity.” bioRxiv. https://doi.org/10.1101/665307.*
 
-## Data transformation 
+We first store our data set in the `sc` variable. 
 
 ```{r loading_data}
-scp_load("../data/specht2019.rda")
 sc <- specht2019
 ```
 
-The `specht2019` data has already been processed to some extent. The `*.raw` files were analyzed with MaxQuant + DART-ID and the output `.txt` file was parsed into R. This output was further processed as follows:
 
-- Only the single cell runs were kept for further analysis (experiment FP94 and FP97, no experimental information supplied)
-- TMT reporter itensities (RI) were corrected for isotopic cross contamination. This is performed as follows: $cM = (C^{-1} M^T)^T$, where $M$ is the matrix containing the RI (cells $\times$ TMT reporter), and $C$ is 
-$\mathbf{\color{red}{\text{no idea, this is a file loaded in the script called te269088_lot_correction.csv}}}$, (cells $\times$ cells).
-- Filter out reverse hits (identified by MaxQuant), contaminants (identified by MaxQuant), and contaminated spectra (`PIF > 0.8`)
-- Filter out peptides with low identification score  (`FDR >= 1%` or `PEP >= 0.02`)
-- Filter out cells with less than 300 peptides
-- Filter out peptides that are more than 10\% the intensity of the carrier
-- Divide peptide intensities in every channel by the reference channel
-- Zero or infinite intensities are replaced by `NA`'s
-- Filter out cells that have a median CV larger than 0.43, for which the 30th quantile of the log10 transformed relative RIs is smaller than -2.5, or for which the median of the log10 transformed relative RI is larger than -1.3
-- Divide column (cells) with median intensity and divide rows with mean intensity
-- Remove rows (peptides) then columns (cells) that contain more than 99\% of missing data
-- Log2 transform the data 
+## Data exploration
 
-### Normalization 
+Here are some basic summary statistics 
 
-The first step of the normalization is subtracting from each row (peptides) the mean intensity of that row. 
+```{r basic_stat}
+scp_plotStats(sc, xstat = "median", ystat = "sd")
+``` 
+
+Let's check the missingness of the data 
+
+```{r missingness}
+scp_plotMissing(sc)
+```
+
+A popular measure of quality is the coefficient of variation (*i.e.* the standard deviation over the mean intensity)
+
+```{r variation}
+scp_plotCV(sc)
+```
+
+
+
+
+## Normalization 
+
+The normalization procedure here follows the normalization procedure from the original paper. The first step is to subtract from each row (peptides) the mean intensity of that row. This is performed using our `scp_normalize()` function.
 
 ```{r peptide_normalization, echo = TRUE, include=TRUE}
 scNorm <- scp_normalize(sc, what = "row")
@@ -84,7 +101,15 @@ Rows than columns are finally normalized again. For the rows the **mean** value 
 scNorm <- scp_normalize(scNorm, what = "both")
 ```
 
-### Imputation 
+This can be performed in a single run using pipes:
+```{r normalization_pipe, eval = FALSE}
+sc %>% scp_normalize(what = "row") %>%
+       scp_aggregateByProtein() %>%
+       scp_normalize(what = "both") -> scNorm
+```
+
+
+## Imputation 
 
 The `specht2019` data set is highly sparse it contains a majority of missing
 entries. We can see this here:
@@ -106,7 +131,7 @@ n.na <- sum(is.na(exprs(scImput)))
 cat("Missing data:", round(n.na / n * 100, 2), "%")
 ```
 
-### Batch correction
+## Batch correction
 
 Specht et al. performed batch correction of the single cell data using the `ComBat` function from the `sva` package. `ComBat` is a batch correction method using empirical Bayes (EB) procedure developed by Johnson et al. (2007) to remove variation linked to experimental variables (**eg** day of processing) while preserving the other sources of variation, namely the biological variation. The method is based on a previous model called the location and scale adjustment (L/S) model.
 
@@ -115,44 +140,19 @@ scBc <- batchCorrect(scImput, batch = "raw.file", target = "celltype")
 ```
 
 
-### Quality control 
+## Quality control
 
 Let's check how the normalization, imputation, and batch correction affects the data. 
 
-#### Normalization
+### Normalization
 
-First, let's look at the mean and standard deviation distributions before the 
-normalization step:
-
-```{r, echo = FALSE}
-p1 <- ggplot(data = data.frame(mean = apply(exprs(sc), 1, mean,  na.rm = TRUE),
-                         StdDev = apply(exprs(sc), 1, sd, na.rm = TRUE))) + 
-  geom_point(aes(x = mean, y = StdDev), col = rgb(0, 0, 0.5, 0.5)) +
-  xlab("Mean intensity") + ylab("Standard deviation") +
-  ggtitle("Mean vs standard deviation \ndistribution for peptides")
-p2 <- ggplot(data = data.frame(median = apply(exprs(sc), 2, median,  na.rm = TRUE),
-                               StdDev = apply(exprs(sc), 2, sd, na.rm = TRUE))) + 
-  geom_point(aes(x = median, y = StdDev), col = rgb(0, 0, 0.5, 0.5)) +
-  ggtitle("Median vs standard deviation \ndistribution for single cells") +
-  xlab("Median intensity") + ylab("Standard deviation")
-grid.arrange(p1, p2, nrow = 1)
-```
-  
-Now, after the data normalization:
+Above, we looked at the mean and standard deviation distributions of the original data set. We can redraw those plots after data normalization:
 
 ```{r, echo = FALSE}
-p1 <- ggplot(data = data.frame(mean = apply(exprs(scNorm), 1, mean,  na.rm = TRUE),
-                         StdDev = apply(exprs(scNorm), 1, sd, na.rm = TRUE))) + 
-  geom_point(aes(x = mean, y = StdDev), col = rgb(0, 0, 0.5, 0.5)) +
-  ggtitle("Mean vs standard deviation \ndistribution for peptides")
-p2 <- ggplot(data = data.frame(median = round(apply(exprs(scNorm), 2, median,  na.rm = TRUE), 3),
-                               StdDev = apply(exprs(scNorm), 2, sd, na.rm = TRUE))) + 
-  geom_point(aes(x = median, y = StdDev), col = rgb(0, 0, 0.5, 0.5)) +
-  ggtitle("Median vs standard deviation \ndistribution for single cells")
-grid.arrange(p1, p2, nrow = 1)
+scp_plotStats(scNorm, xstat = "median", ystat = "sd")
 ```
 
-#### Imputation
+### Imputation
 
 To asses imputation, we can have a look at single cell data as a heatmap. 
 Before imputation (after normalization), the data looks like this:
@@ -181,10 +181,4 @@ image(R, xlab = "Cell index 1", ylab = "Cell index 2", main = "After imputation"
 
 From the two plots above we can see the imputation increases the correlation between 
 
-### Benchmarks???
 
-Checking the coefficient of variation (sd/mean)
-
-```{r, echo = FALSE}
-plotCV(sc)
-```
