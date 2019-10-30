@@ -1,3 +1,4 @@
+
 # Single Cell Proteomics Data Package
 
 This package contains formatted and annotated single cell proteomics data.
@@ -21,7 +22,19 @@ scpdata()
 and the data set can be loaded using 
 
 ```r
-data("NameOfData")
+data("DataSetName")
+```
+
+For example
+
+```r
+data("specht2019")
+```
+
+Every data set is documentend. The data collection procedures are described [here](https://github.com/UCLouvain-CBIO/scpdata/inst/README.md), and the data information can be found in the helpfiles. Try
+
+```r
+?specht2019
 ```
 
 ## Available data sets
@@ -30,7 +43,8 @@ Several articles have been published including single-cell proteomics data. We h
 
 * **Raw data** is composed of MS output files and was not processed
 * **Peptide data** is the peptide quantitative data obtained after processing the raw data
-* **Protein data** is the protein quantitative data obtained after aggregating the peptides belonging to the same protein. **Or final expression data after data normalization, imputation, batch correction,... ?**
+* **Protein data** is the protein quantitative data obtained after aggregating the peptides belonging to the same protein. 
+* $\color{red}{\text{Final expression data after data normalization, imputation, batch correction,... ?}}$
 
 This is an overview of the available data in this package: 
 
@@ -56,5 +70,4 @@ knitr::kable(desc)
 |dou2019_2  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
 |dou2019_3  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
 |specht2019 |Quantifying the emergence of macrophage heterogeneity using the SCoPE2 pipeline (Specht et al. 2019)                        |
-
 

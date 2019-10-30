@@ -99,6 +99,7 @@ scp_image <- function(obj, row.ord = NULL, col.ord = NULL){
   
 }
 
+#' @export
 scp_plotStats <- function(obj, what = c("both", "cells", "features"), 
                           xstat = "mean", ystat = "sd"){
   # Check and format arguments 
@@ -143,7 +144,7 @@ scp_plotStats <- function(obj, what = c("both", "cells", "features"),
   }
 }
 
-
+#' @export
 scp_plotMissing <- function(obj, what = c("both", "cells", "features")){
   # Check and format arguments 
   what <- match.arg(what, c("both", "cells", "features")) 
@@ -175,7 +176,7 @@ scp_plotMissing <- function(obj, what = c("both", "cells", "features")){
   
 }
 
-
+#' @export
 scp_plotCV <- function(obj, colorBy = NULL){
   dat <- exprs(obj)
   prots <- as.character(fData(obj)[,1])
@@ -197,6 +198,12 @@ scp_plotCV <- function(obj, colorBy = NULL){
     ggtitle("Protein CV distribution per cell (black = peptides; red = median)")
 }
 
+#' @export
+show_heatmap <- function(obj, ylab = "Feature index", xlab = "Cell index", ...){
+  dat <- t(exprs(obj))
+  image(x = 1:nrow(dat), y = 1:ncol(dat), z = dat, xlab = xlab, ylab = ylab, 
+        useRaster = TRUE, axes = FALSE, ...)
+}
 
 ####---- SPECHT ET AL. 2019 FUNCTIONS ----####
 
@@ -288,6 +295,7 @@ imputeKNN <- function(obj, k = 3){
   return(obj)
 }
 
+#' @export
 batchCorrect <- function(obj, batch, target){
   if(is.character(batch)){
     batch <- pData(obj)[, batch]

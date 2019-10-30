@@ -60,6 +60,12 @@ sc <- specht2019
 
 ## Data exploration
 
+The most straightforward way to look at single-cell data is the heatmap:
+
+```{r heatmap, echo = FALSE}
+show_heatmap(sc)
+```
+
 Here are some basic summary statistics 
 
 ```{r basic_stat}
@@ -114,19 +120,19 @@ sc %>% scp_normalize(what = "row") %>%
 The `specht2019` data set is highly sparse it contains a majority of missing
 entries. We can see this here:
 
-```{r missing_data}
+```{r missing_data, echo = FALSE}
 n.na <- sum(is.na(exprs(sc)))
 n <- length(exprs(sc))
 cat("Missing data:", round(n.na / n * 100, 2), "%")
 ```
 
-Over *75%* of the data is missing ! This large proportion of missing data hinders downstream analysis and imputation is hence performed to fill in the gaps. In their paper, Specht et al. implemented the k-nearest neighbour imputation:
+Over **75%** of the data is missing ! This large proportion of missing data hinders downstream analysis and imputation is hence performed to fill in the gaps. In their paper, Specht et al. implemented the k-nearest neighbour imputation:
 
 ```{r imputation}
 scImput <- imputeKNN(scNorm)
 ```
 
-```{r filled_data}
+```{r filled_data, echo = FALSE}
 n.na <- sum(is.na(exprs(scImput)))
 cat("Missing data:", round(n.na / n * 100, 2), "%")
 ```
@@ -152,6 +158,8 @@ Above, we looked at the mean and standard deviation distributions of the origina
 scp_plotStats(scNorm, xstat = "median", ystat = "sd")
 ```
 
+The protein variance seems to be linked to the median intensity.
+
 ### Imputation
 
 To asses imputation, we can have a look at single cell data as a heatmap. 
@@ -173,12 +181,31 @@ Since the distance measure used for the KNN is Euclidean distance, it is interes
 par(mfrow = c(1,2))
 
 R <- as.matrix( dist(t(exprs(scNorm))))
-image(R, xlab = "Cell index 1", ylab = "Cell index 2", main = "Before imputation")
+image(R, xlab = "Cell index 1", ylab = "Cell index 2", main = "Before imputation", 
+      useRaster = TRUE, axes = FALSE)
 
 R <- as.matrix( dist(t(exprs(scImput))))
-image(R, xlab = "Cell index 1", ylab = "Cell index 2", main = "After imputation")
+image(R, xlab = "Cell index 1", ylab = "Cell index 2", main = "After imputation", 
+      useRaster = TRUE, axes = FALSE)
+
 ```
 
-From the two plots above we can see the imputation increases the correlation between 
+From the two plots above we can see the imputation increases the correlation that exist between 3 batches of cells. The batches are defined as the combination of **chromatographic batches???** and another **undocumented batch** (the batch could be retrieved from the file names...). This stringly suggests that the SCoPE2 pipeline is subject to batch effect that cannot be corrected by the normalization to the reference channel. Therefore, batch correction using `ComBat` is applied. 
+
+```{r correl_batch_correction, echo = FALSE}
+par(mfrow = c(1,2))
+
+R <- as.matrix(dist(t(exprs(scBc))))
+image(R, xlab = "Cell index 1", ylab = "Cell index 2", main = "Batch correction", 
+      useRaster = TRUE, axes = FALSE)
+
+R <- as.matrix( dist(t(exprs(scBc)[, order(pData(scBc)$celltype)])))
+image(R, xlab = "Cell index 1", ylab = "Cell index 2", main = "Batch correction \n(cell type ordered)", 
+      useRaster = TRUE, axes = FALSE)
+```
+
+It seems that the batch effects seen in the previous plots are completely removed. Second plot indicates that `ComBat` is able to correct for batch effects without affecting the biological variation induced by cell type. Note that here 62 batches (that is 62 SCoPE2 sets) were used for removing the batch effects.
+
+
 
 
