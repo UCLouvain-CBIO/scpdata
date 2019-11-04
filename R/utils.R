@@ -108,30 +108,32 @@ scp_plotStats <- function(obj, what = c("both", "cells", "features"),
     xstat <- switch(xstat, 
                     mean = list(fun = function(x) mean(x, na.rm = TRUE), title = "Mean"),
                     median = list(fun = function(x) round(median(x, na.rm = TRUE), 15), title = "Median"),
-                    sd = list(fun = function(x) sd(x, na.rm = TRUE), title = "Standard deviation"))
+                    sd = list(fun = function(x) sd(x, na.rm = TRUE), title = "Standard deviation"),
+                    var = list(fun = function(x) var(x, na.rm = TRUE), title = "Variance"))
   }
   if(is.character(ystat)){
     ystat <- switch(ystat, 
                     mean = list(fun = function(x) mean(x, na.rm = TRUE), title = "Mean"),
                     median = list(fun = function(x) round(median(x, na.rm = TRUE), 15), title = "Median"),
-                    sd = list(fun = function(x) sd(x, na.rm = TRUE), title = "Standard deviation"))
+                    sd = list(fun = function(x) sd(x, na.rm = TRUE), title = "Standard deviation"),
+                    var = list(fun = function(x) var(x, na.rm = TRUE), title = "Variance"))
   }
   M <- exprs(obj)
   
   # Generate plots
-  if(what %in% c("both", "features")){
-    p1 <- ggplot(data = data.frame(var1 = apply(M, 1, xstat$fun),
-                                   var2 = apply(M, 1, ystat$fun))) + 
-      geom_point(aes(x = var1, y = var2), col = rgb(0, 0, 0.5, 0.5)) +
-      xlab(xstat$title) + ylab(ystat$title) +
-      ggtitle("Distribution statistics for features")
-  }
   if(what %in% c("both", "cells")){
-    p2 <- ggplot(data = data.frame(var1 = apply(M, 2, xstat$fun),
+    p1 <- ggplot(data = data.frame(var1 = apply(M, 2, xstat$fun),
                                    var2 = apply(M, 2, ystat$fun))) + 
       geom_point(aes(x = var1, y = var2), col = rgb(0, 0, 0.5, 0.5)) +
       ggtitle("Distribution statistics for single cells") +
       xlab(xstat$title) + ylab(ystat$title)
+  }
+  if(what %in% c("both", "features")){
+    p2 <- ggplot(data = data.frame(var1 = apply(M, 1, xstat$fun),
+                                   var2 = apply(M, 1, ystat$fun))) + 
+      geom_point(aes(x = var1, y = var2), col = rgb(0, 0, 0.5, 0.5)) +
+      xlab(xstat$title) + ylab(ystat$title) +
+      ggtitle("Distribution statistics for features")
   }
   
   # Print plots
@@ -151,17 +153,19 @@ scp_plotMissing <- function(obj, what = c("both", "cells", "features")){
   
   M <- exprs(obj)
   
-  if(what %in% c("both", "features")){
-    mis <- apply(M, 1, function(x) sum(is.na(x))/length(x))
-    p1 <- ggplot(data = data.frame(mis), mapping = aes(x = mis)) + 
-      geom_histogram(binwidth = 0.025, fill = "grey60", col = "grey40") +
-      xlim(0, 1) + xlab("Missingness (%)") + ggtitle("Missing data among features")
-  }
   if(what %in% c("both", "cells")){
-    mis <- apply(M, 2, function(x) sum(is.na(x))/length(x))
+    mis <- apply(M, 2, function(x) sum(is.na(x))/length(x)) * 100
+    p1 <- ggplot(data = data.frame(mis), mapping = aes(x = mis)) + 
+      geom_histogram(binwidth = 2.5, fill = "grey60", col = "grey40") +
+      geom_vline(aes(xintercept = mean(mis)), col = "red", linetype = "dashed") + 
+      xlim(0, 100) + xlab("Missingness (%)") + ggtitle("Missing data among cells")
+  }
+  if(what %in% c("both", "features")){
+    mis <- apply(M, 1, function(x) sum(is.na(x))/length(x)) * 100
     p2 <- ggplot(data = data.frame(mis), mapping = aes(x = mis)) + 
-      geom_histogram(binwidth = 0.025, fill = "grey60", col = "grey40") +
-      xlim(0, 1) + xlab("Missingness (%)") + ggtitle("Missing data among cells")
+      geom_histogram(binwidth = 2.5, fill = "grey60", col = "grey40") +
+      geom_vline(aes(xintercept = mean(mis)), col = "red", linetype = "dashed") + 
+      xlim(0, 100) + xlab("Missingness (%)") + ggtitle("Missing data among features")
   }
   
   # Print plots
@@ -172,8 +176,6 @@ scp_plotMissing <- function(obj, what = c("both", "cells", "features")){
   } else if (what == "cells"){
     print(p2)
   }
-  
-  
 }
 
 #' @export
@@ -182,27 +184,68 @@ scp_plotCV <- function(obj, colorBy = NULL){
   prots <- as.character(fData(obj)[,1])
   CVs <- do.call(rbind, lapply(unique(prots), function(prot){
     .idx <- prots == prot
-    if(sum(.idx) <= 1) return(NULL)
+    if(sum(.idx) < 2) return(NULL)
     xx <- 2^dat[.idx,]
     CV <- apply(xx, 2, sd, na.rm = TRUE)/apply(xx, 2, mean, na.rm = TRUE)
     return(CV)
   }))
   dimnames(CVs) <- list(NULL, NULL)
   CVs <- melt(CVs)
+  CVs <- CVs[!is.na(CVs$value),]
   # CVs <- cbind(CVs, type = pData(obj)$celltype[CVs$Var2])
   ggplot(data = CVs, aes(x = Var2, y = value)) +
     geom_point(col = rgb(0.3,0.3,0.3,0.2)) + 
-    stat_summary(aes(y = value,group=1), fun.y = median, colour = "red",
+    stat_summary(aes(y = value, group = 1, color = "median"), fun.y = median,
                  geom = "point",  size = 0.5, group = 1) +
+    scale_color_manual("", values = c("median" = "red")) +
     xlab("Cell index") + ylab("Coefficient of variation") +
-    ggtitle("Protein CV distribution per cell (black = peptides; red = median)")
+    ggtitle("Protein CV distribution per cell")
 }
 
 #' @export
-show_heatmap <- function(obj, ylab = "Feature index", xlab = "Cell index", ...){
+show_heatmap <- function(obj, ylab = "Feature index", xlab = "Cell index", 
+                         Log2 = FALSE, znorm = FALSE, main, Legend = TRUE,
+                         feat_ord = NULL, samp_ord = NULL, trim = NA, ...){
   dat <- t(exprs(obj))
-  image(x = 1:nrow(dat), y = 1:ncol(dat), z = dat, xlab = xlab, ylab = ylab, 
-        useRaster = TRUE, axes = FALSE, ...)
+  if(missing(main)){
+    main <- paste0("Expression matrix (", ncol(dat), " features x ",
+                   nrow(dat), " cells)")
+  }
+  if(Log2){
+    dat <- log2(dat)
+    dat[is.infinite(dat)] <- NA
+  }
+  if(znorm){ # z-normalize features
+    dat <- apply(dat, 2, function(x){
+      x <- x - mean(x, na.rm = TRUE)
+      x <- x / sd(x, na.rm = TRUE)
+      return(x)
+    })
+  }
+  if(is.na(trim)) trim <- round(max(abs(dat), na.rm = TRUE), 2)
+  dat[dat < -trim] <- -trim
+  dat[dat > trim] <- trim
+  
+  if(!is.null(feat_ord)) dat <- dat[, feat_ord]
+  if(!is.null(samp_ord)) dat <- dat[samp_ord, ]
+  
+  cols <- colorRampPalette(c(rgb(0.55,0.55,1), rgb(1, 0.95, 0.7), rgb(1, 0.45, 0)))(1000)
+  init.par <- par()[c("mar", "mai")]
+  layout(t(1:2), widths=c(8,1))
+  par(mar = c(2, 2, 2, 0))
+  image(x = 1:nrow(dat), y = 1:ncol(dat), z = dat, xlab = xlab, ylab = ylab,
+        useRaster = TRUE, axes = FALSE, col = cols, mgp = c(1, 0, 0),
+        zlim = c(-trim, trim),
+        main = main)
+  box()
+  ds <- dev.size()
+  par(mai = c(ds[2]/4, ds[1]/50, ds[2]/4, ds[1]/20))
+  image(z = t(seq(-trim, trim, length.out = 1000)), col = cols, axes = FALSE,
+        cex = 0.1, mgp = c(0, 1, 0.5), useRaster = TRUE)
+  axis(4, at = c(0, 0.5, 1),  labels = c(-trim, 0, trim), cex = 0.1)
+  box()
+  par(init.par)
+  return(invisible(NULL))
 }
 
 ####---- SPECHT ET AL. 2019 FUNCTIONS ----####
