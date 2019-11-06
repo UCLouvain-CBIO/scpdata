@@ -156,3 +156,52 @@ dou2019 <- function(){
   data("dou2019_2")
   data("dou2019_3")
 }
+
+
+#'  mPOP SCoPE-MS Master Mix 20180824 (Specht et al. 2018)
+#'
+#' Single cell proteomics data produced and published by Specht et al. from the 
+#' Slavov Lab (see references). It contains quantitative information for 1824 
+#' peptides x 220 channels. Channels are either carrier (50 cell equivalent of
+#' Jurkat or U-937 digestion product), empty, or single cell equivalent of 
+#' digestion product (Jurkat or U-937). The data are formated to an MSnSet object. 
+#' 
+#' @details
+#' 
+#' \strong{Title}: Automated sample preparation for high-throughputsingle-cell 
+#' proteomics
+#' 
+#' \strong{Abstract}: A major limitation to applying quantitative LC-MS/MS 
+#' proteomics to small samples, such as single cells, are the losses incured 
+#' during sample cleanup. To relieve this limitation, we developed a Minimal 
+#' ProteOmic sample Preparation (mPOP) method for culture-grown mammalian 
+#' cells. mPOP obviates cleanup and thus eliminates cleanup-related losses while 
+#' expediting sample preparation and simplifying its automation.  Bulk SILAC 
+#' samples processed by mPOP or by conventional urea-based methods indicated 
+#' that mPOP results in complete cell lysis and accurate relative 
+#' quantification. We integrated mPOP lysis with the Single CellProtEomics by 
+#' Mass Spectrometry (SCoPE-MS) sample preparation, and benchmarked the 
+#' quantification of such samples on a Q-exactive instrument. The results 
+#' demonstrate low noise and high technical reproducibility. Then, we FACS 
+#' sorted single U-937, HEK-293, andmouse ES cells into 96-well plates and 
+#' analyzed them by automated mPOP and SCoPE-MS.The quantified proteins enabled 
+#' separating the single cells by cell-type and cell-division-cycle phase.
+#'
+#' @docType data
+#'
+#' @usage data("specht2018")
+#'
+#' @format An object of class \code{"\link{MSnSet}"}
+#'
+#' @keywords datasets
+#'
+#' @references 
+#' Specht, Harrison, Guillaume Harmange, David H. Perlman, Edward Emmott, 
+#' Zachary Niziolek, Bogdan Budnik, and Nikolai Slavov. 2018. “Automated Sample 
+#' Preparation for High-Throughput Single-Cell Proteomics.” bioRxiv 
+#' (\href{https://doi.org/10.1101/399774}{DOI}).
+#'
+#' @source The original data can be downloaded from the 
+#' \href{http://slavovlab.net/mPOP/index.html}{Slavov Lab} website.
+#'
+"specht2018"

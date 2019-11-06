@@ -11,8 +11,9 @@
 6. Eventually add experimental code in the `vignettes/scpdata.Rmd` vignette and add utility functions in `scpdata/R/utils.R` script if needed
 
 
-# From Specht et al. 2019
+# Specht et al. 2019
 
+*Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of Macrophage Heterogeneity.” bioRxiv. https://doi.org/10.1101/665307.*
 
 The 3 data files are available on the [SlavovLab](https://scope2.slavovlab.net/docs/data) website. The available files are:
 
@@ -30,6 +31,7 @@ $\mathbf{\color{red}{\text{no idea, this is a file loaded in the script called t
 - Filter out cells with less than 300 peptides
 - Filter out peptides that are more than 10\% the intensity of the carrier
 - Divide peptide intensities in every channel by the reference channel
+- Convert data to matrix format and **remove duplicate peptides from the same run!!!**
 - Zero or infinite intensities are replaced by `NA`'s
 - Filter out cells that have a median CV larger than 0.43, for which the 30th quantile of the log10 transformed relative RIs is smaller than -2.5, or for which the median of the log10 transformed relative RI is larger than -1.3
 - Divide column (cells) with median intensity and divide rows with mean intensity
@@ -39,8 +41,9 @@ $\mathbf{\color{red}{\text{no idea, this is a file loaded in the script called t
 The peptide data (`Peptides-raw.csv`) and the meta data (`Cells.csv`) were combined into an MSnSet object (see `scpdata/inst/script/specht2019.R`).
 
 
-# From Dou et al. 2019
+# Dou et al. 2019
 
+*Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B. Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform.” Analytical Chemistry, September. https://doi.org/10.1021/acs.analchem.9b03349.*
 
 The article contains 3 SCP data sets available on the [ACS Publications](https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349) website:
 
@@ -91,5 +94,24 @@ We arbitrarily call this data set `dou2019_3`. The `.xlsx` spreadsheet contrains
 We parsed the sheet 02 (`Raw sc protein data`) to an MSnSet without further modification (see script `scpdata/inst/script/dou2019.R`). 
 
 
+# Specht et al. 2018
 
+*Specht, Harrison, Guillaume Harmange, David H. Perlman, Edward Emmott, Zachary Niziolek, Bogdan Budnik, and Nikolai Slavov. 2018. “Automated Sample Preparation for High-Throughput Single-Cell Proteomics.” bioRxiv. https://doi.org/10.1101/399774.*
+
+The MaxQuant output files are available on the [Google Drive](https://drive.google.com/drive/folders/19YG70I52DH5yETcZagdUjNZWNPs0JXVr) account of the SlavovLab (see also [here](http://slavovlab.net/mPOP/index.html). We used the following file:
+
+* `evidence.txt`: the raw output of the MaxQuant software. Documentation of the fields can be found on the [MaxQuant website](http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable)
+
+The `evidence.txt` file is loaded from the Google Drive folder to R and is processed as follows: 
+
+* Contaminants and reverse hits are removed
+* Peptides with PIF (parent ion fraction) smaller than 0.8 and PEP (posterior error probability) greater then 0.02 are removed
+* Experiment sets with less than 300 identified peptides are discarded. Note that all experiment sets contained more than 300 identified peptides.
+* Some peptides were identified twice within the same experiment set because of different charge states. The peptide identification with lowest PEP is kept and the other(s) discarded. 
+* Intensity data is formated to a feature (peptide) x sample (combination of experiment run and TMT channel) matrix. 
+* Peptide information is gathered in a feature data frame. PEP, PIF, Score, and retention time are aggregated by taking the median. When the mass is differing among the same peptide sequence, only the mass for the unmodified peptide is kept.
+* Sample information is gathered in a phenotype data frame.
+* All information is stored in an `MSnSet` object
+
+These processing steps can be found in `scpdata/inst/script/specht2018.R`
 

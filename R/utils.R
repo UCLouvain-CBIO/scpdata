@@ -44,6 +44,7 @@ scp_normalize <- scp_normalise <- function(obj, what = "col", method = 1){
   } else {
     stop("Method '", method, "' not implemented.")
   }
+  
   return(obj)
 }
 
@@ -269,8 +270,9 @@ aggregateByProtein <- function(obj){
     xx <- exprs(obj)[prots == prot, , drop = F]
     apply(xx, 2, median, na.rm = TRUE)
   }))
+  rownames(x) <- unique(prots)
   obj.new <- MSnSet(exprs = x, 
-                    fData = data.frame(protein = unique(prots)),
+                    fData = data.frame(protein = unique(prots), row.names =  unique(prots)),
                     pData = pData(obj),
                     experimentData = experimentData(obj))
   return(obj.new)

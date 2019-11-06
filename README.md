@@ -54,6 +54,7 @@ Publ. Date | Data set name | Raw data | Peptide data | Protein data
 2019-09-11 | dou2019_1     | Yes      | No           | Yes 
 2019-09-11 | dou2019_2     | Yes      | No           | Yes
 2019-09-11 | dou2019_3     | Yes      | No           | Yes 
+2018-08-24 | specht2018    | Yes      | Yes          | No
 
 # Data set description 
   
@@ -69,5 +70,6 @@ knitr::kable(desc)
 |dou2019_1  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
 |dou2019_2  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
 |dou2019_3  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
+|specht2018 |mPOP SCoPE-MS Master Mix 20180824 (Specht et al. 2018)                                                                      |
 |specht2019 |Quantifying the emergence of macrophage heterogeneity using the SCoPE2 pipeline (Specht et al. 2019)                        |
 
