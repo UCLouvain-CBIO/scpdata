@@ -28,6 +28,7 @@ suppressPackageStartupMessages(library(gridExtra))
 suppressPackageStartupMessages(library(reshape2))
 suppressPackageStartupMessages(library(sva))
 suppressPackageStartupMessages(library(scpdata))
+suppressPackageStartupMessages(library(pheatmap))
 ```
 
 # Introduction 
@@ -173,8 +174,9 @@ we observed in the data exploration section that the `specht2019` data set is hi
 
 ```{r imputation}
 scImput <- imputeKNN(scNorm)
-n.na <- sum(is.na(exprs(scImput)))
-cat("Missing data:", round(n.na / n * 100, 2), "%")
+cat("Missing data:", 
+    round(sum(is.na(exprs(scImput))) / length(exprs(scImput)) * 100, 2), 
+    "%")
 ```
 
 To asses the performance of this imputation, we have a look again at the data using heatmaps. Before imputation (after normalization), the data is very sparse.
@@ -256,13 +258,69 @@ axis(1, at = seq(0, 1, length.out = 4), tick = F, las = 2,
 
 It seems that the batch effects seen in the previous plots are completely removed. `ComBat` is able to correct for batch effects without affecting the biological variation induced by cell type. Note that 62 batches (that is the 62 SCoPE2 sets) were used for removing the batch effects.
 
-Finally let's see if correct clusters can be found. 
+Let's see if correct clusters can be found. 
 ```{r pheatmap, echo = FALSE}
 dat <- exprs(scBc)
+bdf <- pData(scBc)[,-(2:3)]
+bdf$raw.file <- sapply(as.character(bdf$raw.file), function(x) tail(strsplit(x, "")[[1]], 2)[1])
+anncolors <- list(celltype = c(sc_m0 = "#FBB4AE", sc_u = "#B3CDE3"),
+                  batch_chromatography = c(LCA9 = "#FBB4AE", LCA10 = "#B3CDE3"),
+                  raw.file = c(A = "#FBB4AE", B = "#B3CDE3"))
 pheatmap(dat,  show_colnames = FALSE, show_rownames = FALSE, scale = "none",
-         annotation_col = pData(scBc)[,1, drop = FALSE])
+         annotation_col = bdf, clustering_method = "complete",
+         annotation_legend = FALSE, annotation_colors = anncolors)
 ```
 
+The clustering (hierarchical clustering with complete linkage and Euclidean distance) almost perfectly groups the cell types together. Some batch effect whithin the cell type groups seems still present as batches are more grouped than expected by chance. This could be either due to remaining technical bias or an artifact of the KNN imputation. However, we can see that the main expression patterns are correlated with cell type and indicate that the data contain sufficient protein expression information to discriminate between the undifferentiated monocytes and the macrophages. 
+
+
+## Conclusion
+
+The data from Specht et al. published in June 2019 is a successful test case for MS-based SCP showing that such a technology can be used for biological purposes. The authors were able with their data to differentiate between macrophages and monocytes. Although the data exhibit high missingness, a clear-cut differences between the cell type could still be observed, and is even more highlighted by PCA. 
+
+
+```{r svd, echo = FALSE}
+M <- t(exprs(scBc))
+# Center data and scale to unit variance (PCA on correlation matrix)
+M <- scale(M, center = TRUE, scale = TRUE)
+# Compute weights: weight i is the fraction missing data in all peptides
+# belonging to thz protein i across all filtered single cells. 
+wi <- apply(exprs(scNorm), 1, function(x)  sum(is.na(x))/length(x))
+wi <- wi/sum(wi)
+wi <- rep(1, ncol(M))
+# Perform the PCA using SVD
+scSVD <- svd(M %*% diag(sqrt(wi)))
+eignval <- scSVD$d^2 / (length(scSVD$d) - 1) # convert singular vectors to eigenvalues
+varexp <- round(eignval / sum(eignval) * 100) # percentage variance explained
+PCs <- sweep(scSVD$u[,1:2], 2, scSVD$d[1:2], "*") # aka scores
+# Plot PCA
+ggplot(data = data.frame(PC = PCs, pData(scBc))) +
+  geom_point(aes(x = PC.1, y = PC.2, color = celltype)) +
+  # geom_segment(data = data.frame(PC = scSVD$v[,1:2]),
+  #              aes(x = 0, y = 0, xend = PC.1, yend = PC.2))
+  ggtitle("PCA on the expression data ") + 
+  scale_color_discrete(name = "Cell type",
+                      labels = c("Macrophages", "Monocytes")) + 
+  xlab(paste0("PC1 (", varexp[1], " %)")) + 
+  ylab(paste0("PC2 (", varexp[2], " %)"))
+
+```
+
+
+This allows the identification of protein preferentially expressed in one cell type rather than the other. A list of proteins associated to the patterns (*eg* associated with the first PC) can easily be extracted and biological inference and interpretation can be performed. 
+
+```{r list_prots, echo = FALSE}
+pc1 <- data.frame(protein = fData(scBc)[,1], svec = scSVD$v[, 1])
+pc1 <- pc1[order(abs(pc1$svec), decreasing = TRUE),,drop = FALSE]
+top5 <- head(pc1, 5)
+top5 <- cbind(top5, 
+              annot = c("Peroxisome proliferator-activated receptor gamma coactivator 1-alpha",
+                        "Centromere protein R",
+                        "Dehydrogenase/reductase SDR family member 13",
+                        "Calsyntenin-1",
+                        "Guanylate-binding protein 1"))
+top5
+```
 
 # References
 
