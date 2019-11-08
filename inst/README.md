@@ -3,42 +3,10 @@
 # Methodology used for collecting the data
 
 
-1. Identify the data source and the annotations from the article
-2. Create a new R script that converts the data to an `MSnSet` object
-3. Add a new section in the `scpdata/inst/extdata/README.md` file
-4. Add data documentation in `scpdata/R/data.R`
-5. Update the `scpdata/README.md` file
-6. Eventually add experimental code in the `vignettes/scpdata.Rmd` vignette and add utility functions in `scpdata/R/utils.R` script if needed
-
-
-# Specht et al. 2019
-
-*Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of Macrophage Heterogeneity.” bioRxiv. https://doi.org/10.1101/665307.*
-
-The 3 data files are available on the [SlavovLab](https://scope2.slavovlab.net/docs/data) website. The available files are:
-
-* `Peptides-raw.csv`: Peptides x single cells at 1% FDR. The first 2 columns list the corresponding protein identifiers and peptide sequences and each subsequent column corresponds to a single cell. Peptide identification is based on spectra analyzed by MaxQuant and is enhanced by using DART-ID to incorporate retention time information. See Specht et al., 2019 for details.
-* `Proteins-processed.csv`: Proteins x single cells at 1% FDR, imputed and batch corrected.
-* `Cells.csv`: Annotation x single cells. Each column corresponds to a single cell and the rows include relevant metadata, such as, cell type if known, measurements from the isolation of the cell, and derivative quantities, i.e., rRI, CVs, reliability.
-
-The `Peptides-raw.csv` data have already been processed to some extent. The `*.raw` files were analyzed with MaxQuant + DART-ID and the output `.txt` file was parsed into R. This output was further processed by the authors as follows:
-
-- Only the single cell runs were kept for further analysis (experiment FP94 and FP97, no experimental information supplied)
-- TMT reporter itensities (RI) were corrected for isotopic cross contamination. This is performed as follows: $cM = (C^{-1} M^T)^T$, where $M$ is the matrix containing the RI (cells $\times$ TMT reporter), and $C$ is 
-$\mathbf{\color{red}{\text{no idea, this is a file loaded in the script called te269088_lot_correction.csv}}}$, (cells $\times$ cells).
-- Filter out reverse hits (identified by MaxQuant), contaminants (identified by MaxQuant), and contaminated spectra (`PIF > 0.8`)
-- Filter out peptides with low identification score  (`FDR >= 1%` or `PEP >= 0.02`)
-- Filter out cells with less than 300 peptides
-- Filter out peptides that are more than 10\% the intensity of the carrier
-- Divide peptide intensities in every channel by the reference channel
-- Convert data to matrix format and **remove duplicate peptides from the same run!!!**
-- Zero or infinite intensities are replaced by `NA`'s
-- Filter out cells that have a median CV larger than 0.43, for which the 30th quantile of the log10 transformed relative RIs is smaller than -2.5, or for which the median of the log10 transformed relative RI is larger than -1.3
-- Divide column (cells) with median intensity and divide rows with mean intensity
-- Remove rows (peptides) then columns (cells) that contain more than 99\% of missing data
-- Log2 transform the data 
-
-The peptide data (`Peptides-raw.csv`) and the meta data (`Cells.csv`) were combined into an MSnSet object (see `scpdata/inst/script/specht2019.R`).
+1. Identify the data source and the annotations from the article, ask authors for data if needed
+2. Create a new R script that converts the data to `MSnSet` objects
+3. Add data documentation in `scpdata/R/data.R`
+4. Update the `scpdata/README.md` file
 
 
 # Dou et al. 2019

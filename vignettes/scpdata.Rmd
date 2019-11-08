@@ -25,10 +25,11 @@ suppressPackageStartupMessages(library(MSnbase))
 suppressPackageStartupMessages(library(magrittr))
 suppressPackageStartupMessages(library(ggplot2))
 suppressPackageStartupMessages(library(gridExtra))
-suppressPackageStartupMessages(library(reshape2))
+suppressPackageStartupMessages(library(tidyr))
 suppressPackageStartupMessages(library(sva))
 suppressPackageStartupMessages(library(scpdata))
 suppressPackageStartupMessages(library(pheatmap))
+suppressPackageStartupMessages(library(nipals))
 ```
 
 # Introduction 
@@ -68,12 +69,11 @@ Let's rename the data to a more convenient variable.
 sc <- specht2019
 ```
 
-
 ## Data exploration
 
-Expression data is encoded as matrix whith each row is a feature (peptide or protein) and every column is a sample (sing cell). The most straightforward visualization of matrix-like data is the heatmap. The 
+Expression data is encoded as matrix whith each row is a feature (peptide or protein) and every column is a sample (sing cell). The most straightforward visualization of matrix-like data is the heatmap. 
 
-```{r heatmap, echo = FALSE}
+```{r heatmap}
 show_heatmap(sc, znorm = TRUE, trim = 3)
 ```
 
@@ -98,7 +98,19 @@ ggplot(data = df, mapping = aes(x = mis, color = celltype, fill = celltype)) +
 
 ```
 
-There is no obvious relation between the rate of missing data and the cell type. The amount of missing could be influenced by the average peptide intensity (excluding missing values of course). 
+There is no obvious relation between the rate of missing data and the cell type. The amount of missing could be influenced by the average peptide intensity (excluding missing values of course). But maybe there sets of peptides that have different amounts of missing value between the two cell types. Let's compare the amount of missingness between cell types for every cell.
+
+```{r missing_celltype_vs, echo = FALSE}
+df <- data.frame(sapply(unique(pData(sc)$celltype), function(x){
+  .sub <- exprs(sc)[, pData(sc)$celltype == x]
+  return(rowSums(is.na(.sub))/ncol(.sub)*100)
+}))
+colnames(df) <- unique(pData(sc)$celltype)
+ggplot(data = df, aes(x = sc_m0, y = sc_u)) +
+  geom_point(col = rgb(0, 0, 0.5, 0.5)) + 
+  ylab("Missingness (%) in monocytes") + xlab("Missingness (%) in macrophages")
+```
+
 
 ```{r missing_peptide, echo = FALSE}
 df <- data.frame(mis = apply(exprs(sc), 1, function(x) sum(is.na(x))/length(x)) * 100,
@@ -118,7 +130,7 @@ scp_plotStats(sc, xstat = "mean", ystat = "var")
 ``` 
 
 
-Variance and average intensity observed among cells seems completely uncorrelated, and the ranges are relatively narrow, indicating that the quantification and identification performance is constant accross cells. On the other hand, there is a linear relationship between the variance and the average intensity for peptides. As the average intensity decreases, the variance increases. Interestingly, this is the inverse of what is expected for the Poisson or negative binomial distributions. 
+Variance and average intensity observed among cells seem completely uncorrelated, and the ranges are relatively narrow, indicating that the quantification and identification performance is constant accross cells. On the other hand, there is a linear relationship between the variance and the average intensity for peptides. As the average intensity decreases, the variance increases. Interestingly, this is the inverse of what is expected for the Poisson or negative binomial distributions. 
 
 A benchmark measure often used by the Slavov Lab is the protein coefficient of variation (CV). CV is the standard deviation of the peptide intensities belonging to the same protein over their mean intensity. Here are the coefficients of variation for all proteins in every cell.
 
@@ -128,6 +140,22 @@ scp_plotCV(sc)
 
 The CV is roughly constant across cells.
 
+Finally, let's see before normalization, imputation and batch correction if the data can already differentiate the monocytes from the macrophages
+
+```{r pca_imput, echo = FALSE}
+# Plot PCA
+pca <- nipals(exprs(sc), ncomp = 5, center = TRUE, scale = TRUE)
+PCs <- pca$loadings
+meta <- data.frame(celltype = pData(sc)$celltype)
+meta$batch <- paste0(pData(sc)$batch_chromatography, "-",
+                     sapply(as.character(pData(sc)$raw.file), function(x) tail(strsplit(x, "")[[1]], 2)[1]))
+ggplot(data = data.frame(PCs, meta)) +
+  geom_point(aes(x = PC2, y = PC3, color = celltype, shape = batch)) +
+  ggtitle("PCA on the expression data ") + 
+  scale_color_discrete(name = "Cell type",
+                      labels = c("Macrophages", "Monocytes"))
+
+```
 
 
 ## Normalization 
@@ -166,6 +194,12 @@ scp_plotStats(scNorm, xstat = "median", ystat = "sd")
 Since the last step is subracting the median intensity from every cell, it is expected that the median intensity is constant. For individual proteins, the median intensities seem to be normally distributed around 0. It should be noted that the normalization procedure used by Specht and colleagues does not normalize the variance. This should be taken into account when performing downstream analysis such as PCA. 
 
 Other imputation methods could be tested. For instance, the `Linnorm` method is a popular method that has shown good performance on scRNA-Seq data.
+
+```{r combat_bef_imput}
+scBc <- batchCorrect(scNorm, batch = "raw.file", target = "celltype")
+
+``` 
+
 
 
 ## Imputation 
@@ -219,6 +253,35 @@ axis(1, at = seq(0, 1, length.out = 4), tick = F, las = 2,
 ```
 
 We can see the imputation increases the correlation that exists between 3 groups of cells. The groups are exactly correlated with the batches defined by the combination of the **chromatographic batch** and another **undocumented batch** (the batch could be retrieved from the file names...). This strongly suggests that the SCoPE2 pipeline is subject to batch effect that cannot be corrected by the normalization to the reference channel. Therefore, batch correction using `ComBat` is applied (see below). 
+
+Do the imputated data allow to distinguish between macrophages and monocytes ? Let's find this out with a PCA plot 
+
+```{r pca_imput, echo = FALSE}
+M <- t(exprs(scImput))
+# Center data and scale to unit variance (PCA on correlation matrix)
+M <- scale(M, center = TRUE, scale = TRUE)
+# Compute weights: weight i is the fraction missing data in all peptides
+# belonging to thz protein i across all filtered single cells. 
+wi <- apply(exprs(scNorm), 1, function(x)  sum(is.na(x))/length(x))
+wi <- wi/sum(wi)
+# wi <- rep(1, ncol(M))
+# Perform the PCA using SVD
+scSVD <- svd(M %*% diag(sqrt(wi)))
+eignval <- scSVD$d^2 / (length(scSVD$d) - 1) # convert singular values to eigen values
+varexp <- round(eignval / sum(eignval) * 100) # percentage variance explained
+PCs <- sweep(scSVD$u[,1:2], 2, scSVD$d[1:2], "*") # aka scores
+# Plot PCA
+ggplot(data = data.frame(PC = PCs, pData(scBc))) +
+  geom_point(aes(x = PC.1, y = PC.2, color = celltype, shape = batch_chromatography)) +
+  # geom_segment(data = data.frame(PC = scSVD$v[,1:2]),
+  #              aes(x = 0, y = 0, xend = PC.1, yend = PC.2))
+  ggtitle("PCA on the expression data ") + 
+  scale_color_discrete(name = "Cell type",
+                      labels = c("Macrophages", "Monocytes")) + 
+  xlab(paste0("PC1 (", varexp[1], " %)")) + 
+  ylab(paste0("PC2 (", varexp[2], " %)"))
+
+```
 
 Imputation using KNN has been shown to create artifacts when applied on scRNA-Seq data (see @Tian2019). Better methods could be `Drimpute` or `SAVER`. 
 
@@ -287,7 +350,7 @@ M <- scale(M, center = TRUE, scale = TRUE)
 # belonging to thz protein i across all filtered single cells. 
 wi <- apply(exprs(scNorm), 1, function(x)  sum(is.na(x))/length(x))
 wi <- wi/sum(wi)
-wi <- rep(1, ncol(M))
+# wi <- rep(1, ncol(M))
 # Perform the PCA using SVD
 scSVD <- svd(M %*% diag(sqrt(wi)))
 eignval <- scSVD$d^2 / (length(scSVD$d) - 1) # convert singular vectors to eigenvalues

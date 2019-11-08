@@ -5,13 +5,18 @@
 \alias{specht2019}
 \title{Quantifying the emergence of macrophage heterogeneity using the SCoPE2 
  pipeline (Specht et al. 2019)}
-\format{An object of class \code{"\link{MSnSet}"}}
+\format{The data set contains to type of expression data:
+\itemize{
+  \item \code{peptide}: an MSnSet with peptide expression levels
+  \item \code{protein}: an MSnSet with protein expression levels
+}
+See Details for information about data collection}
 \source{
 The original data can be downloaded from the 
 \href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website.
 }
 \usage{
-data("specht2019")
+specht2019
 }
 \description{
 Single cell proteomics data produced and published by Specht et al. from the 
@@ -20,30 +25,74 @@ peptides x 356 cells. Cells can be either macrophages (n = 259) or monocytes
 (n = 97). The data are formated to an MSnSet object.
 }
 \details{
-\strong{Title}: High-throughput single-cell proteomics quantifies the emergence of macrophage heterogeneity
-
-\strong{Abstract}: The fate and physiology of individual cells are controlled by networks of 
-proteins. Yet, our ability to quantitatively analyze protein networks in 
-single cells has remained limited. To overcome this barrier, we developed 
-SCoPE2. It integrates concepts from Single-Cell ProtEomics by Mass 
-Spectrometry (SCoPE-MS) with automated and miniaturized sample preparation, 
-substantially lowering cost and hands-on time. SCoPE2 uses data-driven 
-analytics to optimize instrument parameters for sampling more ion copies per 
-protein, thus supporting quantification with improved count statistics. 
-These advances enabled us to analyze the emergence of cellular heterogeneity 
-as homogeneous monocytes differentiated into macrophage-like cells in the 
-absence of polarizing cytokines. We used SCoPE2 to quantify over 2,000 
-proteins in 356 single monocytes and macrophages in about 85 hours of 
-instrument time, and the quantified proteins allowed us to discern single 
-cells by cell type. Furthermore, the data uncovered a continuous gradient of 
-proteome states for the macrophage-like cells, suggesting that macrophage 
-heterogeneity may emerge even in the absence of polarizing cytokines. Our 
-methodology lays the foundation for quantitative analysis of protein networks 
-at single-cell resolution.
+Three data files are provided by Specht and colleagues are:
+\itemize{
+  \item \code{Peptides-raw.csv}: Peptides x single cells at 1% FDR. The 
+  first 2 columns list the corresponding protein identifiers and peptide 
+  sequences and each subsequent column corresponds to a single cell. Peptide 
+  identification is based on spectra analyzed by MaxQuant and is enhanced by 
+  using DART-ID to incorporate retention time information. 
+  \item \code{Proteins-processed.csv}: Proteins x single cells at 1% FDR, 
+  imputed and batch corrected.
+  \item \code{Cells.csv}: Annotation x single cells. Each column corresponds 
+  to a single cell and the rows include relevant metadata, such as, cell type 
+  if known, measurements from the isolation of the cell, and derivative 
+  quantities, i.e., rRI, CVs, reliability.
+ }
+ 
+ \strong{Peptide expression data}
+ 
+ The \code{Peptides-raw.csv} data have already been partially processed by 
+ the authors. The MS files were analyzed with MaxQuant and DART-ID and the 
+ output \code{evidence.txt} file was parsed into R. This output was further 
+ processed by the authors as follows:
+ \itemize{
+   \item Keep only the single cell runs (experiments FP94 and FP97)
+   \item Correct TMT reporter itensities (RI) for isotopic cross contamination.
+   \item Remove out reverse hits and contaminants (identified by MaxQuant), 
+   and contaminated spectra (\code{PIF > 0.8})
+   \item Remove peptides with low identification score (\code{FDR >= 0.01} or 
+   \code{PEP >= 0.02})
+   \item Remove cells with less than 300 peptides
+   \item Remove peptides that are more than 10\% the intensity of the carrier
+   \item Divide peptide intensities in every channel by the reference channel
+   \item Convert data to matrix format
+   \item Zero or infinite intensities are replaced by \code{NA}'s
+   \item Remove cells having \code{median CV > 0.43}, havuing 30th quantile of 
+   the log10 transformed relative RIs smaller than -2.5, or having median of 
+   the log10 transformed relative RI larger than -1.3
+   \item Divide column (cells) with median intensity and divide rows with 
+   mean intensity
+   \item Remove rows (peptides) then columns (cells) that contain more than 
+   99\% of missing data
+   \item Log2 transform the data
+ }
+ 
+ The peptide data (\code{Peptides-raw.csv}) and the meta data 
+ (\code{Cells.csv}) were combined into an \code{\link{MSnSet}} object.
+ 
+ \strong{Protein expression data}
+ 
+ On top of the steps described above, the peptide expression data are further
+ processed to the protein data through the following steps: 
+ \itemize{
+   \item Aggregate the peptide to their corresponding protein using their 
+   median value.
+   \item Subtracting rows by the averages and subtract column by the column
+   median
+   \item Impute missing values using K-nearest neighbors (k = 3)
+   \item Correct for batch effect using the \code{\link{ComBat}} algorithm.
+ }
+ This leads to the \code{Proteins-processed.csv} file. This protein 
+ expression data are combined with the meta data (\code{Cells.csv}) into an 
+ \code{\link{MSnSet}} object.#'
 }
 \references{
 Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 
 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of 
 Macrophage Heterogeneity.” bioRxiv (\href{https://doi.org/10.1101/665307}{DOI}).
+}
+\seealso{
+\code{\link{scpdata}}
 }
 \keyword{datasets}

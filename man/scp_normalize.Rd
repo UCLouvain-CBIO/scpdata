@@ -30,7 +30,7 @@ implemented (see Details).
 The summary function is the mean for rows and the median for columns.
 }
 \examples{
-data(specht2019)
-scpNorm <- scp_normalize(specht2019, what = "both")
+sc <- scpdata("specht2019", type = "peptide")
+scpNorm <- scp_normalize(sc, what = "both")
 
 }
