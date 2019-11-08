@@ -7,24 +7,13 @@
 # Heterogeneity.” bioRxiv. https://doi.org/10.1101/665307.
 
 library(MSnbase)
+setwd("./inst/scripts")
 
-# Download data
-dat <- read.csv(file = "http://slavovlab.net/scope2/data/Peptides-raw.csv")
+# The data was downloaded from https://scope2.slavovlab.net/docs/data to 
+# scpdata/inst/extdata/specht2019
 
-# Download metadata
-pdat <- t(read.csv("http://slavovlab.net/scope2/data/Cells.csv", row.names = 1))
-# Create the MSnSet object holding the SCP data from Specht et al. 2019
-x <- readMSnSet2(dat, 
-                 ecol = -c(1,2)) # 1 and 2 are protein and peptide names, resp.
 
-# Create the expression data for the MSnSet object
-edat <- as.matrix(dat[, -c(1,2)])
-
-# Create the phenotype data for the MSnSet object
-pdat <- AnnotatedDataFrame(data = as.data.frame(pdat))
-
-# Create the feature data for the MSnSet object
-fdat <- AnnotatedDataFrame(data = dat[, 1:2])
+### Experiment metadata
 
 # Create the experiment data for the MSnSet object
 expdat <- new("MIAPE",
@@ -45,22 +34,59 @@ expdat <- new("MIAPE",
               analyserDetails = "Precursor ions were accumulated for at most 300ms. Then they were fragmented via HCD at a and the fragments analyzed at 70,000 resolving power. Dynamic exclusion was used with a duration of 30 seconds with a mass tolerance of 10ppm.",
               collisionEnergy = "33 eV (normalized to m/z 500, z=1)")
 
-# Create the MSnSet object
-x <- new("MSnSet", exprs = edat, 
-         featureData = fdat,
-         phenoData = pdat,
-         experimentData = expdat)
 
-# Annotate fields
-featureNames(x) <- make.unique(as.character(fData(x)[, 1]))
+### Sample metadata
+
+# Get metadata
+pdat <- t(read.csv("http://slavovlab.net/scope2/data/Cells.csv", row.names = 1))
+# Create the phenotype data for the MSnSet object
+pdat <- AnnotatedDataFrame(data = as.data.frame(pdat))
+
+
+### Peptide data 
+
+# Get data
+dat <- read.csv(file = "../extdata/specht2019/Peptides-raw.csv")
+rownames(dat) <- dat[, 2]
+
+# Create the expression data for the MSnSet object
+edat <- as.matrix(dat[, -c(1,2)])
+
+# Create the feature data for the MSnSet object
+fdat <- AnnotatedDataFrame(data = dat[, 1:2])
+
+# Create the MSnSet object
+specht2019_peptide <- new("MSnSet", exprs = edat, 
+                          featureData = fdat,
+                          phenoData = pdat,
+                          experimentData = expdat)
 
 # Save data as Rda file
-stopifnot(validObject(x))
-assign("specht2019", x)
-save(specht2019, file = file.path("../../data/specht2019.rda"),
-     compress = "xz", compression_level = 9)
+# save(specht2019_peptide, file = file.path("../../data/specht2019_peptide.rda"),
+#      compress = "xz", compression_level = 9)
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
 
 
+### Protein data
 
+# Get data
+dat <- read.csv(file = "../extdata/specht2019/Proteins-processed.csv", row.names = 1)
+
+# Create the expression data for the MSnSet object
+edat <- as.matrix(dat[, -ncol(dat)])
+
+# Create the feature data for the MSnSet object
+fdat <- AnnotatedDataFrame(data = dat[, ncol(dat), drop = FALSE])
+
+# Create the MSnSet object
+specht2019_protein <- new("MSnSet", exprs = edat, 
+                          featureData = fdat,
+                          phenoData = pdat,
+                          experimentData = expdat)
+
+# Save data as Rda file
+# Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
+specht2019 <- list(peptide = specht2019_peptide, protein = specht2019_protein)
+save(specht2019, file = file.path("../../data/specht2019.rda"),
+     compress = "xz", compression_level = 9)
 

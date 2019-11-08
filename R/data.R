@@ -3,14 +3,49 @@
 # Data utilities along with data documentation
 
 
-#' Available data sets
+#' Load or list the available data sets in the scpdata package
 #' 
-#' Function listing the available data sets in the \code{scpdata} package
-#'
+#' The function either loads the desired data set or lists the available 
+#' datasets in the package. 
+#' 
+#' @param dataset
+#' A character string with the name of the data set to load. If \code{NULL}, a 
+#' list of available data sets is returned.
+#' 
+#' @param type
+#' The type of data to return from the data set. \code{type} can be one of 
+#' \code{"peptide"} or \code{"protein"}. If several types are supplied, only 
+#' the first is used. This argument is ignored when \code{dataset} is {NULL}. 
+#' 
+#' @details 
+#' See the documentation of a particular data set for more information (eg 
+#' \code{?specht2019}). 
+#' 
+#' @return 
+#' A table with available data sets when \code{dataset == NULL}, or an MSnSet 
+#' containing the queried data set. 
+#' 
+#' @examples
+#' # List the available data sets
+#' scpdata
+#' 
+#' # Load a data set
+#' sc <- scpdata("specht2019", type = "peptide")
+#' class(sc)
+#' dim(sc) # 6787 peptides x 356 cells
+#' 
 #' @export
 #'
-scpdata <- function(){
-  out <- data(package = "scpdata")
+scpdata <- function(dataset = NULL, type = "peptide"){
+  if(is.null(dataset)){
+    out <- data(package = "scpdata")
+  } else {
+    data(list = dataset, envir = environment())
+    out <- eval(parse(text = dataset))
+    if(!type %in% names(out)) 
+      stop(paste0("Invalid data type. Available types for the data set '", dataset, "' are ", paste0("'", names(out), "'", collapse = ", "), "."))
+    out <- out[type][[1]]
+  }
   return(out)
 }
 

@@ -8,15 +8,18 @@
 # Platform.” Analytical Chemistry, September. 
 # https://doi.org/10.1021/acs.analchem.9b03349.
 
-# This article contains 3 datasets:
+# This article contains 3 datasets that was downloaded from 
+# https://doi.org/10.1021/acs.analchem.9b03349 to scpdata/inst/extdata/dou2019
 # dou2019_1: Supplementary data set 1, raw data for HeLa digest (XLSX)
 # dou2019_2: Supplementary data set 2, raw data for testing boosting ratios (XLSX)
 # dou2019_3: Supplementary data set 3, raw data for isobaric labelling-based single cell quantification and bulk-scale label free quantification (XLSX)
 
-rm(list = ls())
 library(openxlsx)
 library(MSnbase)
-# setwd("./inst/scripts/")
+# setwd("scpdata/inst/scripts/")
+
+
+### Experimental data
 
 # Create the experimental metadata (common to all data sets)
 expdat <- new("MIAPE",
@@ -42,7 +45,7 @@ expdat <- new("MIAPE",
 
 
 # Download the data
-dataFile <- "https://pubs.acs.org/doi/suppl/10.1021/acs.analchem.9b03349/suppl_file/ac9b03349_si_003.xlsx"
+dataFile <- "../extdata/dou2019/ac9b03349_si_003.xlsx"
 dat_xlsx <- loadWorkbook(dataFile)
 dat <- read.xlsx(dat_xlsx, sheet = 6, colNames = FALSE)
 
@@ -67,15 +70,16 @@ rownames(ed) <- rownames(fd)
 colnames(ed) <- rownames(pd$sample_type)
 
 # Create MSnSet object
-x <- MSnSet(exprs = ed, fData = fd, pData = pd)
-experimentData(x) <- expdat
+dou2019_1_protein <- new("MSnSet", exprs = ed, 
+                         featureData = AnnotatedDataFrame(fd),
+                         phenoData = AnnotatedDataFrame(pd),
+                         experimentData = expdat)
 
 # Save data as Rda file
-stopifnot(validObject(x))
-assign("dou2019_1", x)
+# Note: saving is assumed to occur in "scpdata/inst/scripts"
+dou2019_1 <- list(protein = dou2019_1_protein)
 save(dou2019_1, file = file.path("../../data/dou2019_1.rda"),
      compress = "xz", compression_level = 9)
-# Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
 
 
 ####---- dou2019_2 ----####
@@ -85,7 +89,7 @@ save(dou2019_1, file = file.path("../../data/dou2019_1.rda"),
 rm(list = ls())  # but reassign expdat at beginning of script
 
 # Download the data
-dataFile <- "https://pubs.acs.org/doi/suppl/10.1021/acs.analchem.9b03349/suppl_file/ac9b03349_si_004.xlsx"
+dataFile <- "../extdata/dou2019/ac9b03349_si_004.xlsx"
 dat_xlsx <- loadWorkbook(dataFile)
 dat_nb <- read.xlsx(dat_xlsx, sheet = 2, colNames = FALSE)
 dat_5b <- read.xlsx(dat_xlsx, sheet = 4, colNames = FALSE)
@@ -153,15 +157,16 @@ ed[match(fd_5b$Protein, prots, nomatch = 0), 21:40] <- as.numeric(ed_5b)
 ed[match(fd_50b$Protein, prots, nomatch = 0), 41:60] <- as.numeric(ed_50b)
 
 # Create MSnSet object
-x <- MSnSet(exprs = ed, fData = fd, pData = pd)
-experimentData(x) <- expdat
+dou2019_2_protein <- new("MSnSet", exprs = ed, 
+                         featureData = AnnotatedDataFrame(fd),
+                         phenoData = AnnotatedDataFrame(pd),
+                         experimentData = expdat)
 
 # Save data as Rda file
-stopifnot(validObject(x))
-assign("dou2019_2", x)
+# Note: saving is assumed to occur in "scpdata/inst/scripts"
+dou2019_2 <- list(protein = dou2019_2_protein)
 save(dou2019_2, file = file.path("../../data/dou2019_2.rda"),
      compress = "xz", compression_level = 9)
-# Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
 
 
 ####---- dou2019_3 ----####
@@ -171,7 +176,7 @@ save(dou2019_2, file = file.path("../../data/dou2019_2.rda"),
 rm(list = ls()) # but reassign expdat at beginning of script
 
 # Download the data
-dataFile <- "https://pubs.acs.org/doi/suppl/10.1021/acs.analchem.9b03349/suppl_file/ac9b03349_si_005.xlsx"
+dataFile <- "../extdata/dou2019/ac9b03349_si_005.xlsx"
 dat_xlsx <- loadWorkbook(dataFile)
 dat <- read.xlsx(dat_xlsx, sheet = 2, colNames = FALSE)
 
@@ -195,15 +200,17 @@ rownames(ed) <- rownames(fd)
 colnames(ed) <- rownames(pd$sample_type)
 
 # Create MSnSet object
-x <- MSnSet(exprs = ed, fData = fd, pData = pd)
-experimentData(x) <- expdat
+dou2019_3_protein <- new("MSnSet", exprs = ed, 
+                         featureData = AnnotatedDataFrame(fd),
+                         phenoData = AnnotatedDataFrame(pd),
+                         experimentData = expdat)
 
 # Save data as Rda file
-stopifnot(validObject(x))
-assign("dou2019_3", x)
+# Note: saving is assumed to occur in "scpdata/inst/scripts"
+dou2019_3 <- list(protein = dou2019_3_protein)
 save(dou2019_3, file = file.path("../../data/dou2019_3.rda"),
      compress = "xz", compression_level = 9)
-# Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
+
 
 
 
