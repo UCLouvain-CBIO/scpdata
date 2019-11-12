@@ -2,37 +2,21 @@
 % Please edit documentation in R/data.R
 \name{scpdata}
 \alias{scpdata}
-\title{Load or list the available data sets in the scpdata package}
+\title{List the available data sets in the scpdata package}
 \usage{
-scpdata(dataset = NULL, type = "peptide")
-}
-\arguments{
-\item{dataset}{A character string with the name of the data set to load. If \code{NULL}, a 
-list of available data sets is returned.}
-
-\item{type}{The type of data to return from the data set. \code{type} can be one of 
-\code{"peptide"} or \code{"protein"}. If several types are supplied, only 
-the first is used. This argument is ignored when \code{dataset} is {NULL}.}
+scpdata()
 }
 \value{
-A table with available data sets when \code{dataset == NULL}, or an MSnSet 
-containing the queried data set.
+An object of class "packageIQR" with available data sets.
 }
 \description{
-The function either loads the desired data set or lists the available 
-datasets in the package.
+The function lists the available datasets in the package.
 }
 \details{
 See the documentation of a particular data set for more information (eg 
 \code{?specht2019}).
 }
 \examples{
-# List the available data sets
-scpdata
-
-# Load a data set
-sc <- scpdata("specht2019", type = "peptide")
-class(sc)
-dim(sc) # 6787 peptides x 356 cells
+scpdata()
 
 }

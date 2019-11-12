@@ -155,8 +155,7 @@ specht2018_peptide <- new("MSnSet", exprs = edat,
 
 # Save data as Rda file
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
-specht2018 <- list(peptide = specht2018_peptide)
-save(specht2018, file = file.path("../../data/specht2018.rda"),
+save(specht2018_peptide, file = file.path("../../data/specht2018_peptide.rda"),
      compress = "xz", compression_level = 9)
 
 

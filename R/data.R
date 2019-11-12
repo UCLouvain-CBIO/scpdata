@@ -3,74 +3,54 @@
 # Data utilities along with data documentation
 
 
-#' Load or list the available data sets in the scpdata package
+#' List the available data sets in the scpdata package
 #' 
-#' The function either loads the desired data set or lists the available 
-#' datasets in the package. 
+#' The function lists the available datasets in the package. 
 #' 
 #' @import MSnbase
-#' 
-#' @param dataset
-#' A character string with the name of the data set to load. If \code{NULL}, a 
-#' list of available data sets is returned.
-#' 
-#' @param type
-#' The type of data to return from the data set. \code{type} can be one of 
-#' \code{"peptide"} or \code{"protein"}. If several types are supplied, only 
-#' the first is used. This argument is ignored when \code{dataset} is {NULL}. 
 #' 
 #' @details 
 #' See the documentation of a particular data set for more information (eg 
 #' \code{?specht2019}). 
 #' 
 #' @return 
-#' A table with available data sets when \code{dataset == NULL}, or an MSnSet 
-#' containing the queried data set. 
+#' An object of class "packageIQR" with available data sets.
 #' 
 #' @examples
-#' # List the available data sets
-#' scpdata
-#' 
-#' # Load a data set
-#' sc <- scpdata("specht2019", type = "peptide")
-#' class(sc)
-#' dim(sc) # 6787 peptides x 356 cells
+#' scpdata()
 #' 
 #' @export
-#'
-scpdata <- function(dataset = NULL, type = "peptide"){
-  if(is.null(dataset)){
-    out <- data(package = "scpdata")
-  } else {
-    data(list = dataset, envir = environment())
-    out <- eval(parse(text = dataset))
-    if(!type %in% names(out)) 
-      stop(paste0("Invalid data type. Available types for the data set '", dataset, "' are ", paste0("'", names(out), "'", collapse = ", "), "."))
-    out <- out[type][[1]]
-  }
+#' 
+scpdata <- function(){
+  out <- data(package = "scpdata")
   return(out)
 }
+
 
 
 ####---- SPECHT ET AL. 2019 ----####
 
 
-
-#'  Quantifying the emergence of macrophage heterogeneity using the SCoPE2 
-#'  pipeline (Specht et al. 2019)
+#' Quantifying the emergence of macrophage heterogeneity using the SCoPE2 
+#' pipeline (Specht et al. 2019)
 #'
 #' Single cell proteomics data produced and published by Specht et al. from the 
-#' Slavov Lab (see references). It contains quantitative information for 6787 
-#' peptides x 356 cells. Cells can be either macrophages (n = 259) or monocytes
-#' (n = 97). The data are formated to an MSnSet object. 
+#' Slavov Lab (see references). It contains quantitative information 356 cells. 
+#' Cells can be either macrophages (n = 259) or monocytes (n = 97). 
+#' 
+#' @usage
+#' data("specht2019_protein")
+#' data("specht2019_peptide")
 #' 
 #' @format 
-#' The data set contains to type of expression data:
+#' \code{specht2019} contains 2 sets of data:
 #' \itemize{
-#'   \item \code{peptide}: an MSnSet with peptide expression levels
-#'   \item \code{protein}: an MSnSet with protein expression levels
+#'   \item \code{specht2019_peptide}: an MSnSet with peptide expression levels 
+#'   for 6787 peptides x 356 cells.
+#'   \item \code{specht2019_protein}: an MSnSet with protein expression levels
+#'   for 2316 proteins x 356 cells.
 #' }
-#' See Details for information about data collection
+#' See Details for information about data collection.
 #'
 #' @details
 #' 
@@ -89,7 +69,7 @@ scpdata <- function(dataset = NULL, type = "peptide"){
 #'   quantities, i.e., rRI, CVs, reliability.
 #'  }
 #'  
-#'  \strong{Peptide expression data}
+#'  \strong{Peptide expression data: \code{specht2019_peptide}}
 #'  
 #'  The \code{Peptides-raw.csv} data have already been partially processed by 
 #'  the authors. The MS files were analyzed with MaxQuant and DART-ID and the 
@@ -120,10 +100,10 @@ scpdata <- function(dataset = NULL, type = "peptide"){
 #'  The peptide data (\code{Peptides-raw.csv}) and the meta data 
 #'  (\code{Cells.csv}) were combined into an \code{\link{MSnSet}} object.
 #'  
-#'  \strong{Protein expression data}
+#'  \strong{Protein expression data: \code{specht2019_protein}}
 #'  
-#'  On top of the steps described above, the peptide expression data are further
-#'  processed to the protein data through the following steps: 
+#'  On top of the steps described above, the peptide expression data were further
+#'  processed by the authors to the protein data through the following steps: 
 #'  \itemize{
 #'    \item Aggregate the peptide to their corresponding protein using their 
 #'    median value.
@@ -136,160 +116,272 @@ scpdata <- function(dataset = NULL, type = "peptide"){
 #'  expression data are combined with the meta data (\code{Cells.csv}) into an 
 #'  \code{\link{MSnSet}} object.#'  
 #'  
-#' @docType data
-#'
-#'
-#'
-#' @keywords datasets
-#'
-#' @references Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 
+#' @source 
+#' The original data can be downloaded from the 
+#' \href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website.
+#' 
+#' @references 
+#' Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 
 #' 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of 
 #' Macrophage Heterogeneity.” bioRxiv (\href{https://doi.org/10.1101/665307}{DOI}).
+#' 
+#' @docType data
 #'
-#' @seealso 
-#' \code{\link{scpdata}}
+#' @keywords datasets
+#' 
+#' @aliases specht2019 specht2019_peptide
 #'
-#' @source The original data can be downloaded from the 
-  #' \href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website.
-#'
-"specht2019"
+"specht2019_protein"
 
 
 ####---- DOU ET AL. 2019 ----####
 
 
-#' Deep proteome coverage for single cell analysis using nanoPOTS combined with
-#' TMT isobaric labeling method (Dou et al. 2019)
-#' 
+#' High-Throughput Single Cell Proteomics Enabled by Multiplex 
+#' Isobaric Labeling in a Nanodroplet Sample Preparation Platform: 
+#' HeLa digests (Dou et al. 2019)
+#'  
 #' @description 
-#' Single cell proteomics data produced and published by Dou et al. (see 
-#' references). The article comes with 3 supplementary datasets: \code{dou2019_1},
-#' \code{dou2019_2}, and \code{dou2019_3} (see Details for more information).
-#' All data are formated to an MSnSet object. 
-#' 
-#' @aliases dou2019_1 dou2019_2 dou2019_3
-#' 
-#' @details  
-#' \strong{Title}: High-Throughput Single Cell Proteomics Enabled by Multiplex 
-#' Isobaric Labeling in a Nanodroplet Sample Preparation Platform.
-#' 
-#' \strong{Abstract}:  Effective extension of mass spectrometry-based proteomics 
-#' to single cells remains challenging. Herein we combined microfluidic 
-#' nanodroplet technology with tandem mass tag (TMT) isobaric labeling to 
-#' significantly improve analysis throughput and proteome coverage for single 
-#' mammalian cells. Isobaric labeling facilitated multiplex analysis of single 
-#' cell-sized protein quantities to a depth of ∼1 600 proteins with a median CV 
-#' of 10.9% and correlation coefficient of 0.98. To demonstrate in-depth high 
-#' throughput single cell analysis, the platform was applied to measure protein 
-#' expression in 72 single cells from three murine cell populations (epithelial, 
-#' immune, and endothelial cells) in <2 days instrument time with over 2 300 
-#' proteins identified. Principal component analysis grouped the single cells 
-#' into three distinct populations based on protein expression with each 
-#' population characterized by well-known cell-type specific markers. Our 
-#' platform enables high throughput and unbiased characterization of single cell 
-#' heterogeneity at the proteome level.
-#' 
-#' \strong{\code{dou2019_1}}: Supplementary data set 1, raw data for HeLa 
-#' digest. The expression matrix contains 1641 proteins x 20 single-cell digests. Note that the samples are not truly 
-#' single cells but are commercial Hela digest diluted to single cell amounts
-#' (0.2ng). The boost wells contain the same digest but at hihgher dose (10 ng).
-#' 
-#' \strong{\code{dou2019_2}}: Supplementary data set 2, raw data for testing 
-#' boosting ratios. The expression matrix contains 1436 proteins x 60 single 
-#' cells. The cell type are either \code{"Raw"} (macrophage cells), \code{"C10"}
-#' (epihelial cells), or \code{"SVEC"} (endothelial cells). Each cell was 
-#' replicated 2 or 3x. When boosting (5ng or 50ng) was applied, 1 reference 
-#' well and 1 boosting well were added, otherwise (no boosting) 1 empty well 
-#' was added. Each boosting setting (no boosting, 5ng, 50ng) was run twice.
-#' 
-#' \strong{\code{dou2019_3}}: Supplementary data set 3, raw data for isobaric 
-#' labelling-based single cell quantification and bulk-scale label free 
-#' quantification. The expression matrix contains 2331 proteins x 132 wells. Among 
-#' the 132 well, 72 contained single cells, corresponding to 24 C10 cells, 24 RAW cells, 
-#' and 24 SVEC. The other wells are eithers boosting channels (12), empty channels
-#' (36) or reference channels (12). Note that the different cell types where
-#' evenly distributed across 4 nanoPOTS chips. Samples were 11-plexed with
-#' TMT ions. 
-#' 
-#' \strong{\code{dou2019_3}}: Supplementary data set 3, raw data for isobaric 
-#' labelling-based single cell quantification and bulk-scale label free 
-#' quantification 
-#' 
-#' @docType data
+#' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
+#' The data set is published as the supplementary data set 1 by Dou et al. in 
+#' 2019 (see references). The expression matrix contains 1641 proteins x 20 
+#' single-cell HeLa digests. The samples are not truly single cells but are 
+#' commercial Hela digest diluted to single cell amounts (0.2ng). The boost 
+#' wells contain the same digest but at hihgher dose (10 ng).
 #' 
 #' @usage 
-#' dou2019()
-#' data("dou2019_1")
-#' data("dou2019_2")
-#' data("dou2019_3")
+#' data("dou2019_1_protein")
 #' 
-#' @format  
-#' \code{dou2019()} loads all three data sets at once. Each data set
-#' is an object of class \code{"\link{MSnSet}"}.
+#' @format 
+#' \code{dou2019_1} contains 1 set of data:
+#' \itemize{
+#'   \item \code{dou2019_1_protein}: an MSnSet with protein expression levels
+#'   for 1641 proteins x 20 "cells".
+#' }
+#' See Details for information about data collection.
 #' 
-#' @keywords datasets
+#' @details 
+#' The data set was downloaded from the supplementary information section of the
+#' publisher's website (see sources). 
 #' 
-#' @references Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B. 
+#' \strong{Protein expression data: \code{dou2019_3_protein}}
+#'
+#' The spreadsheet is called \code{ac9b03349_si_003.xlsx} and contains 7 sheets 
+#' from which we only took the sheet 6 (named \code{"5 - Run 1 and 2 raw data"}) 
+#' containing the combined data of two MS runs. It corresponds to the assembly 
+#' of MSGF+ identifications and MASIC reporter assemblies. The data is then isotope 
+#' corrected and sum rolled-up to the protein level. Contaminant and reverse hit 
+#' are removed from this table. This is all performed by the authors. We 
+#' converted the data to an \code{\link{MSnSet}} object.
+#' 
+#' @source 
+#' The original data can be downloaded from the 
+#' \href{https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349}{ACS Publications}
+#' website (Supplementary information section).
+#' 
+#' @references 
+#' Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B. 
 #' Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell 
 #' Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample 
 #' Preparation Platform.” Analytical Chemistry, September 
 #' (\href{https://doi.org/10.1021/acs.analchem.9b03349}{DOI}).
 #' 
-#' @source The original data can be downloaded from the \href{https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349}{ACS Publications}
+#' @docType data
+#' 
+#' @keywords datasets
+#' 
+#' @aliases dou2019_1
+#' 
+"dou2019_1_protein"
+
+
+
+#' High-Throughput Single Cell Proteomics Enabled by Multiplex 
+#' Isobaric Labeling in a Nanodroplet Sample Preparation Platform: 
+#' testing boosting ratios (Dou et al. 2019)
+#'  
+#' @description 
+#' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
+#' The data set is published as the supplementary data set 2 by Dou et al. in 
+#' 2019 (see references). The expression matrix contains 1436 proteins x 60 
+#' single cells. The cell types are either "Raw" (macrophage cells), "C10" 
+#' (epihelial cells), or "SVEC" (endothelial cells). Each cell was replicated 2 
+#' or 3x. Each cell type was run using 3 levels of boosting: 0 ng (no boosting), 
+#' 5 ng or 50 ng. When boosting was applied, 1 reference well and 1 boosting 
+#' well were added, otherwise 1 empty well was added. Each boosting setting 
+#' (no boosting, 5ng, 50ng) was run twice.
+#' 
+#' @usage 
+#' data("dou2019_2_protein")
+#' 
+#' @format 
+#' \code{dou2019_2} contains 1 set of data:
+#' \itemize{
+#'   \item \code{dou2019_2_protein}: an MSnSet with protein expression levels
+#'   for 1436 proteins x 60 cells.
+#' }
+#' See Details for information about data collection.
+#' 
+#' @details 
+#' The data set was downloaded from the supplementary information section of the
+#' publisher's website (see sources). 
+#' 
+#' \strong{Protein expression data: \code{dou2019_2_protein}}
+#'
+#' The spreadsheet is called \code{ac9b03349_si_004.xlsx} and contains 7 sheets 
+#' from which we took the 2nd, 4th and 6th sheets (named \code{"01 - No Boost 
+#' raw data"}, \code{"03 - 5ng boost raw data"}, \code{"05 - 50ng boost raw 
+#' data"}, respectively). It corresponds to the assembly of MSGF+ 
+#' identifications and MASIC reporter assemblies. The data is then isotope 
+#' corrected and sum rolled-up to the protein level. Contaminant and reverse hit 
+#' are removed from this table. This is all performed by the authors. We matched 
+#' the proteins between the three boosting settings and combined all data in a 
+#' single table  The boosting quantities are kept as phenotype data. The data 
+#' set is formated to an \code{\link{MSnSet}} object.
+#' 
+#' @source 
+#' The original data can be downloaded from the 
+#' \href{https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349}{ACS Publications}
 #' website (Supplementary information section).
 #' 
-#' @export
-dou2019 <- function(){
-  data("dou2019_1")
-  data("dou2019_2")
-  data("dou2019_3")
-}
+#' @references 
+#' Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B. 
+#' Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell 
+#' Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample 
+#' Preparation Platform.” Analytical Chemistry, September 
+#' (\href{https://doi.org/10.1021/acs.analchem.9b03349}{DOI}).
+#' 
+#' @docType data
+#' 
+#' @keywords datasets
+#' 
+#' @aliases dou2019_2
+#' 
+"dou2019_2_protein"
 
 
-#'  mPOP SCoPE-MS Master Mix 20180824 (Specht et al. 2018)
+#' High-Throughput Single Cell Proteomics Enabled by Multiplex 
+#' Isobaric Labeling in a Nanodroplet Sample Preparation Platform: profiling of 
+#' murine cell populations (Dou et al. 2019)
+#'  
+#' @description 
+#' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
+#' The data set is published as the supplementary data set 3 by Dou et al. in 
+#' 2019 (see references). The expression matrix contains 2331 proteins x 132 
+#' wells. Among the 132 wells, 72 contained single cells, corresponding to 24 
+#' C10 cells, 24 RAW cells, and 24 SVEC. The other wells are eithers boosting 
+#' channels (12), empty channels (36) or reference channels (12). The 
+#' different cell types where evenly distributed across 4 nanoPOTS chips. 
+#' Samples were 11-plexed with TMT ions.
+#' 
+#' @usage 
+#' data("dou2019_3_protein")
+#' 
+#' @format 
+#' \code{dou2019_3} contains 1 set of data:
+#' \itemize{
+#'   \item \code{dou2019_3_protein}: an MSnSet with protein expression levels
+#'   for 2331 proteins x 132 cells.
+#' }
+#' See Details for information about data collection.
+#' 
+#' @details 
+#' The data set was downloaded from the supplementary information section of the
+#' publisher's website (see sources). 
+#' 
+#' \strong{Protein expression data: \code{dou2019_3_protein}}
 #'
+#' The spreadsheet is called \code{ac9b03349_si_005.xlsx} and contains 7 sheets 
+#' from which we took only the 2nd (named \code{"01 - Raw sc protein data"}). It 
+#' corresponds to the assembly of MSGF+ identifications and MASIC reporter 
+#' assemblies. The data is then isotope corrected and sum rolled-up to the 
+#' protein level. Contaminant and reverse hit are removed from this table. This 
+#' is performed by the authors. We converted the data to an \code{\link{MSnSet}} 
+#' object.
+#' 
+#' @source 
+#' The original data can be downloaded from the 
+#' \href{https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349}{ACS Publications}
+#' website (Supplementary information section).
+#' 
+#' @references 
+#' Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B. 
+#' Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell 
+#' Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample 
+#' Preparation Platform.” Analytical Chemistry, September 
+#' (\href{https://doi.org/10.1021/acs.analchem.9b03349}{DOI}).
+#' 
+#' @seealso 
+#' \code{\link{dou2019_1}}, \code{\link{dou2019_2}}
+#' 
+#' @docType data
+#' 
+#' @keywords datasets
+#' 
+#' @aliases dou2019_3
+#' 
+"dou2019_3_protein"
+
+
+#' mPOP SCoPE-MS Master Mix 20180824 (Specht et al. 2018)
+#'
+#' @description 
 #' Single cell proteomics data produced and published by Specht et al. from the 
 #' Slavov Lab (see references). It contains quantitative information for 1824 
 #' peptides x 220 channels. Channels are either carrier (50 cell equivalent of
 #' Jurkat or U-937 digestion product), empty, or single cell equivalent of 
-#' digestion product (Jurkat or U-937). The data are formated to an MSnSet object. 
+#' digestion product (Jurkat or U-937).
+#' 
+#' @usage 
+#' data("specht2018_peptide")
+#' 
+#' @format 
+#' \code{speccht2018} contains 1 set of data:
+#' \itemize{
+#'   \item \code{specht2018_peptide}: an MSnSet with peptide expression levels
+#'   for 1838 peptides x 220 cells.
+#' }
+#' See Details for information about data collection.
 #' 
 #' @details
 #' 
-#' \strong{Title}: Automated sample preparation for high-throughputsingle-cell 
-#' proteomics
-#' 
-#' \strong{Abstract}: A major limitation to applying quantitative LC-MS/MS 
-#' proteomics to small samples, such as single cells, are the losses incured 
-#' during sample cleanup. To relieve this limitation, we developed a Minimal 
-#' ProteOmic sample Preparation (mPOP) method for culture-grown mammalian 
-#' cells. mPOP obviates cleanup and thus eliminates cleanup-related losses while 
-#' expediting sample preparation and simplifying its automation.  Bulk SILAC 
-#' samples processed by mPOP or by conventional urea-based methods indicated 
-#' that mPOP results in complete cell lysis and accurate relative 
-#' quantification. We integrated mPOP lysis with the Single CellProtEomics by 
-#' Mass Spectrometry (SCoPE-MS) sample preparation, and benchmarked the 
-#' quantification of such samples on a Q-exactive instrument. The results 
-#' demonstrate low noise and high technical reproducibility. Then, we FACS 
-#' sorted single U-937, HEK-293, andmouse ES cells into 96-well plates and 
-#' analyzed them by automated mPOP and SCoPE-MS.The quantified proteins enabled 
-#' separating the single cells by cell-type and cell-division-cycle phase.
+#' The peptide expression data was parsed from the \code{evidence.txt} file from
+#' the MaxQuant output. We processed the file as follows: 
+#' \itemize{
+#'   \item Contaminants and reverse hits are removed
+#'   \item Peptides with PIF (parent ion fraction) smaller than 0.8 and PEP 
+#'   (posterior error probability) greater then 0.02 are removed
+#'   \item Experiment sets with less than 300 identified peptides are discarded. 
+#'   Note that all experiment sets contained more than 300 identified peptides.
+#'   \item Some peptides were identified twice within the same experiment set 
+#'   because of different charge states. The peptide identification with lowest 
+#'   PEP is kept and the other(s) discarded. 
+#'   \item Intensity data is formated to a feature (peptide) x sample 
+#'   (combination of experiment run and TMT channel) matrix. 
+#'   \item Peptide information is gathered in a feature data frame. PEP, PIF, 
+#'   Score, and retention time are aggregated by taking the median. When the 
+#'   mass is differing among the same peptide sequence, only the mass for the 
+#'   unmodified peptide is kept.
+#'   \item Sample information is gathered in a phenotype data frame.
+#'   \item All information is stored in an \code{\ling{MSnSet}} object
+#' }
+#'  We finally formated the data to an \code{\link{MSnSet}} object.
 #'
-#' @docType data
-#'
-#' @usage data("specht2018")
-#'
-#' @format An object of class \code{"\link{MSnSet}"}
-#'
-#' @keywords datasets
+#' @source 
+#' The original data can be downloaded from the 
+#' \href{http://slavovlab.net/mPOP/index.html}{Slavov Lab} website.
 #'
 #' @references 
 #' Specht, Harrison, Guillaume Harmange, David H. Perlman, Edward Emmott, 
 #' Zachary Niziolek, Bogdan Budnik, and Nikolai Slavov. 2018. “Automated Sample 
 #' Preparation for High-Throughput Single-Cell Proteomics.” bioRxiv 
 #' (\href{https://doi.org/10.1101/399774}{DOI}).
+#' 
+#' 
+#' @docType data
 #'
-#' @source The original data can be downloaded from the 
-#' \href{http://slavovlab.net/mPOP/index.html}{Slavov Lab} website.
-#'
-"specht2018"
+#' @keywords datasets
+#' 
+#' @aliases specht2018
+#' 
+"specht2018_peptide"

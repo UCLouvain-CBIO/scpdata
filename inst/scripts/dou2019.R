@@ -77,8 +77,7 @@ dou2019_1_protein <- new("MSnSet", exprs = ed,
 
 # Save data as Rda file
 # Note: saving is assumed to occur in "scpdata/inst/scripts"
-dou2019_1 <- list(protein = dou2019_1_protein)
-save(dou2019_1, file = file.path("../../data/dou2019_1.rda"),
+save(dou2019_1_protein, file = file.path("../../data/dou2019_1_protein.rda"),
      compress = "xz", compression_level = 9)
 
 
@@ -164,8 +163,7 @@ dou2019_2_protein <- new("MSnSet", exprs = ed,
 
 # Save data as Rda file
 # Note: saving is assumed to occur in "scpdata/inst/scripts"
-dou2019_2 <- list(protein = dou2019_2_protein)
-save(dou2019_2, file = file.path("../../data/dou2019_2.rda"),
+save(dou2019_2_protein, file = file.path("../../data/dou2019_2_protein.rda"),
      compress = "xz", compression_level = 9)
 
 
@@ -207,8 +205,7 @@ dou2019_3_protein <- new("MSnSet", exprs = ed,
 
 # Save data as Rda file
 # Note: saving is assumed to occur in "scpdata/inst/scripts"
-dou2019_3 <- list(protein = dou2019_3_protein)
-save(dou2019_3, file = file.path("../../data/dou2019_3.rda"),
+save(dou2019_3_protein, file = file.path("../../data/dou2019_3_protein.rda"),
      compress = "xz", compression_level = 9)
 
 

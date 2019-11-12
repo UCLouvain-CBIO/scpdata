@@ -19,19 +19,19 @@ The available data sets can be listed using
 scpdata()
 ```
 
-and the data set can be loaded using 
+and the data set can be accessed using 
 
 ```r
-data("DataSetName")
+scpdata("DataSetName", type = "dataType")
 ```
 
 For example
 
 ```r
-data("specht2019")
+sc <- scpdata("specht2019", type = "peptide")
 ```
 
-Every data set is documentend. The data collection procedures are described [here](https://github.com/UCLouvain-CBIO/scpdata/inst/README.md), and the data information can be found in the helpfiles. Try
+The data description and data collection procedures can be found in the corresponding helpfiles. Try
 
 ```r
 ?specht2019
@@ -44,17 +44,18 @@ Several articles have been published including single-cell proteomics data. We h
 * **Raw data** is composed of MS output files and was not processed
 * **Peptide data** is the peptide quantitative data obtained after processing the raw data
 * **Protein data** is the protein quantitative data obtained after aggregating the peptides belonging to the same protein. 
-* Final expression data after data normalization, imputation, batch correction,... ?
+
+The amount of processing of each type of data might differ from data set to data set. Please refer to the documentation and original papers for thorough description of the data processing. 
 
 This is an overview of the available data in this package: 
 
 Publ. Date | Data set name | Raw data | Peptide data | Protein data 
 ---------- | ------------- | -------- | ------------ | ------------
-2019-06-09 | specht2019    | Yes      | +/- Yes      | Yes
-2019-09-11 | dou2019_1     | Yes      | No           | Yes 
-2019-09-11 | dou2019_2     | Yes      | No           | Yes
-2019-09-11 | dou2019_3     | Yes      | No           | Yes 
-2018-08-24 | specht2018    | Yes      | Yes          | No
+2019-06-09 | specht2019    | No       | Yes          | Yes
+2019-09-11 | dou2019_1     | No       | No           | Yes 
+2019-09-11 | dou2019_2     | No       | No           | Yes
+2019-09-11 | dou2019_3     | No       | No           | Yes 
+2018-08-24 | specht2018    | No       | Yes          | No
 
 # Data set description 
   
@@ -65,11 +66,11 @@ colnames(desc) <- c("Data", "Description")
 knitr::kable(desc) 
 -->
 
-|Data       |Description                                                                                                                 |
-|:----------|:---------------------------------------------------------------------------------------------------------------------------|
-|dou2019_1  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
-|dou2019_2  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
-|dou2019_3  |Deep proteome coverage for single cell analysis using nanoPOTS combined with TMT isobaric labeling method (Dou et al. 2019) |
-|specht2018 |mPOP SCoPE-MS Master Mix 20180824 (Specht et al. 2018)                                                                      |
-|specht2019 |Quantifying the emergence of macrophage heterogeneity using the SCoPE2 pipeline (Specht et al. 2019)                        |
-
+Data               |Description                                                                                                                                                                        |
+|:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|dou2019_1_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: HeLa digests (Dou et al. 2019)                         |
+|dou2019_2_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: testing boosting ratios (Dou et al. 2019)              |
+|dou2019_3_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: profiling of murine cell populations (Dou et al. 2019) |
+|specht2018_peptide |mPOP SCoPE-MS Master Mix 20180824 (Specht et al. 2018)                                                                                                                             |
+|specht2019_peptide |Quantifying the emergence of macrophage heterogeneity using the SCoPE2 pipeline (Specht et al. 2019)                                                                               |
+|specht2019_protein |Quantifying the emergence of macrophage heterogeneity using the SCoPE2 pipeline (Specht et al. 2019)                                        

@@ -62,9 +62,10 @@ specht2019_peptide <- new("MSnSet", exprs = edat,
                           experimentData = expdat)
 
 # Save data as Rda file
-# save(specht2019_peptide, file = file.path("../../data/specht2019_peptide.rda"),
-#      compress = "xz", compression_level = 9)
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
+save(specht2019_peptide, file = file.path("../../data/specht2019_peptide.rda"),
+     compress = "xz", compression_level = 9)
+
 
 
 ### Protein data
@@ -86,7 +87,6 @@ specht2019_protein <- new("MSnSet", exprs = edat,
 
 # Save data as Rda file
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
-specht2019 <- list(peptide = specht2019_peptide, protein = specht2019_protein)
-save(specht2019, file = file.path("../../data/specht2019.rda"),
+save(specht2019_protein, file = file.path("../../data/specht2019_protein.rda"),
      compress = "xz", compression_level = 9)
 
