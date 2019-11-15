@@ -41,12 +41,16 @@ scpdata <- function(){
 #' @usage
 #' data("specht2019_protein")
 #' data("specht2019_peptide")
+#' data("specht2019_peptide2")
 #' 
 #' @format 
 #' \code{specht2019} contains 2 sets of data:
 #' \itemize{
 #'   \item \code{specht2019_peptide}: an MSnSet with peptide expression levels 
 #'   for 6787 peptides x 356 cells.
+#'   \item \code{specht2019_peptide2}: an MSnSet with peptide expression levels 
+#'   for 13543 peptides x 2420 samples. See details for more information about
+#'   the sample phenotypes.
 #'   \item \code{specht2019_protein}: an MSnSet with protein expression levels
 #'   for 2316 proteins x 356 cells.
 #' }
@@ -67,6 +71,17 @@ scpdata <- function(){
 #'   to a single cell and the rows include relevant metadata, such as, cell type 
 #'   if known, measurements from the isolation of the cell, and derivative 
 #'   quantities, i.e., rRI, CVs, reliability.
+#'  }
+#'  
+#'  Furthermore, in a personal discussion Harrison Specht shared the files:
+#'  
+#'  \itemize{
+#'    \item \code{ev_updated.txt}: the MaxQuant output file of MS data 
+#'    identification and quantification
+#'    \item \code{annotation_fp60-97.csv}: sample phenotypic annotations
+#'    \item \code{batch_fp60-97.csv}: batch annotations
+#'    \item \code{te269088_lot_correction.csv}: TMT isotopic cross-contamination 
+#'    correction matrix
 #'  }
 #'  
 #'  \strong{Peptide expression data: \code{specht2019_peptide}}
@@ -99,6 +114,38 @@ scpdata <- function(){
 #'  
 #'  The peptide data (\code{Peptides-raw.csv}) and the meta data 
 #'  (\code{Cells.csv}) were combined into an \code{\link{MSnSet}} object.
+#'  
+#'  \strong{Peptide expression data: \code{specht2019_peptide2}}
+#'  
+#'  Inspired by the above steps, we processed the MaxQuant output
+#'  \code{ev_updated.txt} as follows:
+#'  \itemize{
+#'    \item Keep only column of interest, that is the peptide and protein 
+#'    information, the quantification information (TMT intensities), the 
+#'    identification information (PEP, q-values, PIF,...) and the contamination
+#'    information
+#'    \item Correct for TMT isotopic cross-contamination using the matrix in the
+#'    \code{te269088_lot_correction.csv} file
+#'    \item Remove contaminants and reverse hits
+#'    \item Remove peptides with low identification metrics
+#'    \item Remove runs with less than 300 identified peptides. 13 runs out of 
+#'    245 were removed and were mainly blank or QC samples. 
+#'    \item Some peptides were identified twice within the same experiment set 
+#'    because of different charge states. The peptide identification with lowest 
+#'    PEP is kept and the other(s) discarded.
+#'    \item Intensity data is formated to a feature (peptide) x sample 
+#'    (combination of experiment run and TMT channel) matrix.
+#'    \item Peptide information is gathered in a feature data frame, only 
+#'    peptide information common to all runs is kept (eg sequence, mass, 
+#'    protein,...).
+#'    \item Sample information is gathered in a phenotype data frame. The sample 
+#'    information is extracted from the \code{annotation_fp60-97.csv} and 
+#'    \code{batch_fp60-97.csv} files.
+#'  }
+#'  
+#'  We finally formated the data to an MSnSet object. The samples in this data 
+#'  set are either single cells, 10 cells, 100 cells, 1000 cells or QC. 
+#'  
 #'  
 #'  \strong{Protein expression data: \code{specht2019_protein}}
 #'  
@@ -336,7 +383,7 @@ scpdata <- function(){
 #' data("specht2018_peptide")
 #' 
 #' @format 
-#' \code{speccht2018} contains 1 set of data:
+#' \code{specht2018} contains 1 set of data:
 #' \itemize{
 #'   \item \code{specht2018_peptide}: an MSnSet with peptide expression levels
 #'   for 1838 peptides x 220 cells.
@@ -363,7 +410,6 @@ scpdata <- function(){
 #'   mass is differing among the same peptide sequence, only the mass for the 
 #'   unmodified peptide is kept.
 #'   \item Sample information is gathered in a phenotype data frame.
-#'   \item All information is stored in an \code{\ling{MSnSet}} object
 #' }
 #'  We finally formated the data to an \code{\link{MSnSet}} object.
 #'

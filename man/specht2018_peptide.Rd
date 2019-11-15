@@ -5,7 +5,7 @@
 \alias{specht2018_peptide}
 \alias{specht2018}
 \title{mPOP SCoPE-MS Master Mix 20180824 (Specht et al. 2018)}
-\format{\code{speccht2018} contains 1 set of data:
+\format{\code{specht2018} contains 1 set of data:
 \itemize{
   \item \code{specht2018_peptide}: an MSnSet with peptide expression levels
   for 1838 peptides x 220 cells.
@@ -30,13 +30,20 @@ The peptide expression data was parsed from the \code{evidence.txt} file from
 the MaxQuant output. We processed the file as follows: 
 \itemize{
   \item Contaminants and reverse hits are removed
-  \item Peptides with PIF (parent ion fraction) smaller than 0.8 and PEP (posterior error probability) greater then 0.02 are removed
-  \item Experiment sets with less than 300 identified peptides are discarded. Note that all experiment sets contained more than 300 identified peptides.
-  \item Some peptides were identified twice within the same experiment set because of different charge states. The peptide identification with lowest PEP is kept and the other(s) discarded. 
-  \item Intensity data is formated to a feature (peptide) x sample (combination of experiment run and TMT channel) matrix. 
-  \item Peptide information is gathered in a feature data frame. PEP, PIF, Score, and retention time are aggregated by taking the median. When the mass is differing among the same peptide sequence, only the mass for the unmodified peptide is kept.
+  \item Peptides with PIF (parent ion fraction) smaller than 0.8 and PEP 
+  (posterior error probability) greater then 0.02 are removed
+  \item Experiment sets with less than 300 identified peptides are discarded. 
+  Note that all experiment sets contained more than 300 identified peptides.
+  \item Some peptides were identified twice within the same experiment set 
+  because of different charge states. The peptide identification with lowest 
+  PEP is kept and the other(s) discarded. 
+  \item Intensity data is formated to a feature (peptide) x sample 
+  (combination of experiment run and TMT channel) matrix. 
+  \item Peptide information is gathered in a feature data frame. PEP, PIF, 
+  Score, and retention time are aggregated by taking the median. When the 
+  mass is differing among the same peptide sequence, only the mass for the 
+  unmodified peptide is kept.
   \item Sample information is gathered in a phenotype data frame.
-  \item All information is stored in an \code{\ling{MSnSet}} object
 }
  We finally formated the data to an \code{\link{MSnSet}} object.
 }

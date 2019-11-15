@@ -56,7 +56,7 @@ dat <- pivot_longer(data = dat, cols = intensity.coln,
 # Deal with duplicate peptides (measured as differently charged ions)
 # In case of duplicate peptides in the same run for the same channel, we keep the
 # peptide with the lowest PEP
-dat <- dat[order(dat$PEP, decreasing = TRUE),]
+dat <- dat[order(dat$PEP, decreasing = FALSE),]
 dat <- dat[!duplicated(dat[,c("Modified.sequence", "Raw.file", "Channel")]), ]
 
 # Create a unique ID for samples 
