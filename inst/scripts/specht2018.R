@@ -66,6 +66,9 @@ dat$sample <- paste0(dat$Raw.file, "-", dat$Channel)
 edat <- pivot_wider(dat, id_cols = "Modified.sequence", names_from = "sample",
                     values_from = "Reporter.intensity", 
                     values_fill = list("Reporter.intensity" = NA))
+# 0 intensities are missing values
+edat[edat == 0] <- NA
+# Add rownames
 rown <- edat[,1]
 edat <- as.matrix(edat[,-1])
 rownames(edat) <- rown$Modified.sequence

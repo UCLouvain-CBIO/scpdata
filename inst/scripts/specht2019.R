@@ -110,10 +110,10 @@ dat <- dat0[,.keep]
 
 ## Correct for isotopic cross contamination
 
-# icc <- read.csv("../extdata/specht2019/te269088_lot_correction.csv", row.names = 1)
-# corrected.ri <- t( solve(icc) %*% t( dat[,intensity.coln] ) ) 
-# corrected.ri[corrected.ri < 0.1] <- NA
-# dat[,intensity.coln] <- corrected.ri
+icc <- read.csv("../extdata/specht2019/te269088_lot_correction.csv", row.names = 1)
+corrected.ri <- t( solve(icc) %*% t( dat[,intensity.coln] ) )
+corrected.ri[corrected.ri < 0.1] <- NA
+dat[,intensity.coln] <- corrected.ri
 
 
 ## Filter data
@@ -150,11 +150,14 @@ dat <- dat[!duplicated(dat[,c("Modified.sequence", "Raw.file", "Channel")]), ]
 # Create a unique ID for samples 
 dat$sample <- paste0(dat$Raw.file, "-", dat$Channel)
 
-# Format the expression data
+## Format the expression data
 
 edat <- pivot_wider(dat, id_cols = "Modified.sequence", names_from = "sample",
                     values_from = "Reporter.intensity", 
                     values_fill = list("Reporter.intensity" = NA))
+# 0 intensities are missing values
+edat[edat == 0] <- NA
+# Add rownames
 rown <- edat[,1]
 edat <- as.matrix(edat[,-1])
 rownames(edat) <- rown$Modified.sequence
@@ -248,7 +251,7 @@ specht2019_peptide2 <- new("MSnSet", exprs = edat,
                            featureData = fdat,
                            phenoData = pdat,
                            experimentData = expdat)
-
+  
 # Save data as Rda file
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
 save(specht2019_peptide2, file = file.path("../../data/specht2019_peptide2.rda"),
