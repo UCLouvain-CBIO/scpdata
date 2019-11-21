@@ -95,7 +95,6 @@ save(specht2019_protein, file = file.path("../../data/specht2019_protein.rda"),
 
 ####---- Load and process the original peptide data ----####
 
-
 # MS data
 dat0 <- read.table("../extdata/specht2019/ev_updated.txt", header = TRUE, sep = "\t")
 
@@ -108,12 +107,14 @@ intensity.coln <- colnames(dat0)[grepl("^Reporter[.]intensity[.]\\d+$", colnames
 dat <- dat0[,.keep]
 
 
-## Correct for isotopic cross contamination
+## Correct for isotopic cross contamination from the TMT-11 channel
 
-icc <- read.csv("../extdata/specht2019/te269088_lot_correction.csv", row.names = 1)
-corrected.ri <- t( solve(icc) %*% t( dat[,intensity.coln] ) )
-corrected.ri[corrected.ri < 0.1] <- NA
-dat[,intensity.coln] <- corrected.ri
+if(FALSE){ # This will not work properly because MQ did the correction already
+  icc <- read.csv("../extdata/specht2019/te269088_lot_correction.csv", row.names = 1)
+  corrected.ri <- t( solve(icc) %*% t(dat[,intensity.coln]) )
+  corrected.ri[corrected.ri < 0.1] <- NA
+  dat[,intensity.coln] <- corrected.ri
+}
 
 
 ## Filter data
@@ -132,7 +133,7 @@ dat <- dat[dat$dart_PEP < 0.02, ]
 
 # Remove runs with insufficient peptides 
 pep.t <- table(dat$Raw.file)
-dat <- dat[! dat$Raw.file %in% names(pep.t[pep.t < 300]),]
+dat <- dat[! dat$Raw.file %in% names(pep.t[pep.t < 300]),] # 25 runs were removed
 
 
 ## Format data
@@ -143,8 +144,8 @@ dat <- as.data.frame(pivot_longer(data = dat, cols = intensity.coln,
                                   names_to = "Channel", 
                                   values_to = "Reporter.intensity"))
 # Deal with duplicate peptides (measured as differently charged ions)
-# In case of duplicate peptides in the same run for the same channel, we keep the
-# peptide with the lowest PEP
+# In case of duplicate peptides in the same run for the same channel, we keep 
+# the  peptide with the lowest PEP
 dat <- dat[order(dat$dart_PEP, decreasing = FALSE),]
 dat <- dat[!duplicated(dat[,c("Modified.sequence", "Raw.file", "Channel")]), ]
 # Create a unique ID for samples 
@@ -172,7 +173,6 @@ rownames(pdat) <- colnames(edat)
 # Sample metadata 
 samp <- read.csv("../extdata/specht2019/annotation_fp60-97.csv", row.names = 1)
 batch <- read.csv("../extdata/specht2019/batch_fp60-97.csv", row.names = 1)
-ed_specht <- read.csv("../extdata/specht2019/peptides-raw-RI.csv", row.names = 1)
 # Add the batch info
 pdat <- cbind(pdat, batch[as.character(pdat$run),])
 # Add the cell info
@@ -251,7 +251,7 @@ specht2019_peptide2 <- new("MSnSet", exprs = edat,
                            featureData = fdat,
                            phenoData = pdat,
                            experimentData = expdat)
-  
+
 # Save data as Rda file
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
 save(specht2019_peptide2, file = file.path("../../data/specht2019_peptide2.rda"),
