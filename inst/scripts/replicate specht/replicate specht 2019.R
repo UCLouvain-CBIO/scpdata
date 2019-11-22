@@ -1,6 +1,9 @@
-path.t<-"../extdata/specht2019/"
+path.t<-"./inst/scripts/replicate specht/"
+setwd(path.t)
 
 ### Code settigngs: 
+load_fresh = TRUE
+only_fp94_97 = TRUE
 # Remove peptides that are more abundant that 10% of the carrier channel from the single cell runs
 remove_abundant_peptides<-T
 # Use dart-enhanced spectra or spectra
@@ -22,12 +25,22 @@ na.row<-0.99
 # Imputation
 k.t<-3
 
+
 ####################################################################################################################################
 ####################################################################################################################################
 ####################################################################################################################################
 # Execute all scripts in this order, some later scripts contain variables created in previous scripts
 
-source("../../../SCoPE2/code/mPOP_source_functions.R") 
+source("./code/mPOP_source_functions.R") 
+source("./code/import.R") # 
+source("./code/score.R") # 
+source("./code/data_transformations.R") # 
+
+
+####################################################################################################################################
+####################################################################################################################################
+####################################################################################################################################
+# Go into the code 
 
 ### load MaxQuant data, experimental design, and meta-data (batch annotation, et cetera)...
 ev<-read.delim(paste0(path.t,"ev_updated.txt"))

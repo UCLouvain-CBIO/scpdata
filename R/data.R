@@ -92,7 +92,6 @@ scpdata <- function(){
 #'  processed by the authors as follows:
 #'  \itemize{
 #'    \item Keep only the single cell runs (experiments FP94 and FP97)
-#'    \item Correct TMT reporter itensities (RI) for isotopic cross contamination.
 #'    \item Remove out reverse hits and contaminants (identified by MaxQuant), 
 #'    and contaminated spectra (\code{PIF > 0.8})
 #'    \item Remove peptides with low identification score (\code{FDR >= 0.01} or 
@@ -124,8 +123,6 @@ scpdata <- function(){
 #'    information, the quantification information (TMT intensities), the 
 #'    identification information (PEP, q-values, PIF,...) and the contamination
 #'    information
-#'    \item Correct for TMT isotopic cross-contamination using the matrix in the
-#'    \code{te269088_lot_correction.csv} file
 #'    \item Remove contaminants and reverse hits
 #'    \item Remove peptides with low identification metrics
 #'    \item Remove runs with less than 300 identified peptides. 13 runs out of 
