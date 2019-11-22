@@ -2,8 +2,6 @@ data/
 vignettes/scpdata.html
 inst/extdata/
 inst/script/replicate\ specht/
-inst/script/replicate[ ]specht/code/ 
-inst/script/replicate[ specht/prefilter_ev.Rdata
 .Rhistory
 .Rproj.user
 scpdata.Rproj

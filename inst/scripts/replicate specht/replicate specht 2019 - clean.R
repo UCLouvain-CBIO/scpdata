@@ -12,34 +12,43 @@ library(MSnbase)
 setwd("./inst/scripts/")
 
 # Load meta data
-samp <- read.csv("../extdata/specht2019/annotation_fp60-97.csv", row.names = 1)
+samp <- read.csv("../extdata/specht2019/annotation_fp60-97.csv", 
+                 row.names = 1, check.names = F)
 batch <- read.csv("../extdata/specht2019/batch_fp60-97.csv", row.names = 1)
 
 # Load the data and create an MSnSet
 mq_file <- "../extdata/specht2019/ev_updated.txt"
 coln <- colnames(read.table(mq_file, header = TRUE, sep = "\t", nrow = 1))
-sc <- readMSnSet2(file = mq_file, fnames = "id", sep = "\t", header = TRUE,
-                  ecol = grep("intensity[.]\\d", coln, value = TRUE))
+sc <- sc0 <- readMSnSet2(file = mq_file, fnames = "id", sep = "\t", header = TRUE,
+                         ecol = grep("intensity[.]\\d", coln, value = TRUE))
 
-# Keep only sc runs 
+# Keep only sc runs and runs that have associated sample metadata
 sel <- !grepl("blank|_QC_|col[12][0-9]", fData(sc)$Raw.file)
+sel <- sel & fData(sc)$Raw.file %in% colnames(samp)
 sc <- sc[sel, ]
 
 
-####---- Filter identification ----####
+####---- Filter based on identification measures ----####
 
-sc %>% filter(TRUE)
 
-# Make sure all runs are described in design, if not, print and remove them:
-not.described<-unique(ev$Raw.file)[ !unique(ev$Raw.file) %in% colnames(design) ]
-ev<-ev[!ev$Raw.file%in%not.described,]
+# Remove the reverse hits (from decoy database) and contaminants
+sc <- sc[fData(sc)$Reverse != "+", ]
+sc <- sc[!grepl("^REV", fData(sc)$Leading.razor.protein), ]
+sc <- sc[fData(sc)$Potential.contaminant != "+", ]
+sc <- sc[fData(sc)$PIF > 0.8 & !is.na(fData(sc)$PIF), ]
 
-# Filter out reverse hits, contaminants, and contaminated spectra... 
-ev<-ev[which(ev$Reverse!="+"),]
-ev<-ev[-grep("REV", ev$Leading.razor.protein),]
-ev<-ev[ev$Potential.contaminant!="+",]
-ev<-ev[ev$PIF>0.8,]
-ev<-ev[!is.na(ev$PIF),]
+# Remove spectra with poor identification confidence
+# The PEP and q-values were updated using DART-ID
+# TODO discuss with Laurent ! Why not deleting peptides with high FDR instead of deleting the proteins for which all associated peptides have high FDR 
+qprots <- unique(fData(sc)$Leading.razor.protein[fData(sc)$dart_qval < 0.01])
+sc <- sc[fData(sc)$Leading.razor.protein %in% qprots, ]
+sc <- sc[fData(sc)$dart_PEP < 0.02, ]
 
+# Remove runs with insufficient identified peptides 
+pep.t <- table(fData(sc)$Raw.file)
+sc <- sc[fData(sc)$Raw.file %in% names(pep.t[pep.t >= 300]),] # 25 runs were removed
+
+
+####--- Filter based on sample to carrier ratio
 
 
