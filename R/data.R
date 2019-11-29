@@ -31,14 +31,14 @@ scpdata <- function(){
 ####---- SPECHT ET AL. 2019 ----####
 
 
-#' Quantifying the emergence of macrophage heterogeneity using the SCoPE2 
-#' pipeline (Specht et al. 2019)
+#' FACS + SCoPE2: comparing macrophages against monocytes (Specht et al. 2019)
 #'
 #' Single cell proteomics data produced and published by Specht et al. from the 
 #' Slavov Lab (see references). It contains quantitative information 356 cells. 
 #' Cells can be either macrophages (n = 259) or monocytes (n = 97). 
 #' 
 #' @usage
+#' specht2019
 #' data("specht2019_protein")
 #' data("specht2019_peptide")
 #' data("specht2019_peptide2")
@@ -173,17 +173,15 @@ scpdata <- function(){
 #'
 #' @keywords datasets
 #' 
-#' @aliases specht2019 specht2019_peptide
+#' @aliases specht2019_protein specht2019_peptide specht2019_peptide2
 #'
-"specht2019_protein"
+specht2019 <- ?specht2019_peptide
 
 
 ####---- DOU ET AL. 2019 ----####
 
 
-#' High-Throughput Single Cell Proteomics Enabled by Multiplex 
-#' Isobaric Labeling in a Nanodroplet Sample Preparation Platform: 
-#' HeLa digests (Dou et al. 2019)
+#' FACS + nanoPOTS + TMT multiplexing: HeLa digests (Dou et al. 2019)
 #'  
 #' @description 
 #' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
@@ -194,6 +192,7 @@ scpdata <- function(){
 #' wells contain the same digest but at hihgher dose (10 ng).
 #' 
 #' @usage 
+#' dou2019_1
 #' data("dou2019_1_protein")
 #' 
 #' @format 
@@ -234,15 +233,13 @@ scpdata <- function(){
 #' 
 #' @keywords datasets
 #' 
-#' @aliases dou2019_1
+#' @aliases dou2019_1_protein
 #' 
-"dou2019_1_protein"
+dou2019_1 <- ?dou2019_1_protein
 
 
 
-#' High-Throughput Single Cell Proteomics Enabled by Multiplex 
-#' Isobaric Labeling in a Nanodroplet Sample Preparation Platform: 
-#' testing boosting ratios (Dou et al. 2019)
+#' FACS + nanoPOTS + TMT multiplexing: testing boosting ratios (Dou et al. 2019)
 #'  
 #' @description 
 #' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
@@ -255,7 +252,8 @@ scpdata <- function(){
 #' well were added, otherwise 1 empty well was added. Each boosting setting 
 #' (no boosting, 5ng, 50ng) was run twice.
 #' 
-#' @usage 
+#' @usage
+#' dou2019_2 
 #' data("dou2019_2_protein")
 #' 
 #' @format 
@@ -299,14 +297,13 @@ scpdata <- function(){
 #' 
 #' @keywords datasets
 #' 
-#' @aliases dou2019_2
+#' @aliases dou2019_2_protein
 #' 
-"dou2019_2_protein"
+dou2019_2 <- ?dou2019_2_protein
 
 
-#' High-Throughput Single Cell Proteomics Enabled by Multiplex 
-#' Isobaric Labeling in a Nanodroplet Sample Preparation Platform: profiling of 
-#' murine cell populations (Dou et al. 2019)
+#' FACS + nanoPOTS + TMT multiplexing: profiling of murine cell populations
+#' (Dou et al. 2019)
 #'  
 #' @description 
 #' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
@@ -319,6 +316,7 @@ scpdata <- function(){
 #' Samples were 11-plexed with TMT ions.
 #' 
 #' @usage 
+#' dou2019_3
 #' data("dou2019_3_protein")
 #' 
 #' @format 
@@ -362,12 +360,12 @@ scpdata <- function(){
 #' 
 #' @keywords datasets
 #' 
-#' @aliases dou2019_3
+#' @aliases dou2019_3_protein
 #' 
-"dou2019_3_protein"
+dou2019_3 <- ?dou2019_3_protein
 
 
-#' mPOP SCoPE-MS Master Mix 20180824 (Specht et al. 2018)
+#' SCoPE-MS + mPOP lysis upgrade: Master Mix 20180824 (Specht et al. 2018)
 #'
 #' @description 
 #' Single cell proteomics data produced and published by Specht et al. from the 
@@ -377,6 +375,7 @@ scpdata <- function(){
 #' digestion product (Jurkat or U-937).
 #' 
 #' @usage 
+#' specht2018
 #' data("specht2018_peptide")
 #' 
 #' @format 
@@ -425,6 +424,6 @@ scpdata <- function(){
 #'
 #' @keywords datasets
 #' 
-#' @aliases specht2018
+#' @aliases specht2018_peptide
 #' 
-"specht2018_peptide"
+specht2018 <- ?specht2018_peptide
