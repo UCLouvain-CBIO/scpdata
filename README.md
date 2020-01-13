@@ -52,9 +52,9 @@ This is an overview of the available data in this package:
 Publ. Date | Data set name | Raw data | Peptide data | Protein data 
 ---------- | ------------- | -------- | ------------ | ------------
 2019-06-09 | specht2019    | No       | Yes          | Yes
-2019-09-11 | dou2019_1     | No       | No           | Yes 
-2019-09-11 | dou2019_2     | No       | No           | Yes
-2019-09-11 | dou2019_3     | No       | No           | Yes 
+2019-09-11 | dou2019_hela     | No       | No           | Yes 
+2019-09-11 | dou2019_boosting     | No       | No           | Yes
+2019-09-11 | dou2019_mouse     | No       | No           | Yes 
 2018-08-24 | specht2018    | No       | Yes          | No
 
 # Data set description 
@@ -68,9 +68,9 @@ knitr::kable(desc)
 
 Data               |Description                                                                                                                                                                        |
 |:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|dou2019_1_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: HeLa digests (Dou et al. 2019)                         |
-|dou2019_2_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: testing boosting ratios (Dou et al. 2019)              |
-|dou2019_3_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: profiling of murine cell populations (Dou et al. 2019) |
+|dou2019_hela_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: HeLa digests (Dou et al. 2019)                         |
+|dou2019_boosting_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: testing boosting ratios (Dou et al. 2019)              |
+|dou2019_mouse_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: profiling of murine cell populations (Dou et al. 2019) |
 |specht2018_peptide |mPOP SCoPE-MS Master Mix 20180824 (Specht et al. 2018)                                                                                                                             |
 |specht2019_peptide |Quantifying the emergence of macrophage heterogeneity using the SCoPE2 pipeline (Specht et al. 2019)                                                                               |
 |specht2019_protein |Quantifying the emergence of macrophage heterogeneity using the SCoPE2 pipeline (Specht et al. 2019)                                        

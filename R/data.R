@@ -192,13 +192,13 @@ specht2019 <- ?specht2019_peptide
 #' wells contain the same digest but at hihgher dose (10 ng).
 #' 
 #' @usage 
-#' dou2019_1
-#' data("dou2019_1_protein")
+#' dou2019_hela
+#' data("dou2019_hela_protein")
 #' 
 #' @format 
-#' \code{dou2019_1} contains 1 set of data:
+#' \code{dou2019_hela} contains 1 set of data:
 #' \itemize{
-#'   \item \code{dou2019_1_protein}: an MSnSet with protein expression levels
+#'   \item \code{dou2019_hela_protein}: an MSnSet with protein expression levels
 #'   for 1641 proteins x 20 "cells".
 #' }
 #' See Details for information about data collection.
@@ -207,7 +207,7 @@ specht2019 <- ?specht2019_peptide
 #' The data set was downloaded from the supplementary information section of the
 #' publisher's website (see sources). 
 #' 
-#' \strong{Protein expression data: \code{dou2019_3_protein}}
+#' \strong{Protein expression data: \code{dou2019_mouse_protein}}
 #'
 #' The spreadsheet is called \code{ac9b03349_si_003.xlsx} and contains 7 sheets 
 #' from which we only took the sheet 6 (named \code{"5 - Run 1 and 2 raw data"}) 
@@ -233,9 +233,9 @@ specht2019 <- ?specht2019_peptide
 #' 
 #' @keywords datasets
 #' 
-#' @aliases dou2019_1_protein
+#' @aliases dou2019_hela_protein
 #' 
-dou2019_1 <- ?dou2019_1_protein
+dou2019_hela <- ?dou2019_hela_protein
 
 
 
@@ -253,13 +253,13 @@ dou2019_1 <- ?dou2019_1_protein
 #' (no boosting, 5ng, 50ng) was run twice.
 #' 
 #' @usage
-#' dou2019_2 
-#' data("dou2019_2_protein")
+#' dou2019_boosting 
+#' data("dou2019_boosting_protein")
 #' 
 #' @format 
-#' \code{dou2019_2} contains 1 set of data:
+#' \code{dou2019_boosting} contains 1 set of data:
 #' \itemize{
-#'   \item \code{dou2019_2_protein}: an MSnSet with protein expression levels
+#'   \item \code{dou2019_boosting_protein}: an MSnSet with protein expression levels
 #'   for 1436 proteins x 60 cells.
 #' }
 #' See Details for information about data collection.
@@ -268,7 +268,7 @@ dou2019_1 <- ?dou2019_1_protein
 #' The data set was downloaded from the supplementary information section of the
 #' publisher's website (see sources). 
 #' 
-#' \strong{Protein expression data: \code{dou2019_2_protein}}
+#' \strong{Protein expression data: \code{dou2019_boosting_protein}}
 #'
 #' The spreadsheet is called \code{ac9b03349_si_004.xlsx} and contains 7 sheets 
 #' from which we took the 2nd, 4th and 6th sheets (named \code{"01 - No Boost 
@@ -297,9 +297,9 @@ dou2019_1 <- ?dou2019_1_protein
 #' 
 #' @keywords datasets
 #' 
-#' @aliases dou2019_2_protein
+#' @aliases dou2019_boosting_protein
 #' 
-dou2019_2 <- ?dou2019_2_protein
+dou2019_boosting <- ?dou2019_boosting_protein
 
 
 #' FACS + nanoPOTS + TMT multiplexing: profiling of murine cell populations
@@ -316,13 +316,13 @@ dou2019_2 <- ?dou2019_2_protein
 #' Samples were 11-plexed with TMT ions.
 #' 
 #' @usage 
-#' dou2019_3
-#' data("dou2019_3_protein")
+#' dou2019_mouse
+#' data("dou2019_mouse_protein")
 #' 
 #' @format 
-#' \code{dou2019_3} contains 1 set of data:
+#' \code{dou2019_mouse} contains 1 set of data:
 #' \itemize{
-#'   \item \code{dou2019_3_protein}: an MSnSet with protein expression levels
+#'   \item \code{dou2019_mouse_protein}: an MSnSet with protein expression levels
 #'   for 2331 proteins x 132 cells.
 #' }
 #' See Details for information about data collection.
@@ -331,7 +331,7 @@ dou2019_2 <- ?dou2019_2_protein
 #' The data set was downloaded from the supplementary information section of the
 #' publisher's website (see sources). 
 #' 
-#' \strong{Protein expression data: \code{dou2019_3_protein}}
+#' \strong{Protein expression data: \code{dou2019_mouse_protein}}
 #'
 #' The spreadsheet is called \code{ac9b03349_si_005.xlsx} and contains 7 sheets 
 #' from which we took only the 2nd (named \code{"01 - Raw sc protein data"}). It 
@@ -354,15 +354,15 @@ dou2019_2 <- ?dou2019_2_protein
 #' (\href{https://doi.org/10.1021/acs.analchem.9b03349}{DOI}).
 #' 
 #' @seealso 
-#' \code{\link{dou2019_1}}, \code{\link{dou2019_2}}
+#' \code{\link{dou2019_hela}}, \code{\link{dou2019_boosting}}
 #' 
 #' @docType data
 #' 
 #' @keywords datasets
 #' 
-#' @aliases dou2019_3_protein
+#' @aliases dou2019_mouse_protein
 #' 
-dou2019_3 <- ?dou2019_3_protein
+dou2019_mouse <- ?dou2019_mouse_protein
 
 
 #' SCoPE-MS + mPOP lysis upgrade: Master Mix 20180824 (Specht et al. 2018)
