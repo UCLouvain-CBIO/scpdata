@@ -1,6 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-inst/
+inst
 [.]git*
 [.]Rhistory
 

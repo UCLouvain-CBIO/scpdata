@@ -7,7 +7,7 @@
 scpdata()
 }
 \value{
-An object of class "packageIQR" with available data sets.
+An object of class "packageIQR" containing all available data sets.
 }
 \description{
 The function lists the available datasets in the package.

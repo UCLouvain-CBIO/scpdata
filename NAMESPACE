@@ -2,3 +2,4 @@
 
 export(scpdata)
 import(MSnbase)
+import(SingleCellExperiment)

@@ -16,4 +16,4 @@ Suggest: tidyr (>= 1.0.0),
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2

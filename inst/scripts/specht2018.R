@@ -8,13 +8,17 @@
 # https://doi.org/10.1101/399774.
 
 library(MSnbase)
+library(SingleCellExperiment)
 library(tidyr)
-setwd("scpdata/inst/scripts")
+# setwd("inst/scripts")
 
 # The data was downloaded from https://drive.google.com/drive/folders/19YG70I52DH5yETcZagdUjNZWNPs0JXVr
 # to scpdata/inst/extdata/specht2018
 
-# MS data
+
+####---- Peptide data ----####
+
+# Load the PSM data (MaxQuant evidence file)
 dat0 <- read.table("../extdata/specht2018/evidence.txt", header = TRUE, sep = "\t")
 dat <- dat0
 # Column names holding the TMT intensities
@@ -22,9 +26,6 @@ intensity.coln <- colnames(dat)[grepl("^Reporter[.]intensity[.]\\d+$", colnames(
 
 # Sample data 
 # TODO ask for exp design
-
-# Correct for isotopic cross correlation
-# TODO ask for cross contamination table
 
 ## Filter data
 
@@ -103,7 +104,7 @@ fdat <- do.call(rbind, lapply(rownames(edat), function(x){
   return(line)
 }))
 rownames(fdat) <- rownames(edat)
-# Make data descriptioncreate feature metadata description
+# Make data description for the feature metadata
 mfdat <- data.frame(type = c("characters",
                              "characters",
                              "integer",
@@ -128,10 +129,10 @@ mfdat <- data.frame(type = c("characters",
                                          "Short for Parent Ion Fraction; indicates the fraction the target peak makes up of the total intensity in the inclusion window. The value is the median over all samples where the peptide was identified.",
                                          "Posterior Error Probability of the identification. This value essentially operates as a p-value, where smaller is more significant. The value is the median over all samples where the peptide was identified.",
                                          "Andromeda score for the best associated MS/MS spectrum. The value is the median over all samples where the peptide was identified."))
-# Combine all feature data in an AnnotatedDataFrame
+## Combine all feature data in an AnnotatedDataFrame
 fdat <- AnnotatedDataFrame(data = fdat, varMetadata = mfdat)
 
-# Create the experimental metadata
+## Create the experimental metadata
 expdat <- new("MIAPE",
               title = "Automated sample preparation for high-throughputsingle-cell proteomics",
               abstract = "A major limitation to applying quantitative LC-MS/MS proteomics to small samples, suchas single cells, are the losses incured during sample cleanup. To relieve this limitation, we de-veloped a Minimal ProteOmic sample Preparation (mPOP) method for culture-grown mam-malian cells. mPOP obviates cleanup and thus eliminates cleanup-related losses while expe-diting sample preparation and simplifying its automation.  Bulk SILAC samples processedby mPOP or by conventional urea-based methods indicated that mPOP results in completecell lysis and accurate relative quantification. We integrated mPOP lysis with the Single CellProtEomics by Mass Spectrometry (SCoPE-MS) sample preparation, and benchmarked thequantification  of  such  samples  on  a  Q-exactive  instrument.   The  results  demonstrate  lownoise and high technical reproducibility. Then, we FACS sorted single U-937, HEK-293, andmouse ES cells into 96-well plates and analyzed them by automated mPOP and SCoPE-MS.The quantified proteins enabled separating the single cells by cell-type and cell-division-cyclephase.",
@@ -150,14 +151,19 @@ expdat <- new("MIAPE",
               analyserDetails = "a 0.7 Th isolation window was used for MS2 scans.",
               collisionEnergy = "not specified")
 
-# Create the MSnSet object
-specht2018_peptide <- new("MSnSet", exprs = edat, 
-                          featureData = fdat,
-                          phenoData = pdat,
-                          experimentData = expdat)
-
-# Save data as Rda file
-# Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
+## Create the MSnSet object
+# specht2018_peptide <- new("MSnSet", exprs = edat, 
+#                           featureData = fdat,
+#                           phenoData = pdat,
+#                           experimentData = expdat)
+## Create SingleCellExperiment object
+specht2018_peptide <-
+  SingleCellExperiment(assay = list(peptide = edat), 
+                       rowData = DataFrame(pData(fdat)),
+                       colData = DataFrame(pData(pdat)),
+                       metadata = list(experimentData = expdat))
+## Save data as Rda file
+## Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
 save(specht2018_peptide, file = file.path("../../data/specht2018_peptide.rda"),
      compress = "xz", compression_level = 9)
 

@@ -8,16 +8,15 @@
 ## Platform.” Analytical Chemistry, September. 
 ## https://doi.org/10.1021/acs.analchem.9b03349.
 
-## This article contains 3 datasets. The script will focus on the third data 
-## set: HeLa digests
+## This article contains 3 datasets. The script will focus on the HeLa digests
 
 library(openxlsx)
 library(MSnbase)
-library(mzR)
+library(SingleCellExperiment)
 # setwd("inst/scripts/")
 
 
-### Experimental data
+####---- Experimental metadata ----####
 
 ## Create the experimental metadata (common to all data sets)
 expdat <- new("MIAPE",
@@ -29,7 +28,7 @@ expdat <- new("MIAPE",
               lab = "Pacific Northwest National Laboratory (PNNL) - Environmental Molecular Sciences Laboratory",
               instrumentModel = "Orbitrap Fusion Lumos Tribrid mass spectrometer",
               instrumentManufacturer = "Thermo Fischer",
-              softwareName = "MS-GF+",
+              softwareName = "MS-GF+ (identification) and MASIC (quantification)",
               softwareVersion = "not specified",
               switchingCriteria = "Precursor ions with charges of +2 to +7 and intensities >20,000 were selected for MS/MS sequencing.",
               ionSource = "ESI",
@@ -39,43 +38,43 @@ expdat <- new("MIAPE",
               collisionEnergy = "HCD of 35%")
 
 
-####---- dou2019_hela ----####
+####---- Peptide data ----####
+
+# TODO 
+if(FALSE){
+  # mzid
+  f <- list.files("../extdata/dou2019/mzid/", pattern = "^Hela", 
+                  full.names = TRUE)[1]
+  mzidFile <- openIDfile(f)
+  mzid <- psms(mzidFile)
+  dim(mzid)
+  mzid[1, ]
+  
+  # mzTab
+  f <- list.files("../extdata/dou2019/mzTab/", pattern = "^Hela", 
+                  full.names = TRUE)[1]
+  mzTab <- readMzTabData(f, what = "PSM", version = "1.0", verbose = TRUE)
+  dim(mzTab)
+  fData(mzTab)[1, ]
+  
+  # Quantification 
+  f <- list.files("../extdata/dou2019/quant/", pattern = "^Hela", 
+                  full.names = TRUE)[1]
+  qInd <- grepEcols(f, split = "\t", pattern = "Ion_\\d{3}[.]\\d{3}$")
+  quant <- readMSnSet2(f, ecol = qInd, sep = "\t")
+  dim(quant)
+  fData(quant)[1, ]
+  
+  unique(fData(quant)$PSM_ID)
+}
 
 
-## Peptide data 
-
-# mzid
-f <- list.files("../extdata/dou2019/mzid/", pattern = "^Hela", 
-                full.names = TRUE)[1]
-mzidFile <- openIDfile(f)
-mzid <- psms(mzidFile)
-dim(mzid)
-mzid[1, ]
-
-# mzTab
-f <- list.files("../extdata/dou2019/mzTab/", pattern = "^Hela", 
-                full.names = TRUE)[1]
-mzTab <- readMzTabData(f, what = "PSM", version = "1.0", verbose = TRUE)
-dim(mzTab)
-fData(mzTab)[1, ]
-
-# Quantification 
-f <- list.files("../extdata/dou2019/quant/", pattern = "^Hela", 
-                full.names = TRUE)[1]
-qInd <- grepEcols(f, split = "\t", pattern = "Ion_\\d{3}[.]\\d{3}$")
-quant <- readMSnSet2(f, ecol = qInd, sep = "\t")
-dim(quant)
-fData(quant)[1, ]
-
-unique(fData(quant)$PSM_ID)
-
-
-
+####---- Protein data ----####
 
 
 ## Load the data
 ## Data was downloaded from https://doi.org/10.1021/acs.analchem.9b03349.
-dataFile <- "../extdata/dou2019/ac9b03349_si_003.xlsx"
+dataFile <- "../extdata/dou2019/protein/ac9b03349_si_003.xlsx"
 dat_xlsx <- loadWorkbook(dataFile)
 dat <- read.xlsx(dat_xlsx, sheet = 6, colNames = FALSE)
 
@@ -85,30 +84,37 @@ colnames(fd) <- fd[3, ]
 fd <- fd[-(1:3), ]
 rownames(fd) <- fd$Protein
 fd[, 2:3] <- sapply(fd[, 2:3], as.numeric)
+fd <- DataFrame(fd)
 
 ## Extract the phenotype data
-run <- unlist(dat[1, -(1:3)])
-sample_type <- paste0(unlist(dat[2, -(1:3)]), c(1:7, 1:2, ""))
-TMT_ion <- sapply(dat[3, -(1:3)], function(x) strsplit(x, "_")[[1]][2])
-dataset_id <- sapply(dat[3, -(1:3)], function(x) strsplit(x, "_")[[1]][4])
-pd <- data.frame(sample_type, run, TMT_ion, dataset_id)
-rownames(pd) <- paste0(sample_type, "_", run)
+run <- sub("run", "", unlist(dat[1, -(1:3)]))
+sampleType <- paste0(unlist(dat[2, -(1:3)]), c(1:7, 1:2, ""))
+TMT <- sapply(dat[3, -(1:3)], function(x) strsplit(x, "_")[[1]][2])
+datasetID <- sapply(dat[3, -(1:3)], function(x) strsplit(x, "_")[[1]][4])
+pd <- DataFrame(sampleType, run, TMT, datasetID)
+rownames(pd) <- paste0(sampleType, "_", run)
 
 ## Extract the expression data
 ed <- apply(dat[-(1:3), -(1:3)], 2, as.numeric)
 rownames(ed) <- rownames(fd)
-colnames(ed) <- rownames(pd$sample_type)
+colnames(ed) <- rownames(pd)
 
 ## Create MSnSet object
-dou2019_hela_protein <- new("MSnSet", exprs = ed, 
-                         featureData = AnnotatedDataFrame(fd),
-                         phenoData = AnnotatedDataFrame(pd),
-                         experimentData = expdat)
+# dou2019_hela_protein <- new("MSnSet", exprs = ed,
+#                             featureData = AnnotatedDataFrame(fd),
+#                             phenoData = AnnotatedDataFrame(pd),
+#                             experimentData = expdat)
 
+## Create SingleCellExperiment object
+dou2019_hela_protein <- 
+  SingleCellExperiment(assay = SimpleList(protein = ed),
+                       rowData = fd, 
+                       colData = pd,
+                       metadata = list(experimentData = expdat))
 ## Save data as Rda file
 ## Note: saving is assumed to occur in "scpdata/inst/scripts"
-save(dou2019_hela_protein, file = file.path("../../data/dou2019_hela_protein.rda"),
-     compress = "xz", compression_level = 9)
+save(dou2019_hela_protein, compress = "xz", compression_level = 9,
+     file = file.path("../../data/dou2019_hela_protein.rda"))
 
 
 

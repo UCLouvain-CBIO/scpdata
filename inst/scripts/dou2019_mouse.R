@@ -8,15 +8,16 @@
 ## Platform.” Analytical Chemistry, September. 
 ## https://doi.org/10.1021/acs.analchem.9b03349.
 
-## This article contains 3 datasets. The script will focus on the third data set:
-## Profiling of murine cell populations
+## This article contains 3 datasets. The script will focus on the profiling of 
+## murine cell populations
 
 library(openxlsx)
 library(MSnbase)
+library(SingleCellExperiment)
 # setwd("inst/scripts/")
 
 
-### Experimental data
+####---- Experimental data ----####
 
 ## Create the experimental metadata (common to all data sets)
 expdat <- new("MIAPE",
@@ -40,9 +41,14 @@ expdat <- new("MIAPE",
 
 ####---- Protein data ----####
 
+# TODO
+
+
+####---- Protein data ----####
+
 ## Load the data
 ## Data was downloaded from https://doi.org/10.1021/acs.analchem.9b03349.
-dataFile <- "../extdata/dou2019/ac9b03349_si_005.xlsx"
+dataFile <- "../extdata/dou2019/protein/ac9b03349_si_005.xlsx"
 dat_xlsx <- loadWorkbook(dataFile)
 dat <- read.xlsx(dat_xlsx, sheet = 2, colNames = FALSE)
 
@@ -54,11 +60,11 @@ rownames(fd) <- fd$Protein
 fd[, 2:3] <- sapply(fd[, 2:3], as.numeric)
 
 ## Extract the phenotype data
-sample_type <- unlist(dat[1, -(1:3)])
-TMT_ion <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][2])
-dataset_id <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][4])
-pd <- data.frame(sample_type, dataset_id, TMT_ion)
-rownames(pd) <- paste0(sample_type, "_", dataset_id, "_", TMT_ion)
+sampleType <- unlist(dat[1, -(1:3)])
+TMT <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][2])
+datasetID <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][4])
+pd <- data.frame(sampleType, datasetID, TMT)
+rownames(pd) <- paste0(sampleType, "_", datasetID, "_", TMT)
 
 ## Extract the expression data
 ed <- apply(dat[-(1:2), -(1:3)], 2, as.numeric)
@@ -66,14 +72,19 @@ rownames(ed) <- rownames(fd)
 colnames(ed) <- rownames(pd$sample_type)
 
 ## Create MSnSet object
-dou2019_mouse_protein <- new("MSnSet", exprs = ed, 
-                         featureData = AnnotatedDataFrame(fd),
-                         phenoData = AnnotatedDataFrame(pd),
-                         experimentData = expdat)
-
+# dou2019_mouse_protein <- new("MSnSet", exprs = ed, 
+#                          featureData = AnnotatedDataFrame(fd),
+#                          phenoData = AnnotatedDataFrame(pd),
+#                          experimentData = expdat)
+## Create SingleCellExperiment object
+dou2019_mouse_protein <- 
+  SingleCellExperiment(assay = SimpleList(protein = ed),
+                       rowData = fd, 
+                       colData = pd,
+                       metadata = list(experimentData = expdat))
 ## Save data as Rda file
 ## Note: saving is assumed to occur in "scpdata/inst/scripts"
-save(dou2019_mouse_protein, file = file.path("../../data/dou2019_mouse_protein.rda"),
-     compress = "xz", compression_level = 9)
+save(dou2019_mouse_protein, compress = "xz", compression_level = 9,
+     file = file.path("../../data/dou2019_mouse_protein.rda"))
 
 

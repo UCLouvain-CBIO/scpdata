@@ -134,7 +134,7 @@ Three data files are provided by Specht and colleagues are:
  }
  This leads to the \code{Proteins-processed.csv} file. This protein 
  expression data are combined with the meta data (\code{Cells.csv}) into an 
- \code{\link{MSnSet}} object.#'
+ \code{\link{MSnSet}} object.
 }
 \references{
 Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 

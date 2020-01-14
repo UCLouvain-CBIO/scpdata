@@ -8,16 +8,16 @@
 ## Platform.” Analytical Chemistry, September. 
 ## https://doi.org/10.1021/acs.analchem.9b03349.
 
-## This article contains 3 datasets. The script will focus on the third data 
-## set: testing boosting ratios 
+## This article contains 3 datasets. The script will focus on the testing of
+## boosting ratios 
 
 library(openxlsx)
 library(MSnbase)
-library(mzr)
+library(SingleCellExperiment)
 # setwd("inst/scripts/")
 
 
-### Experimental data
+####---- Experimental metadata ----####
 
 ## Create the experimental metadata (common to all data sets)
 expdat <- new("MIAPE",
@@ -39,14 +39,40 @@ expdat <- new("MIAPE",
               collisionEnergy = "HCD of 35%")
 
 
+####---- Peptide data ----####
+
+# TODO
+
+
+####---- Protein data ----####
 
 ## Load the data
 ## Data was downloaded from https://doi.org/10.1021/acs.analchem.9b03349.
-dataFile <- "../extdata/dou2019/ac9b03349_si_004.xlsx"
+dataFile <- "../extdata/dou2019/protein/ac9b03349_si_004.xlsx"
 dat_xlsx <- loadWorkbook(dataFile)
 dat_nb <- read.xlsx(dat_xlsx, sheet = 2, colNames = FALSE)
 dat_5b <- read.xlsx(dat_xlsx, sheet = 4, colNames = FALSE)
 dat_50b <- read.xlsx(dat_xlsx, sheet = 6, colNames = FALSE)
+
+## Extract the phenotype data
+## Internal function
+extractPhenoData <- function(dat, boosting){
+  run <- rep(paste0("run", 1:2), each = 10)
+  sampleType <- sapply(unlist(dat[1, -(1:3)]), function(x) strsplit(x, "_")[[1]][1])
+  TMT <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][2])
+  datasetID <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][4])
+  pd <- data.frame(sampleType, run, TMT, datasetID, boosting)
+  rownames(pd) <- make.unique(paste0(sampleType, "_", run, "_", boosting), sep = "_")
+  return(pd)
+}
+## No boosting
+pd_nb <- extractPhenoData(dat_nb, "0ng")
+## 5ng boosting 
+pd_5b <- extractPhenoData(dat_5b, "5ng")
+## 50ng boosting 
+pd_50b <- extractPhenoData(dat_50b, "50ng")
+## Combine phenotype data
+pd <- rbind(pd_nb, pd_5b, pd_50b)
 
 ## Extract the feature data
 extractFeatData <- function(dat){
@@ -63,34 +89,7 @@ fd_nb <- extractFeatData(dat_nb)
 fd_5b <- extractFeatData(dat_5b)
 ## 50ng boosting
 fd_50b <- extractFeatData(dat_50b)
-
-## Extract the phenotype data
-## Internal function
-extractPhenoData <- function(dat, boosting){
-  run <- rep(paste0("run", 1:2), each = 10)
-  sample_type <- sapply(unlist(dat[1, -(1:3)]), function(x) strsplit(x, "_")[[1]][1])
-  TMT_ion <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][2])
-  dataset_id <- sapply(dat[2, -(1:3)], function(x) strsplit(x, "_")[[1]][4])
-  pd <- data.frame(sample_type, run, TMT_ion, dataset_id, boosting)
-  rownames(pd) <- make.unique(paste0(sample_type, "_", run, "_", boosting), sep = "_")
-  return(pd)
-}
-## No boosting
-pd_nb <- extractPhenoData(dat_nb, "0ng")
-## 5ng boosting 
-pd_5b <- extractPhenoData(dat_5b, "5ng")
-## 50ng boosting 
-pd_50b <- extractPhenoData(dat_50b, "50ng")
-
-## Extract the expression data
-ed_nb <- as.matrix(dat_nb[-(1:2), -(1:3)])
-ed_5b <- as.matrix(dat_5b[-(1:2), -(1:3)])
-ed_50b <- as.matrix(dat_50b[-(1:2), -(1:3)])
-
 ## Combine feature data
-pd <- rbind(pd_nb, pd_5b, pd_50b)
-
-## Combine phenotype data
 prots <- unique(c(fd_nb$Protein, fd_5b$Protein, fd_50b$Protein))
 colnams <- as.vector(outer(c("Peptide_count", "Spectra_count"), 
                            c("0ng", "5ng", "50ng"), 
@@ -102,6 +101,10 @@ fd[match(fd_5b$Protein, prots, nomatch = 0), 3:4] <- as.matrix(fd_5b[, 2:3])
 fd[match(fd_50b$Protein, prots, nomatch = 0), 5:6] <- as.matrix(fd_50b[, 2:3])
 fd <- data.frame(Protein = prots, fd)
 
+## Extract the expression data
+ed_nb <- as.matrix(dat_nb[-(1:2), -(1:3)])
+ed_5b <- as.matrix(dat_5b[-(1:2), -(1:3)])
+ed_50b <- as.matrix(dat_50b[-(1:2), -(1:3)])
 ## Combine expression data 
 ed <- matrix(NA, nrow = nrow(fd), ncol = nrow(pd),
              dimnames = list(rownames(fd), rownames(pd)))
@@ -109,12 +112,17 @@ ed[match(fd_nb$Protein, prots, nomatch = 0), 1:20] <- as.numeric(ed_nb)
 ed[match(fd_5b$Protein, prots, nomatch = 0), 21:40] <- as.numeric(ed_5b)
 ed[match(fd_50b$Protein, prots, nomatch = 0), 41:60] <- as.numeric(ed_50b)
 
-## Create MSnSet object
-dou2019_boosting_protein <- new("MSnSet", exprs = ed, 
-                         featureData = AnnotatedDataFrame(fd),
-                         phenoData = AnnotatedDataFrame(pd),
-                         experimentData = expdat)
-
+# ## Create MSnSet object
+# dou2019_boosting_protein <- new("MSnSet", exprs = ed,
+#                                 featureData = AnnotatedDataFrame(fd),
+#                                 phenoData = AnnotatedDataFrame(pd),
+#                                 experimentData = expdat)
+## Create SingleCellExperiment object
+dou2019_boosting_protein <- 
+  SingleCellExperiment(assay = SimpleList(protein = ed),
+                       rowData = fd, 
+                       colData = pd,
+                       metadata = list(experimentData = expdat))
 ## Save data as Rda file
 ## Note: saving is assumed to occur in "scpdata/inst/scripts"
 save(dou2019_boosting_protein, file = file.path("../../data/dou2019_boosting_protein.rda"),

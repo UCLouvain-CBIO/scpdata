@@ -1,7 +1,6 @@
 data/
 vignettes/scpdata.html
 inst/extdata/
-inst/script/replicate\ specht/
 .Rhistory
 .Rproj.user
 scpdata.Rproj

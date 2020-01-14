@@ -8,13 +8,14 @@
 #' The function lists the available datasets in the package. 
 #' 
 #' @import MSnbase
+#' @import SingleCellExperiment
 #' 
 #' @details 
 #' See the documentation of a particular data set for more information (eg 
 #' \code{?specht2019}). 
 #' 
 #' @return 
-#' An object of class "packageIQR" with available data sets.
+#' An object of class "packageIQR" containing all available data sets.
 #' 
 #' @examples
 #' scpdata()
@@ -38,131 +39,109 @@ scpdata <- function(){
 #' Cells can be either macrophages (n = 259) or monocytes (n = 97). 
 #' 
 #' @usage
-#' specht2019
-#' data("specht2019_protein")
-#' data("specht2019_peptide")
-#' data("specht2019_peptide2")
+#' data("specht2019v1_protein")
+#' data("specht2019v1_peptide")
 #' 
 #' @format 
-#' \code{specht2019} contains 2 sets of data:
 #' \itemize{
-#'   \item \code{specht2019_peptide}: an MSnSet with peptide expression levels 
-#'   for 6787 peptides x 356 cells.
-#'   \item \code{specht2019_peptide2}: an MSnSet with peptide expression levels 
-#'   for 13543 peptides x 2420 samples. See details for more information about
-#'   the sample phenotypes.
-#'   \item \code{specht2019_protein}: an MSnSet with protein expression levels
-#'   for 2316 proteins x 356 cells.
+#'   \item \code{specht2019v1_peptide}: a \code{\link{SingleCellExperiment}} 
+#'   with peptide expression levels for 7515 peptides x 682 samples
+#'   \item \code{specht2019v1_protein}: a \code{\link{SingleCellExperiment}} 
+#'   with protein expression levels for 2316 proteins x 356 samples (=cells)
 #' }
 #' See Details for information about data collection.
 #'
 #' @details
 #' 
-#' Three data files are provided by Specht and colleagues are:
+#' Peptide data were collected from the massIVE database (accession ID: 
+#' MSV000083945), annotations were received during a personnal discussion but 
+#' are also contained in version 2 of the data (see 
+#' \code{\link{specht2019v2_peptide}}): 
 #' \itemize{
-#'   \item \code{Peptides-raw.csv}: Peptides x single cells at 1% FDR. The 
-#'   first 2 columns list the corresponding protein identifiers and peptide 
-#'   sequences and each subsequent column corresponds to a single cell. Peptide 
-#'   identification is based on spectra analyzed by MaxQuant and is enhanced by 
-#'   using DART-ID to incorporate retention time information. 
+#'   \item \code{ev_updated.txt}: the MaxQuant/DART-ID output file
+#'   \item \code{annotation_fp60-97.csv}: sample phenotype annotation
+#'   \item \code{batch_fp60-97.csv}: batch annotation
+#' }
+#'  
+#' Protein data were collected from the author's website (see sources).
+#' \itemize{
 #'   \item \code{Proteins-processed.csv}: Proteins x single cells at 1% FDR, 
 #'   imputed and batch corrected.
 #'   \item \code{Cells.csv}: Annotation x single cells. Each column corresponds 
 #'   to a single cell and the rows include relevant metadata, such as, cell type 
 #'   if known, measurements from the isolation of the cell, and derivative 
 #'   quantities, i.e., rRI, CVs, reliability.
-#'  }
+#' }
 #'  
-#'  Furthermore, in a personal discussion Harrison Specht shared the files:
+#' \strong{Peptide expression data: \code{specht2019v1_peptide}}
 #'  
-#'  \itemize{
-#'    \item \code{ev_updated.txt}: the MaxQuant output file of MS data 
-#'    identification and quantification
-#'    \item \code{annotation_fp60-97.csv}: sample phenotypic annotations
-#'    \item \code{batch_fp60-97.csv}: batch annotations
-#'    \item \code{te269088_lot_correction.csv}: TMT isotopic cross-contamination 
-#'    correction matrix
-#'  }
+#' Inspired by the above steps, we processed the MaxQuant output
+#' \code{ev_updated.txt} as follows:
+#' \itemize{
+#'   \item Keep only column of interest, that is the peptide and protein 
+#'   information, the quantification information (TMT intensities), the 
+#'   identification information (PEP, q-values, PIF,...) and the contamination
+#'   information
+#'   \item Keep only the single cell runs (experiments FP94 and FP97)
+#'   \item Remove out reverse hits and contaminants (identified by MaxQuant), 
+#'   and contaminated spectra (\code{PIF > 0.8})
+#'   \item Remove peptides with low identification score (\code{FDR >= 0.01} or 
+#'   \code{PEP >= 0.02})
+#'   \item Remove cells with less than 300 peptides
+#'   \item Some peptides were identified twice within the same experiment set 
+#'   because of different charge states. The peptide identification with lowest 
+#'   PEP is kept and the other(s) discarded.
+#'   \item Intensity data is formated to a feature (peptide) x sample 
+#'   (combination of experiment run and TMT channel) matrix.
+#'   \item Zero intensities are replaced by NA's
+#'   \item Peptide information is gathered in a feature data frame, only 
+#'   peptide information common to all runs is kept (eg sequence, mass, 
+#'   protein,...).
+#'   \item Sample information is gathered in a phenotype data frame. The sample 
+#'   information is extracted from the \code{annotation_fp60-97.csv} and 
+#'   \code{batch_fp60-97.csv} files.
+#' }
+#' 
+#' We finally formated the data to an \code{\link{SingleCellExperiment}} 
+#' object. The samples in this data set are either a carrier well 
+#' (\code{"carrier_mix"}), a normalization well (\code{"norm"}), an unused
+#' well (\code{"unused"}), an empty well (\code{"sc_0"}), a macrophage cell
+#' (\code{"sc_m0"}), or a monocyte cell (\code{"sc_u"}).
+#' 
+#' \strong{Protein expression data: \code{specht2019v1_protein}}
 #'  
-#'  \strong{Peptide expression data: \code{specht2019_peptide}}
-#'  
-#'  The \code{Peptides-raw.csv} data have already been partially processed by 
-#'  the authors. The MS files were analyzed with MaxQuant and DART-ID and the 
-#'  output \code{evidence.txt} file was parsed into R. This output was further 
-#'  processed by the authors as follows:
-#'  \itemize{
-#'    \item Keep only the single cell runs (experiments FP94 and FP97)
-#'    \item Remove out reverse hits and contaminants (identified by MaxQuant), 
-#'    and contaminated spectra (\code{PIF > 0.8})
-#'    \item Remove peptides with low identification score (\code{FDR >= 0.01} or 
-#'    \code{PEP >= 0.02})
-#'    \item Remove cells with less than 300 peptides
-#'    \item Remove peptides that are more than 10\% the intensity of the carrier
-#'    \item Divide peptide intensities in every channel by the reference channel
-#'    \item Convert data to matrix format
-#'    \item Zero or infinite intensities are replaced by \code{NA}'s
-#'    \item Remove cells having \code{median CV > 0.43}, havuing 30th quantile of 
-#'    the log10 transformed relative RIs smaller than -2.5, or having median of 
-#'    the log10 transformed relative RI larger than -1.3
-#'    \item Divide column (cells) with median intensity and divide rows with 
-#'    mean intensity
-#'    \item Remove rows (peptides) then columns (cells) that contain more than 
-#'    99\% of missing data
-#'    \item Log2 transform the data
-#'  }
-#'  
-#'  The peptide data (\code{Peptides-raw.csv}) and the meta data 
-#'  (\code{Cells.csv}) were combined into an \code{\link{MSnSet}} object.
-#'  
-#'  \strong{Peptide expression data: \code{specht2019_peptide2}}
-#'  
-#'  Inspired by the above steps, we processed the MaxQuant output
-#'  \code{ev_updated.txt} as follows:
-#'  \itemize{
-#'    \item Keep only column of interest, that is the peptide and protein 
-#'    information, the quantification information (TMT intensities), the 
-#'    identification information (PEP, q-values, PIF,...) and the contamination
-#'    information
-#'    \item Remove contaminants and reverse hits
-#'    \item Remove peptides with low identification metrics
-#'    \item Remove runs with less than 300 identified peptides. 13 runs out of 
-#'    245 were removed and were mainly blank or QC samples. 
-#'    \item Some peptides were identified twice within the same experiment set 
-#'    because of different charge states. The peptide identification with lowest 
-#'    PEP is kept and the other(s) discarded.
-#'    \item Intensity data is formated to a feature (peptide) x sample 
-#'    (combination of experiment run and TMT channel) matrix.
-#'    \item Peptide information is gathered in a feature data frame, only 
-#'    peptide information common to all runs is kept (eg sequence, mass, 
-#'    protein,...).
-#'    \item Sample information is gathered in a phenotype data frame. The sample 
-#'    information is extracted from the \code{annotation_fp60-97.csv} and 
-#'    \code{batch_fp60-97.csv} files.
-#'  }
-#'  
-#'  We finally formated the data to an MSnSet object. The samples in this data 
-#'  set are either single cells, 10 cells, 100 cells, 1000 cells or QC. 
-#'  
-#'  
-#'  \strong{Protein expression data: \code{specht2019_protein}}
-#'  
-#'  On top of the steps described above, the peptide expression data were further
-#'  processed by the authors to the protein data through the following steps: 
-#'  \itemize{
-#'    \item Aggregate the peptide to their corresponding protein using their 
-#'    median value.
-#'    \item Subtracting rows by the averages and subtract column by the column
-#'    median
-#'    \item Impute missing values using K-nearest neighbors (k = 3)
-#'    \item Correct for batch effect using the \code{\link{ComBat}} algorithm.
-#'  }
-#'  This leads to the \code{Proteins-processed.csv} file. This protein 
-#'  expression data are combined with the meta data (\code{Cells.csv}) into an 
-#'  \code{\link{MSnSet}} object.#'  
+#' On top of the steps described above, the peptide expression data were further
+#' processed by the authors to the protein data through the following steps: 
+#' \itemize{
+#'   \item Remove peptides that are more than 10\% the intensity of the carrier
+#'   \item Divide peptide intensities in every channel by the reference channel
+#'   \item Zero or infinite intensities are replaced by NA's
+#'   \item Remove cells having median CV > 0.43, having 30th quantile of the 
+#'   log10 transformed relative RIs smaller than -2.5, or having median of the 
+#'   log10 transformed relative RI larger than -1.3
+#'   \item Divide column (cells) with median intensity and divide rows with mean 
+#'   intensity
+#'   \item Remove rows (peptides) then columns (cells) that contain more than 
+#'   99\% of missing data
+#'   \item Log2 transform the data
+#'   \item Aggregate the peptide to their corresponding protein using their 
+#'   median value.
+#'   \item Normalize rows by subtracting the row average and normalize columns 
+#'   by subtracting the column median
+#'   \item Impute missing values using K-nearest neighbors (k = 3)
+#'   \item Correct for batch effect using the \code{\link{ComBat}} algorithm.
+#' }
+#' 
+#' This leads to the \code{Proteins-processed.csv} file. The protein 
+#' expression data are combined with the meta data (\code{Cells.csv}) into an 
+#' \code{\link{SingleCellExperiment}} object. The data set contains 
+#' macrophages (\code{"sc_m0"}) and monocytes (\code{"sc_u"}). 
 #'  
 #' @source 
-#' The original data can be downloaded from the 
-#' \href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website.
+#' The data can be downloaded from the 
+#' \href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website. The raw 
+#' data and quantification data can also be found in the massIVE repository 
+#' \href{ftp://massive.ucsd.edu/MSV000083945}{MSV000083945}
 #' 
 #' @references 
 #' Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 
@@ -173,9 +152,13 @@ scpdata <- function(){
 #'
 #' @keywords datasets
 #' 
-#' @aliases specht2019_protein specht2019_peptide specht2019_peptide2
+#' @seealso 
+#' \code{\link{specht2019v2_peptide}}, 
+#' \code{\link{specht2019v2_protein}}
+#' 
+#' @aliases specht2019v1_protein specht2019v2_peptide
 #'
-specht2019 <- ?specht2019_peptide
+"specht2019v1_peptide"
 
 
 ####---- DOU ET AL. 2019 ----####
@@ -185,40 +168,44 @@ specht2019 <- ?specht2019_peptide
 #'  
 #' @description 
 #' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
-#' The data set is published as the supplementary data set 1 by Dou et al. in 
-#' 2019 (see references). The expression matrix contains 1641 proteins x 20 
-#' single-cell HeLa digests. The samples are not truly single cells but are 
-#' commercial Hela digest diluted to single cell amounts (0.2ng). The boost 
-#' wells contain the same digest but at hihgher dose (10 ng).
+#' The samples are not truly single cells but are commercial Hela digest diluted 
+#' to single cell amounts (0.2ng). The boosting wells contain the same digest 
+#' but at higher dose (10 ng).
 #' 
 #' @usage 
-#' dou2019_hela
 #' data("dou2019_hela_protein")
 #' 
 #' @format 
-#' \code{dou2019_hela} contains 1 set of data:
 #' \itemize{
-#'   \item \code{dou2019_hela_protein}: an MSnSet with protein expression levels
-#'   for 1641 proteins x 20 "cells".
+#'   \item \code{dou2019_hela_protein}: a \code{\link{SingleCellExperiment}}
+#'   with protein expression levels for 1641 proteins x 20 "cells".
 #' }
 #' See Details for information about data collection.
 #' 
 #' @details 
-#' The data set was downloaded from the supplementary information section of the
-#' publisher's website (see sources). 
 #' 
-#' \strong{Protein expression data: \code{dou2019_mouse_protein}}
+#' \strong{Peptide expression data: \code{dou2019_hela_peptide}}
+#' 
+#' TODO
+#' 
+#' \strong{Protein expression data: \code{dou2019_hela_protein}}
 #'
-#' The spreadsheet is called \code{ac9b03349_si_003.xlsx} and contains 7 sheets 
-#' from which we only took the sheet 6 (named \code{"5 - Run 1 and 2 raw data"}) 
-#' containing the combined data of two MS runs. It corresponds to the assembly 
-#' of MSGF+ identifications and MASIC reporter assemblies. The data is then isotope 
-#' corrected and sum rolled-up to the protein level. Contaminant and reverse hit 
-#' are removed from this table. This is all performed by the authors. We 
-#' converted the data to an \code{\link{MSnSet}} object.
+#' The data set is published as the supplementary data set 1 by Dou et al. in 
+#' 2019 (see references). The expression matrix contains 1641 proteins x 20 
+#' HeLa digests. The spreadsheet is called \code{ac9b03349_si_003.xlsx} and 
+#' contains 7 sheets from which we only took the sheet 6 (named \code{"5 - Run 
+#' 1 and 2 raw data"}) containing the combined data of two MS runs. It 
+#' corresponds to the assembly of MSGF+ identifications and MASIC reporter 
+#' assemblies. The data is then isotope corrected and sum rolled-up to the 
+#' protein level. Contaminant and reverse hit are removed from this table. This 
+#' is all performed by the authors. We converted the data to a 
+#' \code{\link{SingleCellExperiment}} object.
 #' 
 #' @source 
-#' The original data can be downloaded from the 
+#' The peptide and raw data can be downloaded from the massIVE repository 
+#' \href{ftp://massive.ucsd.edu/MSV000084110/}{MSV000084110}.
+#' 
+#' The protein data can be downloaded from the 
 #' \href{https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349}{ACS Publications}
 #' website (Supplementary information section).
 #' 
@@ -233,9 +220,9 @@ specht2019 <- ?specht2019_peptide
 #' 
 #' @keywords datasets
 #' 
-#' @aliases dou2019_hela_protein
+#' @aliases dou2019_hela_protein 
 #' 
-dou2019_hela <- ?dou2019_hela_protein
+"dou2019_hela_protein"
 
 
 
@@ -243,34 +230,34 @@ dou2019_hela <- ?dou2019_hela_protein
 #'  
 #' @description 
 #' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
-#' The data set is published as the supplementary data set 2 by Dou et al. in 
-#' 2019 (see references). The expression matrix contains 1436 proteins x 60 
-#' single cells. The cell types are either "Raw" (macrophage cells), "C10" 
-#' (epihelial cells), or "SVEC" (endothelial cells). Each cell was replicated 2 
+#' The cell types are either "Raw" (macrophage cells), "C10" 
+#' (epihelial cells), or "SVEC" (endothelial cells). Each cell is replicated 2 
 #' or 3x. Each cell type was run using 3 levels of boosting: 0 ng (no boosting), 
 #' 5 ng or 50 ng. When boosting was applied, 1 reference well and 1 boosting 
 #' well were added, otherwise 1 empty well was added. Each boosting setting 
 #' (no boosting, 5ng, 50ng) was run twice.
 #' 
 #' @usage
-#' dou2019_boosting 
 #' data("dou2019_boosting_protein")
 #' 
 #' @format 
-#' \code{dou2019_boosting} contains 1 set of data:
 #' \itemize{
-#'   \item \code{dou2019_boosting_protein}: an MSnSet with protein expression levels
-#'   for 1436 proteins x 60 cells.
+#'   \item \code{dou2019_boosting_protein}: a \code{\link{SingleCellExperiment}}
+#'    with protein expression levels for 1436 proteins x 60 cells.
 #' }
 #' See Details for information about data collection.
 #' 
 #' @details 
-#' The data set was downloaded from the supplementary information section of the
-#' publisher's website (see sources). 
+#' 
+#' \strong{Peptide expression data: \code{dou2019_boosting_peptide}}
+#' 
+#' TODO
 #' 
 #' \strong{Protein expression data: \code{dou2019_boosting_protein}}
 #'
-#' The spreadsheet is called \code{ac9b03349_si_004.xlsx} and contains 7 sheets 
+#' The data set is published as the supplementary data set 2 by Dou et al. in 
+#' 2019 (see references). The expression matrix contains 1436 proteins x 60 
+#' single cells. The spreadsheet is called \code{ac9b03349_si_004.xlsx} and contains 7 sheets 
 #' from which we took the 2nd, 4th and 6th sheets (named \code{"01 - No Boost 
 #' raw data"}, \code{"03 - 5ng boost raw data"}, \code{"05 - 50ng boost raw 
 #' data"}, respectively). It corresponds to the assembly of MSGF+ 
@@ -278,11 +265,14 @@ dou2019_hela <- ?dou2019_hela_protein
 #' corrected and sum rolled-up to the protein level. Contaminant and reverse hit 
 #' are removed from this table. This is all performed by the authors. We matched 
 #' the proteins between the three boosting settings and combined all data in a 
-#' single table  The boosting quantities are kept as phenotype data. The data 
-#' set is formated to an \code{\link{MSnSet}} object.
+#' single table. The boosting quantities are kept as phenotype data. The data 
+#' set is formated to an \code{\link{SingleCellExperiment}} object.
 #' 
 #' @source 
-#' The original data can be downloaded from the 
+#' The peptide and raw data can be downloaded from the massIVE repository 
+#' \href{ftp://massive.ucsd.edu/MSV000084110/}{MSV000084110}.
+#' 
+#' The protein data can be downloaded from the 
 #' \href{https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349}{ACS Publications}
 #' website (Supplementary information section).
 #' 
@@ -299,7 +289,7 @@ dou2019_hela <- ?dou2019_hela_protein
 #' 
 #' @aliases dou2019_boosting_protein
 #' 
-dou2019_boosting <- ?dou2019_boosting_protein
+"dou2019_boosting_protein"
 
 
 #' FACS + nanoPOTS + TMT multiplexing: profiling of murine cell populations
@@ -307,42 +297,46 @@ dou2019_boosting <- ?dou2019_boosting_protein
 #'  
 #' @description 
 #' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
-#' The data set is published as the supplementary data set 3 by Dou et al. in 
-#' 2019 (see references). The expression matrix contains 2331 proteins x 132 
-#' wells. Among the 132 wells, 72 contained single cells, corresponding to 24 
-#' C10 cells, 24 RAW cells, and 24 SVEC. The other wells are eithers boosting 
-#' channels (12), empty channels (36) or reference channels (12). The 
-#' different cell types where evenly distributed across 4 nanoPOTS chips. 
-#' Samples were 11-plexed with TMT ions.
+#' The cell types are either "Raw" (macrophage cells), "C10" (epihelial cells), 
+#' or "SVEC" (endothelial cells). Out of the 132 wells, 72 contain single cells, 
+#' corresponding to 24 C10 cells, 24 RAW cells, and 24 SVEC. The other wells are 
+#' either boosting channels (12), empty channels (36) or reference channels (12). 
+#' The different cell types where evenly distributed across 4 nanoPOTS chips. 
+#' Samples were 11-plexed with TMT labeling.
 #' 
 #' @usage 
-#' dou2019_mouse
 #' data("dou2019_mouse_protein")
 #' 
 #' @format 
-#' \code{dou2019_mouse} contains 1 set of data:
 #' \itemize{
-#'   \item \code{dou2019_mouse_protein}: an MSnSet with protein expression levels
-#'   for 2331 proteins x 132 cells.
+#'   \item \code{dou2019_mouse_protein}: a \code{\link{SingleCellExperiment}}
+#'   with protein expression levels for 2331 proteins x 132 cells.
 #' }
 #' See Details for information about data collection.
 #' 
 #' @details 
-#' The data set was downloaded from the supplementary information section of the
-#' publisher's website (see sources). 
+#' 
+#' \strong{Peptide expression data: \code{dou2019_mouse_peptide}}
+#' 
+#' TODO
 #' 
 #' \strong{Protein expression data: \code{dou2019_mouse_protein}}
 #'
-#' The spreadsheet is called \code{ac9b03349_si_005.xlsx} and contains 7 sheets 
-#' from which we took only the 2nd (named \code{"01 - Raw sc protein data"}). It 
-#' corresponds to the assembly of MSGF+ identifications and MASIC reporter 
-#' assemblies. The data is then isotope corrected and sum rolled-up to the 
-#' protein level. Contaminant and reverse hit are removed from this table. This 
-#' is performed by the authors. We converted the data to an \code{\link{MSnSet}} 
-#' object.
+#' The data set is published as the supplementary data set 3 by Dou et al. in 
+#' 2019 (see references). The expression matrix contains 2331 proteins x 132 
+#' wells. The spreadsheet is called \code{ac9b03349_si_005.xlsx} and contains 7 
+#' sheets from which we took only the 2nd (named \code{"01 - Raw sc protein 
+#' data"}). It corresponds to the assembly of MSGF+ identifications and MASIC 
+#' reporter assemblies. The data is then isotope corrected and sum rolled-up to 
+#' the protein level. Contaminant and reverse hit are removed from this table. 
+#' This is performed by the authors. We converted the data to a
+#' \code{\link{SingleCellExperiment}} object.
 #' 
 #' @source 
-#' The original data can be downloaded from the 
+#' The peptide and raw data can be downloaded from the massIVE repository 
+#' \href{ftp://massive.ucsd.edu/MSV000084110/}{MSV000084110}.
+#' 
+#' The protein data can be downloaded from the 
 #' \href{https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349}{ACS Publications}
 #' website (Supplementary information section).
 #' 
@@ -362,33 +356,33 @@ dou2019_boosting <- ?dou2019_boosting_protein
 #' 
 #' @aliases dou2019_mouse_protein
 #' 
-dou2019_mouse <- ?dou2019_mouse_protein
+"dou2019_mouse_protein"
 
 
 #' SCoPE-MS + mPOP lysis upgrade: Master Mix 20180824 (Specht et al. 2018)
 #'
 #' @description 
 #' Single cell proteomics data produced and published by Specht et al. from the 
-#' Slavov Lab (see references). It contains quantitative information for 1824 
-#' peptides x 220 channels. Channels are either carrier (50 cell equivalent of
-#' Jurkat or U-937 digestion product), empty, or single cell equivalent of 
+#' Slavov Lab (see references). Channels are either carrier (50 cell equivalent 
+#' of Jurkat or U-937 digestion product), empty, or single cell equivalent of 
 #' digestion product (Jurkat or U-937).
 #' 
 #' @usage 
-#' specht2018
 #' data("specht2018_peptide")
 #' 
 #' @format 
-#' \code{specht2018} contains 1 set of data:
 #' \itemize{
-#'   \item \code{specht2018_peptide}: an MSnSet with peptide expression levels
-#'   for 1838 peptides x 220 cells.
+#'   \item \code{specht2018_peptide}: a \code{\link{SingleCellExperiment}} 
+#'   with peptide expression levels for 1838 peptides x 220 cells.
 #' }
 #' See Details for information about data collection.
 #' 
 #' @details
 #' 
-#' The peptide expression data was parsed from the \code{evidence.txt} file from
+#' \strong{Peptide expression data: \code{specht2018_peptide}}
+#' 
+#' It contains quantitative information for 1824 peptides x 220 channels. The 
+#' peptide expression data was parsed from the \code{evidence.txt} file from
 #' the MaxQuant output. We processed the file as follows: 
 #' \itemize{
 #'   \item Contaminants and reverse hits are removed
@@ -407,10 +401,14 @@ dou2019_mouse <- ?dou2019_mouse_protein
 #'   unmodified peptide is kept.
 #'   \item Sample information is gathered in a phenotype data frame.
 #' }
-#'  We finally formated the data to an \code{\link{MSnSet}} object.
+#'  We finally formated the data to a \code{\link{SingleCellExperiment}} object.
 #'
+#' \strong{Protein expression data: \code{specht2018_peptide}}
+#' 
+#' TODO
+#' 
 #' @source 
-#' The original data can be downloaded from the 
+#' The peptide data can be downloaded from the 
 #' \href{http://slavovlab.net/mPOP/index.html}{Slavov Lab} website.
 #'
 #' @references 
@@ -426,4 +424,4 @@ dou2019_mouse <- ?dou2019_mouse_protein
 #' 
 #' @aliases specht2018_peptide
 #' 
-specht2018 <- ?specht2018_peptide
+"specht2018_peptide"
