@@ -27,12 +27,193 @@ scpdata <- function(){
   return(out)
 }
 
+####---- ZHU ET AL. 2018, MOL. AND CELL. PROTEOMICS ----####
+
+#' laser dissection + nanoPOTS:  (Zhu et al. 2018, Mol Cell Proteomics)
+#' 
+#' Near single-cell proteomics data produced and published by Zhu et al. 
+#' (see references). It contains quantitative information for 24 mouse brain 
+#' sections. The samples were brains from rat pups (day 17). The slices are 12
+#' µm thick squares of either 50, 100, or 200 µm width. 5 samples were dissected 
+#' from the corpus callum (\code{"CC"}), 4 samples were dissected from the 
+#' corpus collosum (\code{"CP"}), 13 samples were extracted from the cerebral 
+#' cortex (\code{"CTX"}), and 2 samples are labeled as (\code{"Mix"}).
+#' 
+#' @usage
+#' data("zhu2018MCP_peptide")
+#' 
+#' @format 
+#' \itemize{
+#'   \item \code{zhu2018MCP_peptide}: a \code{\link{SingleCellExperiment}} 
+#'   with peptide expression levels for 10074 peptides x 24 samples
+#' }
+#' See Details for information about data collection.
+#' 
+#' @details
+#' 
+#' Peptide data were collected from the PRIDE repository (accession ID: 
+#' PXD008844), sample annotations were infered from column names.
+#' 
+#' \strong{Peptide expression data: \code{zhu2018MCP_peptide}}
+#' 
+#' We processed the MaxQuant output \code{MaxQuant_Peptides.txt} as follows:
+#' \itemize{
+#'   \item Extract the phenotype data (sample type) from the intensity column 
+#'   names.
+#'   \item Remove contaminants and reverse hits 
+#'   \item Remove peptides with a posterior error probability < 0.01
+#'   \item Replace 0's by NA's
+#'   \item Remove rows (peptides) that contain only NA's
+#' }
+#' We finally formated the data to an \code{\link{SingleCellExperiment}} 
+#' object. The samples in this data set are coming from different brain regions
+#' (CTX, CP, or CC) and dissected as 50, 100 or 200 µm wide squares.
+#' 
+#' @source 
+#' The raw data, the idenfication and quantification results can be found in the
+#' PRIDE repository 
+#' \href{ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD008844}{PXD008844}
+#' 
+#' @references 
+#' Zhu, Ying, Maowei Dou, Paul D. Piehowski, Yiran Liang, Fangjun Wang, Rosalie 
+#' K. Chu, William B. Chrisler, et al. 2018. “Spatially Resolved Proteome 
+#' Mapping of Laser Capture Microdissected Tissue with Automated Sample
+#' Transfer to Nanodroplets.” Molecular & Cellular Proteomics: MCP 17 (9): 
+#' 1864–74. \href{http://dx.doi.org/10.1074/mcp.TIR118.000686}{DOI}
+#' 
+#' @docType data
+#'
+#' @keywords datasets
+#' 
+#' @aliases zhu2018MCP_peptide
+#' 
+"zhu2018MCP_peptide"
+
+####---- ZHU ET AL. 2018, NATURE COMM ----####
+
+#' laser dissection + nanoPOTS: T1D islets (Zhu et al. 2018, Nat Comm)
+#' 
+#' Near single-cell proteomics data produced and published by Zhu et al. 
+#' (see references). It contains quantitative information for 18 human pancreas 
+#' samples. The samples are pancreatic islets laser dissected from pancreatic 
+#' tissue slices from pancreata recovered from organ donors through the 
+#' JDRFNetwork for Pancreatic Organ Donors with Diabetes (nPOD) program. 9 
+#' samples out 18 are control islets, the 9 others are from type 1 diabetes 
+#' (T1D) patients. 
+#' 
+#' @usage
+#' data("zhu2018NC_islets_peptide")
+#' 
+#' @format 
+#' \itemize{
+#'   \item \code{zhu2018NC_islets_peptide}: a \code{\link{SingleCellExperiment}} 
+#'   with peptide expression levels for 18611 peptides x 18 samples
+#' }
+#' See Details for information about data collection.
+#' 
+#' @details
+#' 
+#' Peptide data were collected from the PRIDE repository (accession ID: 
+#' PXD006847), sample annotations were infered from column names.
+#' 
+#' \strong{Peptide expression data: \code{zhu2018NC_islets_peptide}}
+#' 
+#' We processed the MaxQuant output \code{Islet_t1d_ct_peptides.txt} as 
+#' follows:
+#' \itemize{
+#'   \item Extract the phenotype data (sample type) from the intensity column 
+#'   names.
+#'   \item Remove contaminants and reverse hits 
+#'   \item Remove peptides with a posterior error probability < 0.01
+#'   \item Replace 0's by NA's
+#' }
+#' We finally formated the data to an \code{\link{SingleCellExperiment}} 
+#' object. The samples in this data set are either a cell lysate 
+#' (\code{"lysate"}), HeLA cells (\code{"cells"}), blank samples 
+#' (\code{"blank"}), or cancer cell lines (\code{"MCF7"} and \code{"THP1"}).
+#' 
+#' @source 
+#' The raw data, the idenfication and quantification results can be found in the
+#' PRIDE repository 
+#' \href{ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847}{PXD006847}
+#' 
+#' @references 
+#' Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen, Ronald J. 
+#' Moore, Anil K. Shukla, et al. 2018. “Nanodroplet Processing Platform for Deep 
+#' and Quantitative Proteome Profiling of 10-100 Mammalian Cells.” Nature 
+#' Communications 9 (1): 882. \href{http://dx.doi.org/10.1038/s41467-018-03367-w}{DOI}
+#' 
+#' @docType data
+#'
+#' @keywords datasets
+#' 
+#' @aliases zhu2018NC_islets_peptide
+#' 
+"zhu2018NC_islets_peptide"
+
+
+#' nanoPOTS: HeLa dilutions (Zhu et al. 2018, Nat Comm)
+#' 
+#' Near single-cell proteomics data produced and published by Zhu et al. 
+#' (see references). It contains quantitative information for 21 samples, 
+#' some being triplicates of HeLa dilution (~10, ~40 and ~140 cells). Remaining
+#' samples are blanks (0 cells), lysate or cancer cell lines (THP-1 or MCF-7).
+#' 
+#' @usage
+#' data("zhu2018NC_hela_peptide")
+#' 
+#' @format 
+#' \itemize{
+#'   \item \code{zhu2018NC_hela_peptide}: a \code{\link{SingleCellExperiment}} 
+#'   with peptide expression levels for 30345 peptides x 21 samples
+#' }
+#' See Details for information about data collection.
+#' 
+#' @details
+#' 
+#' Peptide data were collected from the PRIDE repository (accession ID: 
+#' PXD006847), sample annotations were infered from column names.
+#' 
+#' \strong{Peptide expression data: \code{zhu2018NC_hela_peptide}}
+#' 
+#' We processed the MaxQuant output \code{CulturedCells_peptides.txt} as 
+#' follows:
+#' \itemize{
+#'   \item Extract the phenotype data (sample type, and number of cells when 
+#'   single cells) from the intensity column names.
+#'   \item Remove contaminants and reverse hits 
+#'   \item Remove peptides with a posterior error probability < 0.01
+#'   \item Replace 0's by NA's
+#' }
+#' We finally formated the data to an \code{\link{SingleCellExperiment}} 
+#' object. The samples in this data set are either a cell lysate 
+#' (\code{"lysate"}), HeLA cells (\code{"cells"}), blank samples 
+#' (\code{"blank"}), or cancer cell lines (\code{"MCF7"} and \code{"THP1"}).
+#' 
+#' @source 
+#' The raw data, the idenfication and quantification results can be found in the
+#' PRIDE repository 
+#' \href{ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847}{PXD006847}
+#' 
+#' @references 
+#' Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen, Ronald J. 
+#' Moore, Anil K. Shukla, et al. 2018. “Nanodroplet Processing Platform for Deep 
+#' and Quantitative Proteome Profiling of 10-100 Mammalian Cells.” Nature 
+#' Communications 9 (1): 882. \href{http://dx.doi.org/10.1038/s41467-018-03367-w}{DOI}
+#' 
+#' @docType data
+#'
+#' @keywords datasets
+#' 
+#' @aliases zhu2018NC_hela_peptide
+#' 
+"zhu2018NC_hela_peptide"
 
 
 ####---- SPECHT ET AL. 2019 ----####
 
 
-#' FACS + SCoPE2: comparing macrophages against monocytes (Specht et al. 2019)
+#' FACS + SCoPE2: macrophages vs monocytes (Specht et al. 2019)
 #'
 #' Single cell proteomics data produced and published by Specht et al. from the 
 #' Slavov Lab (see references). It contains quantitative information 356 cells. 
@@ -75,8 +256,7 @@ scpdata <- function(){
 #'  
 #' \strong{Peptide expression data: \code{specht2019v1_peptide}}
 #'  
-#' Inspired by the above steps, we processed the MaxQuant output
-#' \code{ev_updated.txt} as follows:
+#' We processed the MaxQuant output \code{ev_updated.txt} as follows:
 #' \itemize{
 #'   \item Keep only column of interest, that is the peptide and protein 
 #'   information, the quantification information (TMT intensities), the 
@@ -164,7 +344,7 @@ scpdata <- function(){
 ####---- DOU ET AL. 2019 ----####
 
 
-#' FACS + nanoPOTS + TMT multiplexing: HeLa digests (Dou et al. 2019)
+#' FACS + nanoPOTS + TMT: HeLa digests (Dou et al. 2019)
 #'  
 #' @description 
 #' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
@@ -226,7 +406,7 @@ scpdata <- function(){
 
 
 
-#' FACS + nanoPOTS + TMT multiplexing: testing boosting ratios (Dou et al. 2019)
+#' FACS + nanoPOTS + TMT: testing boosting ratios (Dou et al. 2019)
 #'  
 #' @description 
 #' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
@@ -292,8 +472,7 @@ scpdata <- function(){
 "dou2019_boosting_protein"
 
 
-#' FACS + nanoPOTS + TMT multiplexing: profiling of murine cell populations
-#' (Dou et al. 2019)
+#' FACS + nanoPOTS + TMT: profiling of murine cell populations (Dou et al. 2019)
 #'  
 #' @description 
 #' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 

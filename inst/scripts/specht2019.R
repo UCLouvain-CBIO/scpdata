@@ -12,7 +12,7 @@ library(SingleCellExperiment)
 setwd("inst/scripts")
 
 # The data was downloaded from https://scope2.slavovlab.net/docs/data to 
-# scpdata/inst/extdata/specht2019
+# scpdata/extdata/specht2019
 
 
 ####---- Experiment metadata ----####
@@ -43,9 +43,9 @@ expdat <- new("MIAPE",
 ## already preprocessed to some extend
 if(FALSE){ 
   # Load metadata
-  pdat <- t(read.csv("../extdata/specht2019/Cells.csv", row.names = 1))
+  pdat <- t(read.csv("../../extdata/specht2019/Cells.csv", row.names = 1))
   # Load data
-  dat <- read.csv(file = "../extdata/specht2019/Peptides-raw.csv")
+  dat <- read.csv(file = "../../extdata/specht2019/Peptides-raw.csv")
   rownames(dat) <- dat[, 2]
   
   # Create the expression data for the MSnSet object
@@ -62,7 +62,7 @@ if(FALSE){
 }
 
 ## Load the PSM data
-dat0 <- read.table("../extdata/specht2019/ev_updated.txt", header = TRUE, sep = "\t")
+dat0 <- read.table("../../extdata/specht2019/ev_updated.txt", header = TRUE, sep = "\t")
 ## Before formatting data, keep only relevant fields 
 intensity.coln <- colnames(dat0)[grepl("^Reporter[.]intensity[.]\\d+$", colnames(dat0))]
 .keep <- c("Raw.file", "Modified.sequence", "Sequence", "Length", "Charge",
@@ -74,7 +74,7 @@ dat <- dat0[,.keep]
 
 ## Correct for isotopic cross contamination from the TMT-11 channel
 if(FALSE){ # This is not needed because MaxQuant did the correction already
-  icc <- read.csv("../extdata/specht2019/te269088_lot_correction.csv", 
+  icc <- read.csv("../../extdata/specht2019/te269088_lot_correction.csv", 
                   row.names = 1)
   corrected.ri <- t( solve(icc) %*% t(dat[,intensity.coln]) )
   corrected.ri[corrected.ri < 0.1] <- NA
@@ -133,12 +133,12 @@ pdat <- do.call(rbind, lapply(colnames(edat), function(x){
 pdat$channel <- as.numeric(sub("[^\\d]*[.]", "", pdat$channel)) + 1
 rownames(pdat) <- colnames(edat)
 # Add the sample info
-annot <- read.csv("../extdata/specht2019/annotation_fp60-97.csv")
+annot <- read.csv("../../extdata/specht2019/annotation_fp60-97.csv")
 pdat$sampleType <- sapply(1:nrow(pdat), function(i){
   annot[pdat$channel[i], paste0("X", pdat$run[i])]
 })
 # Add the batch info
-batch <- read.csv("../extdata/specht2019/batch_fp60-97.csv", row.names = 1)
+batch <- read.csv("../../extdata/specht2019/batch_fp60-97.csv", row.names = 1)
 pdat <- cbind(pdat, batch[as.character(pdat$run),])
 
 # Create the feature data 
@@ -162,14 +162,14 @@ specht2019_peptide <-
                        metadata = list(experimentData = expdat))
 # Save data as Rda file
 # Note: saving is assumed to occur in "scpdata/inst/scripts"
-save(specht2019v1_peptide, file = file.path("../../data/specht2019_peptide.rda"),
+save(specht2019v1_peptide, file = file.path("../../data/specht2019v1_peptide.rda"),
      compress = "xz", compression_level = 9)
 
 
 ####---- Protein data ---####
 
 # Load data
-dat <- read.csv(file = "../extdata/specht2019/Proteins-processed.csv", row.names = 1)
+dat <- read.csv(file = "../../extdata/specht2019/Proteins-processed.csv", row.names = 1)
 
 # Create the expression data for the MSnSet object
 edat <- as.matrix(dat[, -ncol(dat)])
@@ -178,7 +178,7 @@ edat <- as.matrix(dat[, -ncol(dat)])
 fdat <- dat[, ncol(dat), drop = FALSE]
 
 # Load sample metadata
-pdat <- t(read.csv("../extdata/specht2019/Cells.csv", row.names = 1))
+pdat <- t(read.csv("../../extdata/specht2019/Cells.csv", row.names = 1))
 pdat <- as.data.frame(pdat)
 
 # Create the MSnSet object
@@ -194,15 +194,6 @@ specht2019_protein <-
                        metadata = list(experimentData = expdat))
 # Save data as Rda file
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
-save(specht2019v1_protein, file = file.path("../../data/specht2019_protein.rda"),
+save(specht2019v1_protein, file = file.path("../../data/specht2019v1_protein.rda"),
      compress = "xz", compression_level = 9)
-
-
-
-
-
-
-
-
-
 

@@ -2,8 +2,8 @@
 # Methodology used for collecting the data
 
 
-1. Identify the data source and the annotations from the article, ask authors for data if needed. Add summary of the available information in next section
-2. Create a new R script that converts the data to `MSnSet` objects
+1. Identify the data source and the annotations from the article, ask authors for data if needed. Add a summary of the available information in the section below
+2. Create a new R script that converts the data to `SingleCellExperiment` objects
 3. Add data documentation and the data collection procedure in `scpdata/R/data.R`
 4. Update the `scpdata/README.md` file
 
@@ -123,7 +123,7 @@ scRNA-Seq [data](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE142392) i
 - **(Protein data)**
 - **(Scripts)**
 - [Article](http://dx.doi.org/10.1038/s41467-018-03367-w): Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen, Ronald J. Moore, Anil K. Shukla, et al. 2018. “Nanodroplet Processing Platform for Deep and Quantitative Proteome Profiling of 10-100 Mammalian Cells.” Nature Communications 9 (1): 882.
-- In scpdata: **no**
+- In scpdata: **yes**
 
 ### Zhu et al 2018, Mol Cell Proteomics
 

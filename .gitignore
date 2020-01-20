@@ -1,6 +1,6 @@
 data/
 vignettes/scpdata.html
-inst/extdata/
+extdata/
 .Rhistory
 .Rproj.user
 scpdata.Rproj

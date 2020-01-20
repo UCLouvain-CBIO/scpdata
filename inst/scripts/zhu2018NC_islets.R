@@ -1,5 +1,5 @@
 
-####---- Zhu et al. 2018, Nature Communications - HeLa dilutions ----####
+####---- Zhu et al. 2018, Nature Communications - T1D islets ----####
 
 ## Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen, Ronald J. 
 ## Moore, Anil K. Shukla, et al. 2018. “Nanodroplet Processing Platform for Deep 
@@ -40,25 +40,17 @@ expdat <- new("MIAPE",
 ####---- Peptide data ----####
 
 ## Load the quantification data
-f <- "../../extdata/zhu2018NC/CulturedCells_peptides.txt"
+f <- "../../extdata/zhu2018NC/Islet_t1d_ct_peptides.txt"
 colSel <- grepEcols(f, pattern = "Intensity.", split = "\t")
 .fnames <- c("Sequence", "Mass", "Proteins", "Leading.razor.protein", 
              "Gene.names", "Protein.names", "Charges", "PEP", "Score", 
              "Reverse", "Potential.contaminant", "Missed cleavages")
-dat <- readMSnSet2("../../extdata/zhu2018NC/CulturedCells_peptides.txt", 
-                   sep = "\t", ecol = colSel, fnames = .fnames)
+dat <- readMSnSet2(f, sep = "\t", ecol = colSel, fnames = .fnames)
 
 ## Use columns for generating phenotype data
 pData(dat) <- data.frame(row.names = sampleNames(dat))
-pData(dat)$sampleType <- NA
-pData(dat)$sampleType[grepl("blank", sampleNames(dat))] <- "blank"
-pData(dat)$sampleType[grepl("MCF", sampleNames(dat))] <- "MCF7"
-pData(dat)$sampleType[grepl("THP", sampleNames(dat))] <- "THP1"
-pData(dat)$sampleType[grepl("Lysate", sampleNames(dat))] <- "lysate"
-pData(dat)$sampleType[grepl("cel", sampleNames(dat))] <- "cells"
-pData(dat)$nbCells <- sub("cel.*$", "", sampleNames(dat))
-pData(dat)$nbCells <- as.numeric(sub("Int.*la", "", pData(dat)$nbCells))
-pData(dat)$nbCells[pData(dat)$sampleType == "blank"] <- 0
+pData(dat)$sampleType <- "control"
+pData(dat)$sampleType[grepl("[.]T", sampleNames(dat))] <- "T1D"
 
 # Remove contaminants and reverse hits
 dat <- dat[fData(dat)$Reverse != "+"]
@@ -72,16 +64,14 @@ ed[ed == 0] <- NA
 exprs(dat) <- ed
 
 # Create the SingleCellExperiment object
-zhu2018NC_hela_peptide <-
+zhu2018NC_islets_peptide <-
   SingleCellExperiment(assay = list(peptide = exprs(dat)), 
                        colData = pData(dat),
                        rowData = fData(dat),
                        metadata = list(experimentData = expdat))
 # Save data as Rda file
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
-save(zhu2018NC_hela_peptide, compress = "xz", compression_level = 9,
-     file = file.path("../../data/zhu2018NC_hela_peptide.rda"))
-
-
+save(zhu2018NC_islets_peptide, compress = "xz", compression_level = 9,
+     file = file.path("../../data/zhu2018NC_islets_peptide.rda"))
 
 

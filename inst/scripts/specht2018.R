@@ -13,13 +13,13 @@ library(tidyr)
 # setwd("inst/scripts")
 
 # The data was downloaded from https://drive.google.com/drive/folders/19YG70I52DH5yETcZagdUjNZWNPs0JXVr
-# to scpdata/inst/extdata/specht2018
+# to scpdata/extdata/specht2018
 
 
 ####---- Peptide data ----####
 
 # Load the PSM data (MaxQuant evidence file)
-dat0 <- read.table("../extdata/specht2018/evidence.txt", header = TRUE, sep = "\t")
+dat0 <- read.table("../../extdata/specht2018/evidence.txt", header = TRUE, sep = "\t")
 dat <- dat0
 # Column names holding the TMT intensities
 intensity.coln <- colnames(dat)[grepl("^Reporter[.]intensity[.]\\d+$", colnames(dat))]

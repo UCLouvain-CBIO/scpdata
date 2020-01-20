@@ -13,7 +13,7 @@
 library(openxlsx)
 library(MSnbase)
 library(SingleCellExperiment)
-# setwd("inst/scripts/")
+setwd("inst/scripts/")
 
 
 ####---- Experimental metadata ----####
@@ -43,7 +43,7 @@ expdat <- new("MIAPE",
 # TODO 
 if(FALSE){
   # mzid
-  f <- list.files("../extdata/dou2019/mzid/", pattern = "^Hela", 
+  f <- list.files("../../extdata/dou2019/mzid/", pattern = "^Hela", 
                   full.names = TRUE)[1]
   mzidFile <- openIDfile(f)
   mzid <- psms(mzidFile)
@@ -51,14 +51,14 @@ if(FALSE){
   mzid[1, ]
   
   # mzTab
-  f <- list.files("../extdata/dou2019/mzTab/", pattern = "^Hela", 
+  f <- list.files("../../extdata/dou2019/mzTab/", pattern = "^Hela", 
                   full.names = TRUE)[1]
   mzTab <- readMzTabData(f, what = "PSM", version = "1.0", verbose = TRUE)
   dim(mzTab)
   fData(mzTab)[1, ]
   
   # Quantification 
-  f <- list.files("../extdata/dou2019/quant/", pattern = "^Hela", 
+  f <- list.files("../../extdata/dou2019/quant/", pattern = "^Hela", 
                   full.names = TRUE)[1]
   qInd <- grepEcols(f, split = "\t", pattern = "Ion_\\d{3}[.]\\d{3}$")
   quant <- readMSnSet2(f, ecol = qInd, sep = "\t")
@@ -74,7 +74,7 @@ if(FALSE){
 
 ## Load the data
 ## Data was downloaded from https://doi.org/10.1021/acs.analchem.9b03349.
-dataFile <- "../extdata/dou2019/protein/ac9b03349_si_003.xlsx"
+dataFile <- "../../extdata/dou2019/protein/ac9b03349_si_003.xlsx"
 dat_xlsx <- loadWorkbook(dataFile)
 dat <- read.xlsx(dat_xlsx, sheet = 6, colNames = FALSE)
 

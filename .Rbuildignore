@@ -1,7 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-inst
 [.]git*
 [.]Rhistory
-
+extdata
 

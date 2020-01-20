@@ -48,7 +48,7 @@ expdat <- new("MIAPE",
 
 ## Load the data
 ## Data was downloaded from https://doi.org/10.1021/acs.analchem.9b03349.
-dataFile <- "../extdata/dou2019/protein/ac9b03349_si_005.xlsx"
+dataFile <- "../../extdata/dou2019/protein/ac9b03349_si_005.xlsx"
 dat_xlsx <- loadWorkbook(dataFile)
 dat <- read.xlsx(dat_xlsx, sheet = 2, colNames = FALSE)
 
