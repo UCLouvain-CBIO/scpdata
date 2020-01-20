@@ -37,24 +37,24 @@ The data description and data collection procedures can be found in the correspo
 
 Several articles have been published including single-cell proteomics data. We here distinguish 3 types of data sets: 
 
-* **Raw data** is composed of MS output files and was not processed
-* **Peptide data** is the peptide quantitative data obtained after processing the raw data
-* **Protein data** is the protein quantitative data obtained after aggregating the peptides belonging to the same protein. 
+* **Raw data** is the unprocessed mass spectrometry data
+* **Peptide data** is the expression data where rows are peptides and columns are samples
+* **Protein data** is the expression data where rows are proteins and columns are samples
 
 The amount of processing of each type of data might differ from data set to data set. Please refer to the documentation and original papers for thorough description of the data processing. 
 
 This is an overview of the available data in this package: 
 
-Publ. Date | Data set name    | Data type  | Raw data | Peptide data | Protein data 
----------- | ---------------- | ---------- | -------- | ------------ | ------------
-2019-09-11 | dou2019_hela     | multiplex  | No       | No           | Yes 
-2019-09-11 | dou2019_boosting | multiplex  | No       | No           | Yes
-2019-09-11 | dou2019_mouse    | multiplex  | No       | No           | Yes 
-2019-06-09 | specht2019v1     | multiplex  | No       | Yes          | Yes
-2018-08-24 | specht2018       | multiplex  | No       | Yes          | No
-2018-02-28 | zhu2018NC_hela   | label free | No       | Yes          | No
-2018-02-28 | zhu2018NC_islets | label free | No       | Yes          | No
-2018-01-10 | zhu2018MCP       | label free | No       | Yes          | No
+Publ. Date | Data set name    | Data type  | Raw data                                                                   | Peptide data | Protein data 
+---------- | ---------------- | ---------- | -------------------------------------------------------------------------- | ------------ | -------
+2019-09-11 | dou2019_hela     | multiplex  | [ftp link](ftp://massive.ucsd.edu/MSV000084110)                            | No           | Yes 
+2019-09-11 | dou2019_boosting | multiplex  | [ftp link](ftp://massive.ucsd.edu/MSV000084110)                            | No           | Yes
+2019-09-11 | dou2019_mouse    | multiplex  | [ftp link](ftp://massive.ucsd.edu/MSV000084110)                            | No           | Yes 
+2019-06-09 | specht2019v1     | multiplex  | [ftp link](ftp://massive.ucsd.edu/MSV000083945)                            | Yes          | Yes
+2018-08-24 | specht2018       | multiplex  | [ftp link](ftp://massive.ucsd.edu/MSV000082841)                            | Yes          | No
+2018-02-28 | zhu2018NC_hela   | label free | [ftp link](ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847) | Yes          | No
+2018-02-28 | zhu2018NC_islets | label free | [ftp link](ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847) | Yes          | No
+2018-01-10 | zhu2018MCP       | label free | [ftp link](ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD008844) | Yes          | No
 
 # Data set description 
   

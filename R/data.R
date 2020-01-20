@@ -582,13 +582,15 @@ scpdata <- function(){
 #' }
 #'  We finally formated the data to a \code{\link{SingleCellExperiment}} object.
 #'
-#' \strong{Protein expression data: \code{specht2018_peptide}}
+#' \strong{Protein expression data: \code{specht2018_protein}}
 #' 
 #' TODO
 #' 
 #' @source 
 #' The peptide data can be downloaded from the 
-#' \href{http://slavovlab.net/mPOP/index.html}{Slavov Lab} website.
+#' \href{http://slavovlab.net/mPOP/index.html}{Slavov Lab} website. The raw 
+#' data and quantification data can also be found in the massIVE repository 
+#' \href{ftp://massive.ucsd.edu/MSV000082841}{MSV000082841}
 #'
 #' @references 
 #' Specht, Harrison, Guillaume Harmange, David H. Perlman, Edward Emmott, 

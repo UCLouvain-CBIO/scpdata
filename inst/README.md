@@ -133,5 +133,5 @@ scRNA-Seq [data](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE142392) i
 - **Protein data**
 - **(Scripts)**
 - [Article](http://dx.doi.org/10.1074/mcp.TIR118.000686): Zhu, Ying, Maowei Dou, Paul D. Piehowski, Yiran Liang, Fangjun Wang, Rosalie K. Chu, William B. Chrisler, et al. 2018. “Spatially Resolved Proteome Mapping of Laser Capture Microdissected Tissue with Automated Sample Transfer to Nanodroplets.” Molecular & Cellular Proteomics: MCP 17 (9): 1864–74.
-- In scpdata: **no**
+- In scpdata: **yes**
 

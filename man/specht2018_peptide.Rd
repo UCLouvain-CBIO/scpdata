@@ -11,7 +11,9 @@
 See Details for information about data collection.}
 \source{
 The peptide data can be downloaded from the 
-\href{http://slavovlab.net/mPOP/index.html}{Slavov Lab} website.
+\href{http://slavovlab.net/mPOP/index.html}{Slavov Lab} website. The raw 
+data and quantification data can also be found in the massIVE repository 
+\href{ftp://massive.ucsd.edu/MSV000082841}{MSV000082841}
 }
 \usage{
 data("specht2018_peptide")
@@ -47,7 +49,7 @@ the MaxQuant output. We processed the file as follows:
 }
  We finally formated the data to a \code{\link{SingleCellExperiment}} object.
 
-\strong{Protein expression data: \code{specht2018_peptide}}
+\strong{Protein expression data: \code{specht2018_protein}}
 
 TODO
 }
