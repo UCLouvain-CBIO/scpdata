@@ -1,7 +1,7 @@
 
 # Single Cell Proteomics Data Package
 
-This package contains formatted and annotated single cell proteomics data.
+This package contains standardized and annotated single-cell, or close to single-cell, proteomics data.
 
 # Installation instruction 
 
@@ -22,19 +22,15 @@ scpdata()
 and the data set can be accessed using 
 
 ```r
-scpdata("DataSetName", type = "dataType")
-```
-
-For example
-
-```r
-sc <- scpdata("specht2019", type = "peptide")
+data("DataSetName")
+# Example
+data("specht2018_peptide")
 ```
 
 The data description and data collection procedures can be found in the corresponding helpfiles. Try
 
 ```r
-?specht2019
+?specht2018_peptide
 ```
 
 # Available data sets
@@ -49,13 +45,16 @@ The amount of processing of each type of data might differ from data set to data
 
 This is an overview of the available data in this package: 
 
-Publ. Date | Data set name | Raw data | Peptide data | Protein data 
----------- | ------------- | -------- | ------------ | ------------
-2019-06-09 | specht2019    | No       | Yes          | Yes
-2019-09-11 | dou2019_hela     | No       | No           | Yes 
-2019-09-11 | dou2019_boosting     | No       | No           | Yes
-2019-09-11 | dou2019_mouse     | No       | No           | Yes 
-2018-08-24 | specht2018    | No       | Yes          | No
+Publ. Date | Data set name    | Data type  | Raw data | Peptide data | Protein data 
+---------- | ---------------- | ---------- | -------- | ------------ | ------------
+2019-09-11 | dou2019_hela     | multiplex  | No       | No           | Yes 
+2019-09-11 | dou2019_boosting | multiplex  | No       | No           | Yes
+2019-09-11 | dou2019_mouse    | multiplex  | No       | No           | Yes 
+2019-06-09 | specht2019v1     | multiplex  | No       | Yes          | Yes
+2018-08-24 | specht2018       | multiplex  | No       | Yes          | No
+2018-02-28 | zhu2018NC_hela   | label free | No       | Yes          | No
+2018-02-28 | zhu2018NC_islets | label free | No       | Yes          | No
+2018-01-10 | zhu2018MCP       | label free | No       | Yes          | No
 
 # Data set description 
   
@@ -66,11 +65,17 @@ colnames(desc) <- c("Data", "Description")
 knitr::kable(desc) 
 -->
 
-Data               |Description                                                                                                                                                                        |
-|:------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|dou2019_hela_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: HeLa digests (Dou et al. 2019)                         |
-|dou2019_boosting_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: testing boosting ratios (Dou et al. 2019)              |
-|dou2019_mouse_protein  |High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform: profiling of murine cell populations (Dou et al. 2019) |
-|specht2018_peptide |mPOP SCoPE-MS Master Mix 20180824 (Specht et al. 2018)                                                                                                                             |
-|specht2019_peptide |Quantifying the emergence of macrophage heterogeneity using the SCoPE2 pipeline (Specht et al. 2019)                                                                               |
-|specht2019_protein |Quantifying the emergence of macrophage heterogeneity using the SCoPE2 pipeline (Specht et al. 2019)                                        
+|Data                     |Description                                                                   |
+|:------------------------|:-----------------------------------------------------------------------------|
+|dou2019_boosting_protein |FACS + nanoPOTS + TMT: testing boosting ratios (Dou et al. 2019)              |
+|dou2019_hela_protein     |FACS + nanoPOTS + TMT: HeLa digests (Dou et al. 2019)                         |
+|dou2019_mouse_protein    |FACS + nanoPOTS + TMT: profiling of murine cell populations (Dou et al. 2019) |
+|specht2018_peptide       |SCoPE-MS + mPOP lysis upgrade: Master Mix 20180824 (Specht et al. 2018)       |
+|specht2019v1_peptide     |FACS + SCoPE2: macrophages vs monocytes (Specht et al. 2019)                  |
+|specht2019v1_protein     |FACS + SCoPE2: macrophages vs monocytes (Specht et al. 2019)                  |
+|zhu2018MCP_peptide       |laser dissection + nanoPOTS: (Zhu et al. 2018, Mol Cell Proteomics)           |
+|zhu2018NC_hela_peptide   |nanoPOTS: HeLa dilutions (Zhu et al. 2018, Nat Comm)                          |
+|zhu2018NC_islets_peptide |laser dissection + nanoPOTS: T1D islets (Zhu et al. 2018, Nat Comm)           |
+
+
+
