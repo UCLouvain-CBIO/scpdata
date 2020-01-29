@@ -40,33 +40,91 @@ expdat <- new("MIAPE",
 
 ####---- Peptide data ----####
 
-# TODO 
-if(FALSE){
-  # mzid
-  f <- list.files("../../extdata/dou2019/mzid/", pattern = "^Hela", 
-                  full.names = TRUE)[1]
-  mzidFile <- openIDfile(f)
+## Load and combine the identification and quantification data
+expNames <- c("Hela_run_1", "Hela_run_2")
+## For every experiment (= MS run)
+dats <- lapply(expNames, function(exp){
+  ## Identification data
+  idFile <- list.files("../../extdata/dou2019/mzid/", pattern = exp, 
+                  full.names = TRUE)
+  mzidFile <- openIDfile(idFile)
   mzid <- psms(mzidFile)
-  dim(mzid)
-  mzid[1, ]
+  mzid <- mzid[!duplicated(mzid), ]
+  ## Remove PSMs that match decoy database
+  mzid <- mzid[!mzid$isDecoy, ]
+  ## Remove contaminants
+  mzid <- mzid[!grepl("Contaminant", mzid$DatabaseAccess), ]
   
-  # mzTab
-  f <- list.files("../../extdata/dou2019/mzTab/", pattern = "^Hela", 
-                  full.names = TRUE)[1]
-  mzTab <- readMzTabData(f, what = "PSM", version = "1.0", verbose = TRUE)
-  dim(mzTab)
-  fData(mzTab)[1, ]
+  ## Quantification data
+  quantFile <- list.files("../../extdata/dou2019/quant/", pattern = exp, 
+                  full.names = TRUE)
+  quant <- read.table(quantFile, header = TRUE, sep = "\t")
+  ## Replace 0's with NA's
+  quant[quant == 0] <- NA
   
-  # Quantification 
-  f <- list.files("../../extdata/dou2019/quant/", pattern = "^Hela", 
-                  full.names = TRUE)[1]
-  qInd <- grepEcols(f, split = "\t", pattern = "Ion_\\d{3}[.]\\d{3}$")
-  quant <- readMSnSet2(f, ecol = qInd, sep = "\t")
-  dim(quant)
-  fData(quant)[1, ]
+  ## Combined data 
+  matchInds <- match(x = mzid$scan.number.s., 
+                     table = quant$ScanNumber, 
+                     nomatch = NA)
+  dat <- cbind(mzid, quant[matchInds, ])
   
-  unique(fData(quant)$PSM_ID)
-}
+  ## Create the MSnSet object
+  ecols <- grepl("^Ion_.*\\d$", colnames(dat))
+  ## TODO should scpdata also provide PSM data -> dou2019_hela_psm ? 
+  dat <- psmDat <- MSnSet(exprs = as.matrix(dat[, ecols]), 
+                          fData = dat[, !ecols])
+  
+  ## Perform isotope correction
+  impurities <- makeImpuritiesMatrix(10, edit = FALSE) # TMT 10 was used
+  dat <- purityCorrect(dat, impurities)
+  
+  ## Group the observation by peptide (modified and charged)
+  dat <- combineFeatures(object = dat, 
+                         groupBy = fData(dat)$sequence, 
+                         method = "sum", ## As done at protein level (see doc)
+                         cv = FALSE, 
+                         na.rm = TRUE)
+  
+  ## Filter only relevant feature data vars
+  keep <- c(peptide = "sequence", 
+            protein = "DatabaseAccess", 
+            proteinLength = "DBseqLength", 
+            proteinDescr = "DatabaseDescription",
+            start = "start", 
+            end = "end")
+  fData(dat) <- fData(dat)[, keep]
+  fvarLabels(dat) <- names(keep) ## Replace labels with more intuitive naming
+  
+  ## Extract the phenotype data
+  pData(dat) <- data.frame(Ion = gsub("Ion_", "", colnames(dat)),
+                           ExperimentLabel = exp,
+                           Run = as.factor(sub("Hela_run_", "", exp)), 
+                           row.names = colnames(dat))
+  dat <- updateSampleNames(dat, label = exp, sep = "_")
+  
+  ## Return data
+  cat("Formated:", exp, "\n")
+  return(dat)
+})
+
+## Merge the different runs
+dat <- do.call(combine, dats)
+## Note warnings are thrown because the levels in pData and fData don't match 
+## between runs. 
+
+## Add experimental data
+experimentData(dat) <- expdat
+
+## Create SingleCellExperiment object
+dou2019_hela_peptide <- 
+  SingleCellExperiment(assay = SimpleList(peptide = exprs(dat)),
+                       rowData = data.frame(fData(dat)), 
+                       colData = data.frame(pData(dat)),
+                       metadata = list(experimentData = expdat))
+## Save data as Rda file
+## Note: saving is assumed to occur in "scpdata/inst/scripts"
+save(dou2019_hela_peptide, compress = "xz", compression_level = 9,
+     file = file.path("../../data/dou2019_hela_peptide.rda"))
 
 
 ####---- Protein data ----####

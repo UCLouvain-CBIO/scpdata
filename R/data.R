@@ -354,11 +354,15 @@ scpdata <- function(){
 #' 
 #' @usage 
 #' data("dou2019_hela_protein")
+#' data("dou2019_hela_peptide")
 #' 
 #' @format 
 #' \itemize{
 #'   \item \code{dou2019_hela_protein}: a \code{\link{SingleCellExperiment}}
-#'   with protein expression levels for 1641 proteins x 20 "cells".
+#'   object with protein expression levels for 24,797 peptides x 20 "cells".
+#'   \item \code{dou2019_hela_protein}: a \code{\link{SingleCellExperiment}}
+#'   object with protein expression levels for 1,641 proteins x 20 "cells".
+#'   
 #' }
 #' See Details for information about data collection.
 #' 
@@ -366,7 +370,24 @@ scpdata <- function(){
 #' 
 #' \strong{Peptide expression data: \code{dou2019_hela_peptide}}
 #' 
-#' TODO
+#' The peptide data was constructed as follows. For every MS run:
+#' \itemize{
+#'   \item Load the MSGF+ identification files 
+#'   (\code{"Hela_run_*_msgfplus.mzid"}) and remove decoy and contaminant PSMs
+#'   \item Load the MASIC quantification files 
+#'   (\code{"Hela_run_*_ReporterIons.txt"}) and replace 0's by NA's
+#'   \item Combine the identification and the quantification data by matching 
+#'   the \code{"scan.number.s"} and \code{"scanNumber"} fields, respectively
+#'   \item Format the data as an \code{\link{MSnSet}} object keeping 
+#'   \item Perform TMT-10 istope correction 
+#'   \item Sum-roll the PSM intensities to peptide intensities
+#'   \item Keep only useful feature data (peptide and protein sequence, start 
+#'   and end position of peptide location, protein length, protein description)
+#'   \item Extract the sample information (TMT ion, run number and experiment 
+#'   label)
+#' }
+#' Next, combine all runs in a single MSnSet (matching on peptide name) and 
+#' convert to an \code{\link{MSnSet}} object.
 #' 
 #' \strong{Protein expression data: \code{dou2019_hela_protein}}
 #'
@@ -400,6 +421,7 @@ scpdata <- function(){
 #' 
 #' @keywords datasets
 #' 
+#' @aliases dou2019_hela_peptide
 #' @aliases dou2019_hela_protein 
 #' 
 "dou2019_hela_protein"

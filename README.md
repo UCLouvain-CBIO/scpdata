@@ -47,7 +47,7 @@ This is an overview of the available data in this package:
 
 Publ. Date | Data set name    | Data type  | Raw data                                                                   | Peptide data | Protein data 
 ---------- | ---------------- | ---------- | -------------------------------------------------------------------------- | ------------ | -------
-2019-09-11 | dou2019_hela     | multiplex  | [ftp link](ftp://massive.ucsd.edu/MSV000084110)                            | No           | Yes 
+2019-09-11 | dou2019_hela     | multiplex  | [ftp link](ftp://massive.ucsd.edu/MSV000084110)                            | Yes          | Yes 
 2019-09-11 | dou2019_boosting | multiplex  | [ftp link](ftp://massive.ucsd.edu/MSV000084110)                            | No           | Yes
 2019-09-11 | dou2019_mouse    | multiplex  | [ftp link](ftp://massive.ucsd.edu/MSV000084110)                            | No           | Yes 
 2019-06-09 | specht2019v1     | multiplex  | [ftp link](ftp://massive.ucsd.edu/MSV000083945)                            | Yes          | Yes
