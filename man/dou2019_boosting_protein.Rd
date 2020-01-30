@@ -3,10 +3,13 @@
 \docType{data}
 \name{dou2019_boosting_protein}
 \alias{dou2019_boosting_protein}
+\alias{dou2019_boosting_peptide}
 \title{FACS + nanoPOTS + TMT: testing boosting ratios (Dou et al. 2019)}
 \format{\itemize{
+  \item \code{dou2019_boosting_peptide}: a \code{\link{SingleCellExperiment}}
+   with protein expression levels for 51,567 peptides x 60 sample.
   \item \code{dou2019_boosting_protein}: a \code{\link{SingleCellExperiment}}
-   with protein expression levels for 1436 proteins x 60 cells.
+   with protein expression levels for 1,436 proteins x 60 samples.
 }
 See Details for information about data collection.}
 \source{
@@ -19,6 +22,7 @@ website (Supplementary information section).
 }
 \usage{
 data("dou2019_boosting_protein")
+data("dou2019_boosting_peptide")
 }
 \description{
 Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
@@ -32,7 +36,27 @@ well were added, otherwise 1 empty well was added. Each boosting setting
 \details{
 \strong{Peptide expression data: \code{dou2019_boosting_peptide}}
 
-TODO
+The peptide data was constructed as follows. For every MS run:
+\itemize{
+  \item Load the MSGF+ identification files 
+  (\code{"Boosting_*_msgfplus.mzid"}) and remove decoy and 
+  contaminant PSMs
+  \item Load the MASIC quantification files 
+  (\code{"Boosting_*_ReporterIons.txt"})
+  \item Combine the identification and the quantification data by matching 
+  the \code{"scan.number.s"} and \code{"scanNumber"} fields, respectively
+  \item Format the data as an \code{\link{MSnSet}} object keeping 
+  \item Perform TMT-10 istope correction 
+  \item Sum-roll the PSM intensities to peptide intensities
+  \item Keep only useful feature data (peptide and protein sequence, start 
+  and end position of peptide location, protein length, protein description)
+  \item Extract the sample information (TMT ion, run, boosting amount and 
+  experiment label) from the files names. Furthermore, sample type was 
+  obtained from Table S2 (see reference).
+}
+Next, combine all runs in a single MSnSet (matching on peptide name), replace
+NA's by 0's and convert to an \code{\link{SingleCellExperiment}} object.
+
 
 \strong{Protein expression data: \code{dou2019_boosting_protein}}
 
@@ -55,5 +79,8 @@ Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell
 Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample 
 Preparation Platform.” Analytical Chemistry, September 
 (\href{https://doi.org/10.1021/acs.analchem.9b03349}{DOI}).
+}
+\seealso{
+\code{\link{dou2019_hela_protein}}, \code{\link{dou2019_mouse_protein}}
 }
 \keyword{datasets}
