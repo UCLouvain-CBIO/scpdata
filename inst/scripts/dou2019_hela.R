@@ -46,7 +46,7 @@ expNames <- c("Hela_run_1", "Hela_run_2")
 dats <- lapply(expNames, function(exp){
   ## Identification data
   idFile <- list.files("../../extdata/dou2019/mzid/", pattern = exp, 
-                  full.names = TRUE)
+                       full.names = TRUE)
   mzidFile <- openIDfile(idFile)
   mzid <- psms(mzidFile)
   mzid <- mzid[!duplicated(mzid), ]
@@ -57,10 +57,8 @@ dats <- lapply(expNames, function(exp){
   
   ## Quantification data
   quantFile <- list.files("../../extdata/dou2019/quant/", pattern = exp, 
-                  full.names = TRUE)
+                          full.names = TRUE)
   quant <- read.table(quantFile, header = TRUE, sep = "\t")
-  ## Replace 0's with NA's
-  quant[quant == 0] <- NA
   
   ## Combined data 
   matchInds <- match(x = mzid$scan.number.s., 
@@ -90,8 +88,8 @@ dats <- lapply(expNames, function(exp){
             protein = "DatabaseAccess", 
             proteinLength = "DBseqLength", 
             proteinDescr = "DatabaseDescription",
-            start = "start", 
-            end = "end")
+            startPos = "start", 
+            endPos = "end")
   fData(dat) <- fData(dat)[, keep]
   fvarLabels(dat) <- names(keep) ## Replace labels with more intuitive naming
   
@@ -99,6 +97,9 @@ dats <- lapply(expNames, function(exp){
   pData(dat) <- data.frame(Ion = gsub("Ion_", "", colnames(dat)),
                            ExperimentLabel = exp,
                            Run = as.factor(sub("Hela_run_", "", exp)), 
+                           SampleType = c(rep("lysate", 7), rep("blank", 2), 
+                                          "carrier"),
+                           ProteinAmount = c(rep("0.2", 7), rep("0", 2), "10"),
                            row.names = colnames(dat))
   dat <- updateSampleNames(dat, label = exp, sep = "_")
   
@@ -111,9 +112,9 @@ dats <- lapply(expNames, function(exp){
 dat <- do.call(combine, dats)
 ## Note warnings are thrown because the levels in pData and fData don't match 
 ## between runs. 
-
-## Add experimental data
-experimentData(dat) <- expdat
+## Replace NA's by 0's otherwise some SingleCellExperiment functions break
+## TODO this seems very dirty to me...
+exprs(dat)[is.na(exprs(dat))] <- 0 
 
 ## Create SingleCellExperiment object
 dou2019_hela_peptide <- 
