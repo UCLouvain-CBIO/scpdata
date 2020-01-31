@@ -9,6 +9,18 @@
 
 # Available data sets in literature
 
+### Cong et al 2020, Analytical Chemistry
+
+- Software used: Maxquant, Excell
+- Raw data (PXD016921)
+- Peptide data (PXD016921)
+- [Protein data](http://dx.doi.org/10.1021/acs.analchem.9b04631)
+- **(Script)**
+- [Article](http://dx.doi.org/10.1021/acs.analchem.9b04631): Cong, Yongzheng, Yiran Liang, Khatereh Motamedchaboki, Romain Huguet, Thy Truong, Rui Zhao, Yufeng Shen, Daniel Lopez-Ferrer, Ying Zhu, and Ryan T. Kelly. 2020. “Improved Single-Cell Proteome Coverage Using Narrow-Bore Packed NanoLC Columns and Ultrasensitive Mass Spectrometry.” Analytical Chemistry, January. 
+- In scpdata: **no**
+
+
+
 ### Dou et al 2019, Analytical Chemistry
 
 - Software used: MS-GF+, [MASIC](https://github.com/PNNL-Comp-Mass-Spec/MASIC/releases/tag/v3.0.7111), R ( [RomicsProcessor](https://github.com/PNNL-Comp-Mass-Spec/RomicsProcessor), sva, pmartR, missMDA, FactoMineR ) 
@@ -17,7 +29,7 @@
 - [Protein data](https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349)
 - Script: not available but used RomicsProcessor
 - [Article](http://dx.doi.org/10.1021/acs.analchem.9b03349): Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B. Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample Preparation Platform.” Analytical Chemistry 91 (20): 13119–27.
-- In scpdata: **missing peptide data**
+- In scpdata: **yes**
 
 ### Schoof et al 2019, BioRxiv
 
@@ -29,14 +41,14 @@
 - [Article](http://dx.doi.org/10.1101/745679): Schoof, Erwin M., Nicolas Rapin, Simonas Savickas, Coline Gentil, Eric Lechman, James Seymour Haile, Ulrich auf Dem Keller, John E. Dick, and Bo T. Porse. 2019. “A Quantitative Single-Cell Proteomics Approach to Characterize an Acute Myeloid Leukemia Hierarchy.” bioRxiv. https://doi.org/10.1101/745679.
 - In scpdata: **no**
 
-### Zhu et al 2019, BioRxiv
+### Zhu et al 2019, Elife
 
 - Software used: MaxQuant, Andromeda, R (limma, lmerTest, sva, CellTrails)
 - Raw data (ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD014256)
 - Peptide data (ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD014256) contained in the `SEARCH.zip`file
 - Protein data (ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD014256): contained in the `OTHER.zip`file
 - **(Scripts)**
-- [Article](http://dx.doi.org/10.1101/727412): Zhu, Ying, Mirko Scheibinger, Daniel C. Ellwanger, Jocelyn F. Krey, Dongseok Choi, Ryan T. Kelly, Stefan Heller, and Peter G. Barr-Gillespie. 2019. “Single-Cell Proteomics Reveals Downregulation of TMSB4X to Drive Actin Release for Stereocilia Assembly.” bioRxiv. https://doi.org/10.1101/727412.
+- [Article](http://dx.doi.org/10.7554/eLife.50777): Zhu, Ying, Mirko Scheibinger, Daniel Christian Ellwanger, Jocelyn F. Krey, Dongseok Choi, Ryan T. Kelly, Stefan Heller, and Peter G. Barr-Gillespie. 2019. “Single-Cell Proteomics Reveals Changes in Expression during Hair-Cell Development.” eLife 8 (November). https://doi.org/10.7554/eLife.50777.
 - In scpdata: **no**
 
 ### Specht et al 2019, BioRxiv
