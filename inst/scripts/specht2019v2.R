@@ -1,0 +1,154 @@
+
+####---- Specht et al. 2019 ---####
+
+
+## Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 2019. 
+## “High-Throughput Single-Cell Proteomics Quantifies the Emergence of Macrophage 
+## Heterogeneity.” bioRxiv. https://doi.org/10.1101/665307.
+
+## NOTE: the script is version 2 because the data set was updated by the authors
+
+library(Features)
+library(SingleCellExperiment)
+library(scp)
+library(tidyverse)
+setwd("./inst/scripts")
+
+####---- Load PSM data ----####
+
+## The `raw.RData` file was downloaded from 
+## https://drive.google.com/drive/folders/1VzBfmNxziRYqayx3SP-cOe2gu129Obgx
+## to scpdata/inst/extdata/specht2019-v2
+load("../extdata/specht2019-v2/raw.RData")
+## It contains: 
+##    * ev: the MaxQuant output file for all batches with the PSM data
+##    * design: the cell annotation
+##    * batch: the batch annotation 
+
+## Clean the sample metadata so that it meets the requirements for
+## `scp::readSCP`. The cell annotation and batch annotation are merge into a 
+## table
+inner_join(x = design %>% pivot_longer(-Set, 
+                                       names_to = "Channel", 
+                                       values_to = "CellType") %>%
+             mutate_all(as.character), 
+           y = batch %>% rename(Set = set) %>%
+             mutate_all(as.character),
+           by = "Set") -> meta
+
+## Clean quantitative data
+ev %>%
+  ## Remove variable not related to PSM info
+  select(-c("X1", "X1_1", "lcbatch", "sortday",  "digest")) %>%
+  ## channel naming should be consistent with metadata
+  rename_all(gsub, 
+             pattern = "^Reporter[.]intensity[.](\\d*)$", 
+             replacement = "RI\\1") %>%
+  ## MS set should be consistent with metadata and other data
+  rename(Set = Raw.file, 
+         peptide = modseq,
+         protein = Leading.razor.protein) %>%
+  ## Remove "X" at start of batch 
+  mutate(Set = gsub("^X", "", Set)) %>%
+  ## keep only single cell runs 
+  filter(!grepl("col\\d{2}|arrier|Ref|Master|SQC|blank", Set)) %>%
+  ## remove experimental sets concurrent with low mass spec performance
+  filter(!grepl("FP9[56]|FP103", Set)) %>%
+  ## Make sure all runs are described in design, if not, remove them
+  filter(Set %in% meta$Set) -> ev
+
+## Create the Features object
+specht2019v2 <- readSCP(ev, meta, channelCol = "Channel", batchCol = "Set")
+rm(ev); gc()
+
+
+####---- Include the peptide data ----####
+
+## The `Peptides-raw.csv` and `Cells.csv` files were downloaded from 
+## https://scope2.slavovlab.net/docs/data to scpdata/inst/extdata/specht2019-v2.
+## The `id_to_channel.RData` file was generated using the `SCoPE2_analysis.R`
+## script from https://github.com/cvanderaa/SCoPE2/tree/master/code
+
+## Get batch annotation
+read.csv("../extdata/specht2019-v2/Cells.csv", row.names = 1) %>%
+  t %>%
+  as.data.frame %>%
+  rownames_to_column("id") %>%
+  rename(Set = raw.file, CellType = celltype, digest = batch_digest, sortday = batch_sort,
+         lcbatch = batch_chromatography) %>%
+  mutate(Channel = NA, 
+         Set = sub("^X", "", Set)) %>%
+  column_to_rownames("id") %>%
+  as("DataFrame") ->
+  annot
+## Get cell to add to reference channel annotation
+load("../extdata/specht2019-v2/id_to_channel.RData")
+## it contains c2q, the id to channel index mapping
+c2q %>%
+    filter(celltype %in% rownames(annot)) %>%
+    mutate(channel = sub("Reporter[.]intensity[.]", "RI", channel)) ->
+    c2q
+## Add channel info 
+annot[c2q$celltype, "Channel"] <- c2q$channel
+
+## Get the peptide data
+pep <- readSingleCellExperiment("../extdata/specht2019-v2/Peptides-raw.csv", 
+                                ecol = -c(1,2), fnames = "peptide")
+colData(pep) <- annot[colnames(pep), ]
+colnames(pep) <- paste0(annot[colnames(pep), "Set"],  "_", annot[colnames(pep), "Channel"])
+## Include the peptide data in the Features object
+specht2019v2 <- addAssay(specht2019v2, pep, name = "peptides")
+
+## Link the PSMs and the peptides
+## First find which PSM assays were included
+sel <- sapply(grep("19", names(specht2019v2), value = TRUE), function(name) {
+    x <- specht2019v2[[name]]
+    ## Does the current PSM data have at least 1 colname in common with pep?
+    inColnames <- any(colnames(x) %in% colnames(pep))
+    ## Does the current PSM data have at least 1 peptide sequence in common with pep?
+    inSequence <- any(rowData(x)$peptide %in% rowData(pep)$peptide)
+    return(inColnames && inSequence) ## The PSM assay must fulfill both conditions
+})
+## Add an AssayLink that bridges the PSM assays and the peptide assay
+specht2019v2 <- addAssayLink(specht2019v2, from = which(sel), to = "peptides", 
+                             varFrom = rep("peptide", sum(sel)), varTo = "peptide")
+
+####---- Include the protein data ----####
+
+## The `Proteins-processed.csv` and `Cells.csv` file was downloaded from 
+## https://scope2.slavovlab.net/docs/data to scpdata/inst/extdata/specht2019-v2
+read.csv("../extdata/specht2019-v2/Proteins-processed.csv") %>%
+  rename(protein = X) %>%
+  readSingleCellExperiment(ecol = -1, fnames = "protein") ->
+  prot
+colData(prot) <- annot[colnames(prot), ]
+colnames(prot) <- paste0(annot[colnames(prot), "Set"],  "_", annot[colnames(prot), "Channel"])
+specht2019v2 <- addAssay(specht2019v2, prot, name = "proteins")
+specht2019v2 <- addAssayLink(specht2019v2, from = "peptides", to = "proteins", 
+                             varFrom = "protein", varTo = "protein")
+
+####--- Try out data ----####
+
+rowData(specht2019v2[["proteins"]])$protein %>%head
+
+## P07355 (Annexin A2) was shown in the paper to have different expression 
+## levels depending on the cell type
+ANXA2 <- specht2019v2["P07355", ] 
+ANXA2 %>%
+    longFormat(colDataCols = "CellType") %>%
+    data.frame %>%
+    mutate(level = sub("^19.*$", "psms", assay)) %>%
+    filter(grepl("m0$|u$", CellType)) %>%
+    # filter(level %in% c("proteins", "peptides")) %>%
+    ggplot(aes(x = CellType, y = value)) +
+    geom_violin(aes(fill = CellType), na.rm = TRUE) +
+    geom_jitter(na.rm = TRUE, alpha = 0.2) +
+    facet_grid(rows = vars(level), scales = "free_y")
+## TODO: think about nice visualization 
+
+####---- Save data ----####
+
+## Store data as an rda file
+save(specht2019v2, file = file.path("../../data/specht2019v2.rda"),
+     compress = "xz", compression_level = 9)
+
