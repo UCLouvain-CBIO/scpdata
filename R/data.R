@@ -354,11 +354,15 @@ scpdata <- function(){
 #' 
 #' @usage 
 #' data("dou2019_hela_protein")
+#' data("dou2019_hela_peptide")
 #' 
 #' @format 
 #' \itemize{
 #'   \item \code{dou2019_hela_protein}: a \code{\link{SingleCellExperiment}}
-#'   with protein expression levels for 1641 proteins x 20 "cells".
+#'   object with protein expression levels for 24,797 peptides x 20 "cells".
+#'   \item \code{dou2019_hela_protein}: a \code{\link{SingleCellExperiment}}
+#'   object with protein expression levels for 1,641 proteins x 20 "cells".
+#'   
 #' }
 #' See Details for information about data collection.
 #' 
@@ -366,7 +370,26 @@ scpdata <- function(){
 #' 
 #' \strong{Peptide expression data: \code{dou2019_hela_peptide}}
 #' 
-#' TODO
+#' The peptide data was constructed as follows. For every MS run:
+#' \itemize{
+#'   \item Load the MSGF+ identification files 
+#'   (\code{"Hela_run_*_msgfplus.mzid"}) and remove decoy and contaminant PSMs
+#'   \item Load the MASIC quantification files 
+#'   (\code{"Hela_run_*_ReporterIons.txt"})
+#'   \item Combine the identification and the quantification data by matching 
+#'   the \code{"scan.number.s"} and \code{"scanNumber"} fields, respectively
+#'   \item Format the data as an \code{\link{MSnSet}} object keeping 
+#'   \item Perform TMT-10 istope correction 
+#'   \item Sum-roll the PSM intensities to peptide intensities
+#'   \item Keep only useful feature data (peptide and protein sequence, start 
+#'   and end position of peptide location, protein length, protein description)
+#'   \item Extract the sample information (TMT ion, run number and experiment 
+#'   label) from the files names. Furthermore, sample type (lysate, carrier or
+#'   blank) and sample amount (in ng) were added from the article (see 
+#'   Reference).
+#' }
+#' Next, combine all runs in a single MSnSet (matching on peptide name), replace
+#' NA's by 0's and convert to an \code{\link{SingleCellExperiment}} object.
 #' 
 #' \strong{Protein expression data: \code{dou2019_hela_protein}}
 #'
@@ -396,11 +419,14 @@ scpdata <- function(){
 #' Preparation Platform.” Analytical Chemistry, September 
 #' (\href{https://doi.org/10.1021/acs.analchem.9b03349}{DOI}).
 #' 
+#' @seealso 
+#' \code{\link{dou2019_mouse_protein}}, \code{\link{dou2019_boosting_protein}}
+#' 
 #' @docType data
 #' 
 #' @keywords datasets
 #' 
-#' @aliases dou2019_hela_protein 
+#' @aliases dou2019_hela_peptide dou2019_hela_protein
 #' 
 "dou2019_hela_protein"
 
@@ -419,11 +445,14 @@ scpdata <- function(){
 #' 
 #' @usage
 #' data("dou2019_boosting_protein")
+#' data("dou2019_boosting_peptide")
 #' 
 #' @format 
 #' \itemize{
+#'   \item \code{dou2019_boosting_peptide}: a \code{\link{SingleCellExperiment}}
+#'    with protein expression levels for 51,567 peptides x 60 sample.
 #'   \item \code{dou2019_boosting_protein}: a \code{\link{SingleCellExperiment}}
-#'    with protein expression levels for 1436 proteins x 60 cells.
+#'    with protein expression levels for 1,436 proteins x 60 samples.
 #' }
 #' See Details for information about data collection.
 #' 
@@ -431,7 +460,27 @@ scpdata <- function(){
 #' 
 #' \strong{Peptide expression data: \code{dou2019_boosting_peptide}}
 #' 
-#' TODO
+#' The peptide data was constructed as follows. For every MS run:
+#' \itemize{
+#'   \item Load the MSGF+ identification files 
+#'   (\code{"Boosting_*_msgfplus.mzid"}) and remove decoy and 
+#'   contaminant PSMs
+#'   \item Load the MASIC quantification files 
+#'   (\code{"Boosting_*_ReporterIons.txt"})
+#'   \item Combine the identification and the quantification data by matching 
+#'   the \code{"scan.number.s"} and \code{"scanNumber"} fields, respectively
+#'   \item Format the data as an \code{\link{MSnSet}} object keeping 
+#'   \item Perform TMT-10 istope correction 
+#'   \item Sum-roll the PSM intensities to peptide intensities
+#'   \item Keep only useful feature data (peptide and protein sequence, start 
+#'   and end position of peptide location, protein length, protein description)
+#'   \item Extract the sample information (TMT ion, run, boosting amount and 
+#'   experiment label) from the files names. Furthermore, sample type was 
+#'   obtained from Table S2 (see reference).
+#' }
+#' Next, combine all runs in a single MSnSet (matching on peptide name), replace
+#' NA's by 0's and convert to an \code{\link{SingleCellExperiment}} object.
+#' 
 #' 
 #' \strong{Protein expression data: \code{dou2019_boosting_protein}}
 #'
@@ -463,11 +512,14 @@ scpdata <- function(){
 #' Preparation Platform.” Analytical Chemistry, September 
 #' (\href{https://doi.org/10.1021/acs.analchem.9b03349}{DOI}).
 #' 
+#' @seealso 
+#' \code{\link{dou2019_hela_protein}}, \code{\link{dou2019_mouse_protein}}
+#' 
 #' @docType data
 #' 
 #' @keywords datasets
 #' 
-#' @aliases dou2019_boosting_protein
+#' @aliases dou2019_boosting_protein dou2019_boosting_peptide
 #' 
 "dou2019_boosting_protein"
 
@@ -479,17 +531,22 @@ scpdata <- function(){
 #' The cell types are either "Raw" (macrophage cells), "C10" (epihelial cells), 
 #' or "SVEC" (endothelial cells). Out of the 132 wells, 72 contain single cells, 
 #' corresponding to 24 C10 cells, 24 RAW cells, and 24 SVEC. The other wells are 
-#' either boosting channels (12), empty channels (36) or reference channels (12). 
-#' The different cell types where evenly distributed across 4 nanoPOTS chips. 
-#' Samples were 11-plexed with TMT labeling.
+#' either boosting channels (12), empty channels (36) or reference channels 
+#' (12). Boosting and reference channels are balanced (1:1:1) mixes of C10, 
+#' SVEC, and RAW samples at 5 ng and 0.2 ng, respectively. The different cell 
+#' types where evenly distributed across 4 nanoPOTS chips. Samples were 
+#' 11-plexed with TMT labeling.
 #' 
 #' @usage 
+#' data("dou2019_mouse_peptide")
 #' data("dou2019_mouse_protein")
-#' 
+#'  
 #' @format 
 #' \itemize{
+#'   \item \code{dou2019_mouse_peptide}: a \code{\link{SingleCellExperiment}}
+#'   with protein expression levels for 74,374 proteins x 132 samples.
 #'   \item \code{dou2019_mouse_protein}: a \code{\link{SingleCellExperiment}}
-#'   with protein expression levels for 2331 proteins x 132 cells.
+#'   with protein expression levels for 2331 proteins x 132 samples.
 #' }
 #' See Details for information about data collection.
 #' 
@@ -497,7 +554,26 @@ scpdata <- function(){
 #' 
 #' \strong{Peptide expression data: \code{dou2019_mouse_peptide}}
 #' 
-#' TODO
+#' The peptide data was constructed as follows. For every MS run:
+#' \itemize{
+#'   \item Load the MSGF+ identification files 
+#'   (\code{"Single_Cell_Chip_*_msgfplus.mzid"}) and remove decoy and 
+#'   contaminant PSMs
+#'   \item Load the MASIC quantification files 
+#'   (\code{"Single_Cell_Chip_*_ReporterIons.txt"})
+#'   \item Combine the identification and the quantification data by matching 
+#'   the \code{"scan.number.s"} and \code{"scanNumber"} fields, respectively
+#'   \item Format the data as an \code{\link{MSnSet}} object keeping 
+#'   \item Perform TMT-11 istope correction 
+#'   \item Sum-roll the PSM intensities to peptide intensities
+#'   \item Keep only useful feature data (peptide and protein sequence, start 
+#'   and end position of peptide location, protein length, protein description)
+#'   \item Extract the sample information (TMT ion, chip number and experiment 
+#'   label) from the files names. Furthermore, sample type was obtained from 
+#'   Table S1 (see reference).
+#' }
+#' Next, combine all runs in a single MSnSet (matching on peptide name), replace
+#' NA's by 0's and convert to an \code{\link{SingleCellExperiment}} object.
 #' 
 #' \strong{Protein expression data: \code{dou2019_mouse_protein}}
 #'
@@ -527,13 +603,13 @@ scpdata <- function(){
 #' (\href{https://doi.org/10.1021/acs.analchem.9b03349}{DOI}).
 #' 
 #' @seealso 
-#' \code{\link{dou2019_hela}}, \code{\link{dou2019_boosting}}
+#' \code{\link{dou2019_hela_protein}}, \code{\link{dou2019_boosting_protein}}
 #' 
 #' @docType data
 #' 
 #' @keywords datasets
 #' 
-#' @aliases dou2019_mouse_protein
+#' @aliases dou2019_mouse_protein dou2019_mouse_peptide
 #' 
 "dou2019_mouse_protein"
 
