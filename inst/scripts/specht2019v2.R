@@ -16,14 +16,16 @@ setwd("./inst/scripts")
 
 ####---- Load PSM data ----####
 
-## The `raw.RData` file was downloaded from 
+## The files were downloaded from 
 ## https://drive.google.com/drive/folders/1VzBfmNxziRYqayx3SP-cOe2gu129Obgx
-## to scpdata/inst/extdata/specht2019-v2
-load("../extdata/specht2019-v2/raw.RData")
-## It contains: 
-##    * ev: the MaxQuant output file for all batches with the PSM data
-##    * design: the cell annotation
-##    * batch: the batch annotation 
+## to scpdata/inst/extdata/specht2019v2
+## ev = the MaxQuant output file for all batches with the PSM data
+ev <- read.csv("../extdata/specht2019v2/evidence_unfiltered.csv", 
+               sep = ",", header = TRUE)
+## design = the cell annotation
+design <- read.csv("../extdata/specht2019v2/annotation.csv", check.names = F)
+## batch = the batch annotation 
+batch <- read.csv("../extdata/specht2019v2/batch.csv", check.names = F)
 
 ## Clean the sample metadata so that it meets the requirements for
 ## `scp::readSCP`. The cell annotation and batch annotation are merge into a 
