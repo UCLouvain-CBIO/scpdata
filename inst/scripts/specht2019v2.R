@@ -40,6 +40,7 @@ inner_join(x = design %>%
                                         sc_m0 = "Macrophage",
                                         unused = "Unused",
                                         norm = "Reference",
+                                        reference = "Reference",
                                         carrier_mix = "Carrier")) %>%
              mutate_all(as.character), 
            y = batch %>% rename(Set = set) %>%
@@ -88,12 +89,13 @@ read.csv("../extdata/specht2019v2/Cells.csv", row.names = 1) %>%
   mutate(Channel = NA, 
          Set = sub("^X", "", Set),
          SampleType = recode(SampleAnnotation, 
-                                    sc_0 = "Blank",
-                                    sc_u = "Monocyte",
-                                    sc_m0 = "Macrophage",
-                                    unused = "Unused",
-                                    norm = "Reference",
-                                    carrier_mix = "Carrier")) %>%
+                             sc_0 = "Blank",
+                             sc_u = "Monocyte",
+                             sc_m0 = "Macrophage",
+                             unused = "Unused",
+                             norm = "Reference",
+                             reference = "Reference",
+                             carrier_mix = "Carrier")) %>%
   column_to_rownames("id") %>%
   as("DataFrame") ->
   annot
