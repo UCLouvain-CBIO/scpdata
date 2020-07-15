@@ -33,9 +33,9 @@ scpdata <- function(){
 
 ##' FACS + SCoPE2: macrophages vs monocytes (Specht et al. 2019 - version 2)
 ##'
-##' Single cell proteomics data produced and published by Specht et al. from the 
-##' Slavov Lab. This is the version 2 of the data released in December 2019. It 
-##' contains quantitative information at PSM, peptide and protein level. 
+##' Single cell proteomics data acquired by the Slavov Lab. This is the version 
+##' 2 of the data released in December 2019. It contains quantitative 
+##' information of macrophages and monocytes at PSM, peptide and protein level. 
 ##' 
 ##' @format A `Features` object with 179 assays, each assay being a 
 ##' `SingleCellExperiment` object: 
