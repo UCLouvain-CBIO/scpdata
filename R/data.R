@@ -7,7 +7,7 @@
 ##' 
 ##' The function lists the available datasets in the package. 
 ##' 
-##' @import Features
+##' @import QFeatures
 ##' @import SingleCellExperiment
 ##' 
 ##' @details 

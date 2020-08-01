@@ -8,7 +8,7 @@
 
 ## NOTE: the script is version 2 because the data set was updated by the authors
 
-library(Features)
+library(QFeatures)
 library(SingleCellExperiment)
 library(scp)
 library(tidyverse)
@@ -102,9 +102,9 @@ read.csv("../extdata/specht2019v2/Cells.csv", row.names = 1) %>%
 ## Get cell to add to reference channel annotation
 ## `IDtoChannel.csv` contains the id to channel index mapping
 read.csv("../extdata/specht2019v2/IDtoChannel.csv") %>%
-    filter(celltype %in% rownames(annot)) %>%
-    mutate(channel = sub("Reporter[.]intensity[.]", "RI", channel)) ->
-    idMap
+  filter(celltype %in% rownames(annot)) %>%
+  mutate(channel = sub("Reporter[.]intensity[.]", "RI", channel)) ->
+  idMap
 ## Add channel info 
 annot[idMap$celltype, "Channel"] <- idMap$channel
 
@@ -113,18 +113,18 @@ pep <- readSingleCellExperiment("../extdata/specht2019v2/Peptides-raw.csv",
                                 ecol = -c(1,2), fnames = "peptide")
 colData(pep) <- annot[colnames(pep), ]
 colnames(pep) <- paste0(annot[colnames(pep), "Set"],  "_", annot[colnames(pep), "Channel"])
-## Include the peptide data in the Features object
+## Include the peptide data in the QFeatures object
 specht2019v2 <- addAssay(specht2019v2, pep, name = "peptides")
 
 ## Link the PSMs and the peptides
 ## First find which PSM assays were included
 sel <- sapply(grep("19", names(specht2019v2), value = TRUE), function(name) {
-    x <- specht2019v2[[name]]
-    ## Does the current PSM data have at least 1 colname in common with pep?
-    inColnames <- any(colnames(x) %in% colnames(pep))
-    ## Does the current PSM data have at least 1 peptide sequence in common with pep?
-    inSequence <- any(rowData(x)$peptide %in% rowData(pep)$peptide)
-    return(inColnames && inSequence) ## The PSM assay must fulfill both conditions
+  x <- specht2019v2[[name]]
+  ## Does the current PSM data have at least 1 colname in common with pep?
+  inColnames <- any(colnames(x) %in% colnames(pep))
+  ## Does the current PSM data have at least 1 peptide sequence in common with pep?
+  inSequence <- any(rowData(x)$peptide %in% rowData(pep)$peptide)
+  return(inColnames && inSequence) ## The PSM assay must fulfill both conditions
 })
 ## Add an AssayLink that bridges the PSM assays and the peptide assay
 specht2019v2 <- addAssayLink(specht2019v2, from = which(sel), to = "peptides", 
