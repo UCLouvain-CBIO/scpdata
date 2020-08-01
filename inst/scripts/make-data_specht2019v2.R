@@ -8,7 +8,7 @@
 
 ## NOTE: the script is version 2 because the data set was updated by the authors
 
-library(Features)
+library(QFeatures)
 library(SingleCellExperiment)
 library(scp)
 library(tidyverse)
@@ -30,9 +30,18 @@ batch <- read.csv("../extdata/specht2019v2/batch.csv", check.names = F)
 ## Clean the sample metadata so that it meets the requirements for
 ## `scp::readSCP`. The cell annotation and batch annotation are merge into a 
 ## table
-inner_join(x = design %>% pivot_longer(-Set, 
-                                       names_to = "Channel", 
-                                       values_to = "CellType") %>%
+inner_join(x = design %>% 
+             pivot_longer(-Set, 
+                          names_to = "Channel", 
+                          values_to = "SampleAnnotation") %>%
+             mutate(SampleType = recode(SampleAnnotation, 
+                                        sc_0 = "Blank",
+                                        sc_u = "Monocyte",
+                                        sc_m0 = "Macrophage",
+                                        unused = "Unused",
+                                        norm = "Reference",
+                                        reference = "Reference",
+                                        carrier_mix = "Carrier")) %>%
              mutate_all(as.character), 
            y = batch %>% rename(Set = set) %>%
              mutate_all(as.character),
@@ -41,7 +50,7 @@ inner_join(x = design %>% pivot_longer(-Set,
 ## Clean quantitative data
 ev %>%
   ## Remove variable not related to PSM info
-  select(-c("X1", "X1_1", "lcbatch", "sortday",  "digest")) %>%
+  select(-c("X", "X1", "lcbatch", "sortday",  "digest")) %>%
   ## channel naming should be consistent with metadata
   rename_all(gsub, 
              pattern = "^Reporter[.]intensity[.](\\d*)$", 
@@ -61,7 +70,6 @@ ev %>%
 
 ## Create the Features object
 specht2019v2 <- readSCP(ev, meta, channelCol = "Channel", batchCol = "Set")
-rm(ev); gc()
 
 
 ####---- Include the peptide data ----####
@@ -72,44 +80,51 @@ rm(ev); gc()
 ## script from https://github.com/cvanderaa/SCoPE2/tree/master/code
 
 ## Get batch annotation
-read.csv("../extdata/specht2019-v2/Cells.csv", row.names = 1) %>%
+read.csv("../extdata/specht2019v2/Cells.csv", row.names = 1) %>%
   t %>%
   as.data.frame %>%
   rownames_to_column("id") %>%
-  rename(Set = raw.file, CellType = celltype, digest = batch_digest, sortday = batch_sort,
-         lcbatch = batch_chromatography) %>%
+  rename(Set = raw.file, SampleAnnotation = celltype, digest = batch_digest, 
+         sortday = batch_sort, lcbatch = batch_chromatography) %>%
   mutate(Channel = NA, 
-         Set = sub("^X", "", Set)) %>%
+         Set = sub("^X", "", Set),
+         SampleType = recode(SampleAnnotation, 
+                             sc_0 = "Blank",
+                             sc_u = "Monocyte",
+                             sc_m0 = "Macrophage",
+                             unused = "Unused",
+                             norm = "Reference",
+                             reference = "Reference",
+                             carrier_mix = "Carrier")) %>%
   column_to_rownames("id") %>%
   as("DataFrame") ->
   annot
 ## Get cell to add to reference channel annotation
-load("../extdata/specht2019-v2/id_to_channel.RData")
-## it contains c2q, the id to channel index mapping
-c2q %>%
-    filter(celltype %in% rownames(annot)) %>%
-    mutate(channel = sub("Reporter[.]intensity[.]", "RI", channel)) ->
-    c2q
+## `IDtoChannel.csv` contains the id to channel index mapping
+read.csv("../extdata/specht2019v2/IDtoChannel.csv") %>%
+  filter(celltype %in% rownames(annot)) %>%
+  mutate(channel = sub("Reporter[.]intensity[.]", "RI", channel)) ->
+  idMap
 ## Add channel info 
-annot[c2q$celltype, "Channel"] <- c2q$channel
+annot[idMap$celltype, "Channel"] <- idMap$channel
 
 ## Get the peptide data
-pep <- readSingleCellExperiment("../extdata/specht2019-v2/Peptides-raw.csv", 
+pep <- readSingleCellExperiment("../extdata/specht2019v2/Peptides-raw.csv", 
                                 ecol = -c(1,2), fnames = "peptide")
 colData(pep) <- annot[colnames(pep), ]
 colnames(pep) <- paste0(annot[colnames(pep), "Set"],  "_", annot[colnames(pep), "Channel"])
-## Include the peptide data in the Features object
+## Include the peptide data in the QFeatures object
 specht2019v2 <- addAssay(specht2019v2, pep, name = "peptides")
 
 ## Link the PSMs and the peptides
 ## First find which PSM assays were included
 sel <- sapply(grep("19", names(specht2019v2), value = TRUE), function(name) {
-    x <- specht2019v2[[name]]
-    ## Does the current PSM data have at least 1 colname in common with pep?
-    inColnames <- any(colnames(x) %in% colnames(pep))
-    ## Does the current PSM data have at least 1 peptide sequence in common with pep?
-    inSequence <- any(rowData(x)$peptide %in% rowData(pep)$peptide)
-    return(inColnames && inSequence) ## The PSM assay must fulfill both conditions
+  x <- specht2019v2[[name]]
+  ## Does the current PSM data have at least 1 colname in common with pep?
+  inColnames <- any(colnames(x) %in% colnames(pep))
+  ## Does the current PSM data have at least 1 peptide sequence in common with pep?
+  inSequence <- any(rowData(x)$peptide %in% rowData(pep)$peptide)
+  return(inColnames && inSequence) ## The PSM assay must fulfill both conditions
 })
 ## Add an AssayLink that bridges the PSM assays and the peptide assay
 specht2019v2 <- addAssayLink(specht2019v2, from = which(sel), to = "peptides", 
@@ -119,34 +134,16 @@ specht2019v2 <- addAssayLink(specht2019v2, from = which(sel), to = "peptides",
 
 ## The `Proteins-processed.csv` and `Cells.csv` file was downloaded from 
 ## https://scope2.slavovlab.net/docs/data to scpdata/inst/extdata/specht2019-v2
-read.csv("../extdata/specht2019-v2/Proteins-processed.csv") %>%
+read.csv("../extdata/specht2019v2/Proteins-processed.csv") %>%
   rename(protein = X) %>%
   readSingleCellExperiment(ecol = -1, fnames = "protein") ->
   prot
 colData(prot) <- annot[colnames(prot), ]
-colnames(prot) <- paste0(annot[colnames(prot), "Set"],  "_", annot[colnames(prot), "Channel"])
+colnames(prot) <- paste0(annot[colnames(prot), "Set"],  "_", 
+                         annot[colnames(prot), "Channel"])
 specht2019v2 <- addAssay(specht2019v2, prot, name = "proteins")
 specht2019v2 <- addAssayLink(specht2019v2, from = "peptides", to = "proteins", 
                              varFrom = "protein", varTo = "protein")
-
-####--- Try out data ----####
-
-rowData(specht2019v2[["proteins"]])$protein %>%head
-
-## P07355 (Annexin A2) was shown in the paper to have different expression 
-## levels depending on the cell type
-ANXA2 <- specht2019v2["P07355", ] 
-ANXA2 %>%
-    longFormat(colDataCols = "CellType") %>%
-    data.frame %>%
-    mutate(level = sub("^19.*$", "psms", assay)) %>%
-    filter(grepl("m0$|u$", CellType)) %>%
-    # filter(level %in% c("proteins", "peptides")) %>%
-    ggplot(aes(x = CellType, y = value)) +
-    geom_violin(aes(fill = CellType), na.rm = TRUE) +
-    geom_jitter(na.rm = TRUE, alpha = 0.2) +
-    facet_grid(rows = vars(level), scales = "free_y")
-## TODO: think about nice visualization 
 
 ####---- Save data ----####
 

@@ -9,12 +9,12 @@ Author@R: c(person(given = "Christophe", family = "Vanderaa",
                    role = c("aut")))
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-Import: MSnbase (>=2.10.1)
-Suggest: tidyr (>= 1.0.0),
-         openxlsx (>=4.1.3),
-         sva (>=3.32.1)
+Import: QFeatures (>= 0.6.4),
+        SingleCellExperiment (>= 1.19.6)
+Suggest: tidyverse (>= 1.3.0),
+         openxlsx (>=4.1.3)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

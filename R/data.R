@@ -7,7 +7,7 @@
 ##' 
 ##' The function lists the available datasets in the package. 
 ##' 
-##' @import MSnbase
+##' @import QFeatures
 ##' @import SingleCellExperiment
 ##' 
 ##' @details 
