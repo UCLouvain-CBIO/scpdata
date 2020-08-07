@@ -71,6 +71,13 @@ ev %>%
 ## Create the Features object
 specht2019v2 <- readSCP(ev, meta, channelCol = "Channel", batchCol = "Set")
 
+## Remove the TMT12-16 channels for the samples with TMT11 protocole
+## Batches 1:63 where acquired with a TMT11 protocole
+for (set in 1:63) {
+  cat(set, "...")
+  specht2019v2[[set]] <- specht2019v2[[set]][, 1:11]
+}
+
 
 ####---- Include the peptide data ----####
 
