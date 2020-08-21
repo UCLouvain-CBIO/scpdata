@@ -13,7 +13,7 @@ meta <- data.frame(
   BiocVersion = "3.11",
   Genome = NA_character_,
   SourceType = c("CSV"),
-  SourceUrl = c(NA_character_),
+  SourceUrl = c("https://scope2.slavovlab.net/docs/data"),
   SourceVersion = c(NA_character_),
   Species = "Homo sapiens",
   TaxonomyId = 9606,
