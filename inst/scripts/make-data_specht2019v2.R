@@ -11,7 +11,8 @@
 library(QFeatures)
 library(SingleCellExperiment)
 library(scp)
-library(tidyverse)
+library(magrittr)
+library(dplyr)
 setwd("./inst/scripts")
 
 ####---- Load PSM data ----####
