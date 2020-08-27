@@ -156,6 +156,8 @@ specht2019v2 <- addAssayLink(specht2019v2, from = "peptides", to = "proteins",
 ####---- Save data ----####
 
 ## Store data as an rda file
-save(specht2019v2, file = file.path("../../data/specht2019v2.rda"),
-     compress = "xz", compression_level = 9)
+save(specht2019v2, 
+     file = file.path("../EHdata/specht2019v2.rda"),
+     compress = "xz", 
+     compression_level = 9)
 
