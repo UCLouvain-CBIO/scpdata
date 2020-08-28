@@ -31,7 +31,7 @@ scpdata <- function(){
 ####---- SPECHT ET AL. 2019 ----####
 
 
-##' FACS + SCoPE2: macrophages vs monocytes (Specht et al. 2019 - version 2)
+##' SCoPE2: macrophages vs monocytes (Specht et al. 2019 - version 2)
 ##'
 ##' Single cell proteomics data acquired by the Slavov Lab. This is the version 
 ##' 2 of the data released in December 2019. It contains quantitative 
@@ -39,19 +39,19 @@ scpdata <- function(){
 ##' 
 ##' @format A `Features` object with 179 assays, each assay being a 
 ##' `SingleCellExperiment` object: 
-##' \itemize{
-##'   \item Assay 1-63: PSM data for SCoPE2 sets acquired with a TMT-11 
+##' 
+##' - Assay 1-63: PSM data for SCoPE2 sets acquired with a TMT-11 
 ##'   multiplexing protocole, hence those assays contain 11 columns. Columns 
 ##'   hold quantitative information from single-cell channels, carrier channels, 
 ##'   reference channels, empty (blank) channels and unused channels.
-##'   \item Assay 64-177: PSM data for SCoPE2 sets acquired with a TMT-16
+##' - Assay 64-177: PSM data for SCoPE2 sets acquired with a TMT-16
 ##'   multiplexing protocole, hence those assays contain 16 columns. Columns 
 ##'   hold quantitative information from single-cell channels, carrier channels, 
 ##'   reference channels, empty (blank) channels and unused channels.
-##'   \item Assay 178: peptide data containing quantitative data for 9208 
+##' - `peptides`: peptide data containing quantitative data for 9208 
 ##'   peptides and 1018 single-cells. Cell type annotation and batch annotation
 ##'   are stored in `colData(specht2019v2[[178]]`.
-##'   \item Assay 179: peptide data containing quantitative data for 2772 
+##' - `proteins`: peptide data containing quantitative data for 2772 
 ##'   proteins and 1018 single-cells. Cell type annotation and batch annotation
 ##'   are stored in `colData(specht2019v2[[179]]`.
 ##' }
@@ -60,14 +60,34 @@ scpdata <- function(){
 ##' 
 ##' See `Details`` for information about data collection.
 ##'
-##' @details The PSM data were collected from a shared Goolge Drive folder that 
-##' is accessible from the SlavovLab website. The folder contains the following 
+##' @details 
+##' 
+##' **Acquisition protocole**
+##' 
+##' The data was acquired using the following setup. More information can be 
+##' found in the *Methods* section of the article (see `References`).
+##' 
+##' - **Cell isolation**: flow cytometry (BD FACSAria I)
+##' - **Sample preparation**: SCoPE2 protcole (mPOP + trypsin digestion + TMT 
+##'   11plex or 16plex + labeling)
+##' - **Separation**: online nLC (DionexUltiMate 3000 UHPLC with a 25cm x 75μm 
+##'   IonOpticksAurora Series UHPLC column; 200nl/min)
+##' - **Ionization**: ESI (2,200V)
+##' - **Mass spectrometry**: Thermo Scientific Q-Exactive (300ms accumulation for 
+##'   MS2; MS2 resolution 70,000)
+##' - **Data analysis**: DART-ID + MaxQuant (1.6.2.3)
+##' 
+##' **Data collection**
+##' 
+##' The PSM data were collected from a shared Goolge Drive folder that 
+##' is accessible from the SlavovLab website (see `Source` section). The folder 
+##' contains the following 
 ##' files of interest: 
-##' \itemize{
-##'   \item `ev_updated.txt`: the MaxQuant/DART-ID output file
-##'   \item `annotation_fp60-97.csv`: sample annotation
-##'   \item `batch_fp60-97.csv`: batch annotation
-##' }
+##' 
+##' - `ev_updated.txt`: the MaxQuant/DART-ID output file
+##' - `annotation_fp60-97.csv`: sample annotation
+##' - `batch_fp60-97.csv`: batch annotation
+##' 
 ##' We combined the the sample annotation and the batch annotation in a single 
 ##' table. We also formated the quantification table so that columns match with 
 ##' those of the annotation and filter only for single-cell runs. Both table 
@@ -89,16 +109,18 @@ scpdata <- function(){
 ##'  
 ##' @source 
 ##' The data were downloaded from the 
-##' \href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website via a
+##' [Slavov Lab](https://scope2.slavovlab.net/docs/data) website via a
 ##' shared Google Drive 
-##' \href{https://drive.google.com/drive/folders/1VzBfmNxziRYqayx3SP-cOe2gu129Obgx}{folder}. 
-##' The raw data and quantification data can also be found in the massIVE 
+##' [folder](https://drive.google.com/drive/folders/1VzBfmNxziRYqayx3SP-cOe2gu129Obgx). 
+##' The raw data and the quantification data can also be found in the massIVE 
 ##' repository 
-##' \href{ftp://massive.ucsd.edu/MSV000083945}{MSV000083945}.
+##' [MSV000083945](ftp://massive.ucsd.edu/MSV000083945).
 ##' 
-##' @references Specht, Harrison, Edward Emmott, Toni Koller, and Nikolai Slavov. 
-##' 2019. “High-Throughput Single-Cell Proteomics Quantifies the Emergence of 
-##' Macrophage Heterogeneity.” bioRxiv (\href{https://doi.org/10.1101/665307}{DOI}).
+##' @references Specht, Harrison, Edward Emmott, Aleksandra A. Petelski, R. Gray 
+##' Huffman, David H. Perlman, Marco Serra, Peter Kharchenko, Antonius Koller, 
+##' and Nikolai Slavov. 2019. “Single-Cell Mass-Spectrometry Quantifies the 
+##' Emergence of Macrophage Heterogeneity.” bioRxiv. 
+##' ([DOI](https://doi.org/10.1101/665307)).
 ##' 
 ##' @docType data
 ##'
