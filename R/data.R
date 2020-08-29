@@ -1,32 +1,3 @@
-####---- DESCRIPTION ----####
-
-# Data utilities along with data documentation
-
-
-##' List the available data sets in the `scpdata` package
-##' 
-##' The function lists the available datasets in the package. 
-##' 
-##' @import QFeatures
-##' @import SingleCellExperiment
-##' 
-##' @details 
-##' See the documentation of a particular data set for more information (eg 
-##' `?specht2019v2`). 
-##' 
-##' @return 
-##' An object of class `"packageIQR"` containing all available data sets.
-##' 
-##' @examples
-##' scpdata()
-##' 
-##' @export
-##' 
-scpdata <- function(){
-  
-  out <- data(package = "scpdata")
-  return(out)
-}
 
 ####---- SPECHT ET AL. 2019 ----####
 
