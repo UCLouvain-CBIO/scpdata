@@ -1,5 +1,5 @@
 
-####---- Dou et al. 2019 - HeLa digests ----####
+####---- Dou et al. 2019 - mouse cell data set ----####
 
 
 ## Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B. Chrisler, 
@@ -8,25 +8,30 @@
 ## Platform.” Analytical Chemistry, September. 
 ## https://doi.org/10.1021/acs.analchem.9b03349.
 
-## This article contains 3 datasets. The script will focus on the HeLa digests
+## This article contains 3 datasets. The script will focus on the profiling of 
+## murine cell populations
 
 library(openxlsx)
 library(scp)
 library(mzR)
 library(tidyverse)
 setwd("inst/scripts/")
-
+dataDir <- "../extdata/dou2019_mouse/"
 
 ####---- PSM data ----####
 
 
 ## Load and combine the identification and quantification data
-batches <- c("Hela_run_1", "Hela_run_2") 
+list.files(dataDir) %>%
+  sub(pattern = "_[a-z]*[.][a-z]*$", 
+      replacement = "", ignore.case = TRUE) %>%
+  unique ->
+  batches
 ## For every experiment (= MS run)
 lapply(batches, function(batch){
   ## Identification data (.mzid files) were downloaded at 
   ## ftp://massive.ucsd.edu/MSV000084110/result/Result_Files/
-  list.files("../extdata/dou2019_hela/", 
+  list.files(path = dataDir, 
              pattern = paste0(batch, ".*mzid$"), 
              full.names = TRUE) %>%
     ## Read in files using `mzR`
@@ -42,7 +47,7 @@ lapply(batches, function(batch){
     mzid
   ## Quantification data (.txt files) were downloaded at
   ## ftp://massive.ucsd.edu/MSV000084110/other/MASIC_ReporterIons/
-  list.files("../extdata/dou2019_hela", 
+  list.files(path = dataDir, 
              pattern = paste0(batch, ".*txt$"), 
              full.names = TRUE) %>%
     read.table(header = TRUE, sep = "\t") %>%
@@ -56,26 +61,34 @@ lapply(batches, function(batch){
   bind_rows ->
   dat
 
-## Create the sample metadata
-## The table is manually created because the information is taken from the 
-## supplementary information file (Figure S2)
-channels <- grep("^Ion_.*\\d$", colnames(dat), value = TRUE)
-colDat <- data.frame(Channel = rep(channels, length(batches)),
-                     Batch = rep(batches, each = length(channels)),
-                     SampleType = rep(c(rep("Lysate", 7), 
-                                        rep("Blank", 2), 
-                                        "Carrier"),
-                                      length(batches)),
-                     InputAmount_ng = rep(c(rep(0.2, 7), 
-                                            rep(0, 2), 
-                                            10),
-                                          length(batches)))
+## Sample annotation provided in Table S3 in the Supplementary information
+data.frame(Batch = batches,
+           DatasetID = as.character(unique(dat$Dataset)),
+           Ion_126.128 = c(rep("C10", 6), rep("SVEC", 6)),
+           Ion_127.125 = c(rep("C10", 3), rep("SVEC", 6), rep("RAW", 3)),
+           Ion_127.131 = c(rep("SVEC", 6), rep("RAW", 6)),
+           Ion_128.128 = c(rep("SVEC", 3), rep("RAW", 6), rep("C10", 3)),
+           Ion_128.134 = c(rep("RAW", 6), rep("C10", 6)),
+           Ion_129.131 = c(rep("RAW", 3), rep("C10", 6), rep("SVEC", 3)),
+           Ion_129.138 = c(rep("reference", 12)),
+           Ion_130.135 = c(rep("empty", 12)),
+           Ion_130.141 = c(rep("empty", 12)),
+           Ion_131.138 = c(rep("boost", 12)), 
+           ## Note there is a mistake in the table. The author provide 
+           ## the annotation for 10 channles whereas 11 channels are recorded.
+           ## The last column in the data has little signal, so sample type is 
+           ## assumed to be "empty"
+           Ion_131.144 = c(rep("empty", 12))) %>%
+  pivot_longer(cols = matches("Ion"), 
+               names_to = "Channel", 
+               values_to = "SampleType") ->
+  colDat
 
 ## Create the `QFeatures` object
-dou2019_hela <- readSCP(dat, 
-                        colDat, 
-                        batchCol = "Batch", 
-                        channelCol = "Channel")
+dou2019_mouse <- readSCP(dat, 
+                         colDat, 
+                         batchCol = "Batch", 
+                         channelCol = "Channel")
 
 
 ####---- Protein data ----####
@@ -83,26 +96,30 @@ dou2019_hela <- readSCP(dat,
 
 ## Load the data
 ## Data was downloaded from https://doi.org/10.1021/acs.analchem.9b03349.
-"../extdata/dou2019_hela/ac9b03349_si_003.xlsx" %>%
+list.files(path = dataDir, 
+           pattern = "xlsx$",  
+           full.names = TRUE) %>%
   loadWorkbook %>%
-  read.xlsx(sheet = 6, colNames = FALSE) -> 
+  read.xlsx(sheet = 2, colNames = FALSE) ->
   dat
 
 ## Get the column names 
 ## The columns names should match the column names contained in the 
 ## 'dou2019_hela' object
-dat[1:3, ] %>%
+dat[1:2, ] %>%
   t %>% 
   as_tibble %>%
-  mutate(colname = sub(pattern = "_Dat.*$", replacement = "", `3`),
-         batch = sub("run", "", `1`), 
+  mutate(DatasetID = sub(pattern = "Ion_.*ID_", replacement = "", `2`),
+         Batch = colDat$Batch[match(DatasetID, colDat$DatasetID)],
+         colname = sub(pattern = "_Dat.*$", replacement = "", `2`),
          colname = ifelse(grepl("Ion", colname),
-                          paste0("Hela_run_", batch, "_", colname),
+                          paste0(Batch, "_", colname),
                           colname)) %>%
   pull(colname) ->
   colname
+
 ## Extract and format the protein expression data 
-dat[-(1:3), ] %>%
+dat[-(1:2), ] %>%
   set_colnames(colname) %>%
   mutate_at(vars(contains("Ion")), as.numeric) %>% 
   readSingleCellExperiment(ecol = grep("Ion", colname),
@@ -110,16 +127,15 @@ dat[-(1:3), ] %>%
   dat
 
 ## Add assay and AssayLinks to the dataset
-addAssay(dou2019_hela, dat, name = "proteins") %>%
-  addAssayLink(from = names(dou2019_hela)[1:2], to = "proteins", 
-               varFrom = rep("DatabaseAccess", 2), 
+addAssay(dou2019_mouse, dat, name = "proteins") %>%
+  addAssayLink(from = 1:12, to = "proteins", 
+               varFrom = rep("DatabaseAccess", 12), 
                varTo = "Protein") ->
-  dou2019_hela
+  dou2019_mouse
 
 ## Save data as Rda file
 ## Note: saving is assumed to occur in "scpdata/inst/scripts"
-save(dou2019_hela, 
+save(dou2019_mouse,
      compress = "xz", 
      compression_level = 9,
-     file = file.path("../EHdata/dou2019_hela.rda"))
-
+     file = file.path("../EHdata/dou2019_mouse.rda"))
