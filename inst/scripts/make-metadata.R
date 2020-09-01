@@ -1,6 +1,5 @@
 
-
-####---- Make the ExperimentHub metadata table ----####
+####---- EXPERIMENTHUB METADATA TABLE ----####
 
 meta <- list(
   data.frame(
@@ -110,6 +109,33 @@ meta <- list(
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
     RDataPath = "scpdata/dou2019_boosting.Rda",
+    Notes=NA_character_
+  ),
+  data.frame(
+    Title = "zhu218MCP",
+    Description = paste0("Zhu et al. 2018 (Mol. Cel. Prot.): rat brain laser ", 
+                         "dissections\n", 
+                         "Near single-cell proteomics data of laser cuptured ",
+                         "micro-dissection samples. The samples are 24 brain ",
+                         "section from rat pups (day 17). The slices are 12 µm ",
+                         "thick squares of either 50, 100, or 200 µm width. 5 ",
+                         "samples were dissected from the corpus callum (`CC`), ",
+                         "4 samples were dissected from the corpus collosum ",
+                         "(`CP`), 13 samples were extracted from the cerebral ",
+                         "cortex (`CTX`), and 2 samples are labeled as (`Mix``)."),
+    BiocVersion = "3.11",
+    Genome = NA_character_,
+    SourceType = "TXT",
+    SourceUrl = "http://dx.doi.org/10.1074/mcp.TIR118.000686",
+    SourceVersion = NA_character_,
+    Species = "Rattus norvegicus",
+    TaxonomyId = 10116,
+    Coordinate_1_based = TRUE,
+    DataProvider = "Pacific Northwest National Laboratory",
+    Maintainer = "Christophe Vanderaa <christophe.vanderaa@uclouvain.be>",
+    RDataClass = "QFeatures",
+    DispatchClass = "Rda",
+    RDataPath = "scpdata/zhu2018MCP.Rda",
     Notes=NA_character_
   )
 )

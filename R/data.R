@@ -1,4 +1,5 @@
 
+
 ####---- SPECHT ET AL. 2019 ----####
 
 
@@ -91,7 +92,7 @@
 ##' Huffman, David H. Perlman, Marco Serra, Peter Kharchenko, Antonius Koller, 
 ##' and Nikolai Slavov. 2019. “Single-Cell Mass-Spectrometry Quantifies the 
 ##' Emergence of Macrophage Heterogeneity.” bioRxiv. 
-##' ([DOI](https://doi.org/10.1101/665307)).
+##' ([link to article](https://doi.org/10.1101/665307)).
 ##' 
 ##' @docType data
 ##'
@@ -185,7 +186,7 @@
 ##' Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell 
 ##' Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample 
 ##' Preparation Platform.” Analytical Chemistry, September 
-##' ([DOI](https://doi.org/10.1021/acs.analchem.9b03349)).
+##' ([link to article](https://doi.org/10.1021/acs.analchem.9b03349)).
 ##' 
 ##' @seealso 
 ##' [dou2019_mouse], [dou2019_boosting]
@@ -289,7 +290,7 @@
 ##' Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell 
 ##' Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample 
 ##' Preparation Platform.” Analytical Chemistry, September 
-##' ([DOI](https://doi.org/10.1021/acs.analchem.9b03349)).
+##' ([link to article](https://doi.org/10.1021/acs.analchem.9b03349)).
 ##' 
 ##' @seealso 
 ##' [dou2019_hela], [dou2019_boosting]
@@ -390,7 +391,7 @@
 ##' Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell 
 ##' Proteomics Enabled by Multiplex Isobaric Labeling in a Nanodroplet Sample 
 ##' Preparation Platform.” Analytical Chemistry, September 
-##' ([DOI](https://doi.org/10.1021/acs.analchem.9b03349)).
+##' ([link to article](https://doi.org/10.1021/acs.analchem.9b03349)).
 ##' 
 ##' @seealso 
 ##' [dou2019_hela], [dou2019_mouse]
@@ -401,4 +402,77 @@
 ##' 
 ##' 
 "dou2019_boosting"
+
+
+####---- ZHU ET AL. 2018 (MCP) ----####
+
+
+##' Zhu et al. 2018 (Mol. Cel. Prot.): rat brain laser dissections
+##'
+##' Near single-cell proteomics data of laser cuptured micro-dissection samples.
+##' The samples are 24 brain section from rat pups (day 17). The slices are 12
+##' µm thick squares of either 50, 100, or 200 µm width. 5 samples were dissected 
+##' from the corpus callum (`CC`), 4 samples were dissected from the 
+##' corpus collosum (`CP`), 13 samples were extracted from the cerebral 
+##' cortex (`CTX`), and 2 samples are labeled as (`Mix``).
+##' 
+##' @format A `QFeatures` object with 1 assay, `peptides`. It is a 
+##' `SingleCellExperiment` object containing the quantitative data for 13055 
+##' peptides in 24 samples.
+##' 
+##' Sample annotation is stored in `colData(zhu2018MCP)`.
+##' 
+##' See `Details` for information about data collection.
+##' 
+##' @details 
+##' 
+##' **Acquisition protocole**
+##' 
+##' The data was acquired using the following setup. More information can be 
+##' found in the source article (see `References`).
+##' 
+##' - **Cell isolation**: brain patches were collected using laser-captuer 
+##'   microdissection (PALM MicroBeam) on flash frozen rat (*Rattus norvergicus*)
+##'   brain tissues. Note that the samples were stained with H&E before 
+##'   dissection for histological analysiis. DMSO is used as sample collection 
+##'   solution
+##' - **Sample preparation** performed using the nanoPOTs device. DMSO 
+##'   evaporation + protein extraction (DMM + DTT) + alkylation (IAA) + Lys-C 
+##'   digestion + trypsin digestion.
+##' - **Separation**: nanoLC (Dionex UltiMate with an in-house packed 60cm x 
+##'   30μm LC columns; 50nL/min)
+##' - **Ionization**: ESI (2,000V)
+##' - **Mass spectrometry**: Thermo Fisher Orbitrap Fusion Lumos Tribrid (MS1
+##'   accumulation time = 246ms; MS1 resolution = 120,000; MS1 AGC = 3E6). The 
+##'   MS/MS settings  depend on the sample size, excepted for the AGC = 1E5. 
+##'   50µm (time = 502ms; resolution = 240,000), 100µm (time = 246ms; resolution 
+##'   = 120,000), 200µm (time = 118ms; resolution = 60,000). 
+##' - **Data analysis**: MaxQuant (v1.5.3.30) + Perseus (v1.5.6.0) + Origin Pro
+##'   2017
+##' 
+##' **Data collection**
+##' 
+##' The PSM data were collected from the PRIDE repository (accession ID: 
+##' PXD008844).  We downloaded the `MaxQuant_Peptides.txt` file containing the 
+##' combined identification and quantification results. The sample annotation 
+##' was infered from the names of columns holding the quantification data. The 
+##' data were then converted to a `QFeatures` object using the `scp::readSCP` 
+##' function. 
+##' 
+##' @source 
+##' The PSM data can be downloaded from the PRIDE repository PXD008844.
+##' 
+##' @references 
+##' Zhu, Ying, Maowei Dou, Paul D. Piehowski, Yiran Liang, Fangjun Wang, Rosalie 
+##' K. Chu, William B. Chrisler, et al. 2018. “Spatially Resolved Proteome 
+##' Mapping of Laser Capture Microdissected Tissue with Automated Sample 
+##' Transfer to Nanodroplets.” Molecular & Cellular Proteomics: MCP 17 (9): 
+##' 1864–74 ([link to article](http://dx.doi.org/10.1074/mcp.TIR118.000686)).
+##' 
+##' @docType data
+##' 
+##' @keywords datasets
+##' 
+##' 
+"zhu2018MCP"
 
