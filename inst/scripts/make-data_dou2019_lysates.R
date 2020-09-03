@@ -26,7 +26,7 @@ batches <- c("Hela_run_1", "Hela_run_2")
 lapply(batches, function(batch){
   ## Identification data (.mzid files) were downloaded at 
   ## ftp://massive.ucsd.edu/MSV000084110/result/Result_Files/
-  list.files("../extdata/dou2019_hela/", 
+  list.files("../extdata/dou2019_lysates/", 
              pattern = paste0(batch, ".*mzid$"), 
              full.names = TRUE) %>%
     ## Read in files using `mzR`
@@ -42,7 +42,7 @@ lapply(batches, function(batch){
     mzid
   ## Quantification data (.txt files) were downloaded at
   ## ftp://massive.ucsd.edu/MSV000084110/other/MASIC_ReporterIons/
-  list.files("../extdata/dou2019_hela", 
+  list.files("../extdata/dou2019_lysates", 
              pattern = paste0(batch, ".*txt$"), 
              full.names = TRUE) %>%
     read.table(header = TRUE, sep = "\t") %>%
@@ -72,7 +72,7 @@ colDat <- data.frame(Channel = rep(channels, length(batches)),
                                           length(batches)))
 
 ## Create the `QFeatures` object
-dou2019_hela <- readSCP(dat, 
+dou2019_lysates <- readSCP(dat, 
                         colDat, 
                         batchCol = "Batch", 
                         channelCol = "Channel")
@@ -83,14 +83,14 @@ dou2019_hela <- readSCP(dat,
 
 ## Load the data
 ## Data was downloaded from https://doi.org/10.1021/acs.analchem.9b03349.
-"../extdata/dou2019_hela/ac9b03349_si_003.xlsx" %>%
+"../extdata/dou2019_lysates/ac9b03349_si_003.xlsx" %>%
   loadWorkbook %>%
   read.xlsx(sheet = 6, colNames = FALSE) -> 
   dat
 
 ## Get the column names 
 ## The columns names should match the column names contained in the 
-## 'dou2019_hela' object
+## 'dou2019_lysates' object
 dat[1:3, ] %>%
   t %>% 
   as_tibble %>%
@@ -103,23 +103,23 @@ dat[1:3, ] %>%
   colname
 ## Extract and format the protein expression data 
 dat[-(1:3), ] %>%
-  set_colnames(colname) %>%
+  magrittr::set_colnames(colname) %>%
   mutate_at(vars(contains("Ion")), as.numeric) %>% 
   readSingleCellExperiment(ecol = grep("Ion", colname),
                            fnames = "Protein") ->
   dat
 
 ## Add assay and AssayLinks to the dataset
-addAssay(dou2019_hela, dat, name = "proteins") %>%
-  addAssayLink(from = names(dou2019_hela)[1:2], to = "proteins", 
+addAssay(dou2019_lysates, dat, name = "proteins") %>%
+  addAssayLink(from = names(dou2019_lysates)[1:2], to = "proteins", 
                varFrom = rep("DatabaseAccess", 2), 
                varTo = "Protein") ->
-  dou2019_hela
+  dou2019_lysates
 
 ## Save data as Rda file
 ## Note: saving is assumed to occur in "scpdata/inst/scripts"
-save(dou2019_hela, 
+save(dou2019_lysates, 
      compress = "xz", 
      compression_level = 9,
-     file = file.path("../EHdata/dou2019_hela.rda"))
+     file = file.path("../EHdata/dou2019_lysates.Rda"))
 
