@@ -39,11 +39,15 @@
 
 
 #' @import ExperimentHub
+#' @import scp
 #' 
 #' Get `scpdata` metadata
 #' 
 #' The function returns the metadata table of the datasets that are available in
 #' `scpdata`.
+#' 
+#' We refer to the [scp] package for more details about how to handle and 
+#' process the datasets. 
 #'
 #' @return A `DataFrame` table containing the dataset metadata.
 #' 
