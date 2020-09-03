@@ -28,7 +28,9 @@
 ##'   are stored in `colData(specht2019v2[[179]]`.
 ##' }
 ##' The `colData(specht2019v2)` contains cell type annotation and batch 
-##' annotation that are common to all assays.
+##' annotation that are common to all assays. The description of the `rowData`
+##' fields for the PSM data can be found in the 
+##' [`MaxQuant` documentation](http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable).
 ##' 
 ##' See `Details`` for information about data collection.
 ##'
@@ -104,11 +106,11 @@
 ####---- DOU ET AL. 2019 ----####
 
 
-##' Dou et al. 2019: HeLa digests 
+##' Dou et al. 2019: HeLa lysates 
 ##'  
 ##' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling.
 ##' It contains quantitative information at PSM and protein level.
-##' The samples are commercial Hela digest diluted to single cell amounts 
+##' The samples are commercial Hela lysates diluted to single cell amounts 
 ##' (0.2ng). The boosting wells contain the same digest but at higher dose (10 
 ##' ng).
 ##' 
@@ -116,16 +118,18 @@
 ##' `SingleCellExperiment` object: 
 ##' 
 ##' - `Hela_run_1`: PSM data with 10 columns corresponding to the TMT 10plex 
-##'   channels. Columns hold quantitative information for HeLa digestion samples
+##'   channels. Columns hold quantitative information for HeLa lysate samples
 ##'   (either 0, 0.2 or 10ng). This is the data for run 1. 
 ##' - `Hela_run_1`: PSM data with 10 columns corresponding to the TMT 10plex 
-##'   channels. Columns hold quantitative information for HeLa digestion samples
+##'   channels. Columns hold quantitative information for HeLa lysate samples
 ##'   (either 0, 0.2 or 10ng). This is the data for run 2.
 ##' - `proteins`: protein data containing quantitative data for 1641 proteins 
 ##'   and 20 samples (run 1 and run 2 combined). 
 ##' }
 ##' 
-##' Sample annotation is stored in `colData(dou2019_hela)`.
+##' Sample annotation is stored in `colData(dou2019_lysates)`. The description of the `rowData`
+##' fields for the PSM data can be found in the 
+##' [`MaxQuant` documentation](http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable).
 ##' 
 ##' See `Details` for information about data collection.
 ##' 
@@ -175,7 +179,8 @@
 ##' PSM were created. 
 ##' 
 ##' @source 
-##' The PSM data can be downloaded from the massIVE repository MSV000084110.
+##' The PSM data can be downloaded from the massIVE repository MSV000084110. FTP 
+##' link: ftp://massive.ucsd.edu/MSV000084110/
 ##' 
 ##' The protein data can be downloaded from the 
 ##' [ACS Publications](https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349)
@@ -196,7 +201,7 @@
 ##' @keywords datasets
 ##' 
 ##' 
-"dou2019_hela"
+"dou2019_lysates"
 
 
 ##' Dou et al. 2019: single cells from cultured murine cell lines
@@ -279,7 +284,8 @@
 ##' missing data and are hence assumed to be empty channels. 
 ##' 
 ##' @source 
-##' The PSM data can be downloaded from the massIVE repository MSV000084110.
+##' The PSM data can be downloaded from the massIVE repository MSV000084110. FTP 
+##' link: ftp://massive.ucsd.edu/MSV000084110/
 ##' 
 ##' The protein data can be downloaded from the 
 ##' [ACS Publications](https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349)
@@ -293,7 +299,7 @@
 ##' ([link to article](https://doi.org/10.1021/acs.analchem.9b03349)).
 ##' 
 ##' @seealso 
-##' [dou2019_hela], [dou2019_boosting]
+##' [dou2019_lysates], [dou2019_boosting]
 ##' 
 ##' @docType data
 ##' 
@@ -380,7 +386,8 @@
 ##' created. 
 ##' 
 ##' @source 
-##' The PSM data can be downloaded from the massIVE repository MSV000084110.
+##' The PSM data can be downloaded from the massIVE repository MSV000084110. FTP 
+##' link: ftp://massive.ucsd.edu/MSV000084110/
 ##' 
 ##' The protein data can be downloaded from the 
 ##' [ACS Publications](https://pubs.acs.org/doi/10.1021/acs.analchem.9b03349)
@@ -394,7 +401,7 @@
 ##' ([link to article](https://doi.org/10.1021/acs.analchem.9b03349)).
 ##' 
 ##' @seealso 
-##' [dou2019_hela], [dou2019_mouse]
+##' [dou2019_lysates], [dou2019_mouse]
 ##' 
 ##' @docType data
 ##' 
@@ -460,7 +467,8 @@
 ##' function. 
 ##' 
 ##' @source 
-##' The PSM data can be downloaded from the PRIDE repository PXD008844.
+##' The PSM data can be downloaded from the PRIDE repository PXD008844. FTP link
+##' ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD008844
 ##' 
 ##' @references 
 ##' Zhu, Ying, Maowei Dou, Paul D. Piehowski, Yiran Liang, Fangjun Wang, Rosalie 
@@ -475,4 +483,217 @@
 ##' 
 ##' 
 "zhu2018MCP"
+
+####---- ZHU ET AL. 2018 (NC) ----####
+
+
+##' Zhu et al. 2018 (Nat. Comm.): HeLa titration
+##'
+##' Near single-cell proteomics data of HeLa samples containing different number
+##' of cells. There are three groups of cell concentrations: low (10-14 cells), 
+##' medium (35-45 cells) and high (137-141 cells). The data also contains 
+##' measures for blanks, HeLa lysates (50 cell equivalent) and 2 cancer cell 
+##' line lysates (MCF7 and THP1, 50 cell equivalent).
+##' 
+##' @format A `QFeatures` object with 1 assay, `peptides`. It is a 
+##' `SingleCellExperiment` object containing the quantitative data for 37795 
+##' peptides in 21 samples.
+##' 
+##' Sample annotation is stored in `colData(zhu2018NC_hela)`.
+##' 
+##' See `Details` for information about data collection.
+##' 
+##' @details 
+##' 
+##' **Acquisition protocole**
+##' 
+##' The data was acquired using the following setup. More information can be 
+##' found in the source article (see `References`).
+##' 
+##' - **Cell isolation**: HeLa cell concentration was adjusted by serial 
+##'     dilution and cell counting was performed manually using an inverted 
+##'     microscope. 
+##' - **Sample preparation** performed using the nanoPOTs device. Protein 
+##'     extraction using RapiGest (+ DTT) + alkylation (IAA) + Lys-C digestion + 
+##'     cleave RapiGest (formic acid)
+##' - **Separation**: nanoACQUITY UPLC pump with an Self-Pack PicoFrit 70cm x 
+##'   30μm LC columns; 60nL/min)
+##' - **Ionization**: ESI (1,900V)
+##' - **Mass spectrometry**: Thermo Fisher Orbitrap Fusion Lumos Tribrid. MS1
+##'   settings: accumulation time = 246ms; resolution = 120,000; AGC = 1E6. 
+##'   MS/MS settings, depend on the sample size, excepted for the AGC = 1E5. 
+##'   Blank and ~10 cells (time = 502ms; resolution = 240,000), ~ 40 cells 
+##'   (time = 246ms; resolution = 120,000), ~140 cells (time = 118ms; 
+##'   resolution = 60,000). 
+##' - **Data analysis**: MaxQuant (v1.5.3.30) + Perseus + OriginLab 2017
+##' 
+##' **Data collection**
+##' 
+##' The PSM data were collected from the PRIDE repository (accession ID: 
+##' PXD006847).  We downloaded the `CulturedCells_peptides.txt` file containing 
+##' the combined identification and quantification results. The sample annotation 
+##' was infered from the names of columns holding the quantification data and 
+##' the informaion in the articel. The data were then converted to a `QFeatures` 
+##' object using the `scp::readSCP` function. 
+##' 
+##' @source 
+##' The PSM data can be downloaded from the PRIDE repository PXD006847. FTP
+##' link: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD00684
+##' 
+##' @references 
+##' 
+##' Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen, Ronald J. 
+##' Moore, Anil K. Shukla, et al. 2018. “Nanodroplet Processing Platform for 
+##' Deep and Quantitative Proteome Profiling of 10-100 Mammalian Cells.” Nature 
+##' Communications 9 (1): 882 
+##' ([link to article](http://dx.doi.org/10.1038/s41467-018-03367-w)).
+##' 
+##' @seealso The same experiment was conducted on HeLa lysates and the data is 
+##'     available in [zhu2018NC_lysates].
+##' 
+##' @docType data
+##' 
+##' @keywords datasets
+##' 
+##' 
+"zhu2018NC_hela"
+
+
+##' Zhu et al. 2018 (Nat. Comm.): HeLa lysates
+##'
+##' Near single-cell proteomics data of HeLa lysates at different 
+##' concentrations (10, 40 and 140 cell equivalent). Each concentration is 
+##' acquired in triplicate. 
+##' 
+##' @format A `QFeatures` object with 1 assay, `peptides`. It is a 
+##' `SingleCellExperiment` object containing the quantitative data for 14921 
+##' peptides in 9 samples.
+##' 
+##' Sample annotation is stored in `colData(zhu2018NC_lysates)`.
+##' 
+##' See `Details` for information about data collection.
+##' 
+##' @details 
+##' 
+##' **Acquisition protocole**
+##' 
+##' The data was acquired using the following setup. More information can be 
+##' found in the source article (see `References`).
+##' 
+##' - **Cell isolation**: HeLas were collected from cell cultures.
+##' - **Sample preparation** performed in bulk (5E5 cells/mL). Protein 
+##'     extraction using RapiGest (+ DTT) + dilution to target concentration +
+##'     alkylation (IAA) + Lys-C digestion + trypsin digestion + cleave RapiGest
+##'     (formic acid)
+##' - **Separation**: nanoACQUITY UPLC pump with an Self-Pack PicoFrit 70cm x 
+##'   30μm LC columns; 60nL/min)
+##' - **Ionization**: ESI (1,900V)
+##' - **Mass spectrometry**: Thermo Fisher Orbitrap Fusion Lumos Tribrid. MS1
+##'   settings: accumulation time = 246ms; resolution = 120,000; AGC = 1E6. 
+##'   MS/MS settings, depend on the sample size, excepted for the AGC = 1E5. 
+##'   Blank and ~10 cells (time = 502ms; resolution = 240,000), ~ 40 cells 
+##'   (time = 246ms; resolution = 120,000), ~140 cells (time = 118ms; 
+##'   resolution = 60,000). 
+##' - **Data analysis**: MaxQuant (v1.5.3.30) + Perseus + OriginLab 2017
+##' 
+##' **Data collection**
+##' 
+##' The PSM data were collected from the PRIDE repository (accession ID: 
+##' PXD006847).  We downloaded the `CulturedCells_peptides.txt` file containing 
+##' the combined identification and quantification results. The sample annotation 
+##' was infered from the names of columns holding the quantification data and 
+##' the informaion in the articel. The data were then converted to a `QFeatures` 
+##' object using the `scp::readSCP` function. 
+##' 
+##' @source 
+##' The PSM data can be downloaded from the PRIDE repository PXD006847. The 
+##' source link is:
+##' 
+##' ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD00684
+##' 
+##' @references 
+##' 
+##' Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen, Ronald J. 
+##' Moore, Anil K. Shukla, et al. 2018. “Nanodroplet Processing Platform for 
+##' Deep and Quantitative Proteome Profiling of 10-100 Mammalian Cells.” Nature 
+##' Communications 9 (1): 882 
+##' ([link to article](http://dx.doi.org/10.1038/s41467-018-03367-w)).
+##' 
+##' @seealso The same experiment was conducted directly on HeLa cells samples 
+##'     rather than lysates. The data is available in [zhu2018NC_hela].
+##'     
+##' @docType data
+##' 
+##' @keywords datasets
+##' 
+##' 
+"zhu2018NC_lysates"
+
+
+##' Zhu et al. 2018 (Nat. Comm.): human pancreatic islets
+##'
+##'
+##' Near single-cell proteomics data human pancreas samples. The samples are 
+##' were laser dissected from pancreatic tissue slices from pancreata obtained 
+##' from organ donors through the JDRFNetwork for Pancreatic Organ Donors with 
+##' Diabetes (nPOD) program. The sample come either from control patients (n=9)
+##' or from type 1 diabetes (T1D) patients (n=9). 
+##' 
+##' @format A `QFeatures` object with 1 assay, `peptides`. It is a 
+##' `SingleCellExperiment` object containing the quantitative data for 24321 
+##' peptides in 18 samples.
+##' 
+##' Sample annotation is stored in `colData(zhu2018NC_islets)`.
+##' 
+##' See `Details` for information about data collection.
+##' 
+##' @details 
+##' 
+##' **Acquisition protocole**
+##' 
+##' The data was acquired using the following setup. More information can be 
+##' found in the source article (see `References`).
+##' 
+##' - **Cell isolation**: The islets were extracted from the pacreatic tissues 
+##'     using laser-capture microdissection.
+##' - **Sample preparation** performed using the nanoPOTs device. Protein 
+##'     extraction using RapiGest (+ DTT) + alkylation (IAA) + Lys-C digestion + 
+##'     cleave RapiGest (formic acid)
+##' - **Separation**: nanoACQUITY UPLC pump with an Self-Pack PicoFrit 70cm x 
+##'   30μm LC columns; 60nL/min)
+##' - **Ionization**: ESI (1,900V)
+##' - **Mass spectrometry**: Thermo Fisher Orbitrap Fusion Lumos Tribrid. MS1
+##'   settings: accumulation time = 246ms; resolution = 120,000; AGC = 1E6. 
+##'   MS/MS settings: accumulation time = 118ms; resolution = 60,000; AGC = 1E5.
+##' - **Data analysis**: MaxQuant (v1.5.3.30) + Perseus + OriginLab 2017
+##' 
+##' **Data collection**
+##' 
+##' The PSM data were collected from the PRIDE repository (accession ID: 
+##' PXD006847).  We downloaded the `Islet_t1d_ct_peptides.txt` file containing 
+##' the combined identification and quantification results. The sample annotation 
+##' was infered from the names of columns holding the quantification data and 
+##' the informaion in the articel. The data were then converted to a `QFeatures` 
+##' object using the `scp::readSCP` function. 
+##' 
+##' @source 
+##' The PSM data can be downloaded from the PRIDE repository PXD006847. The 
+##' source link is:
+##' 
+##' ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD00684
+##' 
+##' @references 
+##' 
+##' Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen, Ronald J. 
+##' Moore, Anil K. Shukla, et al. 2018. “Nanodroplet Processing Platform for 
+##' Deep and Quantitative Proteome Profiling of 10-100 Mammalian Cells.” Nature 
+##' Communications 9 (1): 882 
+##' ([link to article](http://dx.doi.org/10.1038/s41467-018-03367-w)).
+##' 
+##' @docType data
+##' 
+##' @keywords datasets
+##' 
+"zhu2018NC_islets"
+
 
