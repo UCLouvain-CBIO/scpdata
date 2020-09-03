@@ -8,11 +8,9 @@
 
 ## NOTE: the script is version 2 because the data set was updated by the authors
 
-library(QFeatures)
 library(SingleCellExperiment)
 library(scp)
-library(magrittr)
-library(dplyr)
+library(tidyverse)
 setwd("./inst/scripts")
 
 ####---- Load PSM data ----####
@@ -46,7 +44,8 @@ inner_join(x = design %>%
              mutate_all(as.character), 
            y = batch %>% rename(Set = set) %>%
              mutate_all(as.character),
-           by = "Set") -> meta
+           by = "Set") -> 
+  meta
 
 ## Clean quantitative data
 ev %>%
@@ -67,10 +66,19 @@ ev %>%
   ## remove experimental sets concurrent with low mass spec performance
   filter(!grepl("FP9[56]|FP103", Set)) %>%
   ## Make sure all runs are described in design, if not, remove them
-  filter(Set %in% meta$Set) -> ev
+  filter(Set %in% meta$Set) %>%
+  ## Keep only useful information 
+  select(Set, peptide, protein, matches("RI[0-9]*$"), Sequence, Length, 
+         Modified.sequence, Charge, m.z, Mass, Resolution, Missed.cleavages, 
+         Gene.names, Protein.names, PIF, Score, PEP, dart_PEP, dart_qval) ->
+  ev
+  
 
 ## Create the Features object
-specht2019v2 <- readSCP(ev, meta, channelCol = "Channel", batchCol = "Set")
+specht2019v2 <- readSCP(ev, 
+                        meta, 
+                        channelCol = "Channel", 
+                        batchCol = "Set")
 
 ## Remove the TMT12-16 channels for the samples with TMT11 protocole
 ## Batches 1:63 where acquired with a TMT11 protocole
@@ -153,11 +161,9 @@ specht2019v2 <- addAssay(specht2019v2, prot, name = "proteins")
 specht2019v2 <- addAssayLink(specht2019v2, from = "peptides", to = "proteins", 
                              varFrom = "protein", varTo = "protein")
 
-####---- Save data ----####
-
-## Store data as an rda file
+## Save data
 save(specht2019v2, 
-     file = file.path("../EHdata/specht2019v2.rda"),
+     file = file.path("../EHdata/specht2019v2.Rda"),
      compress = "xz", 
      compression_level = 9)
 

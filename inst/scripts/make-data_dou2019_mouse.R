@@ -25,7 +25,8 @@ dataDir <- "../extdata/dou2019_mouse/"
 list.files(dataDir) %>%
   sub(pattern = "_[a-z]*[.][a-z]*$", 
       replacement = "", ignore.case = TRUE) %>%
-  unique ->
+  unique %>%
+  grep(pattern = "xlsx", invert = TRUE, value = TRUE)->
   batches
 ## For every experiment (= MS run)
 lapply(batches, function(batch){
@@ -120,7 +121,7 @@ dat[1:2, ] %>%
 
 ## Extract and format the protein expression data 
 dat[-(1:2), ] %>%
-  set_colnames(colname) %>%
+  magrittr::set_colnames(colname) %>%
   mutate_at(vars(contains("Ion")), as.numeric) %>% 
   readSingleCellExperiment(ecol = grep("Ion", colname),
                            fnames = "Protein") ->
@@ -138,4 +139,4 @@ addAssay(dou2019_mouse, dat, name = "proteins") %>%
 save(dou2019_mouse,
      compress = "xz", 
      compression_level = 9,
-     file = file.path("../EHdata/dou2019_mouse.rda"))
+     file = file.path("../EHdata/dou2019_mouse.Rda"))

@@ -25,7 +25,8 @@ dataDir <- "../extdata/dou2019_boosting/"
 list.files(dataDir) %>%
   sub(pattern = "_[a-z]*[.][a-z]*$", 
       replacement = "", ignore.case = TRUE) %>%
-  unique ->
+  unique %>%
+  grep(pattern = "xlsx", invert = TRUE, value = TRUE)->
   batches
 ## For every experiment (= MS run)
 lapply(batches, function(batch){
@@ -123,7 +124,7 @@ colnames(dat) %>%
 
 ## Extract and format the protein expression data 
 dat %>%
-  set_colnames(colname) %>%
+  magrittr::set_colnames(colname) %>%
   readSingleCellExperiment(ecol = grep("Ion", colname),
                            fnames = "Protein") ->
   dat
@@ -135,11 +136,9 @@ addAssay(dou2019_boosting, dat, name = "proteins") %>%
                varTo = "Protein") ->
   dou2019_boosting
 
-dou2019_boosting["1433E_MOUSE", , ]
-
 ## Save data as Rda file
 ## Note: saving is assumed to occur in "scpdata/inst/scripts"
 save(dou2019_boosting,
      compress = "xz", 
      compression_level = 9,
-     file = file.path("../EHdata/dou2019_boosting.rda"))
+     file = file.path("../EHdata/dou2019_boosting.Rda"))
