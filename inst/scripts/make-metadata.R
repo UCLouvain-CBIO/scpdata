@@ -23,6 +23,8 @@ meta <- list(
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
     RDataPath = "scpdata/specht2019v2.Rda",
+    PublicationDate = as.Date("2019/12/5"),
+    NumberAssays = 179,
     Notes=NA_character_
   ),
   data.frame(
@@ -47,6 +49,8 @@ meta <- list(
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
     RDataPath = "scpdata/dou2019_lysates.Rda",
+    PublicationDate = as.Date("2019/10/15"),
+    NumberAssays = 3,
     Notes=NA_character_
   ),
   data.frame(
@@ -80,6 +84,8 @@ meta <- list(
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
     RDataPath = "scpdata/dou2019_mouse.Rda",
+    PublicationDate = as.Date("2019/10/15"),
+    NumberAssays = 13,
     Notes=NA_character_
   ),
   data.frame(
@@ -109,6 +115,8 @@ meta <- list(
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
     RDataPath = "scpdata/dou2019_boosting.Rda",
+    PublicationDate = as.Date("2019/10/15"),
+    NumberAssays = 7,
     Notes=NA_character_
   ),
   data.frame(
@@ -136,6 +144,8 @@ meta <- list(
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
     RDataPath = "scpdata/zhu2018MCP.Rda",
+    PublicationDate = as.Date("2018/09/01"),
+    NumberAssays = 1,
     Notes=NA_character_
   ),
   data.frame(
@@ -161,6 +171,8 @@ meta <- list(
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
     RDataPath = "scpdata/zhu2018NC_hela.Rda",
+    PublicationDate = as.Date("2018/02/28"),
+    NumberAssays = 1,
     Notes=NA_character_
   ),
   data.frame(
@@ -183,6 +195,8 @@ meta <- list(
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
     RDataPath = "scpdata/zhu2018NC_lysates.Rda",
+    PublicationDate = as.Date("2018/02/28"),
+    NumberAssays = 1,
     Notes=NA_character_
   ),
   data.frame(
@@ -210,6 +224,8 @@ meta <- list(
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
     RDataPath = "scpdata/zhu2018NC_islets.Rda",
+    PublicationDate = as.Date("2018/02/28"),
+    NumberAssays = 1,
     Notes=NA_character_
   )
 )
