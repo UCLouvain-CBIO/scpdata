@@ -1,5 +1,5 @@
 
-####---- SCP PACKAGE MAN PAGE ----####
+####---- SCPDATA PACKAGE MAN PAGE ----####
 
 
 ##' Single Cell Proteomics Data Package
@@ -32,4 +32,34 @@
 ##' 
 ##' 
 ##' @aliases scpdata-package scpdata
-"scp-package"
+"scpdata-package"
+
+
+####---- SCPDATA UTILITIES ----####
+
+
+#' @import ExperimentHub
+#' 
+#' Get `scpdata` metadata
+#' 
+#' The function returns the metadata table of the datasets that are available in
+#' `scpdata`.
+#'
+#' @return A `DataFrame` table containing the dataset metadata.
+#' 
+#' @references 
+#' See in the respective data sets' manual pages for references to publications.
+#' 
+#' @export
+#'
+#' @examples
+#' meta <- scpdata()
+#' ## Number of available datasets
+#' nrow(meta)
+#' ## List datasets 
+#' meta$Title
+#' 
+#' 
+scpdata <- function() {
+  mcols(query(ExperimentHub, "scpdata"))
+}
