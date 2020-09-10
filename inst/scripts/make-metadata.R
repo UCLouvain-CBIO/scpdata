@@ -227,6 +227,37 @@ meta <- list(
     PublicationDate = as.Date("2018/02/28"),
     NumberAssays = 1,
     Notes=NA_character_
+  ),
+  data.frame(
+    Title = "cong2020AC",
+    Description = past0("Cong et al. 2020 (Ana. Chem.): HeLa single ", 
+                        "cells\n",
+                        "Single-cell proteomics using the nanoPOTS ", 
+                        "sample processing device in combination with ",
+                        "ultranarrow-bore (20μm i.d.) packed-column LC ",
+                        "separations and the Orbitrap Eclipse Tribrid MS. ",
+                        "The dataset contains label-free quantitative ",
+                        "information at PSM, peptide and protein level. ",
+                        "The samples are single Hela cells. Bulk samples ",
+                        "(100 and 20 cells) were also included in the ",
+                        "experiment to increase the idendtification rate ",
+                        "thanks to between-run matching (cf MaxQuant)."),
+    BiocVersion = "3.11",
+    Genome = NA_character_,
+    SourceType = "TXT",
+    SourceUrl = "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/02/PXD016921",
+    SourceVersion = NA_character_,
+    Species = "Homo sapiens",
+    TaxonomyId = 9606,
+    Coordinate_1_based = TRUE,
+    DataProvider = "Pacific Northwest National Laboratory",
+    Maintainer = "Christophe Vanderaa <christophe.vanderaa@uclouvain.be>",
+    RDataClass = "QFeatures",
+    DispatchClass = "Rda",
+    RDataPath = "scpdata/cong2020AC.Rda",
+    PublicationDate = as.Date("2020/01/02"),
+    NumberAssays = 9,
+    Notes=NA_character_
   )
 )
 meta <- do.call(rbind, meta)
