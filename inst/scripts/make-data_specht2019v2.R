@@ -74,7 +74,7 @@ ev %>%
   ev
   
 
-## Create the Features object
+## Create the QFeatures object
 specht2019v2 <- readSCP(ev, 
                         meta, 
                         channelCol = "Channel", 
