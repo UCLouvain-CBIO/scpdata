@@ -32,7 +32,9 @@ list.files(path = dataDir,
   ## The annotation is in the 3rd sheet
   read.xlsx(sheet = 3, colNames = TRUE, startRow = 7) %>%
   ## Rename column to match with PSM data
-  rename(Raw.file = RAW.file.name) %>%
+  rename(Raw.file = RAW.file.name,
+         ## Avoid issue with special characters
+         FM1.43.signal = `FM1-43.signal`) %>%
   ## Add channel that will point to the quantification column
   mutate(Channel = "LFQ") -> 
   meta
