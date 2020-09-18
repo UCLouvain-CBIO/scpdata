@@ -23,7 +23,7 @@ setwd("inst/scripts/")
 dataDir <- "../extdata/zhu2019EL/"
 
 
-####---- PSM data ----####
+####---- Sample annotation ----####
 
 
 list.files(path = dataDir,
