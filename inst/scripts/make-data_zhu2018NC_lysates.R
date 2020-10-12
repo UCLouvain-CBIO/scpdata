@@ -1,5 +1,5 @@
 
-####---- Zhu et al. 2018, Nature Communications - HeLa dilutions ----####
+####---- Zhu et al. 2018, Nature Communications - HeLa lysates ----####
 
 ## Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen, Ronald J. 
 ## Moore, Anil K. Shukla, et al. 2018. “Nanodroplet Processing Platform for Deep 
@@ -10,17 +10,17 @@ library(SingleCellExperiment)
 library(scp)
 library(tidyverse)
 setwd("./inst/scripts")
-dataDir <- "../extdata/zhu2018NC_hela/"
+dataDir <- "../extdata/zhu2018NC_lysates/"
 
 ## The data was downloaded from ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847
-## to scpdata/inst/extdata/zhu2018NC_hela
+## to scpdata/inst/extdata/zhu2018NC_lysates
 
 
 ####---- Peptide data ----####
 
 
 ## Load the quantification data
-paste0(dataDir, "CulturedCells_peptides.txt") %>%
+paste0(dataDir, "Vail_Prep_Vail_peptides.txt") %>%
   read.table(sep = "\t", header = TRUE) %>%
   mutate(Batch = "peptides") ->
   dat
@@ -28,30 +28,25 @@ paste0(dataDir, "CulturedCells_peptides.txt") %>%
 ## Create the sample metadata
 samples <- grep("Intensity[.]", colnames(dat), value = TRUE)
 data.frame(Batch = "peptides",
-           Sample = samples) %>%
-  mutate(SampleType = sub("Intensity[.]", "", Sample),
-         SampleType = ifelse(grepl("blank", SampleType), "Blank", SampleType),
-         SampleType = ifelse(grepl("Lysate", SampleType), "Lysate", SampleType),
-         SampleType = ifelse(grepl("cel", SampleType), "Hela", SampleType),
-         SampleType = ifelse(grepl("MCF7", SampleType), "MCF7", SampleType),
-         SampleType = ifelse(grepl("THP1", SampleType), "THP1", SampleType),
-         CellNumber = ifelse(SampleType == "Hela", 
-                             sub("^.*Hela(.*)cel.*$", "\\1", Sample), 
-                             NA),
-         CellNumber = ifelse(SampleType == "Lysate", 50, CellNumber),
-         CellNumber = as.numeric(CellNumber)) ->
+           Column = samples) %>%
+  mutate(Sample = sub("Intensity[.]", "", Column),
+         CellEquivalent = sub("^([0-9]*)HeLa.*$", "\\1", Sample),
+         Replicate = sub("^.*([0-9])$", "\\1", Sample),
+         Digestion = sub("^.*HeLa_(.*)_08.*$", "\\1", Sample),
+         Date = sub("^.*p_(.*)_.$", "\\1", Sample),
+         Date = as.Date(Date, "%d%m%y")) ->
   meta
 
 ## Create the QFeatures object
-zhu2018NC_hela <- readSCP(dat, 
-                          meta, 
-                          channelCol = "Sample", 
-                          batchCol = "Batch")
+zhu2018NC_lysates <- readSCP(dat, 
+                             meta, 
+                             channelCol = "Column", 
+                             batchCol = "Batch")
 
 # Save data as Rda file
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
-save(zhu2018NC_hela, 
-     file = file.path("../EHdata/zhu2018NC_hela.Rda"),
+save(zhu2018NC_lysates, 
+     file = file.path("../EHdata/scpdata/zhu2018NC_lysates.Rda"),
      compress = "xz", 
      compression_level = 9)
 

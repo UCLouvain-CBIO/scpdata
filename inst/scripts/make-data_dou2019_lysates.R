@@ -121,5 +121,5 @@ addAssay(dou2019_lysates, dat, name = "proteins") %>%
 save(dou2019_lysates, 
      compress = "xz", 
      compression_level = 9,
-     file = file.path("../EHdata/dou2019_lysates.Rda"))
+     file = file.path("../EHdata/scpdata/dou2019_lysates.Rda"))
 

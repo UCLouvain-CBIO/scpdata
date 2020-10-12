@@ -46,6 +46,6 @@ zhu2018MCP <- readSCP(quant,
 ### Save data as Rda file
 ## Note: saving is assumed to occur in "scpdata/inst/scripts"
 save(zhu2018MCP, 
-     file = file.path("../EHdata/zhu2018MCP.Rda"),
+     file = file.path("../EHdata/scpdata/zhu2018MCP.Rda"),
      compress = "xz", 
      compression_level = 9)

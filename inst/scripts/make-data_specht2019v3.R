@@ -164,7 +164,7 @@ specht2019v3 <- addAssayLink(specht2019v3, from = "peptides", to = "proteins",
 
 ## Save data
 save(specht2019v3, 
-     file = file.path("../EHdata/specht2019v3.Rda"),
+     file = file.path("../EHdata/scpdata/specht2019v3.Rda"),
      compress = "xz", 
      compression_level = 9)
 

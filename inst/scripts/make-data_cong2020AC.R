@@ -125,6 +125,6 @@ cong2020AC <- addAssayLink(cong2020AC,
 # Save data as Rda file
 # Note: saving is assumed to occur in "scpdata/inst/scripts"
 save(cong2020AC, 
-     file = file.path("../EHdata/cong2020AC.Rda"),
+     file = file.path("../EHdata/scpdata/cong2020AC.Rda"),
      compress = "xz", 
      compression_level = 9)

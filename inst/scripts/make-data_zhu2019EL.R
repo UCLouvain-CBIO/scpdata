@@ -36,7 +36,9 @@ list.files(path = dataDir,
          ## Avoid issue with special characters
          FM1.43.signal = `FM1-43.signal`) %>%
   ## Add channel that will point to the quantification column
-  mutate(Channel = "LFQ") -> 
+  mutate(Channel = "LFQ",
+         ## Add the experimental replicate
+         Experiment = sub("^(.).*$", "\\1", Sample.name)) -> 
   meta
   
 
@@ -77,9 +79,9 @@ list.files(path = dataDir,
   pep
 
 ## Rename columns so they math with the PSM data
-colnames(pep) %>%
-  sub(pattern = "^Intensity.(.*)$", replacement = "\\1_LFQ") ->
-  colnames(pep)
+colnames(pep) <- sub(pattern = "^Intensity.(.*)$", 
+                     replacement = "\\1_LFQ",
+                       colnames(pep))
 
 ## Create the SingleCellExperiment object
 pep <- readSingleCellExperiment(pep, 
@@ -137,7 +139,7 @@ zhu2019EL <- addAssayLink(zhu2019EL,
 # Save data as Rda file
 # Note: saving is assumed to occur in "scpdata/inst/scripts"
 save(zhu2019EL, 
-     file = file.path("../EHdata/zhu2019EL.Rda"),
+     file = file.path("../EHdata/scpdata/zhu2019EL.Rda"),
      compress = "xz", 
      compression_level = 9)
 
