@@ -3,7 +3,7 @@
 ####---- SPECHT ET AL. 2019 ----####
 
 
-##' Specht et al. 2019: macrophages vs monocytes (version 2)
+##' Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs monocytes (version 2)
 ##'
 ##' Single cell proteomics data acquired by the Slavov Lab. This is the version 
 ##' 2 of the data released in December 2019. It contains quantitative 
@@ -103,7 +103,7 @@
 "specht2019v2"
 
 
-##' Specht et al. 2019: macrophages vs monocytes (version 3)
+##' Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs monocytes (version 3)
 ##'
 ##' Single cell proteomics data acquired by the Slavov Lab. This is the version 
 ##' 3 of the data released in August 2020. It contains quantitative 
@@ -113,11 +113,11 @@
 ##' `SingleCellExperiment` object: 
 ##' 
 ##' - Assay 1-63: PSM data for SCoPE2 sets acquired with a TMT-11 
-##'   multiplexing protocole, hence those assays contain 11 columns. Columns 
+##'   multiplexing protocol, hence those assays contain 11 columns. Columns 
 ##'   hold quantitative information from single-cell channels, carrier channels, 
 ##'   reference channels, empty (blank) channels and unused channels.
 ##' - Assay 64-177: PSM data for SCoPE2 sets acquired with a TMT-16
-##'   multiplexing protocole, hence those assays contain 16 columns. Columns 
+##'   multiplexing protocol, hence those assays contain 16 columns. Columns 
 ##'   hold quantitative information from single-cell channels, carrier channels, 
 ##'   reference channels, empty (blank) channels and unused channels.
 ##' - `peptides`: peptide data containing quantitative data for 9208 
@@ -210,7 +210,7 @@
 ####---- DOU ET AL. 2019 ----####
 
 
-##' Dou et al. 2019: HeLa lysates 
+##' Dou et al. 2019 (Anal. Chem.): HeLa lysates 
 ##'  
 ##' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling.
 ##' It contains quantitative information at PSM and protein level.
@@ -308,7 +308,7 @@
 "dou2019_lysates"
 
 
-##' Dou et al. 2019: single cells from cultured murine cell lines
+##' Dou et al. 2019 (Anal. Chem.): murine cell lines
 ##'  
 ##' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
 ##' It contains quantitative information at PSM and protein level.
@@ -412,7 +412,7 @@
 "dou2019_mouse"
 
 
-##' Dou et al. 2019: testing boosting ratios
+##' Dou et al. 2019 (Anal. Chem.): testing boosting ratios
 ##'
 ##' Single-cell proteomics using nanoPOTS combined with TMT isobaric labeling. 
 ##' It contains quantitative information at PSM and protein level.
@@ -895,7 +895,7 @@
 ##' Zhu et al. 2019 (eLife): chicken utricle cells
 ##'
 ##'
-##' Near single-cell proteomics data from chicken utricle acquired to 
+##' Single-cell proteomics data from chicken utricle acquired to 
 ##' study the hair-cell development. The cells are isolated from 
 ##' peeled utrical epithelium and separated into hair cells (FM1-43 
 ##' high) and supporting cells (FM1-43 low). The sample contain either 
