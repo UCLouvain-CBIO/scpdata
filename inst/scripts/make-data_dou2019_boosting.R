@@ -141,4 +141,4 @@ addAssay(dou2019_boosting, dat, name = "proteins") %>%
 save(dou2019_boosting,
      compress = "xz", 
      compression_level = 9,
-     file = file.path("../EHdata/scpdata/dou2019_boosting.Rda"))
+     file = file.path("../extdata/scpdata/dou2019_boosting.Rda"))

@@ -46,7 +46,7 @@ zhu2018NC_lysates <- readSCP(dat,
 # Save data as Rda file
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"
 save(zhu2018NC_lysates, 
-     file = file.path("../EHdata/scpdata/zhu2018NC_lysates.Rda"),
+     file = file.path("../extdata/scpdata/zhu2018NC_lysates.Rda"),
      compress = "xz", 
      compression_level = 9)
 

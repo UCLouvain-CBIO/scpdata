@@ -139,7 +139,7 @@ zhu2019EL <- addAssayLink(zhu2019EL,
 # Save data as Rda file
 # Note: saving is assumed to occur in "scpdata/inst/scripts"
 save(zhu2019EL, 
-     file = file.path("../EHdata/scpdata/zhu2019EL.Rda"),
+     file = file.path("../extdata/scpdata/zhu2019EL.Rda"),
      compress = "xz", 
      compression_level = 9)
 
