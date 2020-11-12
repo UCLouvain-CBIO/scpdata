@@ -3,19 +3,18 @@
 
 meta <- list(
   data.frame(
-    Title = paste0("Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs ", 
-                   "monocytes (version 2)"),
+    Title = "specht2019v2",
     Description = paste0("SCP expression data for monocytes (U-937) and macrophages ",
                          "at PSM, peptide and protein level"),
     BiocVersion = "3.13",
     Genome = NA_character_,
     SourceType = "CSV",
-    SourceUrl = "https://scope2.slavovlab.net/docs/data",
+    SourceUrl = "https://drive.google.com/drive/folders/1Zhjik_JFjCQNIVjg63-fooJ4K0HZxWjV",
     SourceVersion = NA_character_,
     Species = "Homo sapiens",
     TaxonomyId = 9606,
     Coordinate_1_based = TRUE,
-    DataProvider = "SlavovLab website",
+    DataProvider = "GoogleDrive",
     Maintainer = "Christophe Vanderaa <christophe.vanderaa@uclouvain.be>",
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
@@ -25,19 +24,18 @@ meta <- list(
     Notes=NA_character_
   ),
   data.frame(
-    Title = paste0("Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs ", 
-                   "monocytes (version 3)"),
+    Title = "specht2019v3",
     Description = paste0("SCP expression data for more monocytes (U-937) and ",
                          "macrophages at PSM, peptide and protein level"),
     BiocVersion = "3.13",
     Genome = NA_character_,
     SourceType = "CSV",
-    SourceUrl = "https://scope2.slavovlab.net/docs/data",
+    SourceUrl = "https://drive.google.com/drive/folders/1Zhjik_JFjCQNIVjg63-fooJ4K0HZxWjV",
     SourceVersion = NA_character_,
     Species = "Homo sapiens",
     TaxonomyId = 9606,
     Coordinate_1_based = TRUE,
-    DataProvider = "SlavovLab website",
+    DataProvider = "GoogleDrive",
     Maintainer = "Christophe Vanderaa <christophe.vanderaa@uclouvain.be>",
     RDataClass = "QFeatures",
     DispatchClass = "Rda",
@@ -47,7 +45,7 @@ meta <- list(
     Notes=NA_character_
   ),
   data.frame(
-    Title = "Dou et al. 2019 (Anal. Chem.): HeLa lysates",
+    Title = "dou2019_lysates",
     Description = paste0("SCP expression data for Hela digests (0.2 or 10 ng) at ",
                          "PSM and protein level"),
     BiocVersion = "3.13",
@@ -68,7 +66,7 @@ meta <- list(
     Notes=NA_character_
   ),
   data.frame(
-    Title = paste0("Dou et al. 2019 (Anal. Chem.): murine cell lines"),
+    Title = paste0("dou2019_mouse"),
     Description = paste0("SCP expression data for C10, SVEC or Raw cells at ",
                          "PSM and protein level"),
     BiocVersion = "3.13",
@@ -89,7 +87,7 @@ meta <- list(
     Notes=NA_character_
   ),
   data.frame(
-    Title = "Dou et al. 2019 (Anal. Chem.): testing boosting ratios",
+    Title = "dou2019_boosting",
     Description = paste0("SCP expression data for C10, SVEC or Raw cells ",
                          "and 3 boosters (0, 5 or 50 ng) at PSM and protein level"),
     BiocVersion = "3.13",
@@ -110,7 +108,7 @@ meta <- list(
     Notes=NA_character_
   ),
   data.frame(
-    Title = "Zhu et al. 2018 (Mol. Cel. Prot.): rat brain laser dissections",
+    Title = "zhu2018MCP",
     Description = paste0("Near SCP expression data for micro-dissected rat ",
                          "brain samples (50, 100, or 200 um width) at PSM level"),
     BiocVersion = "3.13",
@@ -131,13 +129,13 @@ meta <- list(
     Notes=NA_character_
   ),
   data.frame(
-    Title = "Zhu et al. 2018 (Nat. Comm.): HeLa titration",
+    Title = "zhu2018NC_hela",
     Description = paste0("Near SCP expression data for HeLa samples (aproximately ",
                          "12, 40, or 140 cells) at PSM level"),
     BiocVersion = "3.13",
     Genome = NA_character_,
     SourceType = "TXT",
-    SourceUrl = "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD00684",
+    SourceUrl = "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847",
     SourceVersion = NA_character_,
     Species = "Homo sapiens",
     TaxonomyId = 9606,
@@ -152,13 +150,13 @@ meta <- list(
     Notes=NA_character_
   ),
   data.frame(
-    Title = "Zhu et al. 2018 (Nat. Comm.): HeLa lysates",
+    Title = "zhu2018NC_lysates",
     Description = paste0("Near SCP expression data for HeLa lysates (10, 40 and ",
                          "140 cell equivalent) at PSM level"),
     BiocVersion = "3.13",
     Genome = NA_character_,
     SourceType = "TXT",
-    SourceUrl = "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD00684",
+    SourceUrl = "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847",
     SourceVersion = NA_character_,
     Species = "Homo sapiens",
     TaxonomyId = 9606,
@@ -173,14 +171,14 @@ meta <- list(
     Notes=NA_character_
   ),
   data.frame(
-    Title = "Zhu et al. 2018 (Nat. Comm.): human pancreatic islets",
+    Title = "zhu2018NC_islets",
     Description = paste0("Near SCP expression data for micro-dissected human ", 
                          "pancreas samples (control patients or type 1 ",
                          "diabetes) at PSM level"),
     BiocVersion = "3.13",
     Genome = NA_character_,
     SourceType = "TXT",
-    SourceUrl = "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD00684",
+    SourceUrl = "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847",
     SourceVersion = NA_character_,
     Species = "Homo sapiens",
     TaxonomyId = 9606,
@@ -195,7 +193,7 @@ meta <- list(
     Notes=NA_character_
   ),
   data.frame(
-    Title = "Cong et al. 2020 (Ana. Chem.): HeLa single cells",
+    Title = "cong2020AC",
     Description = paste0("SCP expression data for Hela cells at PSM, peptide ",
                          "and protein level"),
     BiocVersion = "3.13",
@@ -216,7 +214,7 @@ meta <- list(
     Notes=NA_character_
   ),
   data.frame(
-    Title = "Zhu et al. 2019 (eLife): chicken utricle cells",
+    Title = "zhu2019EL",
     Description = paste0("SCP expression data for chicken utricle samples (1, ", 
                          "3, 5 or 20 cells) at PSM, peptide and protein level"),
     BiocVersion = "3.13",
