@@ -2,68 +2,51 @@
 ####---- SCPDATA PACKAGE MAN PAGE ----####
 
 
-##' Single Cell Proteomics Data Package
+##' Single-Cell Proteomics Data Package
 ##' 
-##' Data package distributing mass spectrometry-based single-cell proteomics 
-##' datasets from published work. The datasets are curated and formated to 
-##' a standardized data framework. This frameworks stores the different assays
-##' (different batches for PSM data, peptide data and protein data) in 
-##' `SingleCellExperiment` objects. The assays are stored in a single 
-##' `QFeatures` object. 
+##' @description
 ##' 
-##' @seealso More information about the data framework can be found in the 
-##' [scp] package
+##' The `scpdata` package distributes mass spectrometry-based single-cell proteomics 
+##' datasets. The datasets were collected from published work and formatted to 
+##' a standardized data framework. The `scp` frameworks stores the expression 
+##' data for different MS levels (identified spectrum, peptide, or protein) in 
+##' separate assays. Each assay is an object of class `SingleCellExperiment` 
+##' that allows easy integration with state-of-the-art single-cell analysis 
+##' tools. All assays are contained in a single object of class `QFeatures`.
+##' An overview of the data structure is shown below:
 ##' 
+##' \figure{SCP_framework.pdf}
+##' 
+##' The `scpdata()` function returns a summary table with all currently 
+##' available datasets in the package. More information about the data content 
+##' and the data collection can be found in the corresponding manual pages. 
+##' 
+##' @return A `DataFrame` table containing a summary of the available datasets.
+##' 
+##' @seealso More information about the data manipulation can be found in the 
+##' [scp] package.
 ##' 
 ##' @examples 
-##' library(ExperimentHub)
+##' ## List available datasets and their metadata 
+##' scpdata()
 ##' 
 ##' ## Load data using the ExperimentHub interface
 ##' hub <- ExperimentHub()
-##' ## x <- query(hub, c("scpdata", "specht2019v2"))
 ##' 
 ##' \dontrun{
-##' ## download resource
-##' dataset <- x[[1]]
+##' ## download the data set of interest using EH indexing
+##' hub[["EH3899"]]
+##' ## download the same data set using scpdata function
+##' `Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs monocytes (version 2)`()
 ##' }
 ##'
-##' ## Load data by name
-##' x <- specht2019v2(metadata = FALSE)
-##' 
-##' 
+##' @author Christophe Vanderaa
+##'
 ##' @aliases scpdata-package scpdata
-"scpdata-package"
-
-
-####---- SCPDATA UTILITIES ----####
-
-
-#' @import ExperimentHub
-#' @import scp
-#' 
-#' Get `scpdata` metadata
-#' 
-#' The function returns the metadata table of the datasets that are available in
-#' `scpdata`.
-#' 
-#' We refer to the [scp] package for more details about how to handle and 
-#' process the datasets. 
-#'
-#' @return A `DataFrame` table containing the dataset metadata.
-#' 
-#' @references 
-#' See in the respective data sets' manual pages for references to publications.
-#' 
-#' @export
-#'
-#' @examples
-#' meta <- scpdata()
-#' ## Number of available datasets
-#' nrow(meta)
-#' ## List datasets 
-#' meta$Title
-#' 
-#' 
+##' 
+##' @import ExperimentHub
+##' @import scp
+##' 
 scpdata <- function() {
-  mcols(query(ExperimentHub, "scpdata"))
+  mcols(query(ExperimentHub(), "scpdata"))
 }
