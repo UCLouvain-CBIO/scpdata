@@ -21,7 +21,8 @@ Imports:
 Suggests: 
     magrittr,
     dplyr,
-    scp
+    scp,
+    knitr
 biocViews: 
     ExperimentData, 
     ExpressionData, 

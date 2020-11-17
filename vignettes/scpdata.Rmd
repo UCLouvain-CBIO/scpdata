@@ -1,0 +1,119 @@
+---
+title: "Single Cell Proteomics data sets."
+author:
+  - name: Laurent Gatto
+  - name: Christophe Vanderaa
+output:
+  BiocStyle::html_document:
+    self_contained: yes
+    toc: true
+    toc_float: true
+    toc_depth: 2
+    code_folding: show
+date: "`r BiocStyle::doc_date()`"
+package: "`r BiocStyle::pkg_ver('scp')`"
+vignette: >
+  %\VignetteIndexEntry{Single Cell Proteomics data processing and analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>",
+    crop = NULL ## Related to https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016656.html
+)
+```
+
+# The `scpdata` package
+
+`scpdata` disseminates mass spectrometry (MS)-based single-cell proteomics
+(SCP) datasets formatted using the `scp` data structure. This structure relies 
+on the [`QFeatures`](https://rformassspectrometry.github.io/QFeatures/) package 
+to manage and process
+[`SingleCellExperiment`](http://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html)
+objects.
+
+```{r scp_framework, results='markup', fig.cap="The `scp` data framework relies on `SingleCellExperiment` and `QFeatures` objects.", echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics("figures/SCP_framework.png", error = FALSE)
+```
+
+This vignette describes how to access the SCP data sets. To start, we load the 
+`scpdata` package.
+
+```{r load_scp, message = FALSE}
+library("scpdata")
+```
+
+# Load data from `ExperimentHub`
+
+The data is stored using the 
+[`ExperimentHub`](https://bioconductor.org/packages/release/bioc/html/ExperimentHub.html) 
+infrastructure. We first create a connection with `ExperimentHub`. 
+
+```{r EH, message = FALSE}
+eh <- ExperimentHub()
+```
+
+You can list all data sets available in `scpdata` using the query function.
+
+```{r EH_query, message = FALSE}
+query(eh, "scpdata")
+```
+
+Another way to get information about the available datasets is to call
+`scpdata()`. This will retrieve all the available metadata. For example, we can 
+retrieve the data set titles along with the description to make an informed 
+choice about which data set to choose.
+
+```{r scpdata_fun}
+info <- scpdata()
+knitr::kable(info[, c("title", "description")])
+```
+To get one of the data sets (*e.g.* `dou2019_lysates`) you can either retrieve 
+it using the `ExperimentHub` query function 
+
+```{r download_EH}
+scp <- eh[["EH3901"]]
+scp
+```
+
+or you can the use the built-in functions from `scpdata` 
+
+```{r download_scpdata}
+scp <- dou2019_lysates()
+scp
+```
+
+# Data sets information
+
+Each data set has been extensively documented in a separate man page (*e.g.* 
+`?dou2019_lysates`). You can find information about the data content, the 
+acquisition protocol, the data collection procedure as well as the data 
+sources and references. 
+
+# Data manipulation 
+
+For more information about manipulating the data sets, check the 
+[`scp`](http://bioconductor.org/packages/release/bioc/html/scp.html) package. 
+The `scp` 
+[vignette](http://bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html) 
+will guide you through a typical SCP data processing workflow. Once your data is
+loaded from `scpdata` you can skip section 2 *Read in SCP data* of the `scp` 
+vignette.
+
+# Session information {-}
+
+```{r setup2, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "",
+    crop = NULL
+)
+```
+
+
+```{r sessioninfo, echo=FALSE}
+sessionInfo()
+```
