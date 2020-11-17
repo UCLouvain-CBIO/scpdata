@@ -46,6 +46,7 @@
 ##' 
 ##' @import ExperimentHub
 ##' @import scp
+##' @export
 ##' 
 scpdata <- function() {
   mcols(query(ExperimentHub(), "scpdata"))
