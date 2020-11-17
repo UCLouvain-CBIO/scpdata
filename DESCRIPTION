@@ -1,14 +1,17 @@
 Package: scpdata
 Title: What the Package Does (Title Case)
-Version: 0.1.1
-Author@R: c(person(given = "Christophe", family = "Vanderaa",
-                   email = "christophe.vanderaa@uclouvain.be",
-                   role = c("aut", "cre")),
-            person(given = "Laurent", family = "Gatto",
-                   email = "",
-                   role = c("aut")))
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Version: 0.99.1
+Authors@R:
+    c(person("Christophe", "Vanderaa",
+	      email = "christophe.vanderaa@uclouvain.be",
+	      comment = c(ORCID = "0000-0001-7443-5427"),
+	      role = c("aut", "cre")),
+      person("Laurent", "Gatto",
+	      email = "laurent.gatto@uclouvain.be",
+	      comment = c(ORCID = "0000-0002-1520-2268"),
+	      role = "aut"))
+Description: the package disseminates mass spectrometry (MS)-based single-cell 
+    proteomics (SCP) datasets formatted using the `scp` data structure.
 Depends:
     R (>= 4.0),
     QFeatures,
