@@ -64,7 +64,7 @@ can be found in the source article (see \code{References}).
 cell lysis + trypsin digestion + TMT-11plex or 16plex labeling
 and pooling.
 \item \strong{Separation}: online nLC (DionexUltiMate 3000 UHPLC with a
-25cm x 75μm IonOpticksAurora Series UHPLC column; 200nL/min).
+25cm x 75um IonOpticksAurora Series UHPLC column; 200nL/min).
 \item \strong{Ionization}: ESI (2,200V).
 \item \strong{Mass spectrometry}: Thermo Scientific Q-Exactive (MS1
 resolution = 70,000; MS2 accumulation time = 300ms; MS2

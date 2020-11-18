@@ -3,6 +3,7 @@
 export(scpdata)
 import(ExperimentHub)
 import(QFeatures)
+import(SingleCellExperiment)
 importFrom(AnnotationHub,query)
 importFrom(S4Vectors,mcols)
 importFrom(utils,packageVersion)

@@ -5,60 +5,64 @@
 \alias{zhu2018NC_hela}
 \title{Zhu et al. 2018 (Nat. Comm.): HeLa titration}
 \format{
-A \link{QFeatures} object with 1 assay called \code{peptides}. It is a
-\link{SingleCellExperiment} object containing the quantitative data for 37795
-peptides in 21 samples.
+A \link{QFeatures} object with 1 assay called \code{peptides}. It is
+a \link{SingleCellExperiment} object containing the quantitative data
+for 37795 peptides in 21 samples.
 
 Sample annotation is stored in \code{colData(zhu2018NC_hela())}.
 }
 \source{
-The PSM data can be downloaded from the PRIDE repository PXD006847. FTP
-link: ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847
+The PSM data can be downloaded from the PRIDE repository
+PXD006847. FTP link:
+ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847
 }
 \usage{
 zhu2018NC_hela
 }
 \description{
-Near single-cell proteomics data of HeLa samples containing different number
-of cells. There are three groups of cell concentrations: low (10-14 cells),
-medium (35-45 cells) and high (137-141 cells). The data also contain
-measures for blanks, HeLa lysates (50 cell equivalent) and 2 cancer cell
-line lysates (MCF7 and THP1, 50 cell equivalent).
+Near single-cell proteomics data of HeLa samples containing
+different number of cells. There are three groups of cell
+concentrations: low (10-14 cells), medium (35-45 cells) and high
+(137-141 cells). The data also contain measures for blanks, HeLa
+lysates (50 cell equivalent) and 2 cancer cell line lysates (MCF7
+and THP1, 50 cell equivalent).
 }
 \section{Acquisition protocol}{
 
 
-The data were acquired using the following setup. More information can be
-found in the original article (see \code{References}).
+The data were acquired using the following setup. More information
+can be found in the original article (see \code{References}).
 \itemize{
-\item \strong{Cell isolation}: HeLa cell concentration was adjusted by serial
-dilution and cell counting was performed manually using an inverted
-microscope.
-\item \strong{Sample preparation} performed using the nanoPOTs device. Protein
-extraction using RapiGest (+ DTT) + alkylation (IAA) + Lys-C digestion +
-cleave RapiGest (formic acid).
-\item \strong{Separation}: nanoACQUITY UPLC pump (60nL/min) with an Self-Pack
-PicoFrit 70cm x 30μm LC columns.
+\item \strong{Cell isolation}: HeLa cell concentration was adjusted by
+serial dilution and cell counting was performed manually using
+an inverted microscope.
+\item \strong{Sample preparation} performed using the nanoPOTs device.
+Protein extraction using RapiGest (+ DTT) + alkylation (IAA) +
+Lys-C digestion + cleave RapiGest (formic acid).
+\item \strong{Separation}: nanoACQUITY UPLC pump (60nL/min) with an
+Self-Pack PicoFrit 70cm x 30um LC columns.
 \item \strong{Ionization}: ESI (1,900V).
-\item \strong{Mass spectrometry}: Thermo Fisher Orbitrap Fusion Lumos Tribrid. MS1
-settings: accumulation time = 246ms; resolution = 120,000; AGC = 1E6.
-MS/MS settings, depend on the sample size, excepted for the AGC = 1E5.
-Blank and ~10 cells (time = 502ms; resolution = 240,000), ~ 40 cells
-(time = 246ms; resolution = 120,000), ~140 cells (time = 118ms;
-resolution = 60,000).
-\item \strong{Data analysis}: MaxQuant (v1.5.3.30) + Perseus + OriginLab 2017
+\item \strong{Mass spectrometry}: Thermo Fisher Orbitrap Fusion Lumos
+Tribrid. MS1 settings: accumulation time = 246ms; resolution =
+120,000; AGC = 1E6. MS/MS settings, depend on the sample size,
+excepted for the AGC = 1E5. Blank and ~10 cells (time = 502ms;
+resolution = 240,000), ~ 40 cells (time = 246ms; resolution =
+120,000), ~140 cells (time = 118ms; resolution = 60,000).
+\item \strong{Data analysis}: MaxQuant (v1.5.3.30) + Perseus + OriginLab
+2017
 }
 }
 
 \section{Data collection}{
 
 
-The PSM data were collected from the PRIDE repository (accession ID:
-PXD006847).  We downloaded the \code{CulturedCells_peptides.txt} file containing
-the combined identification and quantification results. The sample annotation
-was inferred from the names of columns holding the quantification data and
-the informaion in the articel. The data were then converted to a \link{QFeatures}
-object using the \link[scp:readSCP]{scp::readSCP} function.
+The PSM data were collected from the PRIDE repository (accession
+ID: PXD006847).  We downloaded the \code{CulturedCells_peptides.txt}
+file containing the combined identification and quantification
+results. The sample annotation was inferred from the names of
+columns holding the quantification data and the information in
+the article. The data were then converted to a \link{QFeatures} object
+using the \link[scp:readSCP]{scp::readSCP} function.
 }
 
 \examples{
@@ -66,14 +70,14 @@ zhu2018NC_hela()
 
 }
 \references{
-Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen, Ronald J.
-Moore, Anil K. Shukla, et al. 2018. “Nanodroplet Processing Platform for
-Deep and Quantitative Proteome Profiling of 10-100 Mammalian Cells.” Nature
-Communications 9 (1): 882
+Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen,
+Ronald J. Moore, Anil K. Shukla, et al. 2018. “Nanodroplet
+Processing Platform for Deep and Quantitative Proteome Profiling
+of 10-100 Mammalian Cells.” Nature Communications 9 (1): 882
 (\href{http://dx.doi.org/10.1038/s41467-018-03367-w}{link to article}).
 }
 \seealso{
-The same experiment was conducted on HeLa lysates and the data is
-available in \link{zhu2018NC_lysates}.
+The same experiment was conducted on HeLa lysates and the
+data is available in \link{zhu2018NC_lysates}.
 }
 \keyword{datasets}

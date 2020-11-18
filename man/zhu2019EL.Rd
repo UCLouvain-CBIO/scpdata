@@ -22,9 +22,8 @@ the replicate, starting from \code{a}, it can go up to \code{j}.
 Sample annotation is stored in \code{colData(zhu2019EL())}.
 }
 \source{
-The PSM data can be downloaded from the PRIDE repository PXD014256. The
-source link is:
-
+The PSM data can be downloaded from the PRIDE repository
+PXD014256. The source link is:
 ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD014256
 }
 \usage{
@@ -41,8 +40,8 @@ high) and supporting cells (FM1-43 low). The sample contain either
 \section{Acquisition protocol}{
 
 
-The data were acquired using the following setup. More information can be
-found in the source article (see \code{References}).
+The data were acquired using the following setup. More information
+can be found in the source article (see \code{References}).
 \itemize{
 \item \strong{Cell isolation}: The cells were taken from the utricles of
 E15 chick embryos. Samples were stained with FM1-43FX and the
@@ -56,11 +55,12 @@ were then alkylated using IAA. Protein digestion is performed
 using Lys-C and trypsin. Finally samples acidification is
 performed using formic acid.
 \item \strong{Separation}: Dionex UltiMate pump with an C18-Packed column
-(50cm x 30μm; 60nL/min)
+(50cm x 30um; 60nL/min)
 \item \strong{Ionization}: ESI (2,000V)
 \item \strong{Mass spectrometry}: Orbitrap Fusion Lumos Tribrid. MS1
 settings: accumulation time = 246ms; resolution = 120,000; AGC =
-3E6. MS/MS settings: accumulation time = 502ms; resolution = 120,000; AGC = 2E5.
+3E6. MS/MS settings: accumulation time = 502ms; resolution =
+120,000; AGC = 2E5.
 \item \strong{Data analysis}: Andromeda & MaxQuant (v1.5.3.30) and the
 search database is NCBI GRCg6a.
 }

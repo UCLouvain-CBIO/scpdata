@@ -2,9 +2,9 @@
 
 ##' @importFrom utils packageVersion
 .onAttach <- function(libname, pkgname) {
-    msg <- paste0("\nThis is scpdata version ",
-                  packageVersion("scpdata"), ".\n",
-                  "Use 'scpdata()' to list available data sets.")
+    msg <- paste0("\nThis is scpdata version ", 
+                    packageVersion("scpdata"),
+                    ".\nUse 'scpdata()' to list available data sets.")
     packageStartupMessage(msg)  
 }
 

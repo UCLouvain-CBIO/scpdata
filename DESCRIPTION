@@ -24,10 +24,10 @@ Depends:
 Imports:
     utils,
     AnnotationHub,
+    SingleCellExperiment,
     S4Vectors
 Suggests:
     scp,
-    SingleCellExperiment,
     magrittr,
     dplyr,
     knitr,

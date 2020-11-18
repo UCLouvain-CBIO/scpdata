@@ -22,8 +22,8 @@ The \code{X} indicates the replicate number.
 Sample annotation is stored in \code{colData(cong2020AC())}.
 }
 \source{
-All files can be downloaded from the PRIDE repository PXD016921. The
-source link is:
+All files can be downloaded from the PRIDE repository PXD016921.
+The source link is:
 ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/02/PXD016921
 }
 \usage{
@@ -31,7 +31,7 @@ cong2020AC
 }
 \description{
 Single-cell proteomics using the nanoPOTS sample processing device
-in combination with ultranarrow-bore (20μm i.d.) packed-column LC
+in combination with ultranarrow-bore (20um i.d.) packed-column LC
 separations and the Orbitrap Eclipse Tribrid MS. The dataset
 contains label-free quantitative information at PSM, peptide and
 protein level. The samples are single Hela cells. Bulk samples
@@ -47,11 +47,11 @@ can be found in the source article (see \code{References}).
 \itemize{
 \item \strong{Cell isolation}: The HeLa cells were diluted and aspired
 using a microcapillary with a pulled tip.
-\item \strong{Sample preparation} performed using the nanoPOTs device. Protein
-extraction using RapiGest (+ DTT) + alkylation (IAA) + Lys-C digestion +
-cleave RapiGest (formic acid)
+\item \strong{Sample preparation} performed using the nanoPOTs device.
+Protein extraction using RapiGest (+ DTT) + alkylation (IAA) +
+Lys-C digestion + cleave RapiGest (formic acid)
 \item \strong{Separation}: UltiMate 3000 RSLCnano pump with a home-packed
-nanoLC column (60cm x 20μm i.d.; ∼20 nL/min)
+nanoLC column (60cm x 20um i.d.; ∼20 nL/min)
 \item \strong{Ionization}: ESI (2,000V; Nanospray Flex)
 \item \strong{Mass spectrometry}: Thermo Fisher Orbitrap Fusion Eclipse.
 MS1 settings: accumulation time = 246ms; resolution = 120,000;
@@ -68,8 +68,8 @@ Single cells: accumulation time = 500ms; resolution = 240,000.
 The PSM, peptide and protein data were collected from the PRIDE
 repository (accession ID: PXD016921).  We downloaded the
 \code{evidence.txt} file containing the PSM identification and
-quantification results. The sample annotation was inferred from the
-samples names. The data were then converted to a \link{QFeatures}
+quantification results. The sample annotation was inferred from
+the samples names. The data were then converted to a \link{QFeatures}
 object using the \link[scp:readSCP]{scp::readSCP} function.
 
 The peptide data were processed similarly from the \code{peptides.txt}
@@ -77,10 +77,10 @@ file. The quantitative column names were adpated to match the PSM
 data. The peptide data were added to \link{QFeatures} object and link
 between the features were stored.
 
-The protein data were similarly processed from the \code{proteinGroups.txt}
-file. The quantitative column names were adpated to match the PSM
-data. The peptide data were added to \link{QFeatures} object and link
-between the features were stored.
+The protein data were similarly processed from the
+\code{proteinGroups.txt} file. The quantitative column names were
+adapted to match the PSM data. The peptide data were added to
+\link{QFeatures} object and link between the features were stored.
 }
 
 \examples{
@@ -91,8 +91,8 @@ cong2020AC()
 Cong, Yongzheng, Yiran Liang, Khatereh Motamedchaboki, Romain
 Huguet, Thy Truong, Rui Zhao, Yufeng Shen, Daniel Lopez-Ferrer,
 Ying Zhu, and Ryan T. Kelly. 2020. “Improved Single-Cell Proteome
-Coverage Using Narrow-Bore Packed NanoLC Columns and Ultrasensitive
-Mass Spectrometry.” Analytical Chemistry, January.
+Coverage Using Narrow-Bore Packed NanoLC Columns and
+Ultrasensitive Mass Spectrometry.” Analytical Chemistry, January.
 (\href{https://doi.org/10.1021/acs.analchem.9b04631}{link to article}).
 }
 \keyword{datasets}
