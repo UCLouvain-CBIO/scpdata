@@ -95,6 +95,10 @@ object and then inserted in the \link{QFeatures} object. Links between
 the peptides and the proteins were added
 }
 
+\examples{
+zhu2019EL()
+
+}
 \references{
 Zhu, Ying, Mirko Scheibinger, Daniel Christian Ellwanger, Jocelyn
 F. Krey, Dongseok Choi, Ryan T. Kelly, Stefan Heller, and Peter G.

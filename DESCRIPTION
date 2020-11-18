@@ -1,6 +1,7 @@
 Package: scpdata
-Title: What the Package Does (Title Case)
-Version: 0.99.1
+Type: Package
+Title: Single-Cell Proteomics Data Package
+Version: 0.99.0
 Authors@R:
     c(person("Christophe", "Vanderaa",
 	      email = "christophe.vanderaa@uclouvain.be",
@@ -10,31 +11,39 @@ Authors@R:
 	      email = "laurent.gatto@uclouvain.be",
 	      comment = c(ORCID = "0000-0002-1520-2268"),
 	      role = "aut"))
-Description: the package disseminates mass spectrometry (MS)-based single-cell 
-    proteomics (SCP) datasets formatted using the `scp` data structure.
+Description: The package disseminates mass spectrometry (MS)-based 
+    single-cell proteomics (SCP) datasets. The data were collected 
+    from published work and formatted using the `scp` data structure. 
+    The data sets contain quantitative information at spectrum, 
+    peptide and/or protein level for single cells or minute sample 
+    amounts.
 Depends:
-    R (>= 4.0),
+    R (>= 4.1),
     QFeatures,
     ExperimentHub
 Imports:
-    methods,
-    stats,
     utils,
-    SingleCellExperiment
-Suggests: 
+    AnnotationHub,
+    S4Vectors
+Suggests:
+    scp,
+    SingleCellExperiment,
     magrittr,
     dplyr,
-    scp,
-    knitr
+    knitr,
+    BiocStyle,
+    rmarkdown
 biocViews: 
     ExperimentData, 
     ExpressionData, 
     ExperimentHub,
     ReproducibleResearch,
     MassSpectrometryData,
-    Proteome
+    Proteome,
+    SingleCellData
 License: GPL-2
 Encoding: UTF-8
 LazyData: false
+VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1

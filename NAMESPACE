@@ -2,4 +2,8 @@
 
 export(scpdata)
 import(ExperimentHub)
-import(scp)
+import(QFeatures)
+importFrom(AnnotationHub,query)
+importFrom(S4Vectors,mcols)
+importFrom(utils,packageVersion)
+importFrom(utils,read.csv)

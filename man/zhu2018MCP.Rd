@@ -64,6 +64,10 @@ data were then converted to a \link{QFeatures} object using the \link[scp:readSC
 function.
 }
 
+\examples{
+zhu2018MCP()
+
+}
 \references{
 Zhu, Ying, Maowei Dou, Paul D. Piehowski, Yiran Liang, Fangjun Wang, Rosalie
 K. Chu, William B. Chrisler, et al. 2018. “Spatially Resolved Proteome

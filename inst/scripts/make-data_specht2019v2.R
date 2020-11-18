@@ -22,9 +22,11 @@ setwd("./inst/scripts")
 ev <- read.csv("../extdata/specht2019v2/evidence_unfiltered.csv", 
                sep = ",", header = TRUE)
 ## design = the cell annotation
-design <- read.csv("../extdata/specht2019v2/annotation.csv", check.names = F)
+design <- read.csv("../extdata/specht2019v2/annotation.csv", 
+                   check.names = FALSE)
 ## batch = the batch annotation 
-batch <- read.csv("../extdata/specht2019v2/batch.csv", check.names = F)
+batch <- read.csv("../extdata/specht2019v2/batch.csv", 
+                  check.names = FALSE)
 
 ## Clean the sample metadata so that it meets the requirements for
 ## `scp::readSCP`. The cell annotation and batch annotation are merge into a 

@@ -33,17 +33,15 @@ scpdata()
 ## Load data using the ExperimentHub interface
 hub <- ExperimentHub()
 
-\dontrun{
-## download the data set of interest using EH indexing
+## Download the data set of interest using ExperimentHub indexing
 hub[["EH3899"]]
-## download the same data set using scpdata function
-`Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs monocytes (version 2)`()
-}
+## Download the same data set using the build-in function
+specht2019v2()
 
 }
 \seealso{
 More information about the data manipulation can be found in the
-\link{scp} package.
+\code{scp} package.
 }
 \author{
 Christophe Vanderaa

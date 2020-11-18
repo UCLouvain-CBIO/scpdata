@@ -93,6 +93,10 @@ the PSM data). Links between the proteins and the corresponding PSM were
 created.
 }
 
+\examples{
+dou2019_boosting()
+
+}
 \references{
 Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B.
 Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell

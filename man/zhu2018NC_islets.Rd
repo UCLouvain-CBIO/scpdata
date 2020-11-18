@@ -58,6 +58,10 @@ the information in the article. The data were then converted to a \link{QFeature
 object using the \link[scp:readSCP]{scp::readSCP} function.
 }
 
+\examples{
+zhu2018NC_islets()
+
+}
 \references{
 Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen, Ronald J.
 Moore, Anil K. Shukla, et al. 2018. “Nanodroplet Processing Platform for

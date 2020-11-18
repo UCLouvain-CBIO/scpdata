@@ -83,6 +83,10 @@ data. The peptide data were added to \link{QFeatures} object and link
 between the features were stored.
 }
 
+\examples{
+cong2020AC()
+
+}
 \references{
 Cong, Yongzheng, Yiran Liang, Khatereh Motamedchaboki, Romain
 Huguet, Thy Truong, Rui Zhao, Yufeng Shen, Daniel Lopez-Ferrer,

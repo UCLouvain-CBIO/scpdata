@@ -89,6 +89,10 @@ object and added the object as a new assay in the \link{QFeatures} dataset
 PSM were created.
 }
 
+\examples{
+dou2019_lysates()
+
+}
 \references{
 Dou, Maowei, Geremy Clair, Chia-Feng Tsai, Kerui Xu, William B.
 Chrisler, Ryan L. Sontag, Rui Zhao, et al. 2019. “High-Throughput Single Cell
