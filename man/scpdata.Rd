@@ -20,10 +20,8 @@ levels (identified spectrum, peptide, or protein) in separate
 assays. Each assay is an object of class \link{SingleCellExperiment}
 that allows easy integration with state-of-the-art single-cell
 analysis tools. All assays are contained in a single object of
-class \link{QFeatures}.
-An overview of the data structure is shown below:
-
-\figure{SCP_framework.pdf}
+class \link{QFeatures}. An overview of the data structure is shown
+provided in the \code{\link{scp}} package.
 
 The \code{scpdata()} function returns a summary table with all
 currently available datasets in the package. More information

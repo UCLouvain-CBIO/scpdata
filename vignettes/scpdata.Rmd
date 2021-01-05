@@ -29,20 +29,13 @@ knitr::opts_chunk$set(
 # The `scpdata` package
 
 `scpdata` disseminates mass spectrometry (MS)-based single-cell 
-proteomics (SCP) datasets formatted using the `scp` data structure. 
-This structure relies on the 
-[`QFeatures`](https://rformassspectrometry.github.io/QFeatures/) 
-package to manage and process
-[`SingleCellExperiment`](http://bioconductor.org/packages/release/bioc/html/SingleCellExperiment.html)
-objects.
+proteomics (SCP) data sets formatted using the `scp` data structure. 
+The data structure is described in the 
+[`scp` vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html).
 
-```{r scp_framework, results='markup', fig.cap="The `scp` data framework relies on `SingleCellExperiment` and `QFeatures` objects.", echo=FALSE, out.width='100%', fig.align='center'}
-knitr::include_graphics("figures/SCP_framework.png", error = FALSE)
-```
-
-This vignette describes how to access the SCP data sets. To start, we
-load the `scpdata` package.
-
+In this vignette, we describe how to access the SCP data sets. To 
+start, we load the `scpdata` package.
+    
 ```{r load_scp, message = FALSE}
 library("scpdata")
 ```
@@ -64,8 +57,8 @@ function.
 query(eh, "scpdata")
 ```
 
-Another way to get information about the available datasets is to call
-`scpdata()`. This will retrieve all the available metadata. For 
+Another way to get information about the available data sets is to 
+call `scpdata()`. This will retrieve all the available metadata. For 
 example, we can retrieve the data set titles along with the 
 description to make an informed choice about which data set to choose.
 

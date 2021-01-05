@@ -14,10 +14,8 @@
 ##' assays. Each assay is an object of class [SingleCellExperiment] 
 ##' that allows easy integration with state-of-the-art single-cell 
 ##' analysis tools. All assays are contained in a single object of 
-##' class [QFeatures].
-##' An overview of the data structure is shown below:
-##' 
-##' \figure{SCP_framework.pdf}
+##' class [QFeatures]. An overview of the data structure is shown 
+##' provided in the [`scp`] package. 
 ##' 
 ##' The `scpdata()` function returns a summary table with all 
 ##' currently available datasets in the package. More information 
