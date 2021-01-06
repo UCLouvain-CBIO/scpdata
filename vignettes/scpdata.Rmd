@@ -108,7 +108,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 ```{r sessioninfo, echo=FALSE}
 sessionInfo()
 ```

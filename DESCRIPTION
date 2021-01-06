@@ -32,7 +32,8 @@ Suggests:
     dplyr,
     knitr,
     BiocStyle,
-    rmarkdown
+    rmarkdown,
+    testthat
 biocViews: 
     ExperimentData, 
     ExpressionData, 
