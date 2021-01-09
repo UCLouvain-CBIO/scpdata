@@ -74,31 +74,48 @@
 <h1 class="hasAnchor">
 <a href="#installation-instruction" class="anchor"></a>Installation instruction</h1>
 <p>To install the stable version from Bioconductor:</p>
-<pre><code>if (!requireNamespace("BiocManager"))
-    install.packages("BiocManager")
-BiocManager::install("scpdata")</code></pre>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"scpdata"</span><span class="op">)</span></code></pre></div>
 <p>To install the development version from GitHub:</p>
-<pre><code><a href="https://rdrr.io/pkg/BiocManager/man/install.html">BiocManager::install("UCLouvain-CBIO/scpdata")</a></code></pre>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"UCLouvain-CBIO/scpdata"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="loading-a-data-set" class="section level1">
 <h1 class="hasAnchor">
 <a href="#loading-a-data-set" class="anchor"></a>Loading a data set</h1>
-<p>The available datasets can be accessed through <code>ExperimentHub</code>. The table with available datasets can be retrieved as follows:</p>
+<p>The available datasets can be accessed through <code>ExperimentHub</code>. Use <code><a href="reference/scpdata.html">scpdata()</a></code> to display the table with available datasets.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scpdata</span><span class="op">)</span>
 <span class="fu"><a href="reference/scpdata.html">scpdata</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>The desired dataset, for example the <code>specht2019v2</code> dataset, can be downloaded and accessed using either the bracket selection:</p>
+<p>You can either use the <code>ExperimentHub</code> interface or use the functions provided <code>scpdata</code> to retrieve the data set of interest.</p>
+<div id="loading-data-using-the-experimenthub-interface" class="section level2">
+<h2 class="hasAnchor">
+<a href="#loading-data-using-the-experimenthub-interface" class="anchor"></a>Loading data using the <code>ExperimentHub</code> interface</h2>
+<p>You first need to set up a connection with <code>ExperimentHub</code>. You can browse and query the database to look up a data set of interest (see <code>?ExperimentHub</code> for more information).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scp</span> <span class="op">&lt;-</span> <span class="va">datasets</span><span class="op">[[</span><span class="st">"EH3899"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
-<p>Or the data loading function:</p>
+<code class="sourceCode R"><span class="va">eh</span> <span class="op">&lt;-</span> <span class="fu">ExperimentHub</span><span class="op">(</span><span class="op">)</span>
+<span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span></code></pre></div>
+<p>Suppose you are interested in the <code>specht2019v2</code> data set, you can retrieve the data using the corresponding <code>ExperimentHub</code> ID. In this case the ID is <code>EH3899</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/specht2019v2.html">specht2019v2</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>The data description and data collection procedures can be found in the corresponding help files that can be accessed using for instance <code><a href="reference/specht2019v2.html">?specht2019v2</a></code>.</p>
+<code class="sourceCode R"><span class="va">scp</span> <span class="op">&lt;-</span> <span class="va">eh</span><span class="op">[[</span><span class="st">"EH3899"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 </div>
-<div id="available-data-sets" class="section level1">
+<div id="loading-data-using-the-scpdata-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#loading-data-using-the-scpdata-functions" class="anchor"></a>Loading data using the <code>scpdata</code> functions</h2>
+<p><code>scpdata</code> exports a function for each of the data sets. Retrieving the <code>specht2019v2</code> is performed by simply running the <code><a href="reference/specht2019v2.html">specht2019v2()</a></code> function.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/specht2019v2.html">specht2019v2</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>The documentation of each function contains information about its corresponding data set. The information includes a description of the data content, the acquisition protocol, the data collection procedure, and some associated references and data sources.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">?</span><span class="va">specht2019v2</span></code></pre></div>
+</div>
+</div>
+<div id="available-data" class="section level1">
 <h1 class="hasAnchor">
-<a href="#available-data-sets" class="anchor"></a>Available data sets</h1>
-<p>There are many sources of published singe-cell proteomics data. We collected the associated data that can be found under 3 different levels:</p>
+<a href="#available-data" class="anchor"></a>Available data</h1>
+<p>We collected the associated data that usually contains 3 levels of :</p>
 <ul>
 <li>
 <strong>PSM data</strong> is the data obtained after running feature identification and quantification from the raw data. PSM stands for peptide to spectrum match. The rows in the data are PSMs and columns are samples.</li>
@@ -107,7 +124,13 @@ BiocManager::install("scpdata")</code></pre>
 <li>
 <strong>Protein data</strong> is the expression data where rows are proteins and columns are samples.</li>
 </ul>
-<p>Please refer to the documentation and original papers for thorough description of the data processing.</p>
+<p>Please refer to the documentation and original papers for a thorough description of the data processing.</p>
+</div>
+<div id="contributing-to-scpdata" class="section level1">
+<h1 class="hasAnchor">
+<a href="#contributing-to-scpdata" class="anchor"></a>Contributing to <code>scpdata</code>
+</h1>
+<p>Suggestions and bug reports are warmly welcome! You can submit them by creating an issue on the the <a href="https://github.com/UCLouvain-CBIO/scpdata/issues"><code>scpdata</code> GitHub repository</a>.</p>
 </div>
 
   </div>
