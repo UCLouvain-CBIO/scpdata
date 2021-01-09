@@ -51,7 +51,7 @@ using a microcapillary with a pulled tip.
 Protein extraction using RapiGest (+ DTT) + alkylation (IAA) +
 Lys-C digestion + cleave RapiGest (formic acid)
 \item \strong{Separation}: UltiMate 3000 RSLCnano pump with a home-packed
-nanoLC column (60cm x 20um i.d.; ∼20 nL/min)
+nanoLC column (60cm x 20um i.d.; approx. 20 nL/min)
 \item \strong{Ionization}: ESI (2,000V; Nanospray Flex)
 \item \strong{Mass spectrometry}: Thermo Fisher Orbitrap Fusion Eclipse.
 MS1 settings: accumulation time = 246ms; resolution = 120,000;
