@@ -648,9 +648,9 @@
 ##' - **Mass spectrometry**: Thermo Fisher Orbitrap Fusion Lumos 
 ##'   Tribrid. MS1 settings: accumulation time = 246ms; resolution = 
 ##'   120,000; AGC = 1E6. MS/MS settings, depend on the sample size, 
-##'   excepted for the AGC = 1E5. Blank and ~10 cells (time = 502ms; 
-##'   resolution = 240,000), ~ 40 cells (time = 246ms; resolution = 
-##'   120,000), ~140 cells (time = 118ms; resolution = 60,000). 
+##'   excepted for the AGC = 1E5. Blank and approx. 10 cells (time = 502ms; 
+##'   resolution = 240,000), approx. 40 cells (time = 246ms; resolution = 
+##'   120,000), approx. 140 cells (time = 118ms; resolution = 60,000). 
 ##' - **Data analysis**: MaxQuant (v1.5.3.30) + Perseus + OriginLab 
 ##'   2017
 ##' 
@@ -716,9 +716,9 @@
 ##' - **Mass spectrometry**: Thermo Fisher Orbitrap Fusion Lumos 
 ##'   Tribrid. MS1 settings: accumulation time = 246ms; resolution = 
 ##'   120,000; AGC = 1E6. MS/MS settings, depend on the sample size, 
-##'   excepted for the AGC = 1E5. Blank and ~10 cells (time = 502ms; 
-##'   resolution = 240,000), ~ 40 cells (time = 246ms; resolution = 
-##'   120,000), ~140 cells (time = 118ms; resolution = 60,000).
+##'   excepted for the AGC = 1E5. Blank and approx. 10 cells (time = 502ms; 
+##'   resolution = 240,000), approx. 40 cells (time = 246ms; resolution = 
+##'   120,000), approx. 140 cells (time = 118ms; resolution = 60,000).
 ##' - **Data analysis**: MaxQuant (v1.5.3.30) + Perseus + OriginLab 
 ##'   2017.
 ##' 
