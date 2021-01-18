@@ -8,7 +8,7 @@
 ## Expression during Hair-Cell Development.” eLife 8 (November). 
 ## https://doi.org/10.7554/eLife.50777.
 
-## The data files were donwloaded from: 
+## The data files were downloaded from: 
 ## ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD014256
 ## 
 ## PSMS, peptide and proteins data are found in
@@ -19,8 +19,7 @@
 library(openxlsx)
 library(scp)
 library(tidyverse)
-setwd("inst/scripts/")
-dataDir <- "../extdata/zhu2019EL/"
+dataDir <- "../.localdata/SCP/zhu2019EL/"
 
 
 ####---- Sample annotation ----####
@@ -55,15 +54,15 @@ list.files(path = dataDir,
   ## Add file extension to file name to match metadata
   mutate(Raw.file = paste0(Raw.file, ".raw")) %>%
   ## Select only batches that are annotated
-  filter(Raw.file %in% meta$Raw.file) %>%
+  filter(!Raw.file %in% meta$Raw.file) %>%
   ## Add the sample name
   left_join(meta[, c("Raw.file", "Sample.name")], 
             by = "Raw.file") ->
   psms
 
 ## Create the QFeatures object
-zhu2019EL <- readSCP(psms, 
-                     meta, 
+zhu2019EL <- readSCP(featureData = psms, 
+                     colData = meta, 
                      channelCol = "Channel", 
                      batchCol = "Sample.name")
 
@@ -78,7 +77,7 @@ list.files(path = dataDir,
   read.table(sep = "\t", header = TRUE) ->
   pep
 
-## Rename columns so they math with the PSM data
+## Rename columns so they match with the PSM data
 colnames(pep) <- sub(pattern = "^Intensity.(.*)$", 
                      replacement = "\\1_LFQ",
                        colnames(pep))
@@ -139,7 +138,7 @@ zhu2019EL <- addAssayLink(zhu2019EL,
 # Save data as Rda file
 # Note: saving is assumed to occur in "scpdata/inst/scripts"
 save(zhu2019EL, 
-     file = file.path("../extdata/scpdata/zhu2019EL.Rda"),
+     file = file.path("../.localdata/scpdata/zhu2019EL.Rda"),
      compress = "xz", 
      compression_level = 9)
 
