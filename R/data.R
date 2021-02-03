@@ -190,6 +190,9 @@
 ##' @note Since version 2, a serious bug in the data were corrected 
 ##' for TMT channels 12 to 16. Many more cells are therefore contained
 ##' in the data. Version 2 is maintained for backward compatibility.
+##' Although the final version of the article was published in 2021, 
+##' we have kept `specht2019v3` as the data set name for consistency 
+##' with the previous data version `specht2019v2`. 
 ##'  
 ##' @source 
 ##' The data were downloaded from the 
@@ -202,10 +205,10 @@
 ##' 
 ##' @references Specht, Harrison, Edward Emmott, Aleksandra A. 
 ##' Petelski, R. Gray Huffman, David H. Perlman, Marco Serra, Peter 
-##' Kharchenko, Antonius Koller, and Nikolai Slavov. 2019. 
-##' "Single-Cell Mass-Spectrometry Quantifies the Emergence of
-##' Macrophage Heterogeneity." bioRxiv. 
-##' ([link to article](https://doi.org/10.1101/665307)).
+##' Kharchenko, Antonius Koller, and Nikolai Slavov. 2021. 
+##' "Single-Cell Proteomic and Transcriptomic Analysis of Macrophage 
+##' Heterogeneity Using SCoPE2." Genome Biology 22 (1): 50.
+##' ([link to article](http://dx.doi.org/10.1186/s13059-021-02267-5)).
 ##' 
 ##' @examples
 ##' specht2019v3()
@@ -869,7 +872,7 @@
 ##'   AGC = 1E6. MS/MS settings depend on quantity. All: AGC = 1E5. 
 ##'   20-100 cels: accumulation time = 246ms; resolution = 120,000. 
 ##'   Single cells: accumulation time = 500ms; resolution = 240,000. 
-##' - **Data analysis**: MaxQuant (v1.6.3.3)
+##' - **Data analysis**: MaxQuant (v1.6.3.3) + Excel
 ##' 
 ##' @section Data collection:
 ##' 

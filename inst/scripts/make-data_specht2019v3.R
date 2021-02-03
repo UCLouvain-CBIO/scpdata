@@ -154,7 +154,7 @@ specht2019v3 <- addAssayLink(specht2019v3, from = which(sel), to = "peptides",
 ####---- Add the protein data ----####
 
 ## The `Proteins-processed.csv` and `Cells.csv` file was downloaded from 
-## https://scope2.slavovlab.net/docs/data to scpdata/inst/extdata/specht2019-v2
+## https://scope2.slavovlab.net/docs/data
 read.csv("Proteins-processed.csv") %>%
     select(-X) %>%
     readSingleCellExperiment(ecol = 1:1490, fnames = "protein") ->
