@@ -26,7 +26,7 @@ dataDir <- "../.localdata/SCP/zhu2019EL/"
 
 
 list.files(path = dataDir,
-           pattern = "samples.xlsx",
+           pattern = "samples_CORRECTED.xlsx",
            full.names = TRUE) %>%
   ## The annotation is in the 3rd sheet
   read.xlsx(sheet = 3, colNames = TRUE, startRow = 7) %>%

@@ -13,7 +13,7 @@ output:
 date: "`r BiocStyle::doc_date()`"
 package: "`r BiocStyle::pkg_ver('scp')`"
 vignette: >
-    %\VignetteIndexEntry{Single Cell Proteomics data processing and analysis}
+    %\VignetteIndexEntry{Data Package for Single Cell Proteomics}
     %\VignetteEngine{knitr::rmarkdown}
     %\VignetteEncoding{UTF-8}
 ---
