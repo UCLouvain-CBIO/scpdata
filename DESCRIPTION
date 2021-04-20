@@ -32,6 +32,7 @@ Suggests:
     dplyr,
     knitr,
     BiocStyle,
+    BiocCheck,
     rmarkdown,
     testthat
 biocViews: 

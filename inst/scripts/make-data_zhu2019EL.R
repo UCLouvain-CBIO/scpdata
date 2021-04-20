@@ -28,18 +28,18 @@ dataDir <- "../.localdata/SCP/zhu2019EL/"
 list.files(path = dataDir,
            pattern = "samples_CORRECTED.xlsx",
            full.names = TRUE) %>%
-  ## The annotation is in the 3rd sheet
-  read.xlsx(sheet = 3, colNames = TRUE, startRow = 7) %>%
-  ## Rename column to match with PSM data
-  rename(Raw.file = RAW.file.name,
-         ## Avoid issue with special characters
-         FM1.43.signal = `FM1-43.signal`) %>%
-  ## Add channel that will point to the quantification column
-  mutate(Channel = "LFQ",
-         ## Add the experimental replicate
-         Experiment = sub("^(.).*$", "\\1", Sample.name)) -> 
-  meta
-  
+    ## The annotation is in the 3rd sheet
+    read.xlsx(sheet = 3, colNames = TRUE, startRow = 7) %>%
+    ## Rename column to match with PSM data
+    rename(Raw.file = RAW.file.name,
+           ## Avoid issue with special characters
+           FM1.43.signal = `FM1-43.signal`) %>%
+    ## Add the column name containing the quantitative data
+    mutate(QuantCol = "Intensity",
+           ## Add the experimental replicate
+           Experiment = sub("^(.).*$", "\\1", Sample.name)) -> 
+    meta
+
 
 ####---- PSM data ----####
 
@@ -48,23 +48,25 @@ list.files(path = dataDir,
 list.files(path = dataDir,
            pattern = "evidence", 
            full.names = TRUE) %>%
-  read.table(sep = "\t", header = TRUE) %>%
-  ## Rename column to match the annotation table
-  rename(LFQ = Intensity) %>%
-  ## Add file extension to file name to match metadata
-  mutate(Raw.file = paste0(Raw.file, ".raw")) %>%
-  ## Select only batches that are annotated
-  filter(!Raw.file %in% meta$Raw.file) %>%
-  ## Add the sample name
-  left_join(meta[, c("Raw.file", "Sample.name")], 
-            by = "Raw.file") ->
-  psms
+    read.table(sep = "\t", header = TRUE) %>%
+    ## Add file extension to file name to match metadata
+    mutate(Raw.file = paste0(Raw.file, ".raw")) %>% 
+    ## Select only batches that are annotated
+    filter(Raw.file %in% meta$Raw.file) %>%
+    ## Add the sample name
+    left_join(meta[, c("Raw.file", "Sample.name")], 
+              by = "Raw.file") ->
+    psms
+## Note that we miss annotations for the following runs: 
+## - Single_Hair_Cell_OHSU_1cell_Low_030819_R10_YF30um_350bar.raw
+## - Single_Hair_Cell_OHSU_1cell_High_030819_R10_YF30um_350bar.raw
 
 ## Create the QFeatures object
 zhu2019EL <- readSCP(featureData = psms, 
                      colData = meta, 
-                     channelCol = "Channel", 
-                     batchCol = "Sample.name")
+                     channelCol = "QuantCol", 
+                     batchCol = "Sample.name",
+                     suffix = "")
 
 
 ####---- Peptide data ----####
@@ -74,17 +76,17 @@ zhu2019EL <- readSCP(featureData = psms,
 list.files(path = dataDir,
            pattern = "peptide", 
            full.names = TRUE) %>%
-  read.table(sep = "\t", header = TRUE) ->
-  pep
+    read.table(sep = "\t", header = TRUE) ->
+    pep
 
 ## Rename columns so they match with the PSM data
-colnames(pep) <- sub(pattern = "^Intensity.(.*)$", 
-                     replacement = "\\1_LFQ",
-                       colnames(pep))
+colnames(pep) <- sub(pattern = "^Intensity.", 
+                     replacement = "",
+                     colnames(pep))
 
 ## Create the SingleCellExperiment object
 pep <- readSingleCellExperiment(pep, 
-                                ecol = grep("LFQ$", colnames(pep)))
+                                ecol = meta$Sample.name)
 
 ## Name rows with peptide sequence
 rownames(pep) <- rowData(pep)$Sequence
@@ -93,11 +95,10 @@ rownames(pep) <- rowData(pep)$Sequence
 zhu2019EL <- addAssay(zhu2019EL, pep, name = "peptides")
 ## Link the PSMs and the peptides
 zhu2019EL <- addAssayLink(zhu2019EL, 
-                           from = 1:60, 
-                           to = "peptides", 
-                           varFrom = rep("Sequence", 60),
-                           varTo = "Sequence")
-
+                          from = 1:60, 
+                          to = "peptides", 
+                          varFrom = rep("Sequence", 60),
+                          varTo = "Sequence")
 
 ####---- Protein data ----####
 
@@ -106,22 +107,21 @@ zhu2019EL <- addAssayLink(zhu2019EL,
 list.files(path = dataDir,
            pattern = "proteinGroups.txt",
            full.names = TRUE) %>%
-  read.table(sep = "\t", header = TRUE) %>%
-  ## Get a unique protein ID
-  mutate(Protein = sub("^([^;]*);.*$", 
-                       "\\1", 
-                       Majority.protein.IDs)) ->
-  prot
+    read.table(sep = "\t", header = TRUE) %>%
+    ## Get a unique protein ID
+    mutate(Protein = sub("^([^;]*);.*$", 
+                         "\\1", 
+                         Majority.protein.IDs)) ->
+    prot
 
-## Rename columns so they math with the PSM data
-colnames(prot) %>%
-  sub(pattern = "^Intensity.(.*)$", replacement = "\\1_LFQ") ->
-  colnames(prot)
-
+## Rename columns so they match with the PSM data
+colnames(prot) <- sub(pattern = "^Intensity.", 
+                      replacement = "",
+                      colnames(prot))
 
 ## Create the SingleCellExperiment object
 prot <- readSingleCellExperiment(prot, 
-                                 ecol = grep("LFQ$", colnames(prot)))
+                                 ecol = meta$Sample.name)
 ## Name rows with peptide sequence
 rownames(prot) <- rowData(prot)$Protein
 

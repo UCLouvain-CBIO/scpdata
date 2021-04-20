@@ -233,6 +233,28 @@ meta <- list(
     PublicationDate = as.Date("2019/11/04"),
     NumberAssays = 62,
     Notes=NA_character_
+  ),
+  data.frame(
+      Title = "liang2020_hela",
+      Description = paste0("Expression data for HeLa cells (0, 1, ",
+                           "10, 150, 500 cells) at PSM, peptide and ",
+                           "protein level"),
+      BiocVersion = "3.13",
+      Genome = NA_character_,
+      SourceType = "TXT",
+      SourceUrl = "ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/12/PXD021882/",
+      SourceVersion = NA_character_,
+      Species = "Homo sapiens",
+      TaxonomyId = 9606,
+      Coordinate_1_based = TRUE,
+      DataProvider = "PRIDE",
+      Maintainer = "Christophe Vanderaa <christophe.vanderaa@uclouvain.be>",
+      RDataClass = "QFeatures",
+      DispatchClass = "Rda",
+      RDataPath = "scpdata/liang2020_hela.Rda",
+      PublicationDate = as.Date("2020/12/22"),
+      NumberAssays = 17,
+      Notes=NA_character_
   )
 )
 meta <- do.call(rbind, meta)
