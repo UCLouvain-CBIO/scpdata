@@ -48,11 +48,11 @@ pep <- read.table(paste0(dataDir, "peptides.txt"),
 
 ## Rename columns so they match with the PSM data
 colnames(pep) <- sub(pattern = "^Intensity.(.*)$", 
-                     replacement = "HeLa_\\1_LFQ",
+                     replacement = "HeLa_\\1_sample",
                      colnames(pep))
 ## Create the SingleCellExperiment object
 pep <- readSingleCellExperiment(pep, 
-                                ecol = grep("LFQ$", colnames(pep)))
+                                ecol = grep("sample$", colnames(pep)))
 ## Name rows with peptide sequence
 rownames(pep) <- rowData(pep)$Sequence
 ## Include the peptide data in the QFeatures object
@@ -79,12 +79,12 @@ read.table(paste0(dataDir, "proteinGroups.txt"),
 
 ## Rename columns so they math with the PSM data
 colnames(prot) <- sub(pattern = "^Intensity.(.*)$", 
-                      replacement = "HeLa_\\1_LFQ", 
+                      replacement = "HeLa_\\1_sample", 
                       colnames(prot)) 
 
 ## Create the SingleCellExperiment object
 prot <- readSingleCellExperiment(prot, 
-                                 ecol = grep("LFQ$", colnames(prot)))
+                                 ecol = grep("sample$", colnames(prot)))
 ## Name rows with peptide sequence
 rownames(prot) <- rowData(prot)$Protein
 
