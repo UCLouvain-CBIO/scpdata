@@ -28,7 +28,7 @@ pep <-  read.table(paste0(dataDir, "CulturedCells_peptides.txt"),
                    sep = "\t", header = TRUE) 
 colnames(pep) <- sub("Intensity.(.*)$", "\\1_sample", colnames(pep))
 rownames(pep) <- pep$Sequence
-pep <- readSingleCellExperiment(pep, ecol = grepl("sample$", colnames(pep)))
+pep <- readSingleCellExperiment(pep, ecol = grep("sample$", colnames(pep)))
 
 ####---- Protein data ----####
 
@@ -37,7 +37,7 @@ prot <-  read.table(paste0(dataDir, "CulturedCells_proteinGroups.txt"),
                     sep = "\t", header = TRUE)
 colnames(prot) <- sub("Intensity.(.*)$", "\\1_sample", colnames(prot))
 rownames(prot) <- prot$Protein.IDs
-prot <- readSingleCellExperiment(prot, ecol = grepl("sample$", colnames(prot)))
+prot <- readSingleCellExperiment(prot, ecol = grep("sample$", colnames(prot)))
 
 ## Create the QFeatures object
 zhu2018NC_hela <- QFeatures(list(peptides = pep, proteins = prot), 
