@@ -52,6 +52,9 @@ peptide and protein level.
 Since version 2, a serious bug in the data were corrected
 for TMT channels 12 to 16. Many more cells are therefore contained
 in the data. Version 2 is maintained for backward compatibility.
+Although the final version of the article was published in 2021,
+we have kept \code{specht2019v3} as the data set name for consistency
+with the previous data version \code{specht2019v2}.
 }
 \section{Acquisition protocol}{
 
@@ -114,9 +117,9 @@ specht2019v3()
 \references{
 Specht, Harrison, Edward Emmott, Aleksandra A.
 Petelski, R. Gray Huffman, David H. Perlman, Marco Serra, Peter
-Kharchenko, Antonius Koller, and Nikolai Slavov. 2019.
-"Single-Cell Mass-Spectrometry Quantifies the Emergence of
-Macrophage Heterogeneity." bioRxiv.
-(\href{https://doi.org/10.1101/665307}{link to article}).
+Kharchenko, Antonius Koller, and Nikolai Slavov. 2021.
+"Single-Cell Proteomic and Transcriptomic Analysis of Macrophage
+Heterogeneity Using SCoPE2." Genome Biology 22 (1): 50.
+(\href{http://dx.doi.org/10.1186/s13059-021-02267-5}{link to article}).
 }
 \keyword{datasets}

@@ -1,6 +1,6 @@
 
 
-####---- SPECHT ET AL. 2019 ----####
+####---- specht2019v2 ----####
 
 
 ##' Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs monocytes 
@@ -107,6 +107,7 @@
 ##' 
 "specht2019v2"
 
+####---- specht2019v3 ----####
 
 ##' Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs monocytes 
 ##' (version 3)
@@ -218,7 +219,7 @@
 "specht2019v3"
 
 
-####---- DOU ET AL. 2019 ----####
+####---- dou2019_lysates ----####
 
 
 ##' Dou et al. 2019 (Anal. Chem.): HeLa lysates
@@ -325,6 +326,9 @@
 ##' 
 ##' 
 "dou2019_lysates"
+
+
+####---- dou2019_mouse ----####
 
 
 ##' Dou et al. 2019 (Anal. Chem.): murine cell lines
@@ -436,6 +440,9 @@
 "dou2019_mouse"
 
 
+####---- dou2019_boosting ----####
+
+
 ##' Dou et al. 2019 (Anal. Chem.): testing boosting ratios
 ##' 
 ##' @description 
@@ -542,7 +549,7 @@
 "dou2019_boosting"
 
 
-####---- ZHU ET AL. 2018 (MCP) ----####
+####---- zhu2018MCP ----####
 
 
 ##' Zhu et al. 2018 (Mol. Cel. Prot.): rat brain laser dissections
@@ -616,7 +623,8 @@
 ##' 
 "zhu2018MCP"
 
-####---- ZHU ET AL. 2018 (NC) ----####
+
+####---- zhu2018NC_hela ----####
 
 
 ##' Zhu et al. 2018 (Nat. Comm.): HeLa titration
@@ -696,6 +704,9 @@
 "zhu2018NC_hela"
 
 
+####---- zhu2018NC_lysates ----####
+
+
 ##' Zhu et al. 2018 (Nat. Comm.): HeLa lysates
 ##'
 ##' Near single-cell proteomics data of HeLa lysates at different 
@@ -766,6 +777,9 @@
 "zhu2018NC_lysates"
 
 
+####---- zhu2018NC_islets ----####
+
+
 ##' Zhu et al. 2018 (Nat. Comm.): human pancreatic islets
 ##'
 ##'
@@ -831,6 +845,9 @@
 ##' @keywords datasets
 ##' 
 "zhu2018NC_islets"
+
+
+####---- cong2020AC ----####
 
 
 ##' Cong et al. 2020 (Ana. Chem.): HeLa single cells
@@ -918,6 +935,9 @@
 ##' @keywords datasets
 ##' 
 "cong2020AC"
+
+
+####---- zhu2019EL ----####
 
 
 ##' Zhu et al. 2019 (eLife): chicken utricle cells
@@ -1021,9 +1041,10 @@
 "zhu2019EL"
 
 
+####---- liang2020_hela ----####
+
 
 ##' Liang et al. 2020 ( (Anal. Chem.)): HeLa cells (MaxQuant preprocessing)
-##'
 ##'
 ##' Single-cell proteomics data from HeLa cells using the autoPOTS 
 ##' acquisition workflow. The samples contain either no cells (blanks),

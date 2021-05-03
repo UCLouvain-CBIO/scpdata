@@ -58,7 +58,7 @@ MS1 settings: accumulation time = 246ms; resolution = 120,000;
 AGC = 1E6. MS/MS settings depend on quantity. All: AGC = 1E5.
 20-100 cels: accumulation time = 246ms; resolution = 120,000.
 Single cells: accumulation time = 500ms; resolution = 240,000.
-\item \strong{Data analysis}: MaxQuant (v1.6.3.3)
+\item \strong{Data analysis}: MaxQuant (v1.6.3.3) + Excel
 }
 }
 

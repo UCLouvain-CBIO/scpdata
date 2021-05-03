@@ -5,9 +5,15 @@
 \alias{zhu2018NC_hela}
 \title{Zhu et al. 2018 (Nat. Comm.): HeLa titration}
 \format{
-A \link{QFeatures} object with 1 assay called \code{peptides}. It is
-a \link{SingleCellExperiment} object containing the quantitative data
-for 37795 peptides in 21 samples.
+A \link{QFeatures} object with 2 assays:
+\itemize{
+\item \code{peptides}: a \link{SingleCellExperiment} object containing the
+quantitative data for 37795 peptides in 21 samples.
+\item \code{proteins}: a \link{SingleCellExperiment} object containing the
+quantitative (summed intensities) data for 3984 proteins in 21
+samples. Note that the iBAQ and LFQ intensities computed by
+MaxQuant are available from the \code{rowData}.
+}
 
 Sample annotation is stored in \code{colData(zhu2018NC_hela())}.
 }

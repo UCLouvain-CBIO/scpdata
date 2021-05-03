@@ -73,7 +73,9 @@ All data were collected from the PRIDE repository (accession ID:
 PXD014256).
 
 The sample annotation information is provided in the
-\code{Zhu_2019_chick_single_cell_samples.xlsx} file.
+\code{Zhu_2019_chick_single_cell_samples_CORRECTED.xlsx} file. This file
+was given during a personal discussion and is a corrected version
+of the annotation table available on the PRIDE repository.
 
 The PSM data were found in the \code{evidence.txt} (in the
 \verb{Experiment 1+ 2}) folder. The PSM data were filtered so that it
@@ -104,6 +106,6 @@ Zhu, Ying, Mirko Scheibinger, Daniel Christian Ellwanger, Jocelyn
 F. Krey, Dongseok Choi, Ryan T. Kelly, Stefan Heller, and Peter G.
 Barr-Gillespie. 2019. “Single-Cell Proteomics Reveals Changes in
 Expression during Hair-Cell Development.” eLife 8 (November).
-(\href{https://doi.org/10.7554/eLife.50777.}{link to article}).
+(\href{https://doi.org/10.7554/eLife.50777}{link to article}).
 }
 \keyword{datasets}
