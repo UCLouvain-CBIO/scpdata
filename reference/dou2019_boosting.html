@@ -66,9 +66,18 @@ otherwise 1 empty well was added. Each boosting setting (0ng, 5ng,
 
 
 
+<!-- dependencies from examples -->
+
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -82,7 +91,7 @@ otherwise 1 empty well was added. Each boosting setting (0ng, 5ng,
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.3</span>
       </span>
     </div>
 
@@ -135,7 +144,7 @@ otherwise 1 empty well was added. Each boosting setting (0ng, 5ng,
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A QFeatures object with 7 assays, each assay being a
+    <p>A <a href='https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html'>QFeatures</a> object with 7 assays, each assay being a
 SingleCellExperiment object:</p><ul>
 <li><p><code>Boosting_X_run_Y</code>: PSM data with 10 columns corresponding to
 the TMT-10plex channels. The <code>X</code> indicates the boosting amount
@@ -195,7 +204,7 @@ combined based on the scan number (common to both data sets). The
 combined datasets for the different runs were then concatenated
 feature-wise. The sample annotation table was manually created
 based on the available information provided in the article. The
-data were then converted to a QFeatures object using the
+data were then converted to a <a href='https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html'>QFeatures</a> object using the
 <a href='https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html'>scp::readSCP</a> function.</p>
 <p>The protein data were downloaded from <code>Supporting information</code>
 section from the publisher's website (see <code>Sources</code>). The data is
@@ -206,7 +215,7 @@ contains 7 sheets from which we took the 2nd, 4th and 6th sheets
 combined protein data for the duplicate runs given the boosting
 amount. We joined the data for all boosting ration based on the
 protein name and converted the data to a SingleCellExperiment
-object. We then added the object as a new assay in the QFeatures
+object. We then added the object as a new assay in the <a href='https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html'>QFeatures</a>
 dataset (containing the PSM data). Links between the proteins and
 the corresponding PSM were created.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -223,7 +232,7 @@ September
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>dou2019_boosting</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2021-01-28</span></div><div class='output co'>#&gt; <span class='message'>see ?scpdata and browseVignettes('scpdata') for documentation</span></div><div class='output co'>#&gt; <span class='message'>downloading 1 resources</span></div><div class='output co'>#&gt; <span class='message'>retrieving 1 resource</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt; An instance of class QFeatures containing 7 assays:
+</div><div class='co'>#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</div><div class='co'>#&gt; loading from cache</div><div class='co'>#&gt; An instance of class QFeatures containing 7 assays:
 #&gt;  [1] Boosting_0ng_run_1: SingleCellExperiment with 16746 rows and 10 columns 
 #&gt;  [2] Boosting_0ng_run_2: SingleCellExperiment with 17242 rows and 10 columns 
 #&gt;  [3] Boosting_50ng_run_1: SingleCellExperiment with 36182 rows and 10 columns 
@@ -243,11 +252,11 @@ September
 
       <footer>
       <div class="copyright">
-  <p>Developed by Christophe Vanderaa, Laurent Gatto.</p>
+  <p><p>Developed by Christophe Vanderaa, Laurent Gatto.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -255,6 +264,8 @@ September
 
   
 
+
+  
 
   </body>
 </html>

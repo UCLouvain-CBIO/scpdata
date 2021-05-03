@@ -68,9 +68,18 @@ chips. Samples were 11-plexed with TMT labeling." />
 
 
 
+<!-- dependencies from examples -->
+
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -84,7 +93,7 @@ chips. Samples were 11-plexed with TMT labeling." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.3</span>
       </span>
     </div>
 
@@ -139,7 +148,7 @@ chips. Samples were 11-plexed with TMT labeling.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A QFeatures object with 13 assays, each assay being a
+    <p>A <a href='https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html'>QFeatures</a> object with 13 assays, each assay being a
 SingleCellExperiment object:</p><ul>
 <li><p><code>Single_Cell_Chip_X_Y</code>: PSM data with 11 columns corresponding
 to the TMT channels (see <code>Notes</code>). The <code>X</code> indicates the chip
@@ -204,7 +213,7 @@ combined based on the scan number (common to both data sets). The
 combined datasets for the different runs were then concatenated
 feature-wise. The sample annotation table was manually created
 based on the available information provided in the article. The
-data were then converted to a QFeatures object using the
+data were then converted to a <a href='https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html'>QFeatures</a> object using the
 <a href='https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html'>scp::readSCP</a> function.</p>
 <p>The protein data were downloaded from <code>Supporting information</code>
 section from the publisher's website (see <code>Sources</code>). The data is
@@ -212,7 +221,7 @@ supplied as an Excel file <code>ac9b03349_si_005.xlsx</code>. The file
 contains 7 sheets from which we only took the 2nd (named
 <code>01 - Raw sc protein data</code>) with the combined protein data for the
 12 runs. We converted the data to a SingleCellExperiment object
-and added the object as a new assay in the QFeatures dataset
+and added the object as a new assay in the <a href='https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html'>QFeatures</a> dataset
 (containing the PSM data). Links between the proteins and the
 corresponding PSM were created.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -229,7 +238,7 @@ September
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>dou2019_mouse</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2021-01-28</span></div><div class='output co'>#&gt; <span class='message'>see ?scpdata and browseVignettes('scpdata') for documentation</span></div><div class='output co'>#&gt; <span class='message'>downloading 1 resources</span></div><div class='output co'>#&gt; <span class='message'>retrieving 1 resource</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt; An instance of class QFeatures containing 13 assays:
+</div><div class='co'>#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</div><div class='co'>#&gt; loading from cache</div><div class='co'>#&gt; An instance of class QFeatures containing 13 assays:
 #&gt;  [1] Single_Cell_Chip_1_A: SingleCellExperiment with 29157 rows and 11 columns 
 #&gt;  [2] Single_Cell_Chip_1_B: SingleCellExperiment with 28651 rows and 11 columns 
 #&gt;  [3] Single_Cell_Chip_1_C: SingleCellExperiment with 29082 rows and 11 columns 
@@ -249,11 +258,11 @@ September
 
       <footer>
       <div class="copyright">
-  <p>Developed by Christophe Vanderaa, Laurent Gatto.</p>
+  <p><p>Developed by Christophe Vanderaa, Laurent Gatto.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -261,6 +270,8 @@ September
 
   
 
+
+  
 
   </body>
 </html>

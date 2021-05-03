@@ -71,9 +71,18 @@ corresponding manual pages." />
 
 
 
+<!-- dependencies from examples -->
+
+
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -87,7 +96,7 @@ corresponding manual pages." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.3</span>
       </span>
     </div>
 
@@ -132,7 +141,7 @@ levels (identified spectrum, peptide, or protein) in separate
 assays. Each assay is an object of class SingleCellExperiment
 that allows easy integration with state-of-the-art single-cell
 analysis tools. All assays are contained in a single object of
-class QFeatures. An overview of the data structure is shown
+class <a href='https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html'>QFeatures</a>. An overview of the data structure is shown
 provided in the <code>scp</code> package.</p>
 <p>The <code>scpdata()</code> function returns a summary table with all
 currently available datasets in the package. More information
@@ -158,7 +167,7 @@ in the <code>scp</code> package.</p></div>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## List available datasets and their metadata </span>
 <span class='fu'>scpdata</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2021-01-28</span></div><div class='output co'>#&gt; DataFrame with 11 rows and 15 columns
+</div><div class='co'>#&gt; snapshotDate(): 2021-04-27</div><div class='co'>#&gt; DataFrame with 12 rows and 15 columns
 #&gt;                title  dataprovider       species taxonomyid      genome
 #&gt;          &lt;character&gt;   &lt;character&gt;   &lt;character&gt;  &lt;integer&gt; &lt;character&gt;
 #&gt; EH3899 specht2019... SlavovLab ... Homo sapie...       9606          NA
@@ -166,12 +175,12 @@ in the <code>scp</code> package.</p></div>
 #&gt; EH3901 dou2019_ly...       MassIVE Homo sapie...       9606          NA
 #&gt; EH3902 dou2019_mo...       MassIVE Mus muscul...      10090          NA
 #&gt; EH3903 dou2019_bo...       MassIVE Mus muscul...      10090          NA
-#&gt; EH3904    zhu2018MCP         PRIDE Rattus nor...      10116          NA
-#&gt; EH3905 zhu2018NC_...         PRIDE Homo sapie...       9606          NA
+#&gt; ...              ...           ...           ...        ...         ...
 #&gt; EH3906 zhu2018NC_...         PRIDE Homo sapie...       9606          NA
 #&gt; EH3907 zhu2018NC_...         PRIDE Homo sapie...       9606          NA
 #&gt; EH3908    cong2020AC         PRIDE Homo sapie...       9606          NA
 #&gt; EH3909     zhu2019EL         PRIDE Gallus gal...       9031          NA
+#&gt; EH6011 liang2020_...         PRIDE Homo sapie...       9606          NA
 #&gt;          description coordinate_1_based    maintainer rdatadateadded
 #&gt;          &lt;character&gt;          &lt;integer&gt;   &lt;character&gt;    &lt;character&gt;
 #&gt; EH3899 SCP expres...                  1 Christophe...     2020-11-05
@@ -179,12 +188,12 @@ in the <code>scp</code> package.</p></div>
 #&gt; EH3901 SCP expres...                  1 Christophe...     2020-11-05
 #&gt; EH3902 SCP expres...                  1 Christophe...     2020-11-05
 #&gt; EH3903 SCP expres...                  1 Christophe...     2020-11-05
-#&gt; EH3904 Near SCP e...                  1 Christophe...     2020-11-05
-#&gt; EH3905 Near SCP e...                  1 Christophe...     2020-11-05
+#&gt; ...              ...                ...           ...            ...
 #&gt; EH3906 Near SCP e...                  1 Christophe...     2020-11-05
 #&gt; EH3907 Near SCP e...                  1 Christophe...     2020-11-05
 #&gt; EH3908 SCP expres...                  1 Christophe...     2020-11-05
 #&gt; EH3909 SCP expres...                  1 Christophe...     2020-11-05
+#&gt; EH6011 Expression...                  1 Christophe...     2021-04-27
 #&gt;        preparerclass                                          tags  rdataclass
 #&gt;          &lt;character&gt;                                        &lt;list&gt; &lt;character&gt;
 #&gt; EH3899       scpdata Experiment...,Expression...,Experiment...,...   QFeatures
@@ -192,12 +201,12 @@ in the <code>scp</code> package.</p></div>
 #&gt; EH3901       scpdata Experiment...,Expression...,Experiment...,...   QFeatures
 #&gt; EH3902       scpdata Experiment...,Expression...,Experiment...,...   QFeatures
 #&gt; EH3903       scpdata Experiment...,Expression...,Experiment...,...   QFeatures
-#&gt; EH3904       scpdata Experiment...,Expression...,Experiment...,...   QFeatures
-#&gt; EH3905       scpdata Experiment...,Expression...,Experiment...,...   QFeatures
+#&gt; ...              ...                                           ...         ...
 #&gt; EH3906       scpdata Experiment...,Expression...,Experiment...,...   QFeatures
 #&gt; EH3907       scpdata Experiment...,Expression...,Experiment...,...   QFeatures
 #&gt; EH3908       scpdata Experiment...,Expression...,Experiment...,...   QFeatures
 #&gt; EH3909       scpdata Experiment...,Expression...,Experiment...,...   QFeatures
+#&gt; EH6011       scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures
 #&gt;            rdatapath     sourceurl  sourcetype
 #&gt;          &lt;character&gt;   &lt;character&gt; &lt;character&gt;
 #&gt; EH3899 scpdata/sp... https://sc...         CSV
@@ -205,18 +214,18 @@ in the <code>scp</code> package.</p></div>
 #&gt; EH3901 scpdata/do... ftp://mass...    XLS/XLSX
 #&gt; EH3902 scpdata/do... ftp://mass...    XLS/XLSX
 #&gt; EH3903 scpdata/do... ftp://mass...    XLS/XLSX
-#&gt; EH3904 scpdata/zh... ftp://ftp....         TXT
-#&gt; EH3905 scpdata/zh... ftp://ftp....         TXT
+#&gt; ...              ...           ...         ...
 #&gt; EH3906 scpdata/zh... ftp://ftp....         TXT
 #&gt; EH3907 scpdata/zh... ftp://ftp....         TXT
 #&gt; EH3908 scpdata/co... ftp://ftp....         TXT
-#&gt; EH3909 scpdata/zh... ftp://ftp....         TXT</div><div class='input'>
+#&gt; EH3909 scpdata/zh... ftp://ftp....         TXT
+#&gt; EH6011 scpdata/li... ftp://ftp....         TXT</div><div class='input'>
 <span class='co'>## Load data using the ExperimentHub interface</span>
-<span class='va'>hub</span> <span class='op'>&lt;-</span> <span class='fu'>ExperimentHub</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2021-01-28</span></div><div class='input'>
+<span class='va'>hub</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html'>ExperimentHub</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='co'>#&gt; snapshotDate(): 2021-04-27</div><div class='input'>
 <span class='co'>## Download the data set of interest using ExperimentHub indexing</span>
 <span class='va'>hub</span><span class='op'>[[</span><span class='st'>"EH3899"</span><span class='op'>]</span><span class='op'>]</span>
-</div><div class='output co'>#&gt; <span class='message'>see ?scpdata and browseVignettes('scpdata') for documentation</span></div><div class='output co'>#&gt; <span class='message'>downloading 1 resources</span></div><div class='output co'>#&gt; <span class='message'>retrieving 1 resource</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt; An instance of class QFeatures containing 179 assays:
+</div><div class='co'>#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</div><div class='co'>#&gt; loading from cache</div><div class='co'>#&gt; An instance of class QFeatures containing 179 assays:
 #&gt;  [1] 190222S_LCA9_X_FP94AA: SingleCellExperiment with 2823 rows and 11 columns 
 #&gt;  [2] 190222S_LCA9_X_FP94AB: SingleCellExperiment with 4297 rows and 11 columns 
 #&gt;  [3] 190222S_LCA9_X_FP94AC: SingleCellExperiment with 4956 rows and 11 columns 
@@ -225,7 +234,7 @@ in the <code>scp</code> package.</p></div>
 #&gt;  [178] peptides: SingleCellExperiment with 9208 rows and 1018 columns 
 #&gt;  [179] proteins: SingleCellExperiment with 2772 rows and 1018 columns </div><div class='input'><span class='co'>## Download the same data set using the build-in function</span>
 <span class='fu'><a href='specht2019v2.html'>specht2019v2</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>snapshotDate(): 2021-01-28</span></div><div class='output co'>#&gt; <span class='message'>see ?scpdata and browseVignettes('scpdata') for documentation</span></div><div class='output co'>#&gt; <span class='message'>loading from cache</span></div><div class='output co'>#&gt; An instance of class QFeatures containing 179 assays:
+</div><div class='co'>#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</div><div class='co'>#&gt; loading from cache</div><div class='co'>#&gt; An instance of class QFeatures containing 179 assays:
 #&gt;  [1] 190222S_LCA9_X_FP94AA: SingleCellExperiment with 2823 rows and 11 columns 
 #&gt;  [2] 190222S_LCA9_X_FP94AB: SingleCellExperiment with 4297 rows and 11 columns 
 #&gt;  [3] 190222S_LCA9_X_FP94AC: SingleCellExperiment with 4956 rows and 11 columns 
@@ -245,11 +254,11 @@ in the <code>scp</code> package.</p></div>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Christophe Vanderaa, Laurent Gatto.</p>
+  <p><p>Developed by Christophe Vanderaa, Laurent Gatto.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
@@ -257,6 +266,8 @@ in the <code>scp</code> package.</p></div>
 
   
 
+
+  
 
   </body>
 </html>

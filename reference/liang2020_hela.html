@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Zhu et al. 2019 (eLife): chicken utricle cells — zhu2019EL • scpdata</title>
+<title>Liang et al. 2020 ( (Anal. Chem.)): HeLa cells (MaxQuant preprocessing) — liang2020_hela • scpdata</title>
 
 
 <!-- jquery -->
@@ -39,13 +39,13 @@
 
 
 
-<meta property="og:title" content="Zhu et al. 2019 (eLife): chicken utricle cells — zhu2019EL" />
-<meta property="og:description" content="Single-cell proteomics data from chicken utricle acquired to
-study the hair-cell development. The cells are isolated from
-peeled utrical epithelium and separated into hair cells (FM1-43
-high) and supporting cells (FM1-43 low). The sample contain either
-1 cell (n = 28), 3 cells (n = 7), 5 cells (n = 8) or 20 cells (n =
-14)." />
+<meta property="og:title" content="Liang et al. 2020 ( (Anal. Chem.)): HeLa cells (MaxQuant preprocessing) — liang2020_hela" />
+<meta property="og:description" content="Single-cell proteomics data from HeLa cells using the autoPOTS
+acquisition workflow. The samples contain either no cells (blanks),
+1 cell, 10 cells, 150 cells or 500 cells. Samples containing
+between 0 and 10 cells are isolated using micro-pipetting while
+samples containing between 150 and 500 cells were prepared using
+dilution of a bulk sample." />
 
 
 
@@ -119,44 +119,40 @@ high) and supporting cells (FM1-43 low). The sample contain either
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Zhu et al. 2019 (eLife): chicken utricle cells</h1>
+    <h1>Liang et al. 2020 ( (Anal. Chem.)): HeLa cells (MaxQuant preprocessing)</h1>
     
-    <div class="hidden name"><code>zhu2019EL.Rd</code></div>
+    <div class="hidden name"><code>liang2020_hela.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Single-cell proteomics data from chicken utricle acquired to
-study the hair-cell development. The cells are isolated from
-peeled utrical epithelium and separated into hair cells (FM1-43
-high) and supporting cells (FM1-43 low). The sample contain either
-1 cell (n = 28), 3 cells (n = 7), 5 cells (n = 8) or 20 cells (n =
-14).</p>
+    <p>Single-cell proteomics data from HeLa cells using the autoPOTS
+acquisition workflow. The samples contain either no cells (blanks),
+1 cell, 10 cells, 150 cells or 500 cells. Samples containing
+between 0 and 10 cells are isolated using micro-pipetting while
+samples containing between 150 and 500 cells were prepared using
+dilution of a bulk sample.</p>
     </div>
 
-    <pre class="usage"><span class='va'>zhu2019EL</span></pre>
+    <pre class="usage"><span class='va'>liang2020_hela</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A <a href='https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html'>QFeatures</a> object with 62 assays, each assay being a
+    <p>A <a href='https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html'>QFeatures</a> object with 17 assays, each assay being a
 SingleCellExperiment object:</p><ul>
-<li><p><code>XYZw</code>: 60 assays containing PSM data. The sample are annotated
-as follows. <code>X</code> indicates the experiment, either 1 or 2. <code>Y</code>
-indicated the FM1-43 signal, either high (H) or low (L). <code>Z</code>
-indicates the number of cells (0, 1, 3, 5 or 20). <code>w</code> indicates
-the replicate, starting from <code>a</code>, it can go up to <code>j</code>.</p></li>
-<li><p><code>peptides</code>: quantitative data for 3444 peptides in 60 samples
+<li><p><code>HeLa_*</code>: 15 assays containing PSM data.</p></li>
+<li><p><code>peptides</code>: quantitative data for 48705 peptides in 15 samples
 (all runs are combined).</p></li>
-<li><p><code>proteins</code>: quantitative data for 840 proteins in 60 samples
-(all runs combined).</p></li>
+<li><p><code>proteins</code>: quantitative data for 3970 protein groups in 15
+samples (all runs combined).</p></li>
 </ul>
 
-<p>Sample annotation is stored in <code>colData(zhu2019EL())</code>.</p>
+<p>Sample annotation is stored in <code>colData(liang2020_hela_MQ())</code>.</p>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>The PSM data can be downloaded from the PRIDE repository
-PXD014256. The source link is:
-ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD014256</p>
+PXD021882 The source link is:
+http://ftp.pride.ebi.ac.uk/pride/data/archive/2020/12/PXD021882/</p>
     <h2 class="hasAnchor" id="acquisition-protocol"><a class="anchor" href="#acquisition-protocol"></a>Acquisition protocol</h2>
 
     
@@ -164,26 +160,31 @@ ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD014256</p>
 
 <p>The data were acquired using the following setup. More information
 can be found in the source article (see <code>References</code>).</p><ul>
-<li><p><strong>Cell isolation</strong>: The cells were taken from the utricles of
-E15 chick embryos. Samples were stained with FM1-43FX and the
-cells were dissociated using enzymatic digestion. Cells were
-FACS sorted (BD Influx) and split based on their FM1-43 signal,
-while ensuring no debris, doublets or dead cells are retained.</p></li>
-<li><p><strong>Sample preparation</strong> performed using the nanoPOTs device. Cell
-lysis and protein extraction and reduction are performed using
-dodecyl beta-D-maltoside + DTT + ammonium bicarbonate. Protein
-were then alkylated using IAA. Protein digestion is performed
-using Lys-C and trypsin. Finally samples acidification is
-performed using formic acid.</p></li>
-<li><p><strong>Separation</strong>: Dionex UltiMate pump with an C18-Packed column
-(50cm x 30um; 60nL/min)</p></li>
-<li><p><strong>Ionization</strong>: ESI (2,000V)</p></li>
-<li><p><strong>Mass spectrometry</strong>: Orbitrap Fusion Lumos Tribrid. MS1
-settings: accumulation time = 246ms; resolution = 120,000; AGC =
-3E6. MS/MS settings: accumulation time = 502ms; resolution =
-120,000; AGC = 2E5.</p></li>
-<li><p><strong>Data analysis</strong>: Andromeda &amp; MaxQuant (v1.5.3.30) and the
-search database is NCBI GRCg6a.</p></li>
+<li><p><strong>Cell isolation</strong>: The HeLa cells come from a commercially
+available cell line. Samples containing between 0 and 10 cells
+were isolated using micro-manipulation and the counts were
+validated using a microscope. Samples containing between 150 and
+500 cells were prepared by diluting a bulk sample and the exact
+counts were evaluated by obtaining phtotmicrographs.</p></li>
+<li><p><strong>Sample preparation</strong> performed using the autoPOTS worflow that
+relied on the OT-2 pipeting robot. Cell are lysed using
+sonication. Samples are then processed by successive incubation
+with DTT (reduction), then IAA (alkylation), then Lys-C and
+trypsin (protein digestion).</p></li>
+<li><p><strong>Separation</strong>: Samples were injected on the column using a
+modified Ultimate WPS-3000 TPL autosampler coupled to an UltiMate
+3000 RSLCnano pump. The LC column is a home-packed nanoLC column
+(45cm x 30um; 40nL/min)</p></li>
+<li><p><strong>Ionization</strong>: Nanospray Flex ion source (2,000V)</p></li>
+<li><p><strong>Mass spectrometry</strong>: Orbitrap Exploris 480. MS1 settings:
+accumulation time = 250 ms (0-10 cells) or 100 ms (150-500 cells);
+resolution = 120,000; AGC = 100\<!-- %. MS2 settings: exlusion -->
+duration = 90 s (0-10 cells) or 60 s (150-500 cells) ; accumulation
+time = 500 ms (0-1 cell), 250 ms (10 cells), 100 ms (150 cells)
+or 50 ms (500 cells); resolution = 60,000 (0-10 cells) or 30,000
+(150-500 cells); AGC = 5E3 (0-1 cells) or 1E4 (10-500 cells).</p></li>
+<li><p><strong>Data analysis</strong>: MaxQuant (v1.6.7.0) and the search database
+is Swiss-Prot (July 2020).</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="data-collection"><a class="anchor" href="#data-collection"></a>Data collection</h2>
@@ -192,14 +193,10 @@ search database is NCBI GRCg6a.</p></li>
 
 
 <p>All data were collected from the PRIDE repository (accession ID:
-PXD014256).</p>
-<p>The sample annotation information is provided in the
-<code>Zhu_2019_chick_single_cell_samples_CORRECTED.xlsx</code> file. This file
-was given during a personal discussion and is a corrected version
-of the annotation table available on the PRIDE repository.</p>
-<p>The PSM data were found in the <code>evidence.txt</code> (in the
-<code>Experiment 1+ 2</code>) folder. The PSM data were filtered so that it
-contains only samples that are annotated. The data were then
+PXD021882).</p>
+<p>The sample annotations were collected from the methods section and
+from table S3 in the paper.</p>
+<p>The PSM data were found in the <code>evidence.txt</code> file. The data were
 converted to a <a href='https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html'>QFeatures</a> object using the <a href='https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html'>scp::readSCP</a>
 function.</p>
 <p>The peptide data were found in the <code>peptides.txt</code> file. The column
@@ -215,22 +212,23 @@ object and then inserted in the <a href='https://rdrr.io/pkg/QFeatures/man/QFeat
 the peptides and the proteins were added</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Zhu, Ying, Mirko Scheibinger, Daniel Christian Ellwanger, Jocelyn
-F. Krey, Dongseok Choi, Ryan T. Kelly, Stefan Heller, and Peter G.
-Barr-Gillespie. 2019. “Single-Cell Proteomics Reveals Changes in
-Expression during Hair-Cell Development.” eLife 8 (November).
-(<a href='https://doi.org/10.7554/eLife.50777'>link to article</a>).</p>
+    <p>Liang, Yiran, Hayden Acor, Michaela A. McCown, Andikan J. Nwosu,
+Hannah Boekweg, Nathaniel B. Axtell, Thy Truong, Yongzheng Cong,
+Samuel H. Payne, and Ryan T. Kelly. 2020. “Fully Automated Sample
+Processing and Analysis Workflow for Low-Input Proteome
+Profiling.” Analytical Chemistry, December.
+(<a href='https://doi.org/10.1021/acs.analchem.0c04240'>link to article</a>).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>zhu2019EL</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='co'>#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</div><div class='co'>#&gt; loading from cache</div><div class='co'>#&gt; An instance of class QFeatures containing 62 assays:
-#&gt;  [1] 1H1a: SingleCellExperiment with 152 rows and 1 columns 
-#&gt;  [2] 1H1b: SingleCellExperiment with 267 rows and 1 columns 
-#&gt;  [3] 1H1c: SingleCellExperiment with 128 rows and 1 columns 
+    <pre class="examples"><div class='input'><span class='fu'>liang2020_hela</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='co'>#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</div><div class='co'>#&gt; loading from cache</div><div class='co'>#&gt; An instance of class QFeatures containing 17 assays:
+#&gt;  [1] HeLa_0cell_B16: SingleCellExperiment with 1153 rows and 1 columns 
+#&gt;  [2] HeLa_0cell_B18: SingleCellExperiment with 1214 rows and 1 columns 
+#&gt;  [3] HeLa_0cell_B4: SingleCellExperiment with 1366 rows and 1 columns 
 #&gt;  ...
-#&gt;  [60] 2N0c: SingleCellExperiment with 61 rows and 1 columns 
-#&gt;  [61] peptides: SingleCellExperiment with 3444 rows and 60 columns 
-#&gt;  [62] proteins: SingleCellExperiment with 840 rows and 60 columns </div><div class='input'>
+#&gt;  [15] HeLa_500cell_K8: SingleCellExperiment with 35054 rows and 1 columns 
+#&gt;  [16] peptides: SingleCellExperiment with 48705 rows and 15 columns 
+#&gt;  [17] proteins: SingleCellExperiment with 3970 rows and 15 columns </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
