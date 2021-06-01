@@ -63,8 +63,6 @@ peptide and protein level." />
 
 
 
-<!-- dependencies from examples -->
-
 
   
 
@@ -88,7 +86,7 @@ peptide and protein level." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -132,7 +130,7 @@ quantitative information of macrophages and monocytes at PSM,
 peptide and protein level.</p>
     </div>
 
-    <pre class="usage"><span class='va'>specht2019v3</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='va'>specht2019v3</span></code></pre></div>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -237,16 +235,19 @@ Heterogeneity Using SCoPE2." Genome Biology 22 (1): 50.
 (<a href='http://dx.doi.org/10.1186/s13059-021-02267-5'>link to article</a>).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>specht2019v3</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='co'>#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</div><div class='co'>#&gt; loading from cache</div><div class='co'>#&gt; An instance of class QFeatures containing 179 assays:
-#&gt;  [1] 190222S_LCA9_X_FP94AA: SingleCellExperiment with 2777 rows and 11 columns 
-#&gt;  [2] 190222S_LCA9_X_FP94AB: SingleCellExperiment with 4348 rows and 11 columns 
-#&gt;  [3] 190222S_LCA9_X_FP94AC: SingleCellExperiment with 4917 rows and 11 columns 
-#&gt;  ...
-#&gt;  [177] 191110S_LCB7_X_APNOV16plex2_Set_9: SingleCellExperiment with 4934 rows and 16 columns 
-#&gt;  [178] peptides: SingleCellExperiment with 9354 rows and 1490 columns 
-#&gt;  [179] proteins: SingleCellExperiment with 3042 rows and 1490 columns </div><div class='input'>
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>specht2019v3</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> see ?scpdata and browseVignettes('scpdata') for documentation</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> An instance of class QFeatures containing 179 assays:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] 190222S_LCA9_X_FP94AA: SingleCellExperiment with 2777 rows and 11 columns </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [2] 190222S_LCA9_X_FP94AB: SingleCellExperiment with 4348 rows and 11 columns </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [3] 190222S_LCA9_X_FP94AC: SingleCellExperiment with 4917 rows and 11 columns </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [177] 191110S_LCB7_X_APNOV16plex2_Set_9: SingleCellExperiment with 4934 rows and 16 columns </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [178] peptides: SingleCellExperiment with 9354 rows and 1490 columns </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [179] proteins: SingleCellExperiment with 3042 rows and 1490 columns </span>
+<span class='r-in'></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

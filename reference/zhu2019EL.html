@@ -63,8 +63,6 @@ high) and supporting cells (FM1-43 low). The sample contain either
 
 
 
-<!-- dependencies from examples -->
-
 
   
 
@@ -88,7 +86,7 @@ high) and supporting cells (FM1-43 low). The sample contain either
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.99.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.0</span>
       </span>
     </div>
 
@@ -133,7 +131,7 @@ high) and supporting cells (FM1-43 low). The sample contain either
 14).</p>
     </div>
 
-    <pre class="usage"><span class='va'>zhu2019EL</span></pre>
+    <div class="ref-usage sourceCode"><pre class='sourceCode r'><code><span class='va'>zhu2019EL</span></code></pre></div>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
@@ -222,16 +220,19 @@ Expression during Hair-Cell Development.” eLife 8 (November).
 (<a href='https://doi.org/10.7554/eLife.50777'>link to article</a>).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>zhu2019EL</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='co'>#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</div><div class='co'>#&gt; loading from cache</div><div class='co'>#&gt; An instance of class QFeatures containing 62 assays:
-#&gt;  [1] 1H1a: SingleCellExperiment with 152 rows and 1 columns 
-#&gt;  [2] 1H1b: SingleCellExperiment with 267 rows and 1 columns 
-#&gt;  [3] 1H1c: SingleCellExperiment with 128 rows and 1 columns 
-#&gt;  ...
-#&gt;  [60] 2N0c: SingleCellExperiment with 61 rows and 1 columns 
-#&gt;  [61] peptides: SingleCellExperiment with 3444 rows and 60 columns 
-#&gt;  [62] proteins: SingleCellExperiment with 840 rows and 60 columns </div><div class='input'>
-</div></pre>
+    <div class="ref-examples sourceCode"><pre class='sourceCode r'><code><span class='r-in'><span class='fu'>zhu2019EL</span><span class='op'>(</span><span class='op'>)</span></span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> see ?scpdata and browseVignettes('scpdata') for documentation</span>
+<span class='r-msg co'><span class='r-pr'>#&gt;</span> loading from cache</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> An instance of class QFeatures containing 62 assays:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] 1H1a: SingleCellExperiment with 152 rows and 1 columns </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [2] 1H1b: SingleCellExperiment with 267 rows and 1 columns </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [3] 1H1c: SingleCellExperiment with 128 rows and 1 columns </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [60] 2N0c: SingleCellExperiment with 61 rows and 1 columns </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [61] peptides: SingleCellExperiment with 3444 rows and 60 columns </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [62] proteins: SingleCellExperiment with 840 rows and 60 columns </span>
+<span class='r-in'></span>
+</code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
