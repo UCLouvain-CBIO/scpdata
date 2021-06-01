@@ -1,3 +1,12 @@
+## scp 1.1.0
+
+- New devel (Bioc 3.14)
+
+# scp 1.0
+
+## scp 1.0.0
+
+- New stable release (Bioc 3.13)
 
 # scpdata 0.99
 
