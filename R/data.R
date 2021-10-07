@@ -1140,3 +1140,131 @@
 ##' @keywords datasets
 ##' 
 "liang2020_hela"
+
+
+
+####---- schoof2021 ----####
+
+
+##' Schoof et al. 2021 (Nat. Comm.): acute myeloid leukemia 
+##' differentiation
+##'
+##' Single-cell proteomics data from OCI-AML8227 cell culture to 
+##' reconstruct the cellular hierarchy. The data were acquired using 
+##' TMTpro multiplexing. The samples contain either no cells, 
+##' single cells, 10 cells (reference channel) 200 cells (booster 
+##' channel) or are simply empty wells. Single cells are expected to 
+##' be one of progenitor cells (`PROG`), leukaemia stem cells (`LSC`),
+##' CD38- blast cells (`BLAST CD38-`) or CD38+ blast cells 
+##' (`BLAST CD38+`). Booster are either a known 1:1:1 mix of cells 
+##' (PROG, LSC and BLAST) or are isolated directly from the bulk 
+##' sample. Samples were isolated and annotated using flow cytometry. 
+##' 
+##' @format A [QFeatures] object with 194 assays, each assay being a 
+##' [SingleCellExperiment] object: 
+##' 
+##' - `F*`: 192 assays containing PSM quantification data for 16
+##'    TMT channels. The quantification data contain signal to noise 
+##'    ratios as computed by Proteome Discoverer.
+##' - `proteins`: quantitative data for 2898 protein groups in 3072
+##'   samples (all runs combined). The quantification data contain 
+##'   signal to noise ratios as computed by Proteome Discoverer.
+##' - `logNormProteins`: quantitative data for 2723 protein groups in
+##'   2025 single-cell samples. This assay is the protein datasets that
+##'   was processed by the authors. Dimension reduction and clustering
+##'   data are also available in the `reducedDims` and `colData` slots,
+##'   respectively
+##' 
+##' Sample annotation is stored in `colData(schoof2021())`. The cell
+##' type annotation is stored in the `Population` column. The flow
+##' cytometry data is also available: FSC-A, FSC-H, FSC-W, SSC-A, 
+##' SSC-H, SSC-W, APC-Cy7-A (= CD34) and PE-A (= CD38). 
+##' 
+##' @section Acquisition protocol:
+##' 
+##' The data were acquired using the following setup. More information
+##' can be found in the source article (see `References`).
+##' 
+##' - **Sample isolation**: cultured AML 8227 cells were stained with 
+##'   anti-CD34 and anti-CD38. The sorting was performed by FACSAria 
+##'   instrument and deposited in 384 well plates. 
+##' - **Sample preparation**: cells are lysed using freeze-boil and 
+##'   sonication in a lysis buffer (TFE) that also includes reduction 
+##'   and alkylation reagents (TCEP and CAA), followed by trypsin 
+##'   (protein) and benzonase (DNA) digestion, TMT-16 labeling and
+##'   quenching, desalting using SOLAµ C18 plate, peptide 
+##'   concentration, pooling and peptide concentration again. The 
+##'   booster channel contains 200 cell equivalents. 
+##' - **Liquid chromatography**: peptides are separated using a C18 
+##'   reverse-phase column (50cm x 75 µm i.d., Thermo EasySpray) combined 
+##'   to a Thermo EasyLC 1200 for 160 minute gradient with a flowrate of 
+##'   100nl/min.
+##' - **Mass spectrometry**: FAIMSPro interface is used. MS1 setup: 
+##'   resolution 60.000, AGC target of 300%, accumulation of 50ms. MS2 
+##'   setup: resolution 45.000, AGC target of 150, 300 or 500%, 
+##'   accumulation of 150, 300, 500, or 1000ms.
+##' - **Raw data processing**: Proteome Discoverer 2.4 + Sequest spectral
+##'   search engine and validation with Percolator
+##' 
+##' @section Data collection:
+##' 
+##' All data were collected from the PRIDE repository (accession ID: 
+##' PXD020586). The data and metadata were extracted from the 
+##' `SCeptre_FINAL.zip` file. 
+##' 
+##' We performed extensive data wrangling to combine al the metadata
+##' available from different files into a single table available using
+##' `colData(schoof2021)`.
+##' 
+##' The PSM data were found in the `bulk_PSMs.txt` file. Contaminants 
+##' were defined based on the protein accessions listed in
+##' `contaminant.txt`. The data were converted to a [QFeatures] 
+##'  object using the [scp::readSCP] function. 
+##' 
+##' The protein data were found in the `bulk_Proteins.txt` file. 
+##' Contaminants were defined based on the protein accessions listed 
+##' in `contaminant.txt`.The column names holding the quantitative 
+##' data were adapted to match the sample names in the [QFeatures] 
+##' object. Unnecessary feature annotations (such as in which assay 
+##' a protein is found) were removed. Feature names were created 
+##' following the procedure in SCeptre: features names are the
+##' protein symbol (or accession if missing) and if duplicated 
+##' symbols are present (protein isoforms), they are made unique by 
+##' appending the protein accession.  Contaminants were defined based
+##' on the protein accessions listed in `contaminant.txt`. The data 
+##' were then converted to a [SingleCellExperiment] object and 
+##' inserted in the [QFeatures] object. 
+##' 
+##' The log-normalized protein data were found in the `bulk.h5ad` file.
+##' This dataset was generated by the authors by running the notebook
+##' called `bulk.ipynb`. The `bulk.h5ad` was loaded as an `AnnData` 
+##' object using the `scanpy` Python module. The object was then 
+##' converted to a `SingleCellExperiment` object using the 
+##' `zellkonverter` package. The column names holding the quantitative 
+##' data were adapted to match the sample names in the [QFeatures] 
+##' object. The data were then inserted in the [QFeatures] object. 
+##' 
+##' The script to reproduce the `QFeatures` object is available at
+##' `system.file("scripts", "make-data_schoof2021.R", package = "scpdata")`
+##' 
+##' @source
+##'  
+##' The PSM and protein data can be downloaded from the PRIDE 
+##' repository PXD020586 The source link is: 
+##' https://www.ebi.ac.uk/pride/archive/projects/PXD020586
+##' 
+##' @references 
+##' 
+##' Schoof, Erwin M., Benjamin Furtwängler, Nil Üresin, Nicolas Rapin, 
+##' Simonas Savickas, Coline Gentil, Eric Lechman, Ulrich auf Dem
+##' Keller, John E. Dick, and Bo T. Porse. 2021. “Quantitative 
+##' Single-Cell Proteomics as a Tool to Characterize Cellular 
+##' Hierarchies.” Nature Communications 12 (1): 745679.
+##' ([link to article](http://dx.doi.org/10.1038/s41467-021-23667-y)).
+##' 
+##' @examples
+##' schoof2021()
+##' 
+##' @keywords datasets
+##' 
+"schoof2021"
