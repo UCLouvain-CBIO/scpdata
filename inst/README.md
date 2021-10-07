@@ -9,4 +9,16 @@ for data if needed.
 `scpdata/R/data.R`
 4. Add the dataset information in the `make-metadata.R` and update the 
 `metadata.csv`
-5. Test the new data set. Once ok, upload it to AWS S3 bucket. 
+5. Test the new data set by running 
+  `ExperimentHubData::makeExperimentHubMetadata("scpdata")`. 
+6. Contact Bioc team and upload Rda to AWS S3 bucket. To do so, 
+   connect to amazon:
+   
+```
+## Login
+aws configure --profile AnnotationContributor
+## Upload data
+aws --profile AnnotationContributor s3 cp scpdata s3://annotation-contributor/scpdata --recursive --acl public-read
+## Check
+aws --profile AnnotationContributor s3 ls s3://annotation-contributor/scpdata
+```

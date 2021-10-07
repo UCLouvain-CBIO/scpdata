@@ -255,6 +255,28 @@ meta <- list(
       PublicationDate = as.Date("2020/12/22"),
       NumberAssays = 17,
       Notes=NA_character_
+  ),
+  data.frame(
+      Title = "schoof2021",
+      Description = paste0("Single-cell proteomics data from ",
+                           "OCI-AML8227 cell culture to reconstruct ",
+                           "the cellular hierarchy."),
+      BiocVersion = "3.14",
+      Genome = NA_character_,
+      SourceType = "TXT",
+      SourceUrl = "http://ftp.pride.ebi.ac.uk/pride/data/archive/2021/05/PXD020586/",
+      SourceVersion = NA_character_,
+      Species = "Homo sapiens",
+      TaxonomyId = 9606,
+      Coordinate_1_based = TRUE,
+      DataProvider = "PRIDE",
+      Maintainer = "Christophe Vanderaa <christophe.vanderaa@uclouvain.be>",
+      RDataClass = "QFeatures",
+      DispatchClass = "Rda",
+      RDataPath = "scpdata/schoof2021.Rda",
+      PublicationDate = as.Date("2021/06/07"),
+      NumberAssays = 194,
+      Notes=NA_character_
   )
 )
 meta <- do.call(rbind, meta)
