@@ -1,7 +1,7 @@
-pandoc: 2.11.4
-pkgdown: 1.6.1.9001
-pkgdown_sha: b7b462438bc6252d40e9e5f223b0c56bf938f6d7
+pandoc: 2.14.0.3
+pkgdown: 1.9000.9000.9000
+pkgdown_sha: 31939caeb87846bc75e0cb5eccc0d610405c4580
 articles:
   scpdata: scpdata.html
-last_built: 2021-06-01T15:26Z
+last_built: 2021-10-07T09:48Z
 
