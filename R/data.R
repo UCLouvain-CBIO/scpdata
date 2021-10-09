@@ -558,10 +558,16 @@
 ##' (`CP`), 13 samples were extracted from the cerebral cortex 
 ##' (`CTX`), and 2 samples are labeled as (`Mix`).
 ##' 
-##' @format A [QFeatures] object with 1 assay called `peptides`. It is
-##' a [SingleCellExperiment] object containing the quantitative data 
-##' for 13055 peptides in 24 samples.
+##' @format A [QFeatures] object with 4 assays, each assay being a 
+##' [SingleCellExperiment] object: 
 ##' 
+##' - `peptides`: quantitative information for 13,055 peptides from
+##'   24 samples
+##' - `proteins_intensity`: protein intensities for 2,257 proteins 
+##'   from 24 samples
+##' - `proteins_LFQ`: LFQ intensities for 2,257 proteins from 24 samples
+##' - `proteins_iBAQ`: iBAQ values for 2,257 proteins from 24 samples
+##'  
 ##' Sample annotation is stored in `colData(zhu2018MCP())`.
 ##' 
 ##' @section Acquisition protocol:
@@ -591,12 +597,20 @@
 ##' 
 ##' @section Data collection:
 ##' 
-##' The PSM data were collected from the PRIDE repository (accession 
-##' ID: PXD008844).  We downloaded the `MaxQuant_Peptides.txt` file 
-##' containing the combined identification and quantification results.
-##' The sample annotation was inferred from the names of columns 
-##' holding the quantification data. The data were then converted to a
-##' [QFeatures] object using the [scp::readSCP] function. 
+##' The data were collected from the PRIDE repository (accession
+##' ID: PXD008844).  We downloaded the `MaxQuant_Peptides.txt` 
+##' and the `MaxQuant_ProteinGroups.txt` files containing the
+##' combined identification and quantification 
+##' results. The sample annotations were inferred from the names of 
+##' columns holding the quantification data and the information in the 
+##' article. The peptides data were converted to a [SingleCellExperiment] 
+##' object. We split the protein table to separate the three types of 
+##' quantification: protein intensity, label-free quantitification 
+##' (LFQ) and intensity based absolute quantification (iBAQ). Each 
+##' table is converted to a [SingleCellExperiment] object along with 
+##' the remaining protein annotations. The 4 objects are combined in 
+##' a single [QFeature] object and feature links are created based on 
+##' the peptide leading razor protein ID and the protein ID.
 ##' 
 ##' @source 
 ##' The PSM data can be downloaded from the PRIDE repository

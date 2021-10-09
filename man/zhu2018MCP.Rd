@@ -5,9 +5,16 @@
 \alias{zhu2018MCP}
 \title{Zhu et al. 2018 (Mol. Cel. Prot.): rat brain laser dissections}
 \format{
-A \link{QFeatures} object with 1 assay called \code{peptides}. It is
-a \link{SingleCellExperiment} object containing the quantitative data
-for 13055 peptides in 24 samples.
+A \link{QFeatures} object with 4 assays, each assay being a
+\link{SingleCellExperiment} object:
+\itemize{
+\item \code{peptides}: quantitative information for 13,055 peptides from
+24 samples
+\item \code{proteins_intensity}: protein intensities for 2,257 proteins
+from 24 samples
+\item \code{proteins_LFQ}: LFQ intensities for 2,257 proteins from 24 samples
+\item \code{proteins_iBAQ}: iBAQ values for 2,257 proteins from 24 samples
+}
 
 Sample annotation is stored in \code{colData(zhu2018MCP())}.
 }
@@ -61,12 +68,20 @@ Origin Pro 2017
 \section{Data collection}{
 
 
-The PSM data were collected from the PRIDE repository (accession
-ID: PXD008844).  We downloaded the \code{MaxQuant_Peptides.txt} file
-containing the combined identification and quantification results.
-The sample annotation was inferred from the names of columns
-holding the quantification data. The data were then converted to a
-\link{QFeatures} object using the \link[scp:readSCP]{scp::readSCP} function.
+The data were collected from the PRIDE repository (accession
+ID: PXD008844).  We downloaded the \code{MaxQuant_Peptides.txt}
+and the \code{MaxQuant_ProteinGroups.txt} files containing the
+combined identification and quantification
+results. The sample annotations were inferred from the names of
+columns holding the quantification data and the information in the
+article. The peptides data were converted to a \link{SingleCellExperiment}
+object. We split the protein table to separate the three types of
+quantification: protein intensity, label-free quantitification
+(LFQ) and intensity based absolute quantification (iBAQ). Each
+table is converted to a \link{SingleCellExperiment} object along with
+the remaining protein annotations. The 4 objects are combined in
+a single \link{QFeature} object and feature links are created based on
+the peptide leading razor protein ID and the protein ID.
 }
 
 \examples{

@@ -137,7 +137,7 @@ meta <- list(
     PublicationDate = as.Date("2018/09/01"),
     PreprocessingSoftware = "MaxQuant",
     LabelingProtocol = "LFQ",
-    NumberAssays = 1,
+    NumberAssays = 4,
     Notes=NA_character_
   ),
   data.frame(
