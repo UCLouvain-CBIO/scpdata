@@ -181,7 +181,7 @@ meta <- list(
     DispatchClass = "Rda",
     RDataPath = "scpdata/zhu2018NC_lysates.Rda",
     PublicationDate = as.Date("2018/02/28"),
-    NumberAssays = 1,
+    NumberAssays = 4,
     PreprocessingSoftware = "MaxQuant",
     LabelingProtocol = "LFQ",
     Notes=NA_character_

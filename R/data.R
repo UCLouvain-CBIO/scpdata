@@ -246,11 +246,7 @@
 ##' - `proteins`: protein data containing quantitative data for 1641 
 ##'   proteins and 20 samples (run 1 and run 2 combined). 
 ##' 
-##' 
-##' Sample annotation is stored in `colData(dou2019_lysates())`. The 
-##' description of the `rowData` fields for the PSM data can be found 
-##' in the 
-##' [`MaxQuant` documentation](http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable).
+##' Sample annotation is stored in `colData(dou2019_lysates())`. 
 ##' 
 ##' @section Acquisition protocol:
 ##' 
@@ -713,9 +709,17 @@
 ##' concentrations (10, 40 and 140 cell equivalent). Each 
 ##' concentration is acquired in triplicate. 
 ##' 
-##' @format A [QFeatures] object with 1 assay called `peptides`. It is
-##' a [SingleCellExperiment] object containing the quantitative data 
-##' for 14921 peptides in 9 samples.
+##' @format A [QFeatures] object with 4 assays, each assay being a 
+##' [SingleCellExperiment] object: 
+##' 
+##' - `peptides`: quantitative information for 14,921 peptides from
+##'   9 lysate samples
+##' - `proteins_intensity`: quantitative information for 2,199 
+##'   proteins from 9 lysate samples
+##' - `proteins_LFQ`: LFQ intensities for 2,199 proteins from 9 lysate
+##'   samples
+##' - `proteins_iBAQ`: iBAQ values for 2,199 proteins from 9 lysate 
+##'   samples
 ##' 
 ##' Sample annotation is stored in `colData(zhu2018NC_lysates())`.
 ##' 
@@ -744,12 +748,19 @@
 ##' @section Data collection:
 ##' 
 ##' The PSM data were collected from the PRIDE repository (accession
-##' ID: PXD006847).  We downloaded the `CulturedCells_peptides.txt` 
-##' file containing the combined identification and quantification 
-##' results. The sample annotation was inferred from the names of 
+##' ID: PXD006847).  We downloaded the `Vail_Prep_Vail_peptides.txt` 
+##' and the `Vail_Prep_Vail_proteinGroups.txt` files containing the
+##' combined identification and quantification 
+##' results. The sample annotations were inferred from the names of 
 ##' columns holding the quantification data and the information in the 
-##' article. The data were then converted to a [QFeatures] object 
-##' using the [scp::readSCP] function. 
+##' article. The peptides data were converted to a [SingleCellExperiment] 
+##' object. We split the protein table to separate the three types of 
+##' quantification: protein intensity, label-free quantitification 
+##' (LFQ) and intensity based absolute quantification (iBAQ). Each 
+##' table is converted to a [SingleCellExperiment] object along with 
+##' the remaining protein annotations. The 4 objects are combined in 
+##' a single [QFeature] object and feature links are created based on 
+##' the peptide leading razor protein ID and the protein ID.
 ##' 
 ##' @source 
 ##' The PSM data can be downloaded from the PRIDE repository 

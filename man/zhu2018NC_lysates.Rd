@@ -5,9 +5,18 @@
 \alias{zhu2018NC_lysates}
 \title{Zhu et al. 2018 (Nat. Comm.): HeLa lysates}
 \format{
-A \link{QFeatures} object with 1 assay called \code{peptides}. It is
-a \link{SingleCellExperiment} object containing the quantitative data
-for 14921 peptides in 9 samples.
+A \link{QFeatures} object with 4 assays, each assay being a
+\link{SingleCellExperiment} object:
+\itemize{
+\item \code{peptides}: quantitative information for 14,921 peptides from
+9 lysate samples
+\item \code{proteins_intensity}: quantitative information for 2,199
+proteins from 9 lysate samples
+\item \code{proteins_LFQ}: LFQ intensities for 2,199 proteins from 9 lysate
+samples
+\item \code{proteins_iBAQ}: iBAQ values for 2,199 proteins from 9 lysate
+samples
+}
 
 Sample annotation is stored in \code{colData(zhu2018NC_lysates())}.
 }
@@ -53,12 +62,19 @@ resolution = 240,000), approx. 40 cells (time = 246ms; resolution =
 
 
 The PSM data were collected from the PRIDE repository (accession
-ID: PXD006847).  We downloaded the \code{CulturedCells_peptides.txt}
-file containing the combined identification and quantification
-results. The sample annotation was inferred from the names of
+ID: PXD006847).  We downloaded the \code{Vail_Prep_Vail_peptides.txt}
+and the \code{Vail_Prep_Vail_proteinGroups.txt} files containing the
+combined identification and quantification
+results. The sample annotations were inferred from the names of
 columns holding the quantification data and the information in the
-article. The data were then converted to a \link{QFeatures} object
-using the \link[scp:readSCP]{scp::readSCP} function.
+article. The peptides data were converted to a \link{SingleCellExperiment}
+object. We split the protein table to separate the three types of
+quantification: protein intensity, label-free quantitification
+(LFQ) and intensity based absolute quantification (iBAQ). Each
+table is converted to a \link{SingleCellExperiment} object along with
+the remaining protein annotations. The 4 objects are combined in
+a single \link{QFeature} object and feature links are created based on
+the peptide leading razor protein ID and the protein ID.
 }
 
 \examples{
