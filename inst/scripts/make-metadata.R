@@ -21,6 +21,8 @@ meta <- list(
     RDataPath = "scpdata/specht2019v2.Rda",
     PublicationDate = as.Date("2019/12/5"),
     NumberAssays = 179,
+    PreprocessingSoftware = "MaxQuant,DART-ID",
+    LabelingProtocol = "TMT-11,TMT-16",
     Notes=NA_character_
   ),
   data.frame(
@@ -42,6 +44,8 @@ meta <- list(
     RDataPath = "scpdata/specht2019v3.Rda",
     PublicationDate = as.Date("2020/10/04"),
     NumberAssays = 179,
+    PreprocessingSoftware = "MaxQuant,DART-ID",
+    LabelingProtocol = "TMT-11,TMT-16",
     Notes=NA_character_
   ),
   data.frame(
@@ -63,6 +67,8 @@ meta <- list(
     RDataPath = "scpdata/dou2019_lysates.Rda",
     PublicationDate = as.Date("2019/10/15"),
     NumberAssays = 3,
+    PreprocessingSoftware = "MS-GF+,MASIC",
+    LabelingProtocol = "TMT-10",
     Notes=NA_character_
   ),
   data.frame(
@@ -84,6 +90,8 @@ meta <- list(
     RDataPath = "scpdata/dou2019_mouse.Rda",
     PublicationDate = as.Date("2019/10/15"),
     NumberAssays = 13,
+    PreprocessingSoftware = "MS-GF+,MASIC",
+    LabelingProtocol = "TMT-10",
     Notes=NA_character_
   ),
   data.frame(
@@ -105,6 +113,8 @@ meta <- list(
     RDataPath = "scpdata/dou2019_boosting.Rda",
     PublicationDate = as.Date("2019/10/15"),
     NumberAssays = 7,
+    PreprocessingSoftware = "MS-GF+,MASIC",
+    LabelingProtocol = "TMT-10",
     Notes=NA_character_
   ),
   data.frame(
@@ -125,6 +135,8 @@ meta <- list(
     DispatchClass = "Rda",
     RDataPath = "scpdata/zhu2018MCP.Rda",
     PublicationDate = as.Date("2018/09/01"),
+    PreprocessingSoftware = "MaxQuant",
+    LabelingProtocol = "LFQ",
     NumberAssays = 1,
     Notes=NA_character_
   ),
@@ -147,6 +159,8 @@ meta <- list(
     RDataPath = "scpdata/zhu2018NC_hela.Rda",
     PublicationDate = as.Date("2018/02/28"),
     NumberAssays = 1,
+    PreprocessingSoftware = "MaxQuant",
+    LabelingProtocol = "LFQ",
     Notes=NA_character_
   ),
   data.frame(
@@ -168,6 +182,8 @@ meta <- list(
     RDataPath = "scpdata/zhu2018NC_lysates.Rda",
     PublicationDate = as.Date("2018/02/28"),
     NumberAssays = 1,
+    PreprocessingSoftware = "MaxQuant",
+    LabelingProtocol = "LFQ",
     Notes=NA_character_
   ),
   data.frame(
@@ -190,6 +206,8 @@ meta <- list(
     RDataPath = "scpdata/zhu2018NC_islets.Rda",
     PublicationDate = as.Date("2018/02/28"),
     NumberAssays = 1,
+    PreprocessingSoftware = "MaxQuant",
+    LabelingProtocol = "LFQ",
     Notes=NA_character_
   ),
   data.frame(
@@ -211,6 +229,8 @@ meta <- list(
     RDataPath = "scpdata/cong2020AC.Rda",
     PublicationDate = as.Date("2020/01/02"),
     NumberAssays = 9,
+    PreprocessingSoftware = "MaxQuant",
+    LabelingProtocol = "LFQ",
     Notes=NA_character_
   ),
   data.frame(
@@ -232,6 +252,8 @@ meta <- list(
     RDataPath = "scpdata/zhu2019EL.Rda",
     PublicationDate = as.Date("2019/11/04"),
     NumberAssays = 62,
+    PreprocessingSoftware = "MaxQuant",
+    LabelingProtocol = "LFQ",
     Notes=NA_character_
   ),
   data.frame(
@@ -254,6 +276,8 @@ meta <- list(
       RDataPath = "scpdata/liang2020_hela.Rda",
       PublicationDate = as.Date("2020/12/22"),
       NumberAssays = 17,
+      PreprocessingSoftware = "MaxQuant",
+      LabelingProtocol = "LFQ",
       Notes=NA_character_
   ),
   data.frame(
@@ -276,6 +300,8 @@ meta <- list(
       RDataPath = "scpdata/schoof2021.Rda",
       PublicationDate = as.Date("2021/06/07"),
       NumberAssays = 194,
+      PreprocessingSoftware = "ProteomeDiscoverer",
+      LabelingProtocol = "TMT-16",
       Notes=NA_character_
   )
 )
