@@ -16,10 +16,8 @@ dataDir <- "~/PhD/.localdata/SCP/zhu2018NC_lysates/"
 ####---- Peptide data ----####
 
 ## Load the quantification data
-paste0(dataDir, "Vail_Prep_Vail_peptides.txt") %>%
-    read.table(sep = "\t", header = TRUE) %>%
-    mutate(Batch = "peptides") ->
-    peps
+peps <- read.table(paste0(dataDir, "Vail_Prep_Vail_peptides.txt"),
+                   sep = "\t", header = TRUE)
 peps <- readSingleCellExperiment(peps,
                                  ecol = grep("^Intensity.", colnames(peps)),
                                  fnames = "Sequence")

@@ -18,30 +18,70 @@ dataDir <- "~/PhD/.localdata/SCP/zhu2018NC_hela/"
 
 ## The annotation file was manually created from the samples names and
 ## the available information from the methods section
-meta <- read.csv(paste0(dataDir, "sample_annotation.csv"))
-rownames(meta) <- paste0(meta$SampleName, "_sample")
+annot <- read.csv(paste0(dataDir, "sample_annotation.csv"), 
+                  row.names = "SampleName")
 
 ####---- Peptide data ----####
 
 ## Load the quantification data
-pep <-  read.table(paste0(dataDir, "CulturedCells_peptides.txt"),
-                   sep = "\t", header = TRUE) 
-colnames(pep) <- sub("Intensity.(.*)$", "\\1_sample", colnames(pep))
-rownames(pep) <- pep$Sequence
-pep <- readSingleCellExperiment(pep, ecol = grep("sample$", colnames(pep)))
+peps <- read.table(paste0(dataDir, "CulturedCells_peptides.txt"),
+                   sep = "\t", header = TRUE)
+peps <- readSingleCellExperiment(peps,
+                                 ecol = grep("^Intensity.", colnames(peps)),
+                                 fnames = "Sequence")
+colnames(peps) <- gsub("Intensity.", "", colnames(peps))
 
 ####---- Protein data ----####
 
 ## Load the quantification data
-prot <-  read.table(paste0(dataDir, "CulturedCells_proteinGroups.txt"),
+prots <- read.table(paste0(dataDir, "CulturedCells_proteinGroups.txt"),
                     sep = "\t", header = TRUE)
-colnames(prot) <- sub("Intensity.(.*)$", "\\1_sample", colnames(prot))
-rownames(prot) <- prot$Protein.IDs
-prot <- readSingleCellExperiment(prot, ecol = grep("sample$", colnames(prot)))
+## Remove unnecessary columns
+sel <- !grepl("Peptides.*[HMT]|^Identif|^Razor.*[HMT]|Sequence.*[HMT]|Unique.*[HMT]|MS.MS.*[HMT]",
+              colnames(prots))
+prots <- prots[, sel]
+## Split protein data based on the quantification method:
+## 1. Protein intensity
+protsInt <- prots[, !grepl("^iBAQ|^LFQ", colnames(prots))]
+protsInt <- readSingleCellExperiment(protsInt, 
+                                     ecol = grep("^Intensity.", colnames(protsInt)),
+                                     fnames = "Protein.IDs")
+colnames(protsInt) <- gsub("Intensity.", "", colnames(protsInt))
+## 2. LFQ
+protsLFQ <- prots[, !grepl("^iBAQ|^Intensity", colnames(prots))]
+protsLFQ <- readSingleCellExperiment(protsLFQ, 
+                                     ecol = grep("^LFQ.", colnames(protsLFQ)),
+                                     fnames = "Protein.IDs")
+colnames(protsLFQ) <- gsub("LFQ.intensity.", "", colnames(protsLFQ))
+## 3. iBAQ
+protsIBAQ <- prots[, !grepl("^LFQ|^Intensity", colnames(prots))]
+protsIBAQ <- readSingleCellExperiment(protsIBAQ, 
+                                      ecol = grep("^iBAQ.", colnames(protsIBAQ)),
+                                      fnames = "Protein.IDs")
+colnames(protsIBAQ) <- gsub("iBAQ.", "", colnames(protsIBAQ))
 
-## Create the QFeatures object
-zhu2018NC_hela <- QFeatures(list(peptides = pep, proteins = prot), 
-                            colData = DataFrame(meta))
+
+####---- Create the QFeatures object ----####
+
+el <- ExperimentList(peptides = peps,
+                     proteins_intensity = protsInt,
+                     proteins_LFQ = protsLFQ,
+                     proteins_iBAQ = protsIBAQ)
+zhu2018NC_hela <- QFeatures(el, colData = annot)
+
+## Create assay links
+zhu2018NC_hela <- addAssayLink(zhu2018NC_hela, 
+                                 from = "peptides", to = "proteins_intensity",
+                                 varFrom = "Leading.razor.protein", 
+                                 varTo = "Majority.protein.IDs")
+zhu2018NC_hela <- addAssayLink(zhu2018NC_hela, 
+                                 from = "peptides", to = "proteins_LFQ",
+                                 varFrom = "Leading.razor.protein", 
+                                 varTo = "Majority.protein.IDs")
+zhu2018NC_hela <- addAssayLink(zhu2018NC_hela, 
+                                 from = "peptides", to = "proteins_iBAQ",
+                                 varFrom = "Leading.razor.protein", 
+                                 varTo = "Majority.protein.IDs")
 
 # Save data as Rda file
 # Note: saving is assumed to occur in "(...)/scpdata/inst/scripts"

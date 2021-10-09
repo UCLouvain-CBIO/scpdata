@@ -632,14 +632,16 @@
 ##' lysates (50 cell equivalent) and 2 cancer cell line lysates (MCF7 
 ##' and THP1, 50 cell equivalent).
 ##' 
-##' @format A [QFeatures] object with 2 assays:
+##' @format A [QFeatures] object with 4 assays, each assay being a 
+##' [SingleCellExperiment] object: 
 ##' 
-##' - `peptides`: a [SingleCellExperiment] object containing the 
-##'   quantitative data for 37795 peptides in 21 samples.
-##' - `proteins`: a [SingleCellExperiment] object containing the 
-##'   quantitative (summed intensities) data for 3984 proteins in 21 
-##'   samples. Note that the iBAQ and LFQ intensities computed by 
-##'   MaxQuant are available from the `rowData`. 
+##' - `peptides`: quantitative information for 37,795 peptides from
+##'   21 samples
+##' - `proteins_intensity`: protein intensities for 3,984 proteins 
+##'   from 21 samples
+##' - `proteins_LFQ`: LFQ intensities for 3,984 proteins from 21
+##'   samples
+##' - `proteins_iBAQ`: iBAQ values for 3,984 proteins from 21 samples
 ##' 
 ##' Sample annotation is stored in `colData(zhu2018NC_hela())`.
 ##' 
@@ -668,14 +670,21 @@
 ##' 
 ##' @section Data collection:
 ##' 
-##' The PSM data were collected from the PRIDE repository (accession 
+##' The data were collected from the PRIDE repository (accession
 ##' ID: PXD006847).  We downloaded the `CulturedCells_peptides.txt` 
-##' file containing the combined identification and quantification 
-##' results. The sample annotation was inferred from the names of 
-##' columns holding the quantification data and the information in 
-##' the article. The data were then converted to a [QFeatures] object 
-##' using the [scp::readSCP] function. 
-##' 
+##' and the `CulturedCells_proteinGroups.txt` files containing the
+##' combined identification and quantification 
+##' results. The sample annotations were inferred from the names of 
+##' columns holding the quantification data and the information in the 
+##' article. The peptides data were converted to a [SingleCellExperiment] 
+##' object. We split the protein table to separate the three types of 
+##' quantification: protein intensity, label-free quantitification 
+##' (LFQ) and intensity based absolute quantification (iBAQ). Each 
+##' table is converted to a [SingleCellExperiment] object along with 
+##' the remaining protein annotations. The 4 objects are combined in 
+##' a single [QFeature] object and feature links are created based on 
+##' the peptide leading razor protein ID and the protein ID.
+##'  
 ##' @source 
 ##' The PSM data can be downloaded from the PRIDE repository 
 ##' PXD006847. FTP link: 
@@ -689,8 +698,8 @@
 ##' of 10-100 Mammalian Cells.” Nature Communications 9 (1): 882 
 ##' ([link to article](http://dx.doi.org/10.1038/s41467-018-03367-w)).
 ##' 
-##' @seealso The same experiment was conducted on HeLa lysates and the
-##' data is available in [zhu2018NC_lysates].
+##' @seealso The same experiment was conducted on HeLa lysates:
+##' [zhu2018NC_lysates].
 ##' 
 ##' @examples
 ##' zhu2018NC_hela()
