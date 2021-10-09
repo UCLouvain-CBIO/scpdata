@@ -747,7 +747,7 @@
 ##' 
 ##' @section Data collection:
 ##' 
-##' The PSM data were collected from the PRIDE repository (accession
+##' The data were collected from the PRIDE repository (accession
 ##' ID: PXD006847).  We downloaded the `Vail_Prep_Vail_peptides.txt` 
 ##' and the `Vail_Prep_Vail_proteinGroups.txt` files containing the
 ##' combined identification and quantification 
@@ -801,9 +801,17 @@
 ##' program. The sample come either from control patients (n=9) or 
 ##' from type 1 diabetes (T1D) patients (n=9). 
 ##' 
-##' @format A [QFeatures] object with 1 assay called `peptides`. It is
-##' a [SingleCellExperiment] object containing the quantitative data 
-##' for 24321 peptides in 18 samples.
+##' @format A [QFeatures] object with 4 assays, each assay being a 
+##' [SingleCellExperiment] object: 
+##' 
+##' - `peptides`: quantitative information for 24,321 peptides from
+##'   18 islet samples
+##' - `proteins_intensity`: quantitative information for 3,278
+##'   proteins from 18 islet samples
+##' - `proteins_LFQ`: LFQ intensities for 3,278 proteins from 18 islet
+##'   samples
+##' - `proteins_iBAQ`: iBAQ values for 3,278 proteins from 18 islet 
+##'   samples
 ##' 
 ##' Sample annotation is stored in `colData(zhu2018NC_islets())`.
 ##' 
@@ -829,13 +837,20 @@
 ##' 
 ##' @section Data collection:
 ##' 
-##' The PSM data were collected from the PRIDE repository (accession 
+##' The data were collected from the PRIDE repository (accession
 ##' ID: PXD006847).  We downloaded the `Islet_t1d_ct_peptides.txt` 
-##' file containing the combined identification and quantification 
-##' results. The sample annotation was inferred from the column names 
-##' holding the quantification data and from the information in the 
-##' article. The data were then converted to a [QFeatures] object 
-##' using the [scp::readSCP] function. 
+##' and the `Islet_t1d_ct_proteinGroups.txt` files containing the
+##' combined identification and quantification results. The sample 
+##' types were inferred from the names of columns holding the 
+##' quantification data. The peptides data were converted to a
+##' [SingleCellExperiment] object. We split the protein table to 
+##' separate the three types of quantification: protein intensity, 
+##' label-free quantitification (LFQ) and intensity based absolute
+##' quantification (iBAQ). Each table is converted to a
+##' [SingleCellExperiment] object along with the remaining protein
+##' annotations. The 4 objects are combined in a single [QFeature] 
+##' object and feature links are created based on the peptide leading
+##' razor protein ID and the protein ID.
 ##' 
 ##' @source 
 ##' The PSM data can be downloaded from the PRIDE repository 

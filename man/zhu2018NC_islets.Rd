@@ -5,9 +5,18 @@
 \alias{zhu2018NC_islets}
 \title{Zhu et al. 2018 (Nat. Comm.): human pancreatic islets}
 \format{
-A \link{QFeatures} object with 1 assay called \code{peptides}. It is
-a \link{SingleCellExperiment} object containing the quantitative data
-for 24321 peptides in 18 samples.
+A \link{QFeatures} object with 4 assays, each assay being a
+\link{SingleCellExperiment} object:
+\itemize{
+\item \code{peptides}: quantitative information for 24,321 peptides from
+18 islet samples
+\item \code{proteins_intensity}: quantitative information for 3,278
+proteins from 18 islet samples
+\item \code{proteins_LFQ}: LFQ intensities for 3,278 proteins from 18 islet
+samples
+\item \code{proteins_iBAQ}: iBAQ values for 3,278 proteins from 18 islet
+samples
+}
 
 Sample annotation is stored in \code{colData(zhu2018NC_islets())}.
 }
@@ -53,13 +62,20 @@ resolution = 60,000; AGC = 1E5.
 \section{Data collection}{
 
 
-The PSM data were collected from the PRIDE repository (accession
+The data were collected from the PRIDE repository (accession
 ID: PXD006847).  We downloaded the \code{Islet_t1d_ct_peptides.txt}
-file containing the combined identification and quantification
-results. The sample annotation was inferred from the column names
-holding the quantification data and from the information in the
-article. The data were then converted to a \link{QFeatures} object
-using the \link[scp:readSCP]{scp::readSCP} function.
+and the \code{Islet_t1d_ct_proteinGroups.txt} files containing the
+combined identification and quantification results. The sample
+types were inferred from the names of columns holding the
+quantification data. The peptides data were converted to a
+\link{SingleCellExperiment} object. We split the protein table to
+separate the three types of quantification: protein intensity,
+label-free quantitification (LFQ) and intensity based absolute
+quantification (iBAQ). Each table is converted to a
+\link{SingleCellExperiment} object along with the remaining protein
+annotations. The 4 objects are combined in a single \link{QFeature}
+object and feature links are created based on the peptide leading
+razor protein ID and the protein ID.
 }
 
 \examples{

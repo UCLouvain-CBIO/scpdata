@@ -40,7 +40,7 @@ annot$Date <- as.Date(sub("^.*p_(.*)_.$", "\\1", rownames(annot)), "%d%m%y")
 prots <- read.table(paste0(dataDir, "Vail_Prep_Vail_proteinGroups.txt"),
                     sep = "\t", header = TRUE)
 ## Remove unnecessary columns
-sel <- !grepl("Peptides.*HeLa|^Identif|^Razor.*HeLa|Sequence.*HeLa|Unique.*HeLa",
+sel <- !grepl("Peptides.*HeLa|^Identif|^Razor.*HeLa|Sequence.*HeLa|Unique.*HeLa|MS.MS.*HeLa",
               colnames(prots))
 prots <- prots[, sel]
 ## Split protein data based on the quantification method:

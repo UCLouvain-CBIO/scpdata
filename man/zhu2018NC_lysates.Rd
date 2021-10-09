@@ -61,7 +61,7 @@ resolution = 240,000), approx. 40 cells (time = 246ms; resolution =
 \section{Data collection}{
 
 
-The PSM data were collected from the PRIDE repository (accession
+The data were collected from the PRIDE repository (accession
 ID: PXD006847).  We downloaded the \code{Vail_Prep_Vail_peptides.txt}
 and the \code{Vail_Prep_Vail_proteinGroups.txt} files containing the
 combined identification and quantification
