@@ -20,10 +20,7 @@ for run 2.
 proteins and 20 samples (run 1 and run 2 combined).
 }
 
-Sample annotation is stored in \code{colData(dou2019_lysates())}. The
-description of the \code{rowData} fields for the PSM data can be found
-in the
-\href{http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable}{\code{MaxQuant} documentation}.
+Sample annotation is stored in \code{colData(dou2019_lysates())}.
 }
 \source{
 The PSM data can be downloaded from the massIVE repository
