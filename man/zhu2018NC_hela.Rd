@@ -76,7 +76,7 @@ quantification: protein intensity, label-free quantitification
 (LFQ) and intensity based absolute quantification (iBAQ). Each
 table is converted to a \link{SingleCellExperiment} object along with
 the remaining protein annotations. The 4 objects are combined in
-a single \link{QFeature} object and feature links are created based on
+a single \link{QFeatures} object and feature links are created based on
 the peptide leading razor protein ID and the protein ID.
 }
 

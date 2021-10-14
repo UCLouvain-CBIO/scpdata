@@ -609,7 +609,7 @@
 ##' (LFQ) and intensity based absolute quantification (iBAQ). Each 
 ##' table is converted to a [SingleCellExperiment] object along with 
 ##' the remaining protein annotations. The 4 objects are combined in 
-##' a single [QFeature] object and feature links are created based on 
+##' a single [QFeatures] object and feature links are created based on 
 ##' the peptide leading razor protein ID and the protein ID.
 ##' 
 ##' @source 
@@ -696,7 +696,7 @@
 ##' (LFQ) and intensity based absolute quantification (iBAQ). Each 
 ##' table is converted to a [SingleCellExperiment] object along with 
 ##' the remaining protein annotations. The 4 objects are combined in 
-##' a single [QFeature] object and feature links are created based on 
+##' a single [QFeatures] object and feature links are created based on 
 ##' the peptide leading razor protein ID and the protein ID.
 ##'  
 ##' @source 
@@ -782,7 +782,7 @@
 ##' (LFQ) and intensity based absolute quantification (iBAQ). Each 
 ##' table is converted to a [SingleCellExperiment] object along with 
 ##' the remaining protein annotations. The 4 objects are combined in 
-##' a single [QFeature] object and feature links are created based on 
+##' a single [QFeatures] object and feature links are created based on 
 ##' the peptide leading razor protein ID and the protein ID.
 ##' 
 ##' @source 
@@ -871,7 +871,7 @@
 ##' label-free quantitification (LFQ) and intensity based absolute
 ##' quantification (iBAQ). Each table is converted to a
 ##' [SingleCellExperiment] object along with the remaining protein
-##' annotations. The 4 objects are combined in a single [QFeature] 
+##' annotations. The 4 objects are combined in a single [QFeatures] 
 ##' object and feature links are created based on the peptide leading
 ##' razor protein ID and the protein ID.
 ##' 
