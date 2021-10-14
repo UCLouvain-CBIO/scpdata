@@ -66,10 +66,14 @@ callum (<code>CC</code>), 4 samples were dissected from the corpus collosum
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object with 1 assay called <code>peptides</code>. It is
-a SingleCellExperiment object containing the quantitative data
-for 13055 peptides in 24 samples.</p>
-<p>Sample annotation is stored in <code>colData(zhu2018MCP())</code>.</p>
+    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object with 4 assays, each assay being a
+SingleCellExperiment object:</p><ul><li><p><code>peptides</code>: quantitative information for 13,055 peptides from
+24 samples</p></li>
+<li><p><code>proteins_intensity</code>: protein intensities for 2,257 proteins
+from 24 samples</p></li>
+<li><p><code>proteins_LFQ</code>: LFQ intensities for 2,257 proteins from 24 samples</p></li>
+<li><p><code>proteins_iBAQ</code>: iBAQ values for 2,257 proteins from 24 samples</p></li>
+</ul><p>Sample annotation is stored in <code>colData(zhu2018MCP())</code>.</p>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p>The PSM data can be downloaded from the PRIDE repository
@@ -105,12 +109,20 @@ Origin Pro 2017</p></li>
     
 
 
-<p>The PSM data were collected from the PRIDE repository (accession
-ID: PXD008844).  We downloaded the <code>MaxQuant_Peptides.txt</code> file
-containing the combined identification and quantification results.
-The sample annotation was inferred from the names of columns
-holding the quantification data. The data were then converted to a
-<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html">scp::readSCP</a> function.</p>
+<p>The data were collected from the PRIDE repository (accession
+ID: PXD008844).  We downloaded the <code>MaxQuant_Peptides.txt</code>
+and the <code>MaxQuant_ProteinGroups.txt</code> files containing the
+combined identification and quantification
+results. The sample annotations were inferred from the names of
+columns holding the quantification data and the information in the
+article. The peptides data were converted to a SingleCellExperiment
+object. We split the protein table to separate the three types of
+quantification: protein intensity, label-free quantitification
+(LFQ) and intensity based absolute quantification (iBAQ). Each
+table is converted to a SingleCellExperiment object along with
+the remaining protein annotations. The 4 objects are combined in
+a single <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object and feature links are created based on
+the peptide leading razor protein ID and the protein ID.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Zhu, Ying, Maowei Dou, Paul D. Piehowski, Yiran Liang, Fangjun

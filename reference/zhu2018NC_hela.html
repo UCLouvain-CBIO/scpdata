@@ -64,12 +64,14 @@ and THP1, 50 cell equivalent).</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object with 2 assays:</p><ul><li><p><code>peptides</code>: a SingleCellExperiment object containing the
-quantitative data for 37795 peptides in 21 samples.</p></li>
-<li><p><code>proteins</code>: a SingleCellExperiment object containing the
-quantitative (summed intensities) data for 3984 proteins in 21
-samples. Note that the iBAQ and LFQ intensities computed by
-MaxQuant are available from the <code>rowData</code>.</p></li>
+    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object with 4 assays, each assay being a
+SingleCellExperiment object:</p><ul><li><p><code>peptides</code>: quantitative information for 37,795 peptides from
+21 samples</p></li>
+<li><p><code>proteins_intensity</code>: protein intensities for 3,984 proteins
+from 21 samples</p></li>
+<li><p><code>proteins_LFQ</code>: LFQ intensities for 3,984 proteins from 21
+samples</p></li>
+<li><p><code>proteins_iBAQ</code>: iBAQ values for 3,984 proteins from 21 samples</p></li>
 </ul><p>Sample annotation is stored in <code>colData(zhu2018NC_hela())</code>.</p>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
@@ -104,13 +106,20 @@ resolution = 240,000), approx. 40 cells (time = 246ms; resolution =
     
 
 
-<p>The PSM data were collected from the PRIDE repository (accession
+<p>The data were collected from the PRIDE repository (accession
 ID: PXD006847).  We downloaded the <code>CulturedCells_peptides.txt</code>
-file containing the combined identification and quantification
-results. The sample annotation was inferred from the names of
-columns holding the quantification data and the information in
-the article. The data were then converted to a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object
-using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html">scp::readSCP</a> function.</p>
+and the <code>CulturedCells_proteinGroups.txt</code> files containing the
+combined identification and quantification
+results. The sample annotations were inferred from the names of
+columns holding the quantification data and the information in the
+article. The peptides data were converted to a SingleCellExperiment
+object. We split the protein table to separate the three types of
+quantification: protein intensity, label-free quantitification
+(LFQ) and intensity based absolute quantification (iBAQ). Each
+table is converted to a SingleCellExperiment object along with
+the remaining protein annotations. The 4 objects are combined in
+a single <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object and feature links are created based on
+the peptide leading razor protein ID and the protein ID.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen,
@@ -120,8 +129,8 @@ of 10-100 Mammalian Cells.” Nature Communications 9 (1): 882
 (<a href="http://dx.doi.org/10.1038/s41467-018-03367-w">link to article</a>).</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class="dont-index"><p>The same experiment was conducted on HeLa lysates and the
-data is available in <a href="zhu2018NC_lysates.html">zhu2018NC_lysates</a>.</p></div>
+    <div class="dont-index"><p>The same experiment was conducted on HeLa lysates:
+<a href="zhu2018NC_lysates.html">zhu2018NC_lysates</a>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">zhu2018NC_hela</span><span class="op">(</span><span class="op">)</span></span>
