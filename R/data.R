@@ -298,7 +298,7 @@
 ##' then joined in a single assay (see [QFeatures::joinAssays]), again
 ##' based on the peptide sequence(s). We then removed the peptide 
 ##' groups. Links between the peptide and the PSM data were created 
-##' using [QFeatures:addAssayLinks]. Note that links between PSM and
+##' using [QFeatures::addAssayLink]. Note that links between PSM and
 ##'  peptide groups are not stored. 
 ##' 
 ##' The protein data were downloaded from `Supporting information` 
@@ -422,7 +422,7 @@
 ##' then joined in a single assay (see [QFeatures::joinAssays]), again
 ##' based on the peptide sequence(s). We then removed the peptide 
 ##' groups. Links between the peptide and the PSM data were created 
-##' using [QFeatures:addAssayLinks]. Note that links between PSM and
+##' using [QFeatures::addAssayLink]. Note that links between PSM and
 ##'  peptide groups are not stored. 
 ##' 
 ##' The protein data were downloaded from `Supporting information` 
@@ -548,7 +548,7 @@
 ##' then joined in a single assay (see [QFeatures::joinAssays]), again
 ##' based on the peptide sequence(s). We then removed the peptide 
 ##' groups. Links between the peptide and the PSM data were created 
-##' using [QFeatures:addAssayLinks]. Note that links between PSM and
+##' using [QFeatures::addAssayLink]. Note that links between PSM and
 ##'  peptide groups are not stored. 
 ##' 
 ##' The protein data were downloaded from `Supporting information` 

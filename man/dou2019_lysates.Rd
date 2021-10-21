@@ -95,7 +95,7 @@ median PSM instenity. The peptide data for the different runs were
 then joined in a single assay (see \link[QFeatures:joinAssays]{QFeatures::joinAssays}), again
 based on the peptide sequence(s). We then removed the peptide
 groups. Links between the peptide and the PSM data were created
-using \link{QFeatures:addAssayLinks}. Note that links between PSM and
+using \link[QFeatures:AssayLinks]{QFeatures::addAssayLink}. Note that links between PSM and
 peptide groups are not stored.
 
 The protein data were downloaded from \verb{Supporting information}
