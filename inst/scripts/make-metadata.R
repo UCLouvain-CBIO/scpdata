@@ -66,7 +66,7 @@ meta <- list(
     DispatchClass = "Rda",
     RDataPath = "scpdata/dou2019_lysates.Rda",
     PublicationDate = as.Date("2019/10/15"),
-    NumberAssays = 3,
+    NumberAssays = 4,
     PreprocessingSoftware = "MS-GF+,MASIC",
     LabelingProtocol = "TMT-10",
     Notes=NA_character_
@@ -89,7 +89,7 @@ meta <- list(
     DispatchClass = "Rda",
     RDataPath = "scpdata/dou2019_mouse.Rda",
     PublicationDate = as.Date("2019/10/15"),
-    NumberAssays = 13,
+    NumberAssays = 14,
     PreprocessingSoftware = "MS-GF+,MASIC",
     LabelingProtocol = "TMT-10",
     Notes=NA_character_
@@ -112,7 +112,7 @@ meta <- list(
     DispatchClass = "Rda",
     RDataPath = "scpdata/dou2019_boosting.Rda",
     PublicationDate = as.Date("2019/10/15"),
-    NumberAssays = 7,
+    NumberAssays = 8,
     PreprocessingSoftware = "MS-GF+,MASIC",
     LabelingProtocol = "TMT-10",
     Notes=NA_character_

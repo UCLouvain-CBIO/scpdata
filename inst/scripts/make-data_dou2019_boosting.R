@@ -28,23 +28,37 @@ list.files(dataDir) %>%
     batches
 ## For every experiment (= MS run)
 lapply(batches, function(batch){
-    ## Identification data (.mzid files) were downloaded at 
+    ## Identification data (.mzid files) were downloaded from
     ## ftp://massive.ucsd.edu/MSV000084110/result/Result_Files/
-    list.files(path = dataDir, 
-               pattern = paste0(batch, ".*mzid$"), 
-               full.names = TRUE) %>%
-        ## Read in files using `mzR`
-        openIDfile %>%
-        psms %>%
-        ## Rename column to match with quantification data
-        dplyr::rename(ScanNumber = scan.number.s.,
-                      ## Avoid forbidden names for SingleCellExperiment class
-                      .start = start,
-                      .end = end) %>% 
-        ## Remove duplicate rows
-        distinct -> 
-        mzid
-    ## Quantification data (.txt files) were downloaded at
+    ## Read in files using `mzR`
+    idFile <- openIDfile(list.files(path = dataDir, 
+                                    pattern = paste0(batch, ".*mzid$"), 
+                                    full.names = TRUE))
+    ## Extract the identification output
+    matches <- psms(idFile)
+    ## Extract the identification scores
+    scores <- score(idFile)
+    ## Combine the two tables
+    matches <- left_join(matches, scores, by = "spectrumID")
+    ## Rename columns
+    matches <- dplyr::rename(matches,
+                             ## Match the scan number column with
+                             ## the quantification data
+                             ScanNumber = scan.number.s.,
+                             ## Avoid names forbidden by the 
+                             ## SingleCellExperiment class
+                             .start = start,
+                             .end = end)
+    ## For some unknown reason, there can be multiple E-values and 
+    ## MS.GF.PepQValue assigned to a given match (and score). To avoid
+    ## this, we take the lowest highest value
+    matches <- group_by(matches, spectrumID, sequence) %>% 
+        mutate(MS.GF.EValue = max(MS.GF.EValue),
+               MS.GF.PepQValue = max(MS.GF.PepQValue))
+    ## Remove duplicate rows
+    matches <- distinct(matches)
+    
+    ## Quantification data (.txt files) were downloaded from
     ## ftp://massive.ucsd.edu/MSV000084110/other/MASIC_ReporterIons/
     list.files(path = dataDir, 
                pattern = paste0(batch, ".*txt$"), 
@@ -54,18 +68,50 @@ lapply(batches, function(batch){
         mutate(Batch = batch) ->
         quant
     ## Combine data 
-    left_join(mzid, quant, by = "ScanNumber")
+    left_join(matches, quant, by = "ScanNumber")
 }) %>%
     ## Bind the different batches
     bind_rows ->
-    dat
+    psms
 
-## PSM is mapped to multiple isoforms, we add the isoform subscript to
-## the peptide sequence
+## PSM data is mapped to multiple peptides and peptides to multiple 
+## proteins. In such cases, the PSM quantitative data is duplicated.
+## To avoid this duplication, we combine all features belonging to the
+## same spectra. This means we are creating peptide groups when a 
+## spectrum is matched to multiple peptides, and proteins groups when 
+## a peptide is mapped to multiple proteins. 
+
+## When combining multiple lines into a single PSM, some values differ.
+## If so, we concatenate those values in a single entry. Note that when
+## one of the peptides is a decoy, we flag the corresponding spectra 
+## as a decoy. 
+combineFeatures <- function(x) {
+    if (length(x) == 1) return(x)
+    ## isDecoy is a logical. if any PSM is a decoy, the spectrum is 
+    ## considered as decoy
+    if (is.logical(x)) return(all(x)) 
+    xuni <- unique(x)
+    if (length(xuni) == 1) return(xuni)
+    ## When a spectrum matches to multiples proteins, we combine those
+    ## in a protein group
+    paste0(xuni, collapse = ";")
+}
+## In order to concatenate some columns that are not unique for a 
+## given spectra, we need to convert those columns to characters
+psms$.start <- as.character(psms$.start)
+psms$.end <- as.character(psms$.end)
+psms$DBseqLength <- as.character(psms$DBseqLength)
+psms$modNum <- as.character(psms$modNum)
+psms$calculatedMassToCharge <- as.character(psms$calculatedMassToCharge)
+## Combine the features as single spectrum information
+psms <- group_by(psms, spectrumID, Batch)
+psms <- dplyr::summarise(psms, across(.fn = combineFeatures))
+
+####---- Sample annotation ----####
 
 ## Sample annotation provided in Table S3 in the Supplementary information
 data.frame(Batch = batches,
-           DatasetID = as.character(unique(dat$Dataset)),
+           DatasetID = as.character(unique(psms$Dataset)),
            Ion_126.128 = c("Raw", "SVEC", "C10", "SVEC", "C10", "SVEC"),
            Ion_127.125 = c("Raw", "SVEC", "C10", "SVEC", "C10", "SVEC"),
            Ion_127.131 = c("Raw", "SVEC", "Raw", "SVEC", "C10", "SVEC"),
@@ -81,8 +127,10 @@ data.frame(Batch = batches,
                  values_to = "SampleType") ->
     colDat
 
+####---- Create the QFeatures object ----####
+
 ## Create the `QFeatures` object
-dou2019_boosting <- readSCP(dat, 
+dou2019_boosting <- readSCP(psms, 
                             colDat, 
                             batchCol = "Batch", 
                             channelCol = "Channel")
@@ -102,6 +150,14 @@ dou2019_boosting <- joinAssays(dou2019_boosting,
                                name = "peptides")
 ## We remove the intermediate aggregation assays
 dou2019_boosting <- dou2019_boosting[, , !grepl("^pep_", names(dou2019_boosting))]
+## We remove the peptide groups
+sce <- dou2019_boosting[["peptides"]]
+sce <- sce[!grepl("[;]", rownames(sce)), ]
+dou2019_boosting[["peptides"]] <- sce
+## We add the assay links between PSM and peptide data
+dou2019_boosting <- 
+    addAssayLink(dou2019_boosting, from = 1:6, to = "peptides", 
+                 varFrom = rep("sequence", 6), varTo = "sequence")
 
 ####---- Protein data ----####
 
@@ -126,24 +182,24 @@ lapply(sheets,
 channel <- sub(pattern = "_Data.*$", replacement = "", colnames(prots))
 datasetID <- sub(pattern = "Ion.*ID_", replacement = "",  colnames(prots))
 batch <- colDat$Batch[match(datasetID, colDat$DatasetID)]
-colnames(prots) <- ifelse(grepl("Ion", channel), paste0(batch, "_", channel),
+colnames(prots) <- ifelse(grepl("Ion", channel), paste0(batch, channel),
                           channel)
 
 ## Extract and format the protein expression data 
 prots <- readSingleCellExperiment(prots, 
-                                  ecol = grep("Ion", colname),
+                                  ecol = grep("Ion", colnames(prots)),
                                   fnames = "Protein")
 
 ## Add assay and AssayLinks to the dataset
-addAssay(dou2019_boosting, prots, name = "proteins") %>%
-    addAssayLink(from = "peptides", to = "proteins", 
-                 varFrom = "DatabaseAccess", 
-                 varTo = "Protein") ->
-    dou2019_boosting
+dou2019_boosting <- addAssay(dou2019_boosting, prots, name = "proteins")
+dou2019_boosting <- addAssayLink(dou2019_boosting,
+                                 from = "peptides", to = "proteins", 
+                                 varFrom = "DatabaseAccess", 
+                                 varTo = "Protein")
 
 ## Save data as Rda file
 ## Note: saving is assumed to occur in "scpdata/inst/scripts"
 save(dou2019_boosting,
      compress = "xz", 
      compression_level = 9,
-     file = file.path("../extdata/scpdata/dou2019_boosting.Rda"))
+     file = file.path("~/PhD/.localdata/scpdata/dou2019_boosting.Rda"))

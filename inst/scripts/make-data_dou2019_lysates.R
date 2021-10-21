@@ -14,52 +14,99 @@ library(openxlsx)
 library(scp)
 library(mzR)
 library(tidyverse)
-setwd("inst/scripts/")
-
+dataDir <- "~/PhD/.localdata/SCP/dou2019_lysates/"
 
 ####---- PSM data ----####
-
 
 ## Load and combine the identification and quantification data
 batches <- c("Hela_run_1", "Hela_run_2") 
 ## For every experiment (= MS run)
 lapply(batches, function(batch){
-  ## Identification data (.mzid files) were downloaded at 
-  ## ftp://massive.ucsd.edu/MSV000084110/result/Result_Files/
-  list.files("../extdata/dou2019_lysates/", 
-             pattern = paste0(batch, ".*mzid$"), 
-             full.names = TRUE) %>%
+    ## Identification data (.mzid files) were downloaded from
+    ## ftp://massive.ucsd.edu/MSV000084110/result/Result_Files/
     ## Read in files using `mzR`
-    openIDfile %>%
-    psms %>%
-    ## Rename column to match with quantification data
-    dplyr::rename(ScanNumber = scan.number.s.,
-                  ## Avoid forbidden names for SingleCellExperiment class
-                  .start = start,
-                  .end = end) %>% 
+    idFile <- openIDfile(list.files(path = dataDir, 
+                                    pattern = paste0(batch, ".*mzid$"), 
+                                    full.names = TRUE))
+    ## Extract the identification output
+    matches <- psms(idFile)
+    ## Extract the identification scores
+    scores <- score(idFile)
+    ## Combine the two tables
+    matches <- left_join(matches, scores, by = "spectrumID")
+    ## Rename columns
+    matches <- dplyr::rename(matches,
+                             ## Match the scan number column with
+                             ## the quantification data
+                             ScanNumber = scan.number.s.,
+                             ## Avoid names forbidden by the 
+                             ## SingleCellExperiment class
+                             .start = start,
+                             .end = end)
+    ## For some strange reason, there can be multiple E-values and 
+    ## MS.GF.PepQValue assigned to a given match (and score). To avoid
+    ## this, we take the lowest highest value
+    matches <- group_by(matches, spectrumID, sequence) %>% 
+        mutate(MS.GF.EValue = max(MS.GF.EValue),
+               MS.GF.PepQValue = max(MS.GF.PepQValue))
     ## Remove duplicate rows
-    distinct -> 
-    mzid
-  ## Quantification data (.txt files) were downloaded at
-  ## ftp://massive.ucsd.edu/MSV000084110/other/MASIC_ReporterIons/
-  list.files("../extdata/dou2019_lysates", 
-             pattern = paste0(batch, ".*txt$"), 
-             full.names = TRUE) %>%
-    read.table(header = TRUE, sep = "\t") %>%
-    ## Add the batch name 
-    mutate(Batch = batch) ->
-    quant
-  ## Combine data 
-  left_join(mzid, quant, by = "ScanNumber")
+    matches <- distinct(matches)
+    
+    ## Quantification data (.txt files) were downloaded from
+    ## ftp://massive.ucsd.edu/MSV000084110/other/MASIC_ReporterIons/
+    list.files(path = dataDir, 
+               pattern = paste0(batch, ".*txt$"), 
+               full.names = TRUE) %>%
+        read.table(header = TRUE, sep = "\t") %>%
+        ## Add the batch name 
+        mutate(Batch = batch) ->
+        quant
+    ## Combine data 
+    left_join(matches, quant, by = "ScanNumber")
 }) %>%
-  ## Bind the different batches
-  bind_rows ->
-  dat
+    ## Bind the different batches
+    bind_rows ->
+    psms
+
+## PSM data is mapped to multiple peptides and peptides to multiple 
+## proteins. In such cases, the PSM quantitative data is duplicated.
+## To avoid this duplication, we combine all features belonging to the
+## same spectra. This means we are creating peptide groups when a 
+## spectrum is matched to multiple peptides, and proteins groups when 
+## a peptide is mapped to multiple proteins. 
+
+## When combining multiple lines into a single PSM, some values differ.
+## If so, we concatenate those values in a single entry. Note that when
+## one of the peptides is a decoy, we flag the corresponding spectra 
+## as a decoy. 
+combineFeatures <- function(x) {
+    if (length(x) == 1) return(x)
+    ## isDecoy is a logical. if any PSM is a decoy, the spectrum is 
+    ## considered as decoy
+    if (is.logical(x)) return(all(x)) 
+    xuni <- unique(x)
+    if (length(xuni) == 1) return(xuni)
+    ## When a spectrum matches to multiples proteins, we combine those
+    ## in a protein group
+    paste0(xuni, collapse = ";")
+}
+## In order to concatenate some columns that are not unique for a 
+## given spectra, we need to convert those columns to characters
+psms$.start <- as.character(psms$.start)
+psms$.end <- as.character(psms$.end)
+psms$DBseqLength <- as.character(psms$DBseqLength)
+psms$modNum <- as.character(psms$modNum)
+psms$calculatedMassToCharge <- as.character(psms$calculatedMassToCharge)
+## Combine the features as single spectrum information
+psms <- group_by(psms, spectrumID, Batch)
+psms <- dplyr::summarise(psms, across(.fn = combineFeatures))
+
+####---- Sample annotation ----####
 
 ## Create the sample metadata
 ## The table is manually created because the information is taken from the 
 ## supplementary information file (Figure S2)
-channels <- grep("^Ion_.*\\d$", colnames(dat), value = TRUE)
+channels <- grep("^Ion_.*\\d$", colnames(psms), value = TRUE)
 colDat <- data.frame(Channel = rep(channels, length(batches)),
                      Batch = rep(batches, each = length(channels)),
                      SampleType = rep(c(rep("Lysate", 7), 
@@ -71,55 +118,78 @@ colDat <- data.frame(Channel = rep(channels, length(batches)),
                                             10),
                                           length(batches)))
 
-## Create the `QFeatures` object
-dou2019_lysates <- readSCP(dat, 
-                        colDat, 
-                        batchCol = "Batch", 
-                        channelCol = "Channel")
+####---- Create the QFeatures object ----####
 
+## Create the `QFeatures` object
+dou2019_lysates <- readSCP(psms, 
+                           colDat, 
+                           batchCol = "Batch", 
+                           channelCol = "Channel")
+
+####---- Peptide data ----####
+
+## We generate the peptide data ourself, through median aggregation
+dou2019_lysates <- 
+    aggregateFeaturesOverAssays(dou2019_lysates, 
+                                i = seq_along(dou2019_lysates),
+                                fcol = "sequence", 
+                                name = paste0("pep_", names(dou2019_lysates)),
+                                fun = colMedians)
+## We join the peptide data in a single assay
+dou2019_lysates <- joinAssays(dou2019_lysates, 
+                              i = grep("^pep_", names(dou2019_lysates)), 
+                              name = "peptides")
+## We remove the intermediate aggregation assays
+dou2019_lysates <- dou2019_lysates[, , !grepl("^pep_", names(dou2019_lysates))]
+## We remove the peptide groups
+sce <- dou2019_lysates[["peptides"]]
+sce <- sce[!grepl("[;]", rownames(sce)), ]
+dou2019_lysates[["peptides"]] <- sce
+## We add the assay links between PSM and peptide data
+dou2019_lysates <- 
+    addAssayLink(dou2019_lysates, from = 1:2, to = "peptides", 
+                 varFrom = rep("sequence", 2), varTo = "sequence")
 
 ####---- Protein data ----####
 
-
 ## Load the data
 ## Data was downloaded from https://doi.org/10.1021/acs.analchem.9b03349.
-"../extdata/dou2019_lysates/ac9b03349_si_003.xlsx" %>%
-  loadWorkbook %>%
-  read.xlsx(sheet = 6, colNames = FALSE) -> 
-  dat
+datXlsx <- loadWorkbook(list.files(path = dataDir, 
+                                   pattern = "xlsx$",  
+                                   full.names = TRUE))
+prots <- read.xlsx(datXlsx, sheet = 6, colNames = FALSE)
 
 ## Get the column names 
 ## The columns names should match the column names contained in the 
 ## 'dou2019_lysates' object
-dat[1:3, ] %>%
-  t %>% 
-  as_tibble %>%
-  mutate(colname = sub(pattern = "_Dat.*$", replacement = "", `3`),
-         batch = sub("run", "", `1`), 
-         colname = ifelse(grepl("Ion", colname),
-                          paste0("Hela_run_", batch, "_", colname),
-                          colname)) %>%
-  pull(colname) ->
-  colname
+prots[1:3, ] %>%
+    t %>% 
+    as_tibble %>%
+    mutate(colname = sub(pattern = "_Dat.*$", replacement = "", `3`),
+           batch = sub("run", "", `1`), 
+           colname = ifelse(grepl("Ion", colname),
+                            paste0("Hela_run_", batch, colname),
+                            colname)) %>%
+    pull(colname) ->
+    colname
 ## Extract and format the protein expression data 
-dat[-(1:3), ] %>%
-  magrittr::set_colnames(colname) %>%
-  mutate_at(vars(contains("Ion")), as.numeric) %>% 
-  readSingleCellExperiment(ecol = grep("Ion", colname),
-                           fnames = "Protein") ->
-  dat
+prots[-(1:3), ] %>%
+    magrittr::set_colnames(colname) %>%
+    mutate_at(vars(contains("Ion")), as.numeric) %>% 
+    readSingleCellExperiment(ecol = grep("Ion", colname),
+                             fnames = "Protein") ->
+    prots
 
 ## Add assay and AssayLinks to the dataset
-addAssay(dou2019_lysates, dat, name = "proteins") %>%
-  addAssayLink(from = names(dou2019_lysates)[1:2], to = "proteins", 
-               varFrom = rep("DatabaseAccess", 2), 
-               varTo = "Protein") ->
-  dou2019_lysates
+dou2019_lysates <- addAssay(dou2019_lysates, prots, name = "proteins")
+dou2019_lysates <- addAssayLink(dou2019_lysates,  
+                                from = "peptides", to = "proteins", 
+                                varFrom = "DatabaseAccess",
+                                varTo = "Protein")
 
 ## Save data as Rda file
 ## Note: saving is assumed to occur in "scpdata/inst/scripts"
 save(dou2019_lysates, 
      compress = "xz", 
      compression_level = 9,
-     file = file.path("../extdata/scpdata/dou2019_lysates.Rda"))
-
+     file = file.path("~/PhD/.localdata/scpdata/dou2019_lysates.Rda"))

@@ -12,8 +12,10 @@ A \link{QFeatures} object with 13 assays, each assay being a
 to the TMT channels (see \code{Notes}). The \code{X} indicates the chip
 number (from 1 to 4) and \code{Y} indicates the row name on the chip
 (from A to C).
+\item \code{peptides}: peptide data containing quantitative data for 103,000
+peptides in 132 samples (run 1 and run 2 combined).
 \item \code{proteins}: protein data containing quantitative data for 2331
-proteins and 132 samples (all runs combined).
+proteins in 132 samples (all runs combined).
 }
 
 Sample annotation is stored in \code{colData(dou2019_mouse())}.
@@ -86,10 +88,23 @@ quantification result files.
 For each batch, the quantification and identification data were
 combined based on the scan number (common to both data sets). The
 combined datasets for the different runs were then concatenated
-feature-wise. The sample annotation table was manually created
-based on the available information provided in the article. The
-data were then converted to a \link{QFeatures} object using the
-\link[scp:readSCP]{scp::readSCP} function.
+feature-wise. To avoid data duplication due to ambiguous matching
+of spectra to peptides or ambiguous mapping of peptides to proteins,
+we combined ambiguous peptides to peptides groups and proteins to
+protein groups. Feature annotations that are not common within a
+peptide or protein group are are separated by a \verb{;}. The sample
+annotation table was manually created based on the available
+information provided in the article. The data were then converted
+to a \link{QFeatures} object using the \link[scp:readSCP]{scp::readSCP} function.
+
+We generated the peptide data by aggregating the quantification
+data based on the peptide (or peptide group) sequence(s) using the
+median PSM instenity. The peptide data for the different runs were
+then joined in a single assay (see \link[QFeatures:joinAssays]{QFeatures::joinAssays}), again
+based on the peptide sequence(s). We then removed the peptide
+groups. Links between the peptide and the PSM data were created
+using \link{QFeatures:addAssayLink}. Note that links between PSM and
+peptide groups are not stored.
 
 The protein data were downloaded from \verb{Supporting information}
 section from the publisher's website (see \code{Sources}). The data is
@@ -99,7 +114,8 @@ contains 7 sheets from which we only took the 2nd (named
 12 runs. We converted the data to a \link{SingleCellExperiment} object
 and added the object as a new assay in the \link{QFeatures} dataset
 (containing the PSM data). Links between the proteins and the
-corresponding PSM were created.
+corresponding PSM were created. Note that links to protein groups
+are not stored.
 }
 
 \examples{

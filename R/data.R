@@ -243,8 +243,10 @@
 ##'   TMT-10plex channels. Columns hold quantitative information for 
 ##'   HeLa lysate samples (either 0, 0.2 or 10ng). This is the data 
 ##'   for run 2.
+##' - `peptides`: peptide data containing quantitative data for 27,902 
+##'   peptides in 20 samples (run 1 and run 2 combined). 
 ##' - `proteins`: protein data containing quantitative data for 1641 
-##'   proteins and 20 samples (run 1 and run 2 combined). 
+##'   proteins in 20 samples (run 1 and run 2 combined). 
 ##' 
 ##' Sample annotation is stored in `colData(dou2019_lysates())`. 
 ##' 
@@ -281,10 +283,23 @@
 ##' For each batch, the quantification and identification data were 
 ##' combined based on the scan number (common to both data sets). The 
 ##' combined datasets for the different runs were then concatenated 
-##' feature-wise. The sample annotation table was manually created 
-##' based on the available information provided in the article. The 
-##' data were then converted to a [QFeatures] object using the 
-##' [scp::readSCP] function. 
+##' feature-wise. To avoid data duplication due to ambiguous matching
+##' of spectra to peptides or ambiguous mapping of peptides to proteins,
+##' we combined ambiguous peptides to peptides groups and proteins to
+##' protein groups. Feature annotations that are not common within a 
+##' peptide or protein group are are separated by a `;`. The sample 
+##' annotation table was manually created based on the available 
+##' information provided in the article. The data were then converted 
+##' to a [QFeatures] object using the [scp::readSCP] function. 
+##' 
+##' We generated the peptide data by aggregating the quantification 
+##' data based on the peptide (or peptide group) sequence(s) using the
+##' median PSM instenity. The peptide data for the different runs were
+##' then joined in a single assay (see [QFeatures::joinAssays]), again
+##' based on the peptide sequence(s). We then removed the peptide 
+##' groups. Links between the peptide and the PSM data were created 
+##' using [QFeatures:addAssayLink]. Note that links between PSM and
+##'  peptide groups are not stored. 
 ##' 
 ##' The protein data were downloaded from `Supporting information` 
 ##' section from the publisher's website (see `Sources`). The data is 
@@ -294,7 +309,8 @@
 ##' two runs. We converted the data to a [SingleCellExperiment] 
 ##' object and added the object as a new assay in the [QFeatures] 
 ##' dataset (containing the PSM data). Links between the proteins and 
-##' the corresponding PSM were created. 
+##' the peptides were created. Note that links to protein groups are 
+##' not stored.
 ##' 
 ##' @source 
 ##' The PSM data can be downloaded from the massIVE repository 
@@ -350,8 +366,10 @@
 ##'   to the TMT channels (see `Notes`). The `X` indicates the chip 
 ##'   number (from 1 to 4) and `Y` indicates the row name on the chip 
 ##'   (from A to C). 
+##' - `peptides`: peptide data containing quantitative data for 103,000 
+##'   peptides in 132 samples (run 1 and run 2 combined). 
 ##' - `proteins`: protein data containing quantitative data for 2331 
-##'   proteins and 132 samples (all runs combined). 
+##'   proteins in 132 samples (all runs combined). 
 ##' 
 ##' Sample annotation is stored in `colData(dou2019_mouse())`.
 ##' 
@@ -389,10 +407,23 @@
 ##' For each batch, the quantification and identification data were 
 ##' combined based on the scan number (common to both data sets). The 
 ##' combined datasets for the different runs were then concatenated 
-##' feature-wise. The sample annotation table was manually created 
-##' based on the available information provided in the article. The 
-##' data were then converted to a [QFeatures] object using the 
-##' [scp::readSCP] function. 
+##' feature-wise. To avoid data duplication due to ambiguous matching
+##' of spectra to peptides or ambiguous mapping of peptides to proteins,
+##' we combined ambiguous peptides to peptides groups and proteins to
+##' protein groups. Feature annotations that are not common within a 
+##' peptide or protein group are are separated by a `;`. The sample 
+##' annotation table was manually created based on the available 
+##' information provided in the article. The data were then converted 
+##' to a [QFeatures] object using the [scp::readSCP] function. 
+##' 
+##' We generated the peptide data by aggregating the quantification 
+##' data based on the peptide (or peptide group) sequence(s) using the
+##' median PSM instenity. The peptide data for the different runs were
+##' then joined in a single assay (see [QFeatures::joinAssays]), again
+##' based on the peptide sequence(s). We then removed the peptide 
+##' groups. Links between the peptide and the PSM data were created 
+##' using [QFeatures:addAssayLink]. Note that links between PSM and
+##'  peptide groups are not stored. 
 ##' 
 ##' The protein data were downloaded from `Supporting information` 
 ##' section from the publisher's website (see `Sources`). The data is 
@@ -402,7 +433,8 @@
 ##' 12 runs. We converted the data to a [SingleCellExperiment] object 
 ##' and added the object as a new assay in the [QFeatures] dataset 
 ##' (containing the PSM data). Links between the proteins and the 
-##' corresponding PSM were created. 
+##' corresponding PSM were created. Note that links to protein groups 
+##' are not stored.
 ##' 
 ##' @note Although a TMT-10plex labeling is reported in the article, 
 ##' the PSM data contained 11 channels for each run. Those 11th 
@@ -459,6 +491,8 @@
 ##' - `Boosting_X_run_Y`: PSM data with 10 columns corresponding to 
 ##'   the TMT-10plex channels. The `X` indicates the boosting amount 
 ##'   (0ng, 5ng or 50ng) and `Y` indicates the run number (1 or 2). 
+##' - `peptides`: peptide data containing quantitative data for 67,882 
+##'   peptides in 60 samples (run 1 and run 2 combined). 
 ##' - `proteins`: protein data containing quantitative data for 1436 
 ##'   proteins and 60 samples (all runs combined). 
 ##' 
@@ -499,10 +533,23 @@
 ##' For each batch, the quantification and identification data were 
 ##' combined based on the scan number (common to both data sets). The 
 ##' combined datasets for the different runs were then concatenated 
-##' feature-wise. The sample annotation table was manually created 
-##' based on the available information provided in the article. The 
-##' data were then converted to a [QFeatures] object using the 
-##' [scp::readSCP] function. 
+##' feature-wise. To avoid data duplication due to ambiguous matching
+##' of spectra to peptides or ambiguous mapping of peptides to proteins,
+##' we combined ambiguous peptides to peptides groups and proteins to
+##' protein groups. Feature annotations that are not common within a 
+##' peptide or protein group are are separated by a `;`. The sample 
+##' annotation table was manually created based on the available 
+##' information provided in the article. The data were then converted 
+##' to a [QFeatures] object using the [scp::readSCP] function. 
+##' 
+##' We generated the peptide data by aggregating the quantification 
+##' data based on the peptide (or peptide group) sequence(s) using the
+##' median PSM instenity. The peptide data for the different runs were
+##' then joined in a single assay (see [QFeatures::joinAssays]), again
+##' based on the peptide sequence(s). We then removed the peptide 
+##' groups. Links between the peptide and the PSM data were created 
+##' using [QFeatures:addAssayLink]. Note that links between PSM and
+##'  peptide groups are not stored. 
 ##' 
 ##' The protein data were downloaded from `Supporting information` 
 ##' section from the publisher's website (see `Sources`). The data is 
@@ -515,7 +562,8 @@
 ##' protein name and converted the data to a [SingleCellExperiment] 
 ##' object. We then added the object as a new assay in the [QFeatures]
 ##' dataset (containing the PSM data). Links between the proteins and 
-##' the corresponding PSM were created. 
+##' the corresponding PSM were created. Note that links to protein 
+##' groups are not stored.
 ##' 
 ##' @source 
 ##' The PSM data can be downloaded from the massIVE repository 
