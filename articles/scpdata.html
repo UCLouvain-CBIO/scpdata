@@ -66,7 +66,7 @@
                         <h4 data-toc-skip class="author">Laurent Gatto</h4>
                                     <h4 data-toc-skip class="author">Christophe Vanderaa</h4>
                         
-            <h4 data-toc-skip class="date">14 October 2021</h4>
+            <h4 data-toc-skip class="date">21 October 2021</h4>
       
       
       <div class="hidden name"><code>scpdata.Rmd</code></div>
@@ -75,17 +75,16 @@
 
     
     
-<div id="the-scpdata-package" class="section level1">
-<h1 class="hasAnchor">
-<a href="#the-scpdata-package" class="anchor" aria-hidden="true"></a>The <code>scpdata</code> package</h1>
+<div class="section level1">
+<h1 id="the-scpdata-package">The <code>scpdata</code> package<a class="anchor" aria-label="anchor" href="#the-scpdata-package"></a>
+</h1>
 <p><code>scpdata</code> disseminates mass spectrometry (MS)-based single-cell proteomics (SCP) data sets formatted using the <code>scp</code> data structure. The data structure is described in the <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html" class="external-link"><code>scp</code> vignette</a>.</p>
 <p>In this vignette, we describe how to access the SCP data sets. To start, we load the <code>scpdata</code> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"scpdata"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="load-data-from-experimenthub" class="section level1">
-<h1 class="hasAnchor">
-<a href="#load-data-from-experimenthub" class="anchor" aria-hidden="true"></a>Load data from <code>ExperimentHub</code>
+<div class="section level1">
+<h1 id="load-data-from-experimenthub">Load data from <code>ExperimentHub</code><a class="anchor" aria-label="anchor" href="#load-data-from-experimenthub"></a>
 </h1>
 <p>The data is stored using the <a href="https://bioconductor.org/packages/release/bioc/html/ExperimentHub.html" class="external-link"><code>ExperimentHub</code></a> infrastructure. We first create a connection with <code>ExperimentHub</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -94,7 +93,7 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span>
 <span class="co">#&gt; ExperimentHub with 13 records</span>
-<span class="co">#&gt; # snapshotDate(): 2021-10-13</span>
+<span class="co">#&gt; # snapshotDate(): 2021-10-18</span>
 <span class="co">#&gt; # $dataprovider: PRIDE, MassIVE, SlavovLab website</span>
 <span class="co">#&gt; # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus</span>
 <span class="co">#&gt; # $rdataclass: QFeatures</span>
@@ -118,7 +117,7 @@
 <p>Another way to get information about the available data sets is to call <code><a href="../reference/scpdata.html">scpdata()</a></code>. This will retrieve all the available metadata. For example, we can retrieve the data set titles along with the description to make an informed choice about which data set to choose.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scpdata.html">scpdata</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; snapshotDate(): 2021-10-13</span>
+<span class="co">#&gt; snapshotDate(): 2021-10-18</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">info</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -220,19 +219,19 @@
 <span class="co">#&gt;  [2] Hela_run_2: SingleCellExperiment with 35080 rows and 10 columns </span>
 <span class="co">#&gt;  [3] proteins: SingleCellExperiment with 1641 rows and 20 columns</span></code></pre></div>
 </div>
-<div id="data-sets-information" class="section level1">
-<h1 class="hasAnchor">
-<a href="#data-sets-information" class="anchor" aria-hidden="true"></a>Data sets information</h1>
+<div class="section level1">
+<h1 id="data-sets-information">Data sets information<a class="anchor" aria-label="anchor" href="#data-sets-information"></a>
+</h1>
 <p>Each data set has been extensively documented in a separate man page (<em>e.g.</em> <code><a href="../reference/dou2019_lysates.html">?dou2019_lysates</a></code>). You can find information about the data content, the acquisition protocol, the data collection procedure as well as the data sources and reference.</p>
 </div>
-<div id="data-manipulation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#data-manipulation" class="anchor" aria-hidden="true"></a>Data manipulation</h1>
+<div class="section level1">
+<h1 id="data-manipulation">Data manipulation<a class="anchor" aria-label="anchor" href="#data-manipulation"></a>
+</h1>
 <p>For more information about manipulating the data sets, check the <a href="http://bioconductor.org/packages/release/bioc/html/scp.html" class="external-link"><code>scp</code></a> package. The <code>scp</code> <a href="http://bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html" class="external-link">vignette</a> will guide you through a typical SCP data processing workflow. Once your data is loaded from <code>scpdata</code> you can skip section 2 <em>Read in SCP data</em> of the <code>scp</code> vignette.</p>
 </div>
-<div id="session-information" class="section level1 unnumbered">
-<h1 class="hasAnchor">
-<a href="#session-information" class="anchor" aria-hidden="true"></a>Session information</h1>
+<div class="section level1 unnumbered">
+<h1 class="unnumbered" id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
+</h1>
 <pre><code>R version 4.1.1 (2021-08-10)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 20.04.3 LTS
@@ -254,11 +253,11 @@ attached base packages:
 
 other attached packages:
  [1] scpdata_1.1.2                ExperimentHub_2.1.4         
- [3] AnnotationHub_3.1.5          BiocFileCache_2.1.1         
+ [3] AnnotationHub_3.1.6          BiocFileCache_2.1.1         
  [5] dbplyr_2.1.1                 QFeatures_1.3.6             
  [7] MultiAssayExperiment_1.19.16 SummarizedExperiment_1.23.5 
  [9] Biobase_2.53.0               GenomicRanges_1.45.0        
-[11] GenomeInfoDb_1.29.8          IRanges_2.27.2              
+[11] GenomeInfoDb_1.29.10         IRanges_2.27.2              
 [13] S4Vectors_0.31.5             BiocGenerics_0.39.2         
 [15] MatrixGenerics_1.5.4         matrixStats_0.61.0          
 [17] BiocStyle_2.21.4            
@@ -295,17 +294,17 @@ loaded via a namespace (and not attached):
 [57] promises_1.2.0.1              crayon_1.4.1                 
 [59] lattice_0.20-45               Biostrings_2.61.2            
 [61] KEGGREST_1.33.0               knitr_1.36                   
-[63] pillar_1.6.3                  igraph_1.2.6                 
+[63] pillar_1.6.4                  igraph_1.2.7                 
 [65] glue_1.4.2                    BiocVersion_3.14.0           
 [67] evaluate_0.14                 BiocManager_1.30.16          
 [69] png_0.1-7                     vctrs_0.3.8                  
 [71] httpuv_1.6.3                  purrr_0.3.4                  
 [73] clue_0.3-60                   assertthat_0.2.1             
-[75] cachem_1.0.6                  xfun_0.26                    
+[75] cachem_1.0.6                  xfun_0.27                    
 [77] mime_0.12                     xtable_1.8-4                 
 [79] AnnotationFilter_1.17.1       later_1.3.0                  
 [81] ragg_1.1.3                    SingleCellExperiment_1.15.2  
-[83] tibble_3.1.5                  AnnotationDbi_1.55.1         
+[83] tibble_3.1.5                  AnnotationDbi_1.55.2         
 [85] memoise_2.0.0                 cluster_2.1.2                
 [87] ellipsis_0.3.2                interactiveDisplayBase_1.31.2</code></pre>
 </div>
@@ -328,7 +327,7 @@ loaded via a namespace (and not attached):
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>

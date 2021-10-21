@@ -64,9 +64,10 @@ callum (<code>CC</code>), 4 samples were dissected from the corpus collosum
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="va">zhu2018MCP</span></code></pre></div>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object with 4 assays, each assay being a
+    <div id="ref-sections">
+    <div id="format">
+    <h2>Format</h2>
+    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 4 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p><code>peptides</code>: quantitative information for 13,055 peptides from
 24 samples</p></li>
 <li><p><code>proteins_intensity</code>: protein intensities for 2,257 proteins
@@ -74,13 +75,15 @@ from 24 samples</p></li>
 <li><p><code>proteins_LFQ</code>: LFQ intensities for 2,257 proteins from 24 samples</p></li>
 <li><p><code>proteins_iBAQ</code>: iBAQ values for 2,257 proteins from 24 samples</p></li>
 </ul><p>Sample annotation is stored in <code>colData(zhu2018MCP())</code>.</p>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
+    </div>
+    <div id="source">
+    <h2>Source</h2>
     <p>The PSM data can be downloaded from the PRIDE repository
 PXD008844. FTP link
 ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/07/PXD008844</p>
-    <h2 class="hasAnchor" id="acquisition-protocol"><a class="anchor" href="#acquisition-protocol"></a>Acquisition protocol</h2>
-
+    </div>
+    <div id="acquisition-protocol">
+    <h2>Acquisition protocol</h2>
     
 
 
@@ -104,8 +107,9 @@ resolution = 240,000), 100um (time = 246ms; resolution =
 120,000), 200um (time = 118ms; resolution = 60,000).</p></li>
 <li><p><strong>Data analysis</strong>: MaxQuant (v1.5.3.30) + Perseus (v1.5.6.0) +
 Origin Pro 2017</p></li>
-</ul><h2 class="hasAnchor" id="data-collection"><a class="anchor" href="#data-collection"></a>Data collection</h2>
-
+</ul></div>
+    <div id="data-collection">
+    <h2>Data collection</h2>
     
 
 
@@ -121,18 +125,22 @@ quantification: protein intensity, label-free quantitification
 (LFQ) and intensity based absolute quantification (iBAQ). Each
 table is converted to a SingleCellExperiment object along with
 the remaining protein annotations. The 4 objects are combined in
-a single <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object and feature links are created based on
+a single <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object and feature links are created based on
 the peptide leading razor protein ID and the protein ID.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
+    </div>
+    <div id="references">
+    <h2>References</h2>
     <p>Zhu, Ying, Maowei Dou, Paul D. Piehowski, Yiran Liang, Fangjun
 Wang, Rosalie K. Chu, William B. Chrisler, et al. 2018. “Spatially
 Resolved Proteome Mapping of Laser Capture Microdissected Tissue
 with Automated Sample Transfer to Nanodroplets.” Molecular &amp;
 Cellular Proteomics: MCP 17 (9): 1864–74
-(<a href="http://dx.doi.org/10.1074/mcp.TIR118.000686">link to article</a>).</p>
+(<a href="http://dx.doi.org/10.1074/mcp.TIR118.000686" class="external-link">link to article</a>).</p>
+    </div>
+    </div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div id="examples">
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">zhu2018MCP</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> see ?scpdata and browseVignettes('scpdata') for documentation</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> loading from cache</span>
@@ -140,6 +148,7 @@ Cellular Proteomics: MCP 17 (9): 1864–74
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] peptides: SingleCellExperiment with 13055 rows and 24 columns </span>
 <span class="r-in"></span>
 </code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

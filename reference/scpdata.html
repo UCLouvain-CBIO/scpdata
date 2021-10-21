@@ -67,7 +67,7 @@ levels (identified spectrum, peptide, or protein) in separate
 assays. Each assay is an object of class SingleCellExperiment
 that allows easy integration with state-of-the-art single-cell
 analysis tools. All assays are contained in a single object of
-class <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a>. An overview of the data structure is shown
+class <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a>. An overview of the data structure is shown
 provided in the <code>scp</code> package.</p>
 <p>The <code>scpdata()</code> function returns a summary table with all
 currently available datasets in the package. More information
@@ -78,22 +78,28 @@ corresponding manual pages.</p>
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="fu">scpdata</span><span class="op">(</span><span class="op">)</span></code></pre></div>
 
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
+    <div id="ref-sections">
+    <div id="value">
+    <h2>Value</h2>
     <p>A <code>DataFrame</code> table containing a summary of the available
 datasets.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
+    </div>
+    <div id="see-also">
+    <h2>See also</h2>
     <div class="dont-index"><p>More information about the data manipulation can be found
 in the <code>scp</code> package.</p></div>
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
-
+    </div>
+    <div id="author">
+    <h2>Author</h2>
     <p>Christophe Vanderaa</p>
+    </div>
+    </div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div id="examples">
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## List available datasets and their metadata </span></span>
 <span class="r-in"><span class="fu">scpdata</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> snapshotDate(): 2021-10-13</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> snapshotDate(): 2021-10-18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> DataFrame with 13 rows and 15 columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                title  dataprovider       species taxonomyid      genome</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          &lt;character&gt;   &lt;character&gt;   &lt;character&gt;  &lt;integer&gt; &lt;character&gt;</span>
@@ -149,8 +155,8 @@ in the <code>scp</code> package.</p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH7085 scpdata/sc... http://ftp...         TXT</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## Load data using the ExperimentHub interface</span></span>
-<span class="r-in"><span class="va">hub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> snapshotDate(): 2021-10-13</span>
+<span class="r-in"><span class="va">hub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> snapshotDate(): 2021-10-18</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## Download the data set of interest using ExperimentHub indexing</span></span>
 <span class="r-in"><span class="va">hub</span><span class="op">[[</span><span class="st">"EH3899"</span><span class="op">]</span><span class="op">]</span></span>
@@ -178,6 +184,7 @@ in the <code>scp</code> package.</p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [179] proteins: SingleCellExperiment with 2772 rows and 1018 columns </span>
 <span class="r-in"></span>
 </code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

@@ -62,9 +62,10 @@ high) and supporting cells (FM1-43 low). The sample contain either
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="va">zhu2019EL</span></code></pre></div>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object with 62 assays, each assay being a
+    <div id="ref-sections">
+    <div id="format">
+    <h2>Format</h2>
+    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 62 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p><code>XYZw</code>: 60 assays containing PSM data. The sample are annotated
 as follows. <code>X</code> indicates the experiment, either 1 or 2. <code>Y</code>
 indicated the FM1-43 signal, either high (H) or low (L). <code>Z</code>
@@ -75,13 +76,15 @@ the replicate, starting from <code>a</code>, it can go up to <code>j</code>.</p>
 <li><p><code>proteins</code>: quantitative data for 840 proteins in 60 samples
 (all runs combined).</p></li>
 </ul><p>Sample annotation is stored in <code>colData(zhu2019EL())</code>.</p>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
+    </div>
+    <div id="source">
+    <h2>Source</h2>
     <p>The PSM data can be downloaded from the PRIDE repository
 PXD014256. The source link is:
 ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2019/11/PXD014256</p>
-    <h2 class="hasAnchor" id="acquisition-protocol"><a class="anchor" href="#acquisition-protocol"></a>Acquisition protocol</h2>
-
+    </div>
+    <div id="acquisition-protocol">
+    <h2>Acquisition protocol</h2>
     
 
 
@@ -106,8 +109,9 @@ settings: accumulation time = 246ms; resolution = 120,000; AGC =
 120,000; AGC = 2E5.</p></li>
 <li><p><strong>Data analysis</strong>: Andromeda &amp; MaxQuant (v1.5.3.30) and the
 search database is NCBI GRCg6a.</p></li>
-</ul><h2 class="hasAnchor" id="data-collection"><a class="anchor" href="#data-collection"></a>Data collection</h2>
-
+</ul></div>
+    <div id="data-collection">
+    <h2>Data collection</h2>
     
 
 
@@ -120,28 +124,32 @@ of the annotation table available on the PRIDE repository.</p>
 <p>The PSM data were found in the <code>evidence.txt</code> (in the
 <code>Experiment 1+ 2</code>) folder. The PSM data were filtered so that it
 contains only samples that are annotated. The data were then
-converted to a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html">scp::readSCP</a>
+converted to a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP</a>
 function.</p>
 <p>The peptide data were found in the <code>peptides.txt</code> file. The column
 names holding the quantitative data were adapted to match the
-sample names in the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object. The data were then
+sample names in the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object. The data were then
 converted to a SingleCellExperiment object and then inserted in
-the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object. Links between the PSMs and the peptides
+the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object. Links between the PSMs and the peptides
 were added</p>
 <p>A similar procedure was applied to the protein data. The data were
 found in the <code>proteinGroups.txt</code> file. The column names were
 adapted, the data were converted to a SingleCellExperiment
-object and then inserted in the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object. Links between
+object and then inserted in the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object. Links between
 the peptides and the proteins were added</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
+    </div>
+    <div id="references">
+    <h2>References</h2>
     <p>Zhu, Ying, Mirko Scheibinger, Daniel Christian Ellwanger, Jocelyn
 F. Krey, Dongseok Choi, Ryan T. Kelly, Stefan Heller, and Peter G.
 Barr-Gillespie. 2019. “Single-Cell Proteomics Reveals Changes in
 Expression during Hair-Cell Development.” eLife 8 (November).
-(<a href="https://doi.org/10.7554/eLife.50777">link to article</a>).</p>
+(<a href="https://doi.org/10.7554/eLife.50777" class="external-link">link to article</a>).</p>
+    </div>
+    </div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div id="examples">
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">zhu2019EL</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> see ?scpdata and browseVignettes('scpdata') for documentation</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> loading from cache</span>
@@ -155,6 +163,7 @@ Expression during Hair-Cell Development.” eLife 8 (November).
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [62] proteins: SingleCellExperiment with 840 rows and 60 columns </span>
 <span class="r-in"></span>
 </code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

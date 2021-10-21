@@ -67,14 +67,14 @@
       </header><div class="row">
   <div class="contents col-md-9">
 
-<div id="single-cell-proteomics-data-package" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#single-cell-proteomics-data-package" class="anchor" aria-hidden="true"></a>Single Cell Proteomics Data Package</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="single-cell-proteomics-data-package">Single Cell Proteomics Data Package<a class="anchor" aria-label="anchor" href="#single-cell-proteomics-data-package"></a>
+</h1></div>
 <p>This package contains standardized and annotated single-cell proteomics data.</p>
 </div>
-<div id="installation-instruction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#installation-instruction" class="anchor" aria-hidden="true"></a>Installation instruction</h1>
+<div class="section level1">
+<h1 id="installation-instruction">Installation instruction<a class="anchor" aria-label="anchor" href="#installation-instruction"></a>
+</h1>
 <p>To install the stable version from Bioconductor:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span><span class="op">)</span>
@@ -84,17 +84,17 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"UCLouvain-CBIO/scpdata"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="loading-a-data-set" class="section level1">
-<h1 class="hasAnchor">
-<a href="#loading-a-data-set" class="anchor" aria-hidden="true"></a>Loading a data set</h1>
+<div class="section level1">
+<h1 id="loading-a-data-set">Loading a data set<a class="anchor" aria-label="anchor" href="#loading-a-data-set"></a>
+</h1>
 <p>The available datasets can be accessed through <code>ExperimentHub</code>. Use <code><a href="reference/scpdata.html">scpdata()</a></code> to display the table with available datasets.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">scpdata</span><span class="op">)</span>
 <span class="fu"><a href="reference/scpdata.html">scpdata</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p>You can either use the <code>ExperimentHub</code> interface or use the functions provided <code>scpdata</code> to retrieve the data set of interest.</p>
-<div id="loading-data-using-the-experimenthub-interface" class="section level2">
-<h2 class="hasAnchor">
-<a href="#loading-data-using-the-experimenthub-interface" class="anchor" aria-hidden="true"></a>Loading data using the <code>ExperimentHub</code> interface</h2>
+<div class="section level2">
+<h2 id="loading-data-using-the-experimenthub-interface">Loading data using the <code>ExperimentHub</code> interface<a class="anchor" aria-label="anchor" href="#loading-data-using-the-experimenthub-interface"></a>
+</h2>
 <p>You first need to set up a connection with <code>ExperimentHub</code>. You can browse and query the database to look up a data set of interest (see <code><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">?ExperimentHub</a></code> for more information).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">eh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span>
@@ -103,9 +103,9 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">scp</span> <span class="op">&lt;-</span> <span class="va">eh</span><span class="op">[[</span><span class="st">"EH3899"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 </div>
-<div id="loading-data-using-the-scpdata-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#loading-data-using-the-scpdata-functions" class="anchor" aria-hidden="true"></a>Loading data using the <code>scpdata</code> functions</h2>
+<div class="section level2">
+<h2 id="loading-data-using-the-scpdata-functions">Loading data using the <code>scpdata</code> functions<a class="anchor" aria-label="anchor" href="#loading-data-using-the-scpdata-functions"></a>
+</h2>
 <p><code>scpdata</code> exports a function for each of the data sets. Retrieving the <code>specht2019v2</code> is performed by simply running the <code><a href="reference/specht2019v2.html">specht2019v2()</a></code> function.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/specht2019v2.html">specht2019v2</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -114,9 +114,9 @@
 <code class="sourceCode R"><span class="op">?</span><span class="va">specht2019v2</span></code></pre></div>
 </div>
 </div>
-<div id="available-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#available-data" class="anchor" aria-hidden="true"></a>Available data</h1>
+<div class="section level1">
+<h1 id="available-data">Available data<a class="anchor" aria-label="anchor" href="#available-data"></a>
+</h1>
 <p>We collected the associated data that usually contains 3 levels of :</p>
 <ul>
 <li>
@@ -128,9 +128,9 @@
 </ul>
 <p>Please refer to the documentation and original papers for a thorough description of the data processing.</p>
 </div>
-<div id="contributing-to-scpdata" class="section level1">
-<h1 class="hasAnchor">
-<a href="#contributing-to-scpdata" class="anchor" aria-hidden="true"></a>Contributing to <code>scpdata</code>
+<div class="section level1">
+<h1 id="contributing-to-scpdata">Contributing to <code>scpdata</code>
+<a class="anchor" aria-label="anchor" href="#contributing-to-scpdata"></a>
 </h1>
 <p>Suggestions and bug reports are warmly welcome! You can submit them by creating an issue on the the <a href="https://github.com/UCLouvain-CBIO/scpdata/issues" class="external-link"><code>scpdata</code> GitHub repository</a>.</p>
 </div>
@@ -141,7 +141,7 @@
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from BIOC at <br><a href="https://www.bioconductor.org/packages/scpdata">https://​www.bioconductor.org/​packages/​scpdata</a>
+<li>Download from BIOC at <br><a href="https://www.bioconductor.org/packages/scpdata" class="external-link">https://​www.bioconductor.org/​packages/​scpdata</a>
 </li>
 </ul>
 </div>
@@ -149,7 +149,7 @@
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-2">GPL-2</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-2" class="external-link">GPL-2</a></li>
 </ul>
 </div>
 
@@ -157,8 +157,8 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Christophe Vanderaa <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-7443-5427" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Laurent Gatto <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-1520-2268" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Christophe Vanderaa <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-7443-5427" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Laurent Gatto <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0002-1520-2268" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 

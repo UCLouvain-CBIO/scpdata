@@ -66,9 +66,10 @@ increase the idendtification rate thanks to between-run matching
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="va">cong2020AC</span></code></pre></div>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object with 9 assays, each assay being a
+    <div id="ref-sections">
+    <div id="format">
+    <h2>Format</h2>
+    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 9 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p><code>100/20 HeLa cells</code>: 2 assays containing PSM data for a bulk
 of 100 or 20 HeLa cells, respectively.</p></li>
 <li><p><code>Blank</code>: assay containing the PSM data for a blank sample</p></li>
@@ -79,13 +80,15 @@ The <code>X</code> indicates the replicate number.</p></li>
 <li><p><code>proteins</code>: quantitative data for 1801 proteins in 7 samples
 (all runs combined).</p></li>
 </ul><p>Sample annotation is stored in <code>colData(cong2020AC())</code>.</p>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
+    </div>
+    <div id="source">
+    <h2>Source</h2>
     <p>All files can be downloaded from the PRIDE repository PXD016921.
 The source link is:
 ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2020/02/PXD016921</p>
-    <h2 class="hasAnchor" id="acquisition-protocol"><a class="anchor" href="#acquisition-protocol"></a>Acquisition protocol</h2>
-
+    </div>
+    <div id="acquisition-protocol">
+    <h2>Acquisition protocol</h2>
     
 
 
@@ -104,8 +107,9 @@ AGC = 1E6. MS/MS settings depend on quantity. All: AGC = 1E5.
 20-100 cels: accumulation time = 246ms; resolution = 120,000.
 Single cells: accumulation time = 500ms; resolution = 240,000.</p></li>
 <li><p><strong>Data analysis</strong>: MaxQuant (v1.6.3.3) + Excel</p></li>
-</ul><h2 class="hasAnchor" id="data-collection"><a class="anchor" href="#data-collection"></a>Data collection</h2>
-
+</ul></div>
+    <div id="data-collection">
+    <h2>Data collection</h2>
     
 
 
@@ -113,26 +117,30 @@ Single cells: accumulation time = 500ms; resolution = 240,000.</p></li>
 repository (accession ID: PXD016921).  We downloaded the
 <code>evidence.txt</code> file containing the PSM identification and
 quantification results. The sample annotation was inferred from
-the samples names. The data were then converted to a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a>
-object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html">scp::readSCP</a> function.</p>
+the samples names. The data were then converted to a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a>
+object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP</a> function.</p>
 <p>The peptide data were processed similarly from the <code>peptides.txt</code>
 file. The quantitative column names were adpated to match the PSM
-data. The peptide data were added to <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object and link
+data. The peptide data were added to <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object and link
 between the features were stored.</p>
 <p>The protein data were similarly processed from the
 <code>proteinGroups.txt</code> file. The quantitative column names were
 adapted to match the PSM data. The peptide data were added to
-<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object and link between the features were stored.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
+<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object and link between the features were stored.</p>
+    </div>
+    <div id="references">
+    <h2>References</h2>
     <p>Cong, Yongzheng, Yiran Liang, Khatereh Motamedchaboki, Romain
 Huguet, Thy Truong, Rui Zhao, Yufeng Shen, Daniel Lopez-Ferrer,
 Ying Zhu, and Ryan T. Kelly. 2020. “Improved Single-Cell Proteome
 Coverage Using Narrow-Bore Packed NanoLC Columns and
 Ultrasensitive Mass Spectrometry.” Analytical Chemistry, January.
-(<a href="https://doi.org/10.1021/acs.analchem.9b04631">link to article</a>).</p>
+(<a href="https://doi.org/10.1021/acs.analchem.9b04631" class="external-link">link to article</a>).</p>
+    </div>
+    </div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div id="examples">
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">cong2020AC</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> see ?scpdata and browseVignettes('scpdata') for documentation</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> loading from cache</span>
@@ -146,6 +154,7 @@ Ultrasensitive Mass Spectrometry.” Analytical Chemistry, January.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [9] proteins: SingleCellExperiment with 1801 rows and 7 columns </span>
 <span class="r-in"></span>
 </code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

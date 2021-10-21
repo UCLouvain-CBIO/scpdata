@@ -62,22 +62,25 @@ dilution of a bulk sample.</p>
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="va">liang2020_hela</span></code></pre></div>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object with 17 assays, each assay being a
+    <div id="ref-sections">
+    <div id="format">
+    <h2>Format</h2>
+    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 17 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p><code>HeLa_*</code>: 15 assays containing PSM data.</p></li>
 <li><p><code>peptides</code>: quantitative data for 48705 peptides in 15 samples
 (all runs are combined).</p></li>
 <li><p><code>proteins</code>: quantitative data for 3970 protein groups in 15
 samples (all runs combined).</p></li>
 </ul><p>Sample annotation is stored in <code>colData(liang2020_hela_MQ())</code>.</p>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
+    </div>
+    <div id="source">
+    <h2>Source</h2>
     <p>The PSM data can be downloaded from the PRIDE repository
 PXD021882 The source link is:
 http://ftp.pride.ebi.ac.uk/pride/data/archive/2020/12/PXD021882/</p>
-    <h2 class="hasAnchor" id="acquisition-protocol"><a class="anchor" href="#acquisition-protocol"></a>Acquisition protocol</h2>
-
+    </div>
+    <div id="acquisition-protocol">
+    <h2>Acquisition protocol</h2>
     
 
 
@@ -107,8 +110,9 @@ or 50 ms (500 cells); resolution = 60,000 (0-10 cells) or 30,000
 (150-500 cells); AGC = 5E3 (0-1 cells) or 1E4 (10-500 cells).</p></li>
 <li><p><strong>Data analysis</strong>: MaxQuant (v1.6.7.0) and the search database
 is Swiss-Prot (July 2020).</p></li>
-</ul><h2 class="hasAnchor" id="data-collection"><a class="anchor" href="#data-collection"></a>Data collection</h2>
-
+</ul></div>
+    <div id="data-collection">
+    <h2>Data collection</h2>
     
 
 
@@ -117,29 +121,33 @@ PXD021882).</p>
 <p>The sample annotations were collected from the methods section and
 from table S3 in the paper.</p>
 <p>The PSM data were found in the <code>evidence.txt</code> file. The data were
-converted to a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html">scp::readSCP</a>
+converted to a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP</a>
 function.</p>
 <p>The peptide data were found in the <code>peptides.txt</code> file. The column
 names holding the quantitative data were adapted to match the
-sample names in the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object. The data were then
+sample names in the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object. The data were then
 converted to a SingleCellExperiment object and then inserted in
-the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object. Links between the PSMs and the peptides
+the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object. Links between the PSMs and the peptides
 were added</p>
 <p>A similar procedure was applied to the protein data. The data were
 found in the <code>proteinGroups.txt</code> file. The column names were
 adapted, the data were converted to a SingleCellExperiment
-object and then inserted in the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object. Links between
+object and then inserted in the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object. Links between
 the peptides and the proteins were added</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
+    </div>
+    <div id="references">
+    <h2>References</h2>
     <p>Liang, Yiran, Hayden Acor, Michaela A. McCown, Andikan J. Nwosu,
 Hannah Boekweg, Nathaniel B. Axtell, Thy Truong, Yongzheng Cong,
 Samuel H. Payne, and Ryan T. Kelly. 2020. “Fully Automated Sample
 Processing and Analysis Workflow for Low-Input Proteome
 Profiling.” Analytical Chemistry, December.
-(<a href="https://doi.org/10.1021/acs.analchem.0c04240">link to article</a>).</p>
+(<a href="https://doi.org/10.1021/acs.analchem.0c04240" class="external-link">link to article</a>).</p>
+    </div>
+    </div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div id="examples">
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">liang2020_hela</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> see ?scpdata and browseVignettes('scpdata') for documentation</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> loading from cache</span>
@@ -153,6 +161,7 @@ Profiling.” Analytical Chemistry, December.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [17] proteins: SingleCellExperiment with 3970 rows and 15 columns </span>
 <span class="r-in"></span>
 </code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

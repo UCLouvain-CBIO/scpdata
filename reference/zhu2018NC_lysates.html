@@ -56,9 +56,10 @@ concentration is acquired in triplicate.</p>
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="va">zhu2018NC_lysates</span></code></pre></div>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object with 4 assays, each assay being a
+    <div id="ref-sections">
+    <div id="format">
+    <h2>Format</h2>
+    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 4 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p><code>peptides</code>: quantitative information for 14,921 peptides from
 9 lysate samples</p></li>
 <li><p><code>proteins_intensity</code>: quantitative information for 2,199
@@ -68,13 +69,15 @@ samples</p></li>
 <li><p><code>proteins_iBAQ</code>: iBAQ values for 2,199 proteins from 9 lysate
 samples</p></li>
 </ul><p>Sample annotation is stored in <code>colData(zhu2018NC_lysates())</code>.</p>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
+    </div>
+    <div id="source">
+    <h2>Source</h2>
     <p>The PSM data can be downloaded from the PRIDE repository
 PXD006847. The source link is:
 ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2018/01/PXD006847</p>
-    <h2 class="hasAnchor" id="acquisition-protocol"><a class="anchor" href="#acquisition-protocol"></a>Acquisition protocol</h2>
-
+    </div>
+    <div id="acquisition-protocol">
+    <h2>Acquisition protocol</h2>
     
 
 
@@ -95,8 +98,9 @@ resolution = 240,000), approx. 40 cells (time = 246ms; resolution =
 120,000), approx. 140 cells (time = 118ms; resolution = 60,000).</p></li>
 <li><p><strong>Data analysis</strong>: MaxQuant (v1.5.3.30) + Perseus + OriginLab
 2017.</p></li>
-</ul><h2 class="hasAnchor" id="data-collection"><a class="anchor" href="#data-collection"></a>Data collection</h2>
-
+</ul></div>
+    <div id="data-collection">
+    <h2>Data collection</h2>
     
 
 
@@ -112,22 +116,27 @@ quantification: protein intensity, label-free quantitification
 (LFQ) and intensity based absolute quantification (iBAQ). Each
 table is converted to a SingleCellExperiment object along with
 the remaining protein annotations. The 4 objects are combined in
-a single <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object and feature links are created based on
+a single <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object and feature links are created based on
 the peptide leading razor protein ID and the protein ID.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
+    </div>
+    <div id="references">
+    <h2>References</h2>
     <p>Zhu, Ying, Paul D. Piehowski, Rui Zhao, Jing Chen, Yufeng Shen,
 Ronald J. Moore, Anil K. Shukla, et al. 2018. “Nanodroplet
 Processing Platform for Deep and Quantitative Proteome Profiling
 of 10-100 Mammalian Cells.” Nature Communications 9 (1): 882
-(<a href="http://dx.doi.org/10.1038/s41467-018-03367-w">link to article</a>).</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
+(<a href="http://dx.doi.org/10.1038/s41467-018-03367-w" class="external-link">link to article</a>).</p>
+    </div>
+    <div id="see-also">
+    <h2>See also</h2>
     <div class="dont-index"><p>The same experiment was conducted directly on HeLa cells
 samples rather than lysates. The data is available in
 <a href="zhu2018NC_hela.html">zhu2018NC_hela</a>.</p></div>
+    </div>
+    </div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div id="examples">
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">zhu2018NC_lysates</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> see ?scpdata and browseVignettes('scpdata') for documentation</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> loading from cache</span>
@@ -135,6 +144,7 @@ samples rather than lysates. The data is available in
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] peptides: SingleCellExperiment with 14921 rows and 9 columns </span>
 <span class="r-in"></span>
 </code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

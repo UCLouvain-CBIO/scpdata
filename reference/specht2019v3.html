@@ -61,9 +61,10 @@ peptide and protein level.</p>
     <div class="ref-usage sourceCode"><pre class="sourceCode r"><code><span class="va">specht2019v3</span></code></pre></div>
 
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object with 179 assays, each assay being a
+    <div id="ref-sections">
+    <div id="format">
+    <h2>Format</h2>
+    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 179 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p>Assay 1-63: PSM data for SCoPE2 sets acquired with a TMT-11plex
 protocol, hence those assays contain 11 columns. Columns
 hold quantitative information from single-cell channels, carrier
@@ -81,26 +82,29 @@ proteins and 1018 single-cells.</p></li>
 </ul><p>The <code>colData(specht2019v2())</code> contains cell type annotation and
 batch annotation that are common to all assays. The description of
 the <code>rowData</code> fields for the PSM data can be found in the
-<a href="http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable"><code>MaxQuant</code> documentation</a>.</p>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
+<a href="http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable" class="external-link"><code>MaxQuant</code> documentation</a>.</p>
+    </div>
+    <div id="source">
+    <h2>Source</h2>
     <p>The data were downloaded from the
-<a href="https://scope2.slavovlab.net/docs/data">Slavov Lab</a> website via a
+<a href="https://scope2.slavovlab.net/docs/data" class="external-link">Slavov Lab</a> website via a
 shared Google Drive
-<a href="https://drive.google.com/drive/folders/1VzBfmNxziRYqayx3SP-cOe2gu129Obgx">folder</a>.
+<a href="https://drive.google.com/drive/folders/1VzBfmNxziRYqayx3SP-cOe2gu129Obgx" class="external-link">folder</a>.
 The raw data and the quantification data can also be found in the
 massIVE repository <code>MSV000083945</code>:
 ftp://massive.ucsd.edu/MSV000083945.</p>
-    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
-
+    </div>
+    <div id="note">
+    <h2>Note</h2>
     <p>Since version 2, a serious bug in the data were corrected
 for TMT channels 12 to 16. Many more cells are therefore contained
 in the data. Version 2 is maintained for backward compatibility.
 Although the final version of the article was published in 2021,
 we have kept <code>specht2019v3</code> as the data set name for consistency
 with the previous data version <code>specht2019v2</code>.</p>
-    <h2 class="hasAnchor" id="acquisition-protocol"><a class="anchor" href="#acquisition-protocol"></a>Acquisition protocol</h2>
-
+    </div>
+    <div id="acquisition-protocol">
+    <h2>Acquisition protocol</h2>
     
 
 
@@ -116,8 +120,9 @@ and pooling.</p></li>
 resolution = 70,000; MS2 accumulation time = 300ms; MS2
 resolution = 70,000).</p></li>
 <li><p><strong>Data analysis</strong>: DART-ID + MaxQuant (1.6.2.3).</p></li>
-</ul><h2 class="hasAnchor" id="data-collection"><a class="anchor" href="#data-collection"></a>Data collection</h2>
-
+</ul></div>
+    <div id="data-collection">
+    <h2>Data collection</h2>
     
 
 
@@ -130,13 +135,13 @@ The folder contains the following files of interest:</p><ul><li><p><code>ev_upda
 a single table. We also formated the quantification table so that
 columns match with those of the annotation and filter only for
 single-cell runs. Both table are then combined in a single
-<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html">scp::readSCP</a> function.</p>
+<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP</a> function.</p>
 <p>The peptide data were taken from the Slavov lab directly
 (<code>Peptides-raw.csv</code>). It is provided as a spreadsheet. The data
 were formated to a SingleCellExperiment object and the sample
 metadata were matched to the column names (mapping is retrieved
 after running the SCoPE2 R script) and stored in the <code>colData</code>.
-The object is then added to the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html">QFeatures</a> object (containing the
+The object is then added to the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object (containing the
 PSM assays) and the rows of the peptide data are linked to the
 rows of the PSM data based on the peptide sequence information
 through an <code>AssayLink</code> object.</p>
@@ -144,16 +149,20 @@ through an <code>AssayLink</code> object.</p>
 to the peptide data, and the rows of the proteins were mapped onto
 the rows of the peptide data based on the protein sequence
 information.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
+    </div>
+    <div id="references">
+    <h2>References</h2>
     <p>Specht, Harrison, Edward Emmott, Aleksandra A.
 Petelski, R. Gray Huffman, David H. Perlman, Marco Serra, Peter
 Kharchenko, Antonius Koller, and Nikolai Slavov. 2021.
 "Single-Cell Proteomic and Transcriptomic Analysis of Macrophage
 Heterogeneity Using SCoPE2." Genome Biology 22 (1): 50.
-(<a href="http://dx.doi.org/10.1186/s13059-021-02267-5">link to article</a>).</p>
+(<a href="http://dx.doi.org/10.1186/s13059-021-02267-5" class="external-link">link to article</a>).</p>
+    </div>
+    </div>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <div id="examples">
+    <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">specht2019v3</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> see ?scpdata and browseVignettes('scpdata') for documentation</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> loading from cache</span>
@@ -167,6 +176,7 @@ Heterogeneity Using SCoPE2." Genome Biology 22 (1): 50.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [179] proteins: SingleCellExperiment with 3042 rows and 1490 columns </span>
 <span class="r-in"></span>
 </code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
