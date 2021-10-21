@@ -1,6 +1,14 @@
+
+# scp 1.1
+
 ## scp 1.1.2
 
-(Nothing yet)
+- dou2019_*: Fixed duplicated data, added identification score and 
+  probabilities data, and generated peptide data. 
+- zhu2018MCP: added protein data (intensity, LFQ and iBAQ)
+- zhu2018NC_*: added protein data (intensity, LFQ and iBAQ)
+- metadata: included additional meta fields: PreprocessingSoftware and
+  LabelingProtocol
 
 ## scp 1.1.1
 
