@@ -1,7 +1,7 @@
 Package: scpdata
 Type: Package
 Title: Single-Cell Proteomics Data Package
-Version: 1.1.2
+Version: 1.2.0
 Authors@R:
     c(person("Christophe", "Vanderaa",
 	      email = "christophe.vanderaa@uclouvain.be",
