@@ -67,6 +67,8 @@ lapply(batches, function(batch){
     ## Bind the different batches
     bind_rows ->
     psms
+## Include also contaminant information
+psms$isContaminant <- grepl("Contaminant", psms$DatabaseAccess)
 
 ## PSM data is mapped to multiple peptides and peptides to multiple 
 ## proteins. In such cases, the PSM quantitative data is duplicated.
@@ -128,24 +130,30 @@ dou2019_lysates <- readSCP(psms,
 
 ####---- Peptide data ----####
 
-## We generate the peptide data ourself, through median aggregation
-dou2019_lysates <- 
-    aggregateFeaturesOverAssays(dou2019_lysates, 
-                                i = seq_along(dou2019_lysates),
+## We generate the peptide data ourself
+
+## First, we filter out low quality PSM
+dou2019_filt <- filterFeatures(dou2019_lysates, ~ 
+                                   ! isContaminant & 
+                                   ! isDecoy & 
+                                   MS.GF.QValue < 0.01)
+## Peptide data is computed by median aggregation of PSMs to peptides
+dou2019_filt <- 
+    aggregateFeaturesOverAssays(dou2019_filt, 
+                                i = seq_along(dou2019_filt),
                                 fcol = "sequence", 
-                                name = paste0("pep_", names(dou2019_lysates)),
+                                name = paste0("pep_", names(dou2019_filt)),
                                 fun = colMedians)
 ## We join the peptide data in a single assay
-dou2019_lysates <- joinAssays(dou2019_lysates, 
-                              i = grep("^pep_", names(dou2019_lysates)), 
-                              name = "peptides")
-## We remove the intermediate aggregation assays
-dou2019_lysates <- dou2019_lysates[, , !grepl("^pep_", names(dou2019_lysates))]
+dou2019_filt <- joinAssays(dou2019_filt, 
+                           i = grep("^pep_", names(dou2019_filt)), 
+                           name = "peptides")
 ## We remove the peptide groups
-sce <- dou2019_lysates[["peptides"]]
+sce <- dou2019_filt[["peptides"]]
 sce <- sce[!grepl("[;]", rownames(sce)), ]
-dou2019_lysates[["peptides"]] <- sce
-## We add the assay links between PSM and peptide data
+## We add the assay to the exported dataset and create the links 
+## between PSM and peptide data 
+dou2019_lysates <- addAssay(dou2019_lysates, sce, name = "peptides")
 dou2019_lysates <- 
     addAssayLink(dou2019_lysates, from = 1:2, to = "peptides", 
                  varFrom = rep("sequence", 2), varTo = "sequence")

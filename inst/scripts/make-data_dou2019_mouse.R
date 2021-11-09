@@ -73,6 +73,8 @@ lapply(batches, function(batch){
     ## Bind the different batches
     bind_rows ->
     psms
+## Include also contaminant information
+psms$isContaminant <- grepl("Contaminant", psms$DatabaseAccess)
 
 ## PSM data is mapped to multiple peptides and peptides to multiple 
 ## proteins. In such cases, the PSM quantitative data is duplicated.
@@ -87,8 +89,8 @@ lapply(batches, function(batch){
 ## as a decoy. 
 combineFeatures <- function(x) {
     if (length(x) == 1) return(x)
-    ## isDecoy is a logical. if any PSM is a decoy, the spectrum is 
-    ## considered as decoy
+    ## isDecoy and isContaminant are logicals. If any PSM is a decoy 
+    ## or a contaminant, the spectrum is considered as decoy or contam.
     if (is.logical(x)) return(all(x)) 
     xuni <- unique(x)
     if (length(xuni) == 1) return(xuni)
@@ -142,24 +144,30 @@ dou2019_mouse <- readSCP(psms,
 
 ####---- Peptide data ----####
 
-## We generate the peptide data ourself, through median aggregation
-dou2019_mouse <- 
-    aggregateFeaturesOverAssays(dou2019_mouse, 
-                                i = seq_along(dou2019_mouse),
+## We generate the peptide data ourself
+
+## First, we filter out low quality PSM
+dou2019_filt <- filterFeatures(dou2019_mouse, ~ 
+                                   ! isContaminant & 
+                                   ! isDecoy & 
+                                   MS.GF.QValue < 0.01)
+## Peptide data is computed by median aggregation of PSMs to peptides
+dou2019_filt <- 
+    aggregateFeaturesOverAssays(dou2019_filt, 
+                                i = seq_along(dou2019_filt),
                                 fcol = "sequence", 
-                                name = paste0("pep_", names(dou2019_mouse)),
+                                name = paste0("pep_", names(dou2019_filt)),
                                 fun = colMedians)
 ## We join the peptide data in a single assay
-dou2019_mouse <- joinAssays(dou2019_mouse, 
-                            i = grep("^pep_", names(dou2019_mouse)), 
+dou2019_filt <- joinAssays(dou2019_filt, 
+                            i = grep("^pep_", names(dou2019_filt)), 
                             name = "peptides")
-## We remove the intermediate aggregation assays
-dou2019_mouse <- dou2019_mouse[, , !grepl("^pep_", names(dou2019_mouse))]
 ## We remove the peptide groups
-sce <- dou2019_mouse[["peptides"]]
+sce <- dou2019_filt[["peptides"]]
 sce <- sce[!grepl("[;]", rownames(sce)), ]
-dou2019_mouse[["peptides"]] <- sce
-## We add the assay links between PSM and peptide data
+## We add the assay to the exported dataset and create the links 
+## between PSM and peptide data 
+dou2019_mouse <- addAssay(dou2019_mouse, sce, name = "peptides")
 dou2019_mouse <- 
     addAssayLink(dou2019_mouse, from = 1:12, to = "peptides", 
                  varFrom = rep("sequence", 12), varTo = "sequence")

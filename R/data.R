@@ -243,7 +243,7 @@
 ##'   TMT-10plex channels. Columns hold quantitative information for 
 ##'   HeLa lysate samples (either 0, 0.2 or 10ng). This is the data 
 ##'   for run 2.
-##' - `peptides`: peptide data containing quantitative data for 27,902 
+##' - `peptides`: peptide data containing quantitative data for 13,934 
 ##'   peptides in 20 samples (run 1 and run 2 combined). 
 ##' - `proteins`: protein data containing quantitative data for 1641 
 ##'   proteins in 20 samples (run 1 and run 2 combined). 
@@ -292,14 +292,15 @@
 ##' information provided in the article. The data were then converted 
 ##' to a [QFeatures] object using the [scp::readSCP] function. 
 ##' 
-##' We generated the peptide data by aggregating the quantification 
-##' data based on the peptide (or peptide group) sequence(s) using the
-##' median PSM instenity. The peptide data for the different runs were
-##' then joined in a single assay (see [QFeatures::joinAssays]), again
-##' based on the peptide sequence(s). We then removed the peptide 
-##' groups. Links between the peptide and the PSM data were created 
-##' using [QFeatures::addAssayLink]. Note that links between PSM and
-##'  peptide groups are not stored. 
+##' We generated the peptide data. First, we removed PSM matched to 
+##' contaminants or decoy peptides and ensured a 1% FDR. We aggregated
+##' the PSM to peptides based on the peptide (or peptide group) 
+##' sequence(s) using the median PSM instenity. The peptide data for 
+##' the different runs were then joined in a single assay (see 
+##' [QFeatures::joinAssays]), again based on the peptide sequence(s).
+##' We then removed the peptide groups. Links between the peptide and
+##' the PSM data were created using [QFeatures::addAssayLink]. Note 
+##' that links between PSM and peptide groups are not stored. 
 ##' 
 ##' The protein data were downloaded from `Supporting information` 
 ##' section from the publisher's website (see `Sources`). The data is 
@@ -366,7 +367,7 @@
 ##'   to the TMT channels (see `Notes`). The `X` indicates the chip 
 ##'   number (from 1 to 4) and `Y` indicates the row name on the chip 
 ##'   (from A to C). 
-##' - `peptides`: peptide data containing quantitative data for 103,000 
+##' - `peptides`: peptide data containing quantitative data for 15,492 
 ##'   peptides in 132 samples (run 1 and run 2 combined). 
 ##' - `proteins`: protein data containing quantitative data for 2331 
 ##'   proteins in 132 samples (all runs combined). 
@@ -416,14 +417,15 @@
 ##' information provided in the article. The data were then converted 
 ##' to a [QFeatures] object using the [scp::readSCP] function. 
 ##' 
-##' We generated the peptide data by aggregating the quantification 
-##' data based on the peptide (or peptide group) sequence(s) using the
-##' median PSM instenity. The peptide data for the different runs were
-##' then joined in a single assay (see [QFeatures::joinAssays]), again
-##' based on the peptide sequence(s). We then removed the peptide 
-##' groups. Links between the peptide and the PSM data were created 
-##' using [QFeatures::addAssayLink]. Note that links between PSM and
-##'  peptide groups are not stored. 
+##' We generated the peptide data. First, we removed PSM matched to 
+##' contaminants or decoy peptides and ensured a 1% FDR. We aggregated
+##' the PSM to peptides based on the peptide (or peptide group) 
+##' sequence(s) using the median PSM instenity. The peptide data for 
+##' the different runs were then joined in a single assay (see 
+##' [QFeatures::joinAssays]), again based on the peptide sequence(s).
+##' We then removed the peptide groups. Links between the peptide and
+##' the PSM data were created using [QFeatures::addAssayLink]. Note 
+##' that links between PSM and peptide groups are not stored. 
 ##' 
 ##' The protein data were downloaded from `Supporting information` 
 ##' section from the publisher's website (see `Sources`). The data is 
@@ -491,7 +493,7 @@
 ##' - `Boosting_X_run_Y`: PSM data with 10 columns corresponding to 
 ##'   the TMT-10plex channels. The `X` indicates the boosting amount 
 ##'   (0ng, 5ng or 50ng) and `Y` indicates the run number (1 or 2). 
-##' - `peptides`: peptide data containing quantitative data for 67,882 
+##' - `peptides`: peptide data containing quantitative data for 13,462
 ##'   peptides in 60 samples (run 1 and run 2 combined). 
 ##' - `proteins`: protein data containing quantitative data for 1436 
 ##'   proteins and 60 samples (all runs combined). 
@@ -542,14 +544,15 @@
 ##' information provided in the article. The data were then converted 
 ##' to a [QFeatures] object using the [scp::readSCP] function. 
 ##' 
-##' We generated the peptide data by aggregating the quantification 
-##' data based on the peptide (or peptide group) sequence(s) using the
-##' median PSM instenity. The peptide data for the different runs were
-##' then joined in a single assay (see [QFeatures::joinAssays]), again
-##' based on the peptide sequence(s). We then removed the peptide 
-##' groups. Links between the peptide and the PSM data were created 
-##' using [QFeatures::addAssayLink]. Note that links between PSM and
-##'  peptide groups are not stored. 
+##' We generated the peptide data. First, we removed PSM matched to 
+##' contaminants or decoy peptides and ensured a 1% FDR. We aggregated
+##' the PSM to peptides based on the peptide (or peptide group) 
+##' sequence(s) using the median PSM instenity. The peptide data for 
+##' the different runs were then joined in a single assay (see 
+##' [QFeatures::joinAssays]), again based on the peptide sequence(s).
+##' We then removed the peptide groups. Links between the peptide and
+##' the PSM data were created using [QFeatures::addAssayLink]. Note 
+##' that links between PSM and peptide groups are not stored. 
 ##' 
 ##' The protein data were downloaded from `Supporting information` 
 ##' section from the publisher's website (see `Sources`). The data is 

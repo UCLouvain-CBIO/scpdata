@@ -11,7 +11,7 @@ A \link{QFeatures} object with 7 assays, each assay being a
 \item \code{Boosting_X_run_Y}: PSM data with 10 columns corresponding to
 the TMT-10plex channels. The \code{X} indicates the boosting amount
 (0ng, 5ng or 50ng) and \code{Y} indicates the run number (1 or 2).
-\item \code{peptides}: peptide data containing quantitative data for 67,882
+\item \code{peptides}: peptide data containing quantitative data for 13,462
 peptides in 60 samples (run 1 and run 2 combined).
 \item \code{proteins}: protein data containing quantitative data for 1436
 proteins and 60 samples (all runs combined).
@@ -90,14 +90,15 @@ annotation table was manually created based on the available
 information provided in the article. The data were then converted
 to a \link{QFeatures} object using the \link[scp:readSCP]{scp::readSCP} function.
 
-We generated the peptide data by aggregating the quantification
-data based on the peptide (or peptide group) sequence(s) using the
-median PSM instenity. The peptide data for the different runs were
-then joined in a single assay (see \link[QFeatures:joinAssays]{QFeatures::joinAssays}), again
-based on the peptide sequence(s). We then removed the peptide
-groups. Links between the peptide and the PSM data were created
-using \link[QFeatures:AssayLinks]{QFeatures::addAssayLink}. Note that links between PSM and
-peptide groups are not stored.
+We generated the peptide data. First, we removed PSM matched to
+contaminants or decoy peptides and ensured a 1\% FDR. We aggregated
+the PSM to peptides based on the peptide (or peptide group)
+sequence(s) using the median PSM instenity. The peptide data for
+the different runs were then joined in a single assay (see
+\link[QFeatures:joinAssays]{QFeatures::joinAssays}), again based on the peptide sequence(s).
+We then removed the peptide groups. Links between the peptide and
+the PSM data were created using \link[QFeatures:AssayLinks]{QFeatures::addAssayLink}. Note
+that links between PSM and peptide groups are not stored.
 
 The protein data were downloaded from \verb{Supporting information}
 section from the publisher's website (see \code{Sources}). The data is
