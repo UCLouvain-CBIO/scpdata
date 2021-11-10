@@ -1060,8 +1060,9 @@
 ##'   the replicate, starting from `a`, it can go up to `j`.
 ##' - `peptides`: quantitative data for 3444 peptides in 60 samples 
 ##'   (all runs are combined). 
-##' - `proteins`: quantitative data for 840 proteins in 60 samples 
-##'   (all runs combined). 
+##' - `proteins_intensity`: protein intensities for 840 proteins 
+##'   from 24 samples
+##' - `proteins_iBAQ`: iBAQ values for 840 proteins from 24 samples
 ##' 
 ##' Sample annotation is stored in `colData(zhu2019EL())`.
 ##' 
@@ -1115,10 +1116,12 @@
 ##' were added
 ##' 
 ##' A similar procedure was applied to the protein data. The data were
-##' found in the `proteinGroups.txt` file. The column names were 
-##' adapted, the data were converted to a [SingleCellExperiment] 
-##' object and then inserted in the [QFeatures] object. Links between 
-##' the peptides and the proteins were added
+##' found in the `proteinGroups.txt` file. We split the protein table
+##' to separate the two types of quantification: summed intensity and
+##' intensity based absolute quantification (iBAQ). Both tables are
+##' converted to [SingleCellExperiment] objects and are added to the
+##' [QFeatures] object as well as the `AssayLink` between peptides and
+##' proteins.
 ##' 
 ##' @source 
 ##' The PSM data can be downloaded from the PRIDE repository 

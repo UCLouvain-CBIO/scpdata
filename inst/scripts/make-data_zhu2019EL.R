@@ -102,38 +102,45 @@ zhu2019EL <- addAssayLink(zhu2019EL,
 
 ####---- Protein data ----####
 
-
 ## Load the quantification data
-list.files(path = dataDir,
-           pattern = "proteinGroups.txt",
-           full.names = TRUE) %>%
+prots <- list.files(path = dataDir,
+                    pattern = "proteinGroups.txt",
+                    full.names = TRUE) %>%
     read.table(sep = "\t", header = TRUE) %>%
     ## Get a unique protein ID
     mutate(Protein = sub("^([^;]*);.*$", 
                          "\\1", 
-                         Majority.protein.IDs)) ->
-    prot
-
-## Rename columns so they match with the PSM data
-colnames(prot) <- sub(pattern = "^Intensity.", 
-                      replacement = "",
-                      colnames(prot))
-
-## Create the SingleCellExperiment object
-prot <- readSingleCellExperiment(prot, 
-                                 ecol = meta$Sample.name)
-## Name rows with peptide sequence
-rownames(prot) <- rowData(prot)$Protein
+                         Majority.protein.IDs))
+## Remove unnecessary columns
+sel <- !grepl("Peptides.*\\d|^Identif|^Razor.*\\d|Sequence.cov.*\\d|Unique.*\\d",
+              colnames(prots))
+prots <- prots[, sel]
+## Split protein data based on the quantification method:
+## 1. Protein intensity
+protsInt <- prots[, !grepl("^iBAQ.", colnames(prots))]
+protsInt <- readSingleCellExperiment(protsInt, 
+                                     ecol = grep("^Intensity.", colnames(protsInt)),
+                                     fnames = "Protein")
+colnames(protsInt) <- gsub("Intensity.", "", colnames(protsInt))
+## 3. iBAQ
+protsIBAQ <- prots[, !grepl("^Intensity", colnames(prots))]
+protsIBAQ <- readSingleCellExperiment(protsIBAQ, 
+                                      ecol = grep("^iBAQ.", colnames(protsIBAQ)),
+                                      fnames = "Protein")
+colnames(protsIBAQ) <- gsub("iBAQ.", "", colnames(protsIBAQ))
 
 ## Include the protein data in the QFeatures object
-zhu2019EL <- addAssay(zhu2019EL, prot, name = "proteins")
+zhu2019EL <- addAssay(zhu2019EL, protsInt, name = "proteins_intensity")
+zhu2019EL <- addAssay(zhu2019EL, protsIBAQ, name = "proteins_iBAQ")
 ## Link the PSMs and the peptides
 zhu2019EL <- addAssayLink(zhu2019EL, 
-                          from = "peptides", 
-                          to = "proteins", 
-                          varFrom = "Leading.razor.protein",
+                          from = "peptides", to = "proteins_intensity",
+                          varFrom = "Leading.razor.protein", 
                           varTo = "Protein")
-
+zhu2019EL <- addAssayLink(zhu2019EL, 
+                          from = "peptides", to = "proteins_iBAQ",
+                          varFrom = "Leading.razor.protein", 
+                          varTo = "Protein")
 
 # Save data as Rda file
 # Note: saving is assumed to occur in "scpdata/inst/scripts"

@@ -15,8 +15,9 @@ indicates the number of cells (0, 1, 3, 5 or 20). \code{w} indicates
 the replicate, starting from \code{a}, it can go up to \code{j}.
 \item \code{peptides}: quantitative data for 3444 peptides in 60 samples
 (all runs are combined).
-\item \code{proteins}: quantitative data for 840 proteins in 60 samples
-(all runs combined).
+\item \code{proteins_intensity}: protein intensities for 840 proteins
+from 24 samples
+\item \code{proteins_iBAQ}: iBAQ values for 840 proteins from 24 samples
 }
 
 Sample annotation is stored in \code{colData(zhu2019EL())}.
@@ -91,10 +92,12 @@ the \link{QFeatures} object. Links between the PSMs and the peptides
 were added
 
 A similar procedure was applied to the protein data. The data were
-found in the \code{proteinGroups.txt} file. The column names were
-adapted, the data were converted to a \link{SingleCellExperiment}
-object and then inserted in the \link{QFeatures} object. Links between
-the peptides and the proteins were added
+found in the \code{proteinGroups.txt} file. We split the protein table
+to separate the two types of quantification: summed intensity and
+intensity based absolute quantification (iBAQ). Both tables are
+converted to \link{SingleCellExperiment} objects and are added to the
+\link{QFeatures} object as well as the \code{AssayLink} between peptides and
+proteins.
 }
 
 \examples{
