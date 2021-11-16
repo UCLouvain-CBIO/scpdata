@@ -11,7 +11,7 @@
 library(SingleCellExperiment)
 library(scp)
 library(tidyverse)
-setwd("../.localdata/scpdata/specht2019/v3/")
+setwd("../.localdata/SCP/specht2019/v3/")
 
 ####---- Load PSM data ----####
 
@@ -70,13 +70,8 @@ ev %>%
 specht2019v3 <- readSCP(evproc, 
                         meta, 
                         channelCol = "Channel", 
-                        batchCol = "Set")
-
-## Remove the TMT12-16 channels for the samples with TMT11 protocol
-rmCol <- specht2019v3$Channel %in% paste0("RI", 12:16) & 
-    specht2019v3$SampleType == "Unused"
-specht2019v3 <- specht2019v3[, !rmCol , ]
-
+                        batchCol = "Set",
+                        removeEmptyCols = TRUE)
 
 ####---- Get the SCoPE2 annotation table ----####
 
@@ -133,7 +128,7 @@ pep <- readSingleCellExperiment("Peptides-raw.csv",
                                 ecol = -c(1,2), 
                                 fnames = "peptide")
 colData(pep) <- annot[colnames(pep), ]
-colnames(pep) <- paste0(annot[colnames(pep), "Set"],  "_", annot[colnames(pep), "Channel"])
+colnames(pep) <- paste0(annot[colnames(pep), "Set"],  annot[colnames(pep), "Channel"])
 ## Include the peptide data in the QFeatures object
 specht2019v3 <- addAssay(specht2019v3, pep, name = "peptides")
 
@@ -160,15 +155,15 @@ read.csv("Proteins-processed.csv") %>%
     readSingleCellExperiment(ecol = 1:1490, fnames = "protein") ->
     prot
 colData(prot) <- annot[colnames(prot), ]
-colnames(prot) <- paste0(annot[colnames(prot), "Set"],  "_", 
+colnames(prot) <- paste0(annot[colnames(prot), "Set"],  
                          annot[colnames(prot), "Channel"])
 specht2019v3 <- addAssay(specht2019v3, prot, name = "proteins")
 specht2019v3 <- addAssayLink(specht2019v3, from = "peptides", to = "proteins", 
                              varFrom = "protein", varTo = "protein")
 
 ## Save data
-save(specht2019v3, 
-     file = file.path("../../0.ExperimentHub/scpdata/specht2019v3.Rda"),
+save(specht2019v3,
+     file = file.path("~/PhD/.localdata/scpdata/specht2019v3.Rda"),
      compress = "xz", 
      compression_level = 9)
 

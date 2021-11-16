@@ -11,21 +11,20 @@
 library(SingleCellExperiment)
 library(scp)
 library(tidyverse)
-setwd("./inst/scripts")
+dataDir <- "~/PhD/.localdata/SCP/specht2019/v2/"
 
 ####---- Load PSM data ----####
 
 ## The files were downloaded from 
 ## https://drive.google.com/drive/folders/1VzBfmNxziRYqayx3SP-cOe2gu129Obgx
-## to scpdata/inst/extdata/specht2019v2
 ## ev = the MaxQuant output file for all batches with the PSM data
-ev <- read.csv("../extdata/specht2019v2/evidence_unfiltered.csv", 
+ev <- read.csv(paste0(dataDir, "evidence_unfiltered.csv"), 
                sep = ",", header = TRUE)
 ## design = the cell annotation
-design <- read.csv("../extdata/specht2019v2/annotation.csv", 
+design <- read.csv(paste0(dataDir, "annotation.csv"), 
                    check.names = FALSE)
 ## batch = the batch annotation 
-batch <- read.csv("../extdata/specht2019v2/batch.csv", 
+batch <- read.csv(paste0(dataDir, "batch.csv"), 
                   check.names = FALSE)
 
 ## Clean the sample metadata so that it meets the requirements for
@@ -75,30 +74,22 @@ ev %>%
          Gene.names, Protein.names, PIF, Score, PEP, dart_PEP, dart_qval) ->
   ev
   
-
 ## Create the QFeatures object
 specht2019v2 <- readSCP(ev, 
                         meta, 
                         channelCol = "Channel", 
-                        batchCol = "Set")
-
-## Remove the TMT12-16 channels for the samples with TMT11 protocole
-## Batches 1:63 where acquired with a TMT11 protocole
-for (set in 1:63) {
-  cat(set, "...")
-  specht2019v2[[set]] <- specht2019v2[[set]][, 1:11]
-}
-
+                        batchCol = "Set",
+                        removeEmptyCols = TRUE)
 
 ####---- Include the peptide data ----####
 
 ## The `Peptides-raw.csv` and `Cells.csv` files were downloaded from 
-## https://scope2.slavovlab.net/docs/data to scpdata/inst/extdata/specht2019-v2.
+## https://scope2.slavovlab.net/docs/data.
 ## The `id_to_channel.RData` file was generated using the `SCoPE2_analysis.R`
-## script from https://github.com/cvanderaa/SCoPE2/tree/master/code
+## script from https://github.com/cvanderaa/SCoPE2/tree/1483b8e4e5e55a77ed2813133f89f415c0403437/code
 
 ## Get batch annotation
-read.csv("../extdata/specht2019v2/Cells.csv", row.names = 1) %>%
+read.csv(paste0(dataDir, "Cells.csv"), row.names = 1) %>%
   t %>%
   as.data.frame %>%
   rownames_to_column("id") %>%
@@ -119,7 +110,7 @@ read.csv("../extdata/specht2019v2/Cells.csv", row.names = 1) %>%
   annot
 ## Get cell to add to reference channel annotation
 ## `IDtoChannel.csv` contains the id to channel index mapping
-read.csv("../extdata/specht2019/IDtoChannel.csv") %>%
+read.csv(paste0(dataDir, "IDtoChannel.csv")) %>%
   filter(celltype %in% rownames(annot)) %>%
   mutate(channel = sub("Reporter[.]intensity[.]", "RI", channel)) ->
   idMap
@@ -127,10 +118,10 @@ read.csv("../extdata/specht2019/IDtoChannel.csv") %>%
 annot[idMap$celltype, "Channel"] <- idMap$channel
 
 ## Get the peptide data
-pep <- readSingleCellExperiment("../extdata/specht2019/Peptides-raw.csv", 
+pep <- readSingleCellExperiment(paste0(dataDir, "Peptides-raw.csv"), 
                                 ecol = -c(1,2), fnames = "peptide")
 colData(pep) <- annot[colnames(pep), ]
-colnames(pep) <- paste0(annot[colnames(pep), "Set"],  "_", annot[colnames(pep), "Channel"])
+colnames(pep) <- paste0(annot[colnames(pep), "Set"], annot[colnames(pep), "Channel"])
 ## Include the peptide data in the QFeatures object
 specht2019v2 <- addAssay(specht2019v2, pep, name = "peptides")
 
@@ -151,13 +142,13 @@ specht2019v2 <- addAssayLink(specht2019v2, from = which(sel), to = "peptides",
 ####---- Include the protein data ----####
 
 ## The `Proteins-processed.csv` and `Cells.csv` file was downloaded from 
-## https://scope2.slavovlab.net/docs/data to scpdata/inst/extdata/specht2019-v2
-read.csv("../extdata/specht2019/Proteins-processed.csv") %>%
+## https://scope2.slavovlab.net/docs/data 
+read.csv(paste0(dataDir, "Proteins-processed.csv")) %>%
   rename(protein = X) %>%
   readSingleCellExperiment(ecol = -1, fnames = "protein") ->
   prot
 colData(prot) <- annot[colnames(prot), ]
-colnames(prot) <- paste0(annot[colnames(prot), "Set"],  "_", 
+colnames(prot) <- paste0(annot[colnames(prot), "Set"],
                          annot[colnames(prot), "Channel"])
 specht2019v2 <- addAssay(specht2019v2, prot, name = "proteins")
 specht2019v2 <- addAssayLink(specht2019v2, from = "peptides", to = "proteins", 
@@ -165,7 +156,7 @@ specht2019v2 <- addAssayLink(specht2019v2, from = "peptides", to = "proteins",
 
 ## Save data
 save(specht2019v2, 
-     file = file.path("../extdata/scpdata/specht2019v2.Rda"),
+     file = file.path("~/PhD/.localdata/scpdata/specht2019v2.Rda"),
      compress = "xz", 
      compression_level = 9)
 

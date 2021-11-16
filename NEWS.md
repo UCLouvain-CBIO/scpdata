@@ -1,7 +1,19 @@
 
-# scp 1.1
+# scpdata 1.3
 
-## scp 1.1.2
+## scpdata 1.3.0
+
+- New devel (Bioc 3.15)
+
+# scpdata 1.2
+
+## scpdata 1.2.0
+
+- New stable release (Bioc 3.14)
+
+# scpdata 1.1
+
+## scpdata 1.1.2
 
 - dou2019_*: Fixed duplicated data, added identification score and 
   probabilities data, and generated peptide data. 
@@ -10,17 +22,17 @@
 - metadata: included additional meta fields: PreprocessingSoftware and
   LabelingProtocol
 
-## scp 1.1.1
+## scpdata 1.1.1
 
 - Added the `schoof2021` dataset <2021-10-06>
 
-## scp 1.1.0
+## scpdata 1.1.0
 
 - New devel (Bioc 3.14)
 
-# scp 1.0
+# scpdata 1.0
 
-## scp 1.0.0
+## scpdata 1.0.0
 
 - New stable release (Bioc 3.13)
 
