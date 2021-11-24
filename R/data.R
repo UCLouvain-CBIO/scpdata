@@ -1453,11 +1453,10 @@
 ##' The script to reproduce the `QFeatures` object is available at
 ##' `system.file("scripts", "make-data_williams2020_lfq.R", package = "scpdata")`
 ##' 
-##' @section Suggestion
+##' @section Suggestion:
 ##' 
 ##' See `QFeatures::joinAssays` if you want to join the 30min and 
 ##' 60min assays in a single assay for an integrated analysis. 
-##' 
 ##' 
 ##' @source
 ##'  
