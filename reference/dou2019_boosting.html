@@ -25,7 +25,7 @@ otherwise 1 empty well was added. Each boosting setting (0ng, 5ng,
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2</span>
       </span>
     </div>
 
@@ -74,7 +74,7 @@ otherwise 1 empty well was added. Each boosting setting (0ng, 5ng,
 SingleCellExperiment object:</p><ul><li><p><code>Boosting_X_run_Y</code>: PSM data with 10 columns corresponding to
 the TMT-10plex channels. The <code>X</code> indicates the boosting amount
 (0ng, 5ng or 50ng) and <code>Y</code> indicates the run number (1 or 2).</p></li>
-<li><p><code>peptides</code>: peptide data containing quantitative data for 67,882
+<li><p><code>peptides</code>: peptide data containing quantitative data for 13,462
 peptides in 60 samples (run 1 and run 2 combined).</p></li>
 <li><p><code>proteins</code>: protein data containing quantitative data for 1436
 proteins and 60 samples (all runs combined).</p></li>
@@ -132,14 +132,15 @@ peptide or protein group are are separated by a <code>;</code>. The sample
 annotation table was manually created based on the available
 information provided in the article. The data were then converted
 to a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP</a> function.</p>
-<p>We generated the peptide data by aggregating the quantification
-data based on the peptide (or peptide group) sequence(s) using the
-median PSM instenity. The peptide data for the different runs were
-then joined in a single assay (see <a href="https://rdrr.io/pkg/QFeatures/man/joinAssays.html" class="external-link">QFeatures::joinAssays</a>), again
-based on the peptide sequence(s). We then removed the peptide
-groups. Links between the peptide and the PSM data were created
-using <a href="https://rdrr.io/pkg/QFeatures/man/AssayLinks.html" class="external-link">QFeatures::addAssayLink</a>. Note that links between PSM and
-peptide groups are not stored.</p>
+<p>We generated the peptide data. First, we removed PSM matched to
+contaminants or decoy peptides and ensured a 1% FDR. We aggregated
+the PSM to peptides based on the peptide (or peptide group)
+sequence(s) using the median PSM instenity. The peptide data for
+the different runs were then joined in a single assay (see
+<a href="https://rdrr.io/pkg/QFeatures/man/joinAssays.html" class="external-link">QFeatures::joinAssays</a>), again based on the peptide sequence(s).
+We then removed the peptide groups. Links between the peptide and
+the PSM data were created using <a href="https://rdrr.io/pkg/QFeatures/man/AssayLinks.html" class="external-link">QFeatures::addAssayLink</a>. Note
+that links between PSM and peptide groups are not stored.</p>
 <p>The protein data were downloaded from <code>Supporting information</code>
 section from the publisher's website (see <code>Sources</code>). The data is
 supplied as an Excel file <code>ac9b03349_si_004.xlsx</code>. The file
@@ -174,14 +175,14 @@ September
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">dou2019_boosting</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> see ?scpdata and browseVignettes('scpdata') for documentation</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> loading from cache</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> An instance of class QFeatures containing 7 assays:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] Boosting_0ng_run_1: SingleCellExperiment with 16746 rows and 10 columns </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] Boosting_0ng_run_2: SingleCellExperiment with 17242 rows and 10 columns </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] Boosting_50ng_run_1: SingleCellExperiment with 36182 rows and 10 columns </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] Boosting_50ng_run_2: SingleCellExperiment with 32621 rows and 10 columns </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] Boosting_5ng_run_1: SingleCellExperiment with 26781 rows and 10 columns </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] Boosting_5ng_run_2: SingleCellExperiment with 27253 rows and 10 columns </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] proteins: SingleCellExperiment with 1436 rows and 60 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> An instance of class QFeatures containing 8 assays:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] Boosting_0ng_run_1: SingleCellExperiment with 12258 rows and 10 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] Boosting_0ng_run_2: SingleCellExperiment with 12611 rows and 10 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] Boosting_50ng_run_1: SingleCellExperiment with 27746 rows and 10 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] Boosting_5ng_run_2: SingleCellExperiment with 20435 rows and 10 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] peptides: SingleCellExperiment with 13462 rows and 60 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] proteins: SingleCellExperiment with 1436 rows and 60 columns </span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
