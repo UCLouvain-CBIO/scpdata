@@ -1,6 +1,17 @@
 
 # scpdata 1.3
 
+## scpdata 1.3.2
+
+(nothing yet)
+
+## scpdata 1.3.1
+
+- williams2020: added 2 new datasets (need to be sent to EH)
+- all: added supplementary metadata fields in `metadata.csv`. 
+- zhu2019EL: split protein data into protein_intensity and protein_iBAQ
+- dou2019: modified peptide data by excluding low-quality PSMs
+
 ## scpdata 1.3.0
 
 - New devel (Bioc 3.15)
