@@ -92,5 +92,10 @@ Suggestions and bug reports are warmly welcome! You can submit them
 by creating an issue on the the 
 [`scpdata` GitHub repository](https://github.com/UCLouvain-CBIO/scpdata/issues).
 
+## License
 
-
+The `scpdata` code is provided under a permissive 
+[Artistic 2.0 license](https://opensource.org/licenses/Artistic-2.0). 
+The documentation, including the manual pages and the vignettes, are
+distributed under a 
+[CC BY-SA license](https://creativecommons.org/licenses/by-sa/2.0/).

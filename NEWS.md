@@ -3,7 +3,7 @@
 
 ## scpdata 1.3.2
 
-(nothing yet)
+- add license statements
 
 ## scpdata 1.3.1
 
