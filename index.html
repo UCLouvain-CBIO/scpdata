@@ -38,7 +38,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.1</span>
       </span>
     </div>
 
@@ -77,41 +77,41 @@
 </h1>
 <p>To install the stable version from Bioconductor:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"scpdata"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"scpdata"</span><span class="op">)</span></span></code></pre></div>
 <p>To install the development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"UCLouvain-CBIO/scpdata"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"UCLouvain-CBIO/scpdata"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level1">
 <h1 id="loading-a-data-set">Loading a data set<a class="anchor" aria-label="anchor" href="#loading-a-data-set"></a>
 </h1>
 <p>The available datasets can be accessed through <code>ExperimentHub</code>. Use <code><a href="reference/scpdata.html">scpdata()</a></code> to display the table with available datasets.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">scpdata</span><span class="op">)</span>
-<span class="fu"><a href="reference/scpdata.html">scpdata</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">scpdata</span><span class="op">)</span></span>
+<span><span class="fu"><a href="reference/scpdata.html">scpdata</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>You can either use the <code>ExperimentHub</code> interface or use the functions provided <code>scpdata</code> to retrieve the data set of interest.</p>
 <div class="section level2">
 <h2 id="loading-data-using-the-experimenthub-interface">Loading data using the <code>ExperimentHub</code> interface<a class="anchor" aria-label="anchor" href="#loading-data-using-the-experimenthub-interface"></a>
 </h2>
 <p>You first need to set up a connection with <code>ExperimentHub</code>. You can browse and query the database to look up a data set of interest (see <code><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">?ExperimentHub</a></code> for more information).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">eh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">eh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span></span></code></pre></div>
 <p>Suppose you are interested in the <code>specht2019v2</code> data set, you can retrieve the data using the corresponding <code>ExperimentHub</code> ID. In this case the ID is <code>EH3899</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scp</span> <span class="op">&lt;-</span> <span class="va">eh</span><span class="op">[[</span><span class="st">"EH3899"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="va">eh</span><span class="op">[[</span><span class="st">"EH3899"</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="loading-data-using-the-scpdata-functions">Loading data using the <code>scpdata</code> functions<a class="anchor" aria-label="anchor" href="#loading-data-using-the-scpdata-functions"></a>
 </h2>
 <p><code>scpdata</code> exports a function for each of the data sets. Retrieving the <code>specht2019v2</code> is performed by simply running the <code><a href="reference/specht2019v2.html">specht2019v2()</a></code> function.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/specht2019v2.html">specht2019v2</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/specht2019v2.html">specht2019v2</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>The documentation of each function contains information about its corresponding data set. The information includes a description of the data content, the acquisition protocol, the data collection procedure, and some associated references and data sources.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="op">?</span><span class="va">specht2019v2</span></code></pre></div>
+<code class="sourceCode R"><span><span class="op">?</span><span class="va">specht2019v2</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level1">
@@ -133,6 +133,11 @@
 <a class="anchor" aria-label="anchor" href="#contributing-to-scpdata"></a>
 </h1>
 <p>Suggestions and bug reports are warmly welcome! You can submit them by creating an issue on the the <a href="https://github.com/UCLouvain-CBIO/scpdata/issues" class="external-link"><code>scpdata</code> GitHub repository</a>.</p>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>The <code>scpdata</code> code is provided under a permissive <a href="https://opensource.org/licenses/Artistic-2.0" class="external-link">Artistic 2.0 license</a>. The documentation, including the manual pages and the vignettes, are distributed under a <a href="https://creativecommons.org/licenses/by-sa/2.0/" class="external-link">CC BY-SA license</a>.</p>
+</div>
 </div>
 
   </div>
@@ -152,6 +157,13 @@
 </ul>
 </div>
 
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing scpdata</a></li>
+</ul>
+</div>
 
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
@@ -174,7 +186,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer>

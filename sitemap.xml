@@ -19,7 +19,13 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
+    <loc>/reference/brunner2022.html</loc>
+  </url>
+  <url>
     <loc>/reference/cong2020AC.html</loc>
+  </url>
+  <url>
+    <loc>/reference/derks2022.html</loc>
   </url>
   <url>
     <loc>/reference/dou2019_boosting.html</loc>
@@ -32,6 +38,9 @@
   </url>
   <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/leduc2022.html</loc>
   </url>
   <url>
     <loc>/reference/liang2020_hela.html</loc>

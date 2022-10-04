@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.1</span>
       </span>
     </div>
 
@@ -63,10 +63,12 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Single Cell Proteomics data sets.</h1>
-                        <h4 data-toc-skip class="author">Laurent Gatto</h4>
-                                    <h4 data-toc-skip class="author">Christophe Vanderaa</h4>
+                        <h4 data-toc-skip class="author">Laurent
+Gatto</h4>
+                                    <h4 data-toc-skip class="author">Christophe
+Vanderaa</h4>
                         
-            <h4 data-toc-skip class="date">24 November 2021</h4>
+            <h4 data-toc-skip class="date">4 October 2022</h4>
       
       
       <div class="hidden name"><code>scpdata.Rmd</code></div>
@@ -75,50 +77,62 @@
 
     
     
-<div class="section level1">
-<h1 id="the-scpdata-package">The <code>scpdata</code> package<a class="anchor" aria-label="anchor" href="#the-scpdata-package"></a>
-</h1>
-<p><code>scpdata</code> disseminates mass spectrometry (MS)-based single-cell proteomics (SCP) data sets formatted using the <code>scp</code> data structure. The data structure is described in the <a href="http://www.bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html" class="external-link"><code>scp</code> vignette</a>.</p>
-<p>In this vignette, we describe how to access the SCP data sets. To start, we load the <code>scpdata</code> package.</p>
+<div class="section level2">
+<h2 id="the-scpdata-package">The <code>scpdata</code> package<a class="anchor" aria-label="anchor" href="#the-scpdata-package"></a>
+</h2>
+<p><code>scpdata</code> disseminates mass spectrometry (MS)-based
+single-cell proteomics (SCP) data sets formatted using the
+<code>scp</code> data structure. The data structure is described in the
+<a href="http://www.bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html" class="external-link"><code>scp</code>
+vignette</a>.</p>
+<p>In this vignette, we describe how to access the SCP data sets. To
+start, we load the <code>scpdata</code> package.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"scpdata"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"scpdata"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level1">
-<h1 id="load-data-from-experimenthub">Load data from <code>ExperimentHub</code><a class="anchor" aria-label="anchor" href="#load-data-from-experimenthub"></a>
-</h1>
-<p>The data is stored using the <a href="https://bioconductor.org/packages/release/bioc/html/ExperimentHub.html" class="external-link"><code>ExperimentHub</code></a> infrastructure. We first create a connection with <code>ExperimentHub</code>.</p>
+<div class="section level2">
+<h2 id="load-data-from-experimenthub">Load data from <code>ExperimentHub</code><a class="anchor" aria-label="anchor" href="#load-data-from-experimenthub"></a>
+</h2>
+<p>The data is stored using the <a href="https://bioconductor.org/packages/release/bioc/html/ExperimentHub.html" class="external-link"><code>ExperimentHub</code></a>
+infrastructure. We first create a connection with
+<code>ExperimentHub</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">eh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p>You can list all data sets available in <code>scpdata</code> using the query function.</p>
+<code class="sourceCode R"><span><span class="va">eh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>You can list all data sets available in <code>scpdata</code> using
+the query function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span>
-<span class="co">#&gt; ExperimentHub with 15 records</span>
-<span class="co">#&gt; # snapshotDate(): 2021-11-24</span>
-<span class="co">#&gt; # $dataprovider: PRIDE, MassIVE, SlavovLab website</span>
-<span class="co">#&gt; # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus</span>
-<span class="co">#&gt; # $rdataclass: QFeatures</span>
-<span class="co">#&gt; # additional mcols(): taxonomyid, genome, description,</span>
-<span class="co">#&gt; #   coordinate_1_based, maintainer, rdatadateadded, preparerclass, tags,</span>
-<span class="co">#&gt; #   rdatapath, sourceurl, sourcetype </span>
-<span class="co">#&gt; # retrieve records with, e.g., 'object[["EH3899"]]' </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt;            title           </span>
-<span class="co">#&gt;   EH3899 | specht2019v2    </span>
-<span class="co">#&gt;   EH3900 | specht2019v3    </span>
-<span class="co">#&gt;   EH3901 | dou2019_lysates </span>
-<span class="co">#&gt;   EH3902 | dou2019_mouse   </span>
-<span class="co">#&gt;   EH3903 | dou2019_boosting</span>
-<span class="co">#&gt;   ...      ...             </span>
-<span class="co">#&gt;   EH3909 | zhu2019EL       </span>
-<span class="co">#&gt;   EH6011 | liang2020_hela  </span>
-<span class="co">#&gt;   EH7085 | schoof2021      </span>
-<span class="co">#&gt;   EH7295 | williams2020_lfq</span>
-<span class="co">#&gt;   EH7296 | williams2020_tmt</span></code></pre></div>
-<p>Another way to get information about the available data sets is to call <code><a href="../reference/scpdata.html">scpdata()</a></code>. This will retrieve all the available metadata. For example, we can retrieve the data set titles along with the description to make an informed choice about which data set to choose.</p>
+<code class="sourceCode R"><span><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; ExperimentHub with 18 records</span></span>
+<span><span class="co">#&gt; # snapshotDate(): 2022-10-03</span></span>
+<span><span class="co">#&gt; # $dataprovider: PRIDE, MassIVE, SlavovLab website</span></span>
+<span><span class="co">#&gt; # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus</span></span>
+<span><span class="co">#&gt; # $rdataclass: QFeatures</span></span>
+<span><span class="co">#&gt; # additional mcols(): taxonomyid, genome, description,</span></span>
+<span><span class="co">#&gt; #   coordinate_1_based, maintainer, rdatadateadded, preparerclass, tags,</span></span>
+<span><span class="co">#&gt; #   rdatapath, sourceurl, sourcetype </span></span>
+<span><span class="co">#&gt; # retrieve records with, e.g., 'object[["EH3899"]]' </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;            title           </span></span>
+<span><span class="co">#&gt;   EH3899 | specht2019v2    </span></span>
+<span><span class="co">#&gt;   EH3900 | specht2019v3    </span></span>
+<span><span class="co">#&gt;   EH3901 | dou2019_lysates </span></span>
+<span><span class="co">#&gt;   EH3902 | dou2019_mouse   </span></span>
+<span><span class="co">#&gt;   EH3903 | dou2019_boosting</span></span>
+<span><span class="co">#&gt;   ...      ...             </span></span>
+<span><span class="co">#&gt;   EH7295 | williams2020_lfq</span></span>
+<span><span class="co">#&gt;   EH7296 | williams2020_tmt</span></span>
+<span><span class="co">#&gt;   EH7711 | leduc2022       </span></span>
+<span><span class="co">#&gt;   EH7712 | derks2022       </span></span>
+<span><span class="co">#&gt;   EH7713 | brunner2022</span></span></code></pre></div>
+<p>Another way to get information about the available data sets is to
+call <code><a href="../reference/scpdata.html">scpdata()</a></code>. This will retrieve all the available
+metadata. For example, we can retrieve the data set titles along with
+the description to make an informed choice about which data set to
+choose.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scpdata.html">scpdata</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; snapshotDate(): 2021-11-24</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">info</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scpdata.html">scpdata</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; snapshotDate(): 2022-10-03</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">info</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="4%">
@@ -134,127 +148,171 @@
 <tr class="odd">
 <td align="left">EH3899</td>
 <td align="left">specht2019v2</td>
-<td align="left">SCP expression data for monocytes (U-937) and macrophages at PSM, peptide and protein level</td>
+<td align="left">SCP expression data for monocytes (U-937) and
+macrophages at PSM, peptide and protein level</td>
 </tr>
 <tr class="even">
 <td align="left">EH3900</td>
 <td align="left">specht2019v3</td>
-<td align="left">SCP expression data for more monocytes (U-937) and macrophages at PSM, peptide and protein level</td>
+<td align="left">SCP expression data for more monocytes (U-937) and
+macrophages at PSM, peptide and protein level</td>
 </tr>
 <tr class="odd">
 <td align="left">EH3901</td>
 <td align="left">dou2019_lysates</td>
-<td align="left">SCP expression data for Hela digests (0.2 or 10 ng) at PSM and protein level</td>
+<td align="left">SCP expression data for Hela digests (0.2 or 10 ng) at
+PSM and protein level</td>
 </tr>
 <tr class="even">
 <td align="left">EH3902</td>
 <td align="left">dou2019_mouse</td>
-<td align="left">SCP expression data for C10, SVEC or Raw cells at PSM and protein level</td>
+<td align="left">SCP expression data for C10, SVEC or Raw cells at PSM
+and protein level</td>
 </tr>
 <tr class="odd">
 <td align="left">EH3903</td>
 <td align="left">dou2019_boosting</td>
-<td align="left">SCP expression data for C10, SVEC or Raw cells and 3 boosters (0, 5 or 50 ng) at PSM and protein level</td>
+<td align="left">SCP expression data for C10, SVEC or Raw cells and 3
+boosters (0, 5 or 50 ng) at PSM and protein level</td>
 </tr>
 <tr class="even">
 <td align="left">EH3904</td>
 <td align="left">zhu2018MCP</td>
-<td align="left">Near SCP expression data for micro-dissection rat brain samples (50, 100, or 200 µm width) at PSM level</td>
+<td align="left">Near SCP expression data for micro-dissection rat brain
+samples (50, 100, or 200 µm width) at PSM level</td>
 </tr>
 <tr class="odd">
 <td align="left">EH3905</td>
 <td align="left">zhu2018NC_hela</td>
-<td align="left">Near SCP expression data for HeLa samples (aproximately 12, 40, or 140 cells) at PSM level</td>
+<td align="left">Near SCP expression data for HeLa samples (aproximately
+12, 40, or 140 cells) at PSM level</td>
 </tr>
 <tr class="even">
 <td align="left">EH3906</td>
 <td align="left">zhu2018NC_lysates</td>
-<td align="left">Near SCP expression data for HeLa lysates (10, 40 and 140 cell equivalent) at PSM level</td>
+<td align="left">Near SCP expression data for HeLa lysates (10, 40 and
+140 cell equivalent) at PSM level</td>
 </tr>
 <tr class="odd">
 <td align="left">EH3907</td>
 <td align="left">zhu2018NC_islets</td>
-<td align="left">Near SCP expression data for micro-dissected human pancreas samples (control patients or type 1 diabetes) at PSM level</td>
+<td align="left">Near SCP expression data for micro-dissected human
+pancreas samples (control patients or type 1 diabetes) at PSM level</td>
 </tr>
 <tr class="even">
 <td align="left">EH3908</td>
 <td align="left">cong2020AC</td>
-<td align="left">SCP expression data for Hela cells at PSM, peptide and protein level</td>
+<td align="left">SCP expression data for Hela cells at PSM, peptide and
+protein level</td>
 </tr>
 <tr class="odd">
 <td align="left">EH3909</td>
 <td align="left">zhu2019EL</td>
-<td align="left">SCP expression data for chicken utricle samples (1, 3, 5 or 20 cells) at PSM, peptide and protein level</td>
+<td align="left">SCP expression data for chicken utricle samples (1, 3,
+5 or 20 cells) at PSM, peptide and protein level</td>
 </tr>
 <tr class="even">
 <td align="left">EH6011</td>
 <td align="left">liang2020_hela</td>
-<td align="left">Expression data for HeLa cells (0, 1, 10, 150, 500 cells) at PSM, peptide and protein level</td>
+<td align="left">Expression data for HeLa cells (0, 1, 10, 150, 500
+cells) at PSM, peptide and protein level</td>
 </tr>
 <tr class="odd">
 <td align="left">EH7085</td>
 <td align="left">schoof2021</td>
-<td align="left">Single-cell proteomics data from OCI-AML8227 cell culture to reconstruct the cellular hierarchy.</td>
+<td align="left">Single-cell proteomics data from OCI-AML8227 cell
+culture to reconstruct the cellular hierarchy.</td>
 </tr>
 <tr class="even">
 <td align="left">EH7295</td>
 <td align="left">williams2020_lfq</td>
-<td align="left">Single-cell label free proteomics data from a MCF10A cell line culture.</td>
+<td align="left">Single-cell label free proteomics data from a MCF10A
+cell line culture.</td>
 </tr>
 <tr class="odd">
 <td align="left">EH7296</td>
 <td align="left">williams2020_tmt</td>
-<td align="left">Single-cell proteomics data from three acute myeloid leukemia cell line culture (MOLM-14, K562, CMK).</td>
+<td align="left">Single-cell proteomics data from three acute myeloid
+leukemia cell line culture (MOLM-14, K562, CMK).</td>
+</tr>
+<tr class="even">
+<td align="left">EH7711</td>
+<td align="left">leduc2022</td>
+<td align="left">Single-cell proteomics data of 878 melanoma cells and
+877 monocytes.</td>
+</tr>
+<tr class="odd">
+<td align="left">EH7712</td>
+<td align="left">derks2022</td>
+<td align="left">Single-cell and bulk (100-cell) proteomics data of
+PDAC, melanoma cells and monocytes.</td>
+</tr>
+<tr class="even">
+<td align="left">EH7713</td>
+<td align="left">brunner2022</td>
+<td align="left">Single-cell proteomics data of cell cycle stages in
+HeLa.</td>
 </tr>
 </tbody>
 </table>
-<p>To get one of the data sets (<em>e.g.</em> <code>dou2019_lysates</code>) you can either retrieve it using the <code>ExperimentHub</code> query function</p>
+<p>To get one of the data sets (<em>e.g.</em>
+<code>dou2019_lysates</code>) you can either retrieve it using the
+<code>ExperimentHub</code> query function</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scp</span> <span class="op">&lt;-</span> <span class="va">eh</span><span class="op">[[</span><span class="st">"EH3901"</span><span class="op">]</span><span class="op">]</span>
-<span class="co">#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</span>
-<span class="co">#&gt; loading from cache</span>
-<span class="va">scp</span>
-<span class="co">#&gt; An instance of class QFeatures containing 4 assays:</span>
-<span class="co">#&gt;  [1] Hela_run_1: SingleCellExperiment with 24562 rows and 10 columns </span>
-<span class="co">#&gt;  [2] Hela_run_2: SingleCellExperiment with 24310 rows and 10 columns </span>
-<span class="co">#&gt;  [3] peptides: SingleCellExperiment with 13934 rows and 20 columns </span>
-<span class="co">#&gt;  [4] proteins: SingleCellExperiment with 1641 rows and 20 columns</span></code></pre></div>
-<p>or you can the use the built-in functions from <code>scpdata</code></p>
+<code class="sourceCode R"><span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="va">eh</span><span class="op">[[</span><span class="st">"EH3901"</span><span class="op">]</span><span class="op">]</span></span>
+<span><span class="co">#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</span></span>
+<span><span class="co">#&gt; loading from cache</span></span>
+<span><span class="va">scp</span></span>
+<span><span class="co">#&gt; An instance of class QFeatures containing 4 assays:</span></span>
+<span><span class="co">#&gt;  [1] Hela_run_1: SingleCellExperiment with 24562 rows and 10 columns </span></span>
+<span><span class="co">#&gt;  [2] Hela_run_2: SingleCellExperiment with 24310 rows and 10 columns </span></span>
+<span><span class="co">#&gt;  [3] peptides: SingleCellExperiment with 13934 rows and 20 columns </span></span>
+<span><span class="co">#&gt;  [4] proteins: SingleCellExperiment with 1641 rows and 20 columns</span></span></code></pre></div>
+<p>or you can the use the built-in functions from
+<code>scpdata</code></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dou2019_lysates.html">dou2019_lysates</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</span>
-<span class="co">#&gt; loading from cache</span>
-<span class="va">scp</span>
-<span class="co">#&gt; An instance of class QFeatures containing 4 assays:</span>
-<span class="co">#&gt;  [1] Hela_run_1: SingleCellExperiment with 24562 rows and 10 columns </span>
-<span class="co">#&gt;  [2] Hela_run_2: SingleCellExperiment with 24310 rows and 10 columns </span>
-<span class="co">#&gt;  [3] peptides: SingleCellExperiment with 13934 rows and 20 columns </span>
-<span class="co">#&gt;  [4] proteins: SingleCellExperiment with 1641 rows and 20 columns</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dou2019_lysates.html">dou2019_lysates</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; see ?scpdata and browseVignettes('scpdata') for documentation</span></span>
+<span><span class="co">#&gt; loading from cache</span></span>
+<span><span class="va">scp</span></span>
+<span><span class="co">#&gt; An instance of class QFeatures containing 4 assays:</span></span>
+<span><span class="co">#&gt;  [1] Hela_run_1: SingleCellExperiment with 24562 rows and 10 columns </span></span>
+<span><span class="co">#&gt;  [2] Hela_run_2: SingleCellExperiment with 24310 rows and 10 columns </span></span>
+<span><span class="co">#&gt;  [3] peptides: SingleCellExperiment with 13934 rows and 20 columns </span></span>
+<span><span class="co">#&gt;  [4] proteins: SingleCellExperiment with 1641 rows and 20 columns</span></span></code></pre></div>
 </div>
-<div class="section level1">
-<h1 id="data-sets-information">Data sets information<a class="anchor" aria-label="anchor" href="#data-sets-information"></a>
-</h1>
-<p>Each data set has been extensively documented in a separate man page (<em>e.g.</em> <code><a href="../reference/dou2019_lysates.html">?dou2019_lysates</a></code>). You can find information about the data content, the acquisition protocol, the data collection procedure as well as the data sources and reference.</p>
+<div class="section level2">
+<h2 id="data-sets-information">Data sets information<a class="anchor" aria-label="anchor" href="#data-sets-information"></a>
+</h2>
+<p>Each data set has been extensively documented in a separate man page
+(<em>e.g.</em> <code><a href="../reference/dou2019_lysates.html">?dou2019_lysates</a></code>). You can find information
+about the data content, the acquisition protocol, the data collection
+procedure as well as the data sources and reference.</p>
 </div>
-<div class="section level1">
-<h1 id="data-manipulation">Data manipulation<a class="anchor" aria-label="anchor" href="#data-manipulation"></a>
-</h1>
-<p>For more information about manipulating the data sets, check the <a href="http://bioconductor.org/packages/release/bioc/html/scp.html" class="external-link"><code>scp</code></a> package. The <code>scp</code> <a href="http://bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html" class="external-link">vignette</a> will guide you through a typical SCP data processing workflow. Once your data is loaded from <code>scpdata</code> you can skip section 2 <em>Read in SCP data</em> of the <code>scp</code> vignette.</p>
+<div class="section level2">
+<h2 id="data-manipulation">Data manipulation<a class="anchor" aria-label="anchor" href="#data-manipulation"></a>
+</h2>
+<p>For more information about manipulating the data sets, check the <a href="http://bioconductor.org/packages/release/bioc/html/scp.html" class="external-link"><code>scp</code></a>
+package. The <code>scp</code> <a href="http://bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html" class="external-link">vignette</a>
+will guide you through a typical SCP data processing workflow. Once your
+data is loaded from <code>scpdata</code> you can skip section 2 <em>Read
+in SCP data</em> of the <code>scp</code> vignette.</p>
 </div>
-<div class="section level1 unnumbered">
-<h1 class="unnumbered" id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
-</h1>
-<pre><code>R Under development (unstable) (2021-11-16 r81199)
+<div class="section level2">
+<h2 class="unnumbered" id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
+</h2>
+<pre><code>R version 4.2.1 (2022-06-23)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 20.04.3 LTS
+Running under: Ubuntu 20.04.5 LTS
 
 Matrix products: default
-BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
@@ -264,61 +322,67 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] scpdata_1.3.2               ExperimentHub_2.3.4        
- [3] AnnotationHub_3.3.6         BiocFileCache_2.3.0        
- [5] dbplyr_2.1.1                QFeatures_1.5.2            
- [7] MultiAssayExperiment_1.21.3 SummarizedExperiment_1.25.2
- [9] Biobase_2.55.0              GenomicRanges_1.47.5       
-[11] GenomeInfoDb_1.31.1         IRanges_2.29.1             
-[13] S4Vectors_0.33.4            BiocGenerics_0.41.2        
-[15] MatrixGenerics_1.7.0        matrixStats_0.61.0         
-[17] BiocStyle_2.23.0           
+ [1] scpdata_1.5.1               ExperimentHub_2.5.0        
+ [3] AnnotationHub_3.5.2         BiocFileCache_2.5.0        
+ [5] dbplyr_2.2.1                QFeatures_1.7.2            
+ [7] MultiAssayExperiment_1.23.9 SummarizedExperiment_1.27.3
+ [9] Biobase_2.57.1              GenomicRanges_1.49.1       
+[11] GenomeInfoDb_1.33.7         IRanges_2.31.2             
+[13] S4Vectors_0.35.4            BiocGenerics_0.43.4        
+[15] MatrixGenerics_1.9.1        matrixStats_0.62.0         
+[17] BiocStyle_2.25.0           
 
 loaded via a namespace (and not attached):
- [1] ProtGenerics_1.27.0           bitops_1.0-7                 
- [3] fs_1.5.0                      bit64_4.0.5                  
- [5] filelock_1.0.2                httr_1.4.2                   
- [7] rprojroot_2.0.2               tools_4.2.0                  
- [9] bslib_0.3.1                   utf8_1.2.2                   
-[11] R6_2.5.1                      DBI_1.1.1                    
-[13] lazyeval_0.2.2                withr_2.4.2                  
-[15] tidyselect_1.1.1              bit_4.0.4                    
-[17] curl_4.3.2                    compiler_4.2.0               
-[19] textshaping_0.3.6             desc_1.4.0                   
-[21] DelayedArray_0.21.2           bookdown_0.24                
-[23] sass_0.4.0                    rappdirs_0.3.3               
-[25] pkgdown_1.9000.9000.9000      systemfonts_1.0.3            
-[27] stringr_1.4.0                 digest_0.6.28                
-[29] rmarkdown_2.11                XVector_0.35.0               
-[31] pkgconfig_2.0.3               htmltools_0.5.2              
+ [1] ProtGenerics_1.29.0           bitops_1.0-7                 
+ [3] fs_1.5.2                      bit64_4.0.5                  
+ [5] filelock_1.0.2                httr_1.4.4                   
+ [7] rprojroot_2.0.3               tools_4.2.1                  
+ [9] bslib_0.4.0                   utf8_1.2.2                   
+[11] R6_2.5.1                      DBI_1.1.3                    
+[13] lazyeval_0.2.2                tidyselect_1.1.2             
+[15] bit_4.0.4                     curl_4.3.2                   
+[17] compiler_4.2.1                textshaping_0.3.6            
+[19] cli_3.4.1                     desc_1.4.2                   
+[21] DelayedArray_0.23.2           bookdown_0.29                
+[23] sass_0.4.2                    rappdirs_0.3.3               
+[25] pkgdown_2.0.6.9000            systemfonts_1.0.4            
+[27] stringr_1.4.1                 digest_0.6.29                
+[29] rmarkdown_2.16                XVector_0.37.1               
+[31] pkgconfig_2.0.3               htmltools_0.5.3              
 [33] highr_0.9                     fastmap_1.1.0                
-[35] rlang_0.4.12                  RSQLite_2.2.8                
-[37] shiny_1.7.1                   jquerylib_0.1.4              
-[39] generics_0.1.1                jsonlite_1.7.2               
-[41] dplyr_1.0.7                   RCurl_1.98-1.5               
-[43] magrittr_2.0.1                GenomeInfoDbData_1.2.7       
-[45] Matrix_1.3-4                  Rcpp_1.0.7                   
-[47] fansi_0.5.0                   MsCoreUtils_1.7.0            
-[49] lifecycle_1.0.1               stringi_1.7.5                
-[51] yaml_2.2.1                    MASS_7.3-54                  
-[53] zlibbioc_1.41.0               grid_4.2.0                   
-[55] blob_1.2.2                    promises_1.2.0.1             
-[57] crayon_1.4.2                  lattice_0.20-45              
-[59] Biostrings_2.63.0             KEGGREST_1.35.0              
-[61] knitr_1.36                    pillar_1.6.4                 
-[63] igraph_1.2.9                  glue_1.5.0                   
-[65] BiocVersion_3.15.0            evaluate_0.14                
-[67] BiocManager_1.30.16           png_0.1-7                    
-[69] vctrs_0.3.8                   httpuv_1.6.3                 
-[71] purrr_0.3.4                   clue_0.3-60                  
+[35] rlang_1.0.6                   RSQLite_2.2.17               
+[37] shiny_1.7.2                   jquerylib_0.1.4              
+[39] generics_0.1.3                jsonlite_1.8.0               
+[41] dplyr_1.0.10                  RCurl_1.98-1.8               
+[43] magrittr_2.0.3                GenomeInfoDbData_1.2.9       
+[45] Matrix_1.5-1                  Rcpp_1.0.9                   
+[47] fansi_1.0.3                   MsCoreUtils_1.9.1            
+[49] lifecycle_1.0.2               stringi_1.7.8                
+[51] yaml_2.3.5                    MASS_7.3-58.1                
+[53] zlibbioc_1.43.0               grid_4.2.1                   
+[55] blob_1.2.3                    promises_1.2.0.1             
+[57] crayon_1.5.2                  lattice_0.20-45              
+[59] Biostrings_2.65.6             KEGGREST_1.37.3              
+[61] knitr_1.40                    pillar_1.8.1                 
+[63] igraph_1.3.5                  glue_1.6.2                   
+[65] BiocVersion_3.16.0            evaluate_0.16                
+[67] BiocManager_1.30.18           png_0.1-7                    
+[69] vctrs_0.4.2                   httpuv_1.6.6                 
+[71] purrr_0.3.4                   clue_0.3-61                  
 [73] assertthat_0.2.1              cachem_1.0.6                 
-[75] xfun_0.28                     mime_0.12                    
-[77] xtable_1.8-4                  AnnotationFilter_1.19.0      
-[79] later_1.3.0                   ragg_1.2.0                   
-[81] SingleCellExperiment_1.17.2   tibble_3.1.6                 
-[83] AnnotationDbi_1.57.1          memoise_2.0.0                
-[85] cluster_2.1.2                 ellipsis_0.3.2               
-[87] interactiveDisplayBase_1.33.0</code></pre>
+[75] BiocBaseUtils_0.99.12         xfun_0.33                    
+[77] mime_0.12                     xtable_1.8-4                 
+[79] AnnotationFilter_1.21.0       later_1.3.0                  
+[81] ragg_1.2.3                    SingleCellExperiment_1.19.1  
+[83] tibble_3.1.8                  AnnotationDbi_1.59.1         
+[85] memoise_2.0.1                 cluster_2.1.4                
+[87] ellipsis_0.3.2                interactiveDisplayBase_1.35.0</code></pre>
+</div>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>This vignette is distributed under a <a href="https://creativecommons.org/licenses/by-sa/2.0/" class="external-link">CC BY-SA
+license</a>.</p>
 </div>
   </div>
 
@@ -339,7 +403,7 @@ loaded via a namespace (and not attached):
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer>
