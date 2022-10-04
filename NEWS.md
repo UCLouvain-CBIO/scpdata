@@ -1,6 +1,10 @@
 
 # scpdata 1.5 
 
+## scpdata 1.5.2
+
+(nothing yet) 
+
 ## scpdata 1.5.1
 
 - brunner2022: added dataset
