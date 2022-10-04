@@ -1,9 +1,22 @@
 
-# scpdata 1.3
+# scpdata 1.5 
 
-## scpdata 1.3.2
+## scpdata 1.5.1
 
+- brunner2022: added dataset
+- derks2022: added dataset
 - add license statements
+- leduc2022: added dataset
+
+## scpdata 1.5.0
+
+- New devel (Bioc 3.16)
+
+# scpdata 1.4
+
+- New stable release (Bioc 3.15)
+
+# scpdata 1.3
 
 ## scpdata 1.3.1
 

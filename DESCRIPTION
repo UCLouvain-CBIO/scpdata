@@ -1,7 +1,7 @@
 Package: scpdata
 Type: Package
 Title: Single-Cell Proteomics Data Package
-Version: 1.5.0
+Version: 1.5.1
 Authors@R:
     c(person("Christophe", "Vanderaa",
 	      email = "christophe.vanderaa@uclouvain.be",
@@ -48,4 +48,4 @@ Encoding: UTF-8
 LazyData: false
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1

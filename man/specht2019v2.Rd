@@ -32,7 +32,7 @@ the \code{rowData} fields for the PSM data can be found in the
 }
 \source{
 The data were downloaded from the
-\href{https://scope2.slavovlab.net/docs/data}{Slavov Lab} website via a
+\href{https://scope2.slavovlab.net/mass-spec/data}{Slavov Lab} website via a
 shared Google Drive
 \href{https://drive.google.com/drive/folders/1VzBfmNxziRYqayx3SP-cOe2gu129Obgx}{folder}.
 The raw data and the quantification data can also be found in the

@@ -86,7 +86,7 @@
 ##'  
 ##' @source 
 ##' The data were downloaded from the 
-##' [Slavov Lab](https://scope2.slavovlab.net/docs/data) website via a
+##' [Slavov Lab](https://scope2.slavovlab.net/mass-spec/data) website via a
 ##' shared Google Drive 
 ##' [folder](https://drive.google.com/drive/folders/1VzBfmNxziRYqayx3SP-cOe2gu129Obgx). 
 ##' The raw data and the quantification data can also be found in the 
@@ -1590,3 +1590,310 @@
 ##' @keywords datasets
 ##' 
 "williams2020_tmt"
+
+####---- leduc2022 ----####
+
+##' Leduc et al. 2022 - SCoPE2 (biorRxiv): melanoma cells vs monocytes 
+##'
+##' Single cell proteomics data acquired by the Slavov Lab. This is 
+##' the dataset associated to the third version of the preprint. It
+##' contains quantitative information of melanoma cells and monocytes
+##' at PSM, peptide and protein level.
+##' 
+##' @format A [QFeatures] object with 138 assays, each assay being a 
+##' [SingleCellExperiment] object: 
+##' 
+##' - Assay 1-134: PSM data acquired with a TMT-18plex protocol, hence
+##'   those assays contain 18 columns. Columns hold quantitative 
+##'   information from single-cell channels, carrier channels, 
+##'   reference channels, empty (negative control) channels and
+##'   unused channels.
+##' - `peptides`: peptide data containing quantitative data for 20,804 
+##'   peptides and 1556 single-cells. These data have been filtered
+##'   to keep high-quality PSMs, all batches have been normalized to 
+##'   the reference channel, PSMs were aggregated to peptides, and 
+##'   single-cells with low median coefficient of variation were kept.
+##' - `peptides_log`: peptide data containing quantitative data for 
+##'   12,284 peptides and 1543 single-cells. The `peptides` data was 
+##'   further normalized, highly missing peptides were removed and the
+##'   quantifications were log-transformed. 
+##' - `proteins_norm2`: protein data containing quantitative data for 
+##'   2844 proteins and 1543 single-cells. The peptides from 
+##'   `peptides_log` were aggregated to proteins and normalized. 
+##' - `proteins_processed`: protein data containing quantitative data 
+##'   for 2844 proteins and 1543 single-cells. The `proteins_norm2`
+##'   data were imputed, batch corrected and normalized.
+##' 
+##' The `colData(leduc2022())` contains cell type annotation and 
+##' batch annotation that are common to all assays. The description of
+##' the `rowData` fields for the PSM data can be found in the 
+##' [`MaxQuant` documentation](http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable).
+##' 
+##' @section Acquisition protocol:
+##' 
+##' The data were acquired using the following setup. More information
+##' can be found in the source article (see `References`).
+##' 
+##' - **Cell isolation**: CellenONE cell sorting.
+##' - **Sample preparation** performed using the improved SCoPE2
+##'   protocol using the CellenONE liquid handling system. nPOP cell 
+##'   lysis (DMSO) + trypsin digestion + TMT-18plex 
+##'   labeling and pooling. A target library was generated as well to 
+##'   perform prioritized DDA (Huffman et al. 2022) using MaxQuant.Live
+##'   (2.0.3).
+##' - **Separation**: online nLC (DionexUltiMate 3000 UHPLC with a 
+##'   25cm x 75um IonOpticks Aurora Series UHPLC column; 200nL/min).
+##' - **Ionization**: ESI (1,800V).
+##' - **Mass spectrometry**: Thermo Scientific Q-Exactive (MS1 
+##'   resolution = 70,000; MS2 accumulation time = 300ms; MS2 
+##'   resolution = 70,000).
+##' - **Data analysis**: MaxQuant (1.6.17.0) + DART-ID
+##' 
+##' @section Data collection:
+##' 
+##' The PSM data were collected from a shared Google Drive folder that 
+##' is accessible from the SlavovLab website (see `Source` section). 
+##' The folder contains the following files of interest: 
+##' 
+##' - `ev_updated.txt`: the MaxQuant/DART-ID output file
+##' - `annotation.csv`: sample annotation
+##' - `batch.csv`: batch annotation
+##' - `t0.csv`: the processed data table containing the `peptides` data
+##' - `t3.csv`: the processed data table containing the `peptides_log`
+##'   data
+##' - `t4b.csv`: the processed data table containing the 
+##'   `proteins_norm2` data
+##' - `t6.csv`: the processed data table containing the 
+##'   `proteins_processed` data
+##' 
+##' We combined the the sample annotation and the batch annotation in 
+##' a single table. We also formated the quantification table so that 
+##' columns match with those of the annotations. Both annotation and 
+##' quantification tables are then combined in a single [QFeatures] 
+##' object using the [scp::readSCP] function. 
+##'  
+##' The 4 CSV files were loaded and formated as [SingleCellExperiment]
+##' objects and the sample metadata were matched to the column names 
+##' (mapping is retrieved after running the author's original R script)
+##' and stored in the `colData`. 
+##' The object is then added to the [QFeatures] object (containing the
+##' PSM assays) and the rows of the peptide data are linked to the 
+##' rows of the PSM data based on the peptide sequence information 
+##' through an `AssayLink` object. 
+##'  
+##' @source 
+##' The data were downloaded from the 
+##' [Slavov Lab](https://scp.slavovlab.net/Leduc_et_al_2022) website.
+##' The raw data and the quantification data can also be found in the 
+##' massIVE repository `MSV000089159`: 
+##' ftp://massive.ucsd.edu/MSV000089159.
+##' 
+##' @references 
+##' Andrew Leduc, Gray Huffman, and Nikolai Slavov. 2022. “Droplet 
+##' Sample Preparation for Single-Cell Proteomics Applied to the Cell
+##' Cycle.” bioRxiv. [Link to article](https://doi.org/10.1101/2021.04.24.441211)
+##' 
+##' Gray Huffman, Andrew Leduc, Christoph Wichmann, Marco di Gioia, 
+##' Francesco Borriello, Harrison Specht, Jason Derks, et al. 2022. 
+##' “Prioritized Single-Cell Proteomics Reveals Molecular and 
+##' Functional Polarization across Primary Macrophages.” bioRxiv. 
+##' [Link to article](https://doi.org/10.1101/2022.03.16.484655).
+##' 
+##' @examples
+##' leduc2022()
+##'
+##' @keywords datasets
+##' 
+"leduc2022"
+
+####---- derks2022 ----####
+
+##' Derks et al. 2022 - plexDIA (Nat. Biotechnol.): PDAC vs melanoma 
+##' cells vs monocytes
+##'
+##' Single cell proteomics data acquired by the Slavov Lab using the 
+##' plexDIA protocol. It contains quantitative information from 
+##' pancreatic ductal acinar cells (PDAC; HPAF-II), melanoma cells
+##' (WM989-A6-G3) and monocytes (U-937) at precursor and protein 
+##' level. The each run acquired 3 samples thanks to mTRAQ 
+##' multiplexing.
+##' 
+##' @format A [QFeatures] object with 66 assays, each assay being a 
+##' [SingleCellExperiment] object. The assays either hold the DIA-NN
+##' main output report table or the DIA-NN MS1 extracted signal table.
+##' The DIA-NN main output report table contains the results of the spectrum
+##' identification and quantification. The DIA-NN MS1 extracted 
+##' signal table contains quantification for all mTRAQ channels if its
+##' precursors was identified in at least one of the channels, 
+##' regardless of whether there is sufficient evidence in those 
+##' channels at 1% FDR.
+##' 
+##' The data is composed of three datasets
+##' 
+##' 1. **Bulk**: dataset containing bulk (100-cell) data acquired 
+##'    using a Q-Exactive mass spectrometer. Assays 1-3 contain data 
+##'    from the DIA-NN main output report; assay 4 is the DIA-NN MS1 
+##'    extracted signal. 
+##' 2. **tims**: dataset containing single-cell data acquired using a
+##'    timsTOF-SCP mass spectrometer. Assays 5-15  contain data 
+##'    from the DIA-NN main output report; assay 16 is the DIA-NN MS1
+##'    extracted signal.
+##' 3. **qe**: dataset containing single-cell data acquired 
+##'    using a Q-Exactive mass spectrometer. Assays 17-64 contain data 
+##'    from the DIA-NN main output report; assay 65 is the DIA-NN MS1
+##'    extracted signal.
+##'    
+##' The last assay `proteins` contains the processed protein data 
+##' table generated by the authors. 
+##' 
+##' The `colData(derks2022())` contains cell type annotations and 
+##' batch annotations. The description of the `rowData` fields for the
+##' different assays can be found in the 
+##' [`DIA-NN` documentation](https://github.com/vdemichev/DiaNN#readme).
+##' 
+##' @section Acquisition protocol:
+##' 
+##' The data were acquired using the following setup. More information
+##' can be found in the source article (see `References`).
+##' 
+##' - **Cell isolation**: CellenONE cell sorting.
+##' - **Sample preparation** performed using the improved SCoPE2
+##'   protocol using the CellenONE liquid handling system. nPOP cell 
+##'   lysis (DMSO) + trypsin digestion + mTRAQ (3plex) labelling and
+##'   pooling. A target library was generated as well to 
+##'   perform prioritized DDA (Huffman et al. 2022) using MaxQuant.Live
+##'   (2.0.3).
+##' - **Separation**: `bulk` - online nLC (Dionex UltiMate 3000 UHPLC)
+##'   with a 25 cm × 75 μm IonOpticks Aurora Series UHPLC column
+##'   (AUR2-25075C18A), 200nL/min. `qe` - online nLC (Dionex UltiMate 
+##'   3000 UHPLC) with a 15 cm × 75 μm IonOpticks Aurora Series UHPLC
+##'   column (AUR2-15075C18A), 200nL/min. `tims` - nanoElute liquid 
+##'   chromatography system (Bruker Daltonics) using a 25 cm × 75 μm, 
+##'   1.6-μm C18 (AUR2-25075C18A-CSI, IonOpticks).
+##' - **Ionization**: ESI.
+##' - **Mass spectrometry**: cf article.
+##' - **Data analysis**: DIA-NN (1.8.1 beta 16). 
+##' 
+##' @section Data collection:
+##' 
+##' The data were collected from a shared Google Drive 
+##' [folder](https://drive.google.com/drive/folders/1pUC2zgXKtKYn22mlor0lmUDK0frgwL)
+##' that is accessible from the SlavovLab website (see `Source` section).
+##' 
+##' For each dataset separately, we combined the sample annotation
+##' and the DIANN tables in a [QFeatures] object following the [scp]
+##' data structure. We then combined the three datasets in a single 
+##' `QFeatures` object. We load the proteins table processed by the 
+##' authors as a [SingleCellExperiment] object and adapted the sample
+##' names to match those in the `QFeatures` object. We added the 
+##' protein data as a new assay and link the precursors to proteins 
+##' using the `Protein.Group` variable from the `rowData`. 
+##' 
+##' @source 
+##' The data were downloaded from the 
+##' [Slavov Lab](https://scp.slavovlab.net/Derks_et_al_2022) website.
+##' The raw data and the quantification data can also be found in the 
+##' massIVE repository `MSV000089093`.
+##' 
+##' @references 
+##' Derks, Jason, Andrew Leduc, Georg Wallmann, R. Gray Huffman, 
+##' Matthew Willetts, Saad Khan, Harrison Specht, Markus Ralser, 
+##' Vadim Demichev, and Nikolai Slavov. 2022. "Increasing the 
+##' Throughput of Sensitive Proteomics by plexDIA." Nature 
+##' Biotechnology, July. 
+##' [Link to article](http://dx.doi.org/10.1038/s41587-022-01389-w)
+##' 
+##' @examples
+##' derks2022()
+##'
+##' @keywords datasets
+##' 
+"derks2022"
+
+
+####---- brunner2022 ----####
+
+##' Brunner et al. 2022 (Mol. Syst. Biol.): cell cycle state study
+##'
+##' Single cell proteomics data acquired by the Mann Lab using a newly
+##' designed timsTOF instrument, referred to as timsTOF-SCP. The 
+##' dataset contains quantitative information from single-cells blocked
+##' at 4 cell cycle stages: G1, G1-S, G2, G2-M. The data was acquired
+##' using a label-free sample preparation protocole combined to a 
+##' data independent (DIA) acquisition mode. 
+##' 
+##' @format A [QFeatures] object with 435 assays, each assay being a 
+##' [SingleCellExperiment] object. 
+##' 
+##' - Assay 1-434: DIA-NN main output report table split for each 
+##'   acquisition run. Since each run acquires 1 single cell, each 
+##'   assay contains a single column. It contains the results
+##'   of the spectrum identification and quantification. 
+##' - `protein`: DIA-NN protein group matrix, containing normalised 
+##'   quantities for 2476 protein groups in 434 single cells. Proteins
+##'   are filtered at 1% FDR, using global q-values for protein groups
+##'   and both global and run-specific q-values for precursors.
+##' 
+##' The `colData(brunner2022())` contains cell type annotations and 
+##' batch annotations. The description of the `rowData` fields for the
+##' different assays can be found in the 
+##' [`DIA-NN` documentation](https://github.com/vdemichev/DiaNN#readme).
+##' 
+##' @section Acquisition protocol:
+##' 
+##' The data were acquired using the following setup. More information
+##' can be found in the source article (see `References`).
+##' 
+##' - **Cell isolation**: cells were detached with trypsin treatment,
+##'   followed by strong pipetting, and isolate using FACS.
+##' - **Sample preparation**: cell lysis by freeze-heat followed by 
+##'   sonication, overnight protein digestion with trypsin/lysC mix and
+##'   desalting using EvoTips trap column (EvoSep)
+##' - **Separation**: online EvoSep One LC system using a 5 cm x 75 µm
+##'   ID column with 1.9µm C18 beads (EvoSep) at 100nL/min flow rate.
+##' - **Ionization**: 10μm ID zero dead volume electrospray emitter 
+##'   (Bruker Daltonik) + nanoelectro-spray ion source (Captive spray,
+##'   Bruker Daltonik)
+##' - **Mass spectrometry**: DIA PASEF mode. Correlation between IM 
+##'   and m/z was used to synchronize the elution of precursors from 
+##'   each IM scan with the quadrupole isolation window. Five 
+##'   consecutive diaPASEF cycles. The collision energy was ramped 
+##'   linearly as a function of the IM from 59 eV at 1/K0=1.6 Vs cm^2
+##'   to 20 eV at 1/K0=0.6 Vs cm^2.
+##' - **Data analysis**: DIA-NN (1.8). 
+##' 
+##' @section Data collection:
+##' 
+##' The data were collected from the PRIDE 
+##' [repository](https://www.ebi.ac.uk/pride/archive/projects/PXD024043)
+##' in the `DIANN1.8_SingleCells_CellCycle.zip` file.
+##' 
+##' We loaded the DIA-NN main report table and generated a sample 
+##' annotation table based on the MS file names. We next combined the
+##' sample annotation and the DIANN tables into a [QFeatures] object
+##' following the [scp] data structure. We loaded the proteins group 
+##' matrix as a [SingleCellExperiment] object, fixed ambiguous 
+##' protein group names, and added the protein data as a new assay and
+##' link the precursors to proteins using the `Protein.Group` variable
+##' from the `rowData`. 
+##' 
+##' @source 
+##' The data were downloaded from PRIDE 
+##' [repository](https://www.ebi.ac.uk/pride/archive/projects/PXD024043)
+##' with accession ID `PXD024043`.
+##' 
+##' @references 
+##' Brunner, Andreas-David, Marvin Thielert, Catherine Vasilopoulou, 
+##' Constantin Ammar, Fabian Coscia, Andreas Mund, Ole B. Hoerning, et
+##' al. 2022. "Ultra-High Sensitivity Mass Spectrometry Quantifies 
+##' Single-Cell Proteome Changes upon Perturbation." Molecular Systems
+##' Biology 18 (3): e10798.
+##' [Link to article](http://dx.doi.org/10.15252/msb.202110798)
+##' 
+##' @examples
+##' brunner2022()
+##'
+##' @keywords datasets
+##' 
+"brunner2022"
+
