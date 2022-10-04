@@ -1781,7 +1781,7 @@
 ##' that is accessible from the SlavovLab website (see `Source` section).
 ##' 
 ##' For each dataset separately, we combined the sample annotation
-##' and the DIANN tables in a [QFeatures] object following the [scp]
+##' and the DIANN tables in a [QFeatures] object following the `scp`
 ##' data structure. We then combined the three datasets in a single 
 ##' `QFeatures` object. We load the proteins table processed by the 
 ##' authors as a [SingleCellExperiment] object and adapted the sample
@@ -1871,7 +1871,7 @@
 ##' We loaded the DIA-NN main report table and generated a sample 
 ##' annotation table based on the MS file names. We next combined the
 ##' sample annotation and the DIANN tables into a [QFeatures] object
-##' following the [scp] data structure. We loaded the proteins group 
+##' following the `scp` data structure. We loaded the proteins group 
 ##' matrix as a [SingleCellExperiment] object, fixed ambiguous 
 ##' protein group names, and added the protein data as a new assay and
 ##' link the precursors to proteins using the `Protein.Group` variable

@@ -91,7 +91,7 @@ The data were collected from a shared Google Drive
 that is accessible from the SlavovLab website (see \code{Source} section).
 
 For each dataset separately, we combined the sample annotation
-and the DIANN tables in a \link{QFeatures} object following the \link{scp}
+and the DIANN tables in a \link{QFeatures} object following the \code{scp}
 data structure. We then combined the three datasets in a single
 \code{QFeatures} object. We load the proteins table processed by the
 authors as a \link{SingleCellExperiment} object and adapted the sample

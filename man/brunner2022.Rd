@@ -75,7 +75,7 @@ in the \code{DIANN1.8_SingleCells_CellCycle.zip} file.
 We loaded the DIA-NN main report table and generated a sample
 annotation table based on the MS file names. We next combined the
 sample annotation and the DIANN tables into a \link{QFeatures} object
-following the \link{scp} data structure. We loaded the proteins group
+following the \code{scp} data structure. We loaded the proteins group
 matrix as a \link{SingleCellExperiment} object, fixed ambiguous
 protein group names, and added the protein data as a new assay and
 link the precursors to proteins using the \code{Protein.Group} variable
