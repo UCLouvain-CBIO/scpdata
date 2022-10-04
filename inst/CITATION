@@ -1,0 +1,13 @@
+citHeader("To cite the scpdata package in publications use:")
+
+citEntry(entry = "article",  
+         title  = "The current state of single-cell proteomics data analysis",
+         author = personList(
+           person(given = "Christophe", family = "Vanderaa"),
+           person(given = "Laurent", family = "Gatto")),
+         journal = "arXiv",
+         year = "2022",
+         textVersion = paste("Vanderaa Christophe and Laurent Gatto.",
+                             "The current state of single-cell proteomics data analysis.",
+                             "arXiv:2210.01020; doi: https://doi.org/10.48550/arXiv.2210.01020 (2022).")
+         )

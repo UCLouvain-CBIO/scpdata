@@ -3,7 +3,7 @@
 
 ## scpdata 1.5.2
 
-(nothing yet) 
+- Added CITATION
 
 ## scpdata 1.5.1
 
