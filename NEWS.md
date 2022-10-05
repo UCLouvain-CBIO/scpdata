@@ -1,6 +1,10 @@
 
 # scpdata 1.5 
 
+## scpdata 1.5.4
+
+(nothing yet)
+
 ## scpdata 1.5.3
 
 - tests: make sure each dataset is available
