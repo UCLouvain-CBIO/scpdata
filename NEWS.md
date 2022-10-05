@@ -3,7 +3,8 @@
 
 ## scpdata 1.5.3
 
-(nothing yet)
+- tests: make sure each dataset is available
+- docs: don't run examples. They take too long and crash the checks. 
 
 ## scpdata 1.5.2
 
