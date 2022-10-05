@@ -111,7 +111,9 @@ information.
 }
 
 \examples{
+\dontrun{
 specht2019v3()
+}
 
 }
 \references{

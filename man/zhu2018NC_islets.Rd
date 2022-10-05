@@ -79,7 +79,9 @@ razor protein ID and the protein ID.
 }
 
 \examples{
+\dontrun{
 zhu2018NC_islets()
+}
 
 }
 \references{

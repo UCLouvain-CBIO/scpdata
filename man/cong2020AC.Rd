@@ -84,7 +84,9 @@ adapted to match the PSM data. The peptide data were added to
 }
 
 \examples{
+\dontrun{
 cong2020AC()
+}
 
 }
 \references{

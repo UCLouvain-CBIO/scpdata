@@ -35,11 +35,13 @@
 ##' ## Load data using the ExperimentHub interface
 ##' hub <- ExperimentHub()
 ##' 
+##' \dontrun{
 ##' ## Download the data set of interest using ExperimentHub indexing
-##' hub[["EH3899"]]
+##' hub[["EH7711"]]
 ##' ## Download the same data set using the build-in function
-##' specht2019v2()
-##'
+##' leduc2022()
+##' }
+##' 
 ##' @author Christophe Vanderaa
 ##'
 ##' @aliases scpdata-package scpdata

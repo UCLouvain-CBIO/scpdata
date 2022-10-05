@@ -120,7 +120,9 @@ The script to reproduce the \code{QFeatures} object is available at
 }
 
 \examples{
+\dontrun{
 schoof2021()
+}
 
 }
 \references{

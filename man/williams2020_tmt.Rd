@@ -91,7 +91,9 @@ The script to reproduce the \code{QFeatures} object is available at
 }
 
 \examples{
+\dontrun{
 williams2020_tmt()
+}
 
 }
 \references{

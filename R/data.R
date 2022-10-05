@@ -101,7 +101,9 @@
 ##' ([link to article](https://doi.org/10.1101/665307)).
 ##' 
 ##' @examples
+##' \dontrun{
 ##' specht2019v2()
+##' }
 ##'
 ##' @keywords datasets
 ##' 
@@ -212,7 +214,9 @@
 ##' ([link to article](http://dx.doi.org/10.1186/s13059-021-02267-5)).
 ##' 
 ##' @examples
+##' \dontrun{
 ##' specht2019v3()
+##' }
 ##'
 ##' @keywords datasets
 ##' 
@@ -333,7 +337,9 @@
 ##' [dou2019_mouse], [dou2019_boosting]
 ##' 
 ##' @examples 
+##' \dontrun{
 ##' dou2019_lysates()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -463,7 +469,9 @@
 ##' [dou2019_lysates], [dou2019_boosting]
 ##' 
 ##' @examples
+##' \dontrun{
 ##' dou2019_mouse()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -588,7 +596,9 @@
 ##' [dou2019_lysates], [dou2019_mouse]
 ##' 
 ##' @examples
+##' \dontrun{
 ##' dou2019_boosting()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -677,7 +687,9 @@
 ##' ([link to article](http://dx.doi.org/10.1074/mcp.TIR118.000686)).
 ##' 
 ##' @examples 
+##' \dontrun{
 ##' zhu2018MCP()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -767,7 +779,9 @@
 ##' [zhu2018NC_lysates].
 ##' 
 ##' @examples
+##' \dontrun{
 ##' zhu2018NC_hela()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -854,7 +868,9 @@
 ##' [zhu2018NC_hela].
 ##'     
 ##' @examples
+##' \dontrun{
 ##' zhu2018NC_lysates()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -940,7 +956,9 @@
 ##' ([link to article](http://dx.doi.org/10.1038/s41467-018-03367-w)).
 ##' 
 ##' @examples
+##' \dontrun{
 ##' zhu2018NC_islets()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -1030,7 +1048,9 @@
 ##' ([link to article](https://doi.org/10.1021/acs.analchem.9b04631)).
 ##' 
 ##' @examples
+##' \dontrun{
 ##' cong2020AC()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -1137,7 +1157,9 @@
 ##' ([link to article](https://doi.org/10.7554/eLife.50777)).
 ##' 
 ##' @examples
+##' \dontrun{
 ##' zhu2019EL()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -1238,7 +1260,9 @@
 ##' ([link to article](https://doi.org/10.1021/acs.analchem.0c04240)).
 ##' 
 ##' @examples
+##' \dontrun{
 ##' liang2020_hela()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -1366,7 +1390,9 @@
 ##' ([link to article](http://dx.doi.org/10.1038/s41467-021-23667-y)).
 ##' 
 ##' @examples
+##' \dontrun{
 ##' schoof2021()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -1487,7 +1513,9 @@
 ##' ([link to article](http://dx.doi.org/10.1038/nature10098)).
 ##' 
 ##' @examples
+##' \dontrun{
 ##' williams2020_lfq()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -1585,7 +1613,9 @@
 ##' ([link to article](http://dx.doi.org/10.1021/acs.analchem.0c01551)).
 ##' 
 ##' @examples
+##' \dontrun{
 ##' williams2020_tmt()
+##' }
 ##' 
 ##' @keywords datasets
 ##' 
@@ -1700,7 +1730,9 @@
 ##' [Link to article](https://doi.org/10.1101/2022.03.16.484655).
 ##' 
 ##' @examples
+##' \dontrun{
 ##' leduc2022()
+##' }
 ##'
 ##' @keywords datasets
 ##' 
@@ -1804,7 +1836,9 @@
 ##' [Link to article](http://dx.doi.org/10.1038/s41587-022-01389-w)
 ##' 
 ##' @examples
+##' \dontrun{
 ##' derks2022()
+##' }
 ##'
 ##' @keywords datasets
 ##' 
@@ -1891,7 +1925,9 @@
 ##' [Link to article](http://dx.doi.org/10.15252/msb.202110798)
 ##' 
 ##' @examples
+##' \dontrun{
 ##' brunner2022()
+##' }
 ##'
 ##' @keywords datasets
 ##' 

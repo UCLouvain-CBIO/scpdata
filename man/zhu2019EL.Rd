@@ -101,7 +101,9 @@ proteins.
 }
 
 \examples{
+\dontrun{
 zhu2019EL()
+}
 
 }
 \references{

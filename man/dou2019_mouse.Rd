@@ -120,7 +120,9 @@ are not stored.
 }
 
 \examples{
+\dontrun{
 dou2019_mouse()
+}
 
 }
 \references{

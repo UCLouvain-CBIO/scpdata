@@ -95,7 +95,9 @@ the peptides and the proteins were added
 }
 
 \examples{
+\dontrun{
 liang2020_hela()
+}
 
 }
 \references{

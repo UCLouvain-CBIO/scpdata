@@ -116,7 +116,9 @@ groups are not stored.
 }
 
 \examples{
+\dontrun{
 dou2019_boosting()
+}
 
 }
 \references{

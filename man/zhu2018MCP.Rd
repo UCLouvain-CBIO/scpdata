@@ -85,7 +85,9 @@ the peptide leading razor protein ID and the protein ID.
 }
 
 \examples{
+\dontrun{
 zhu2018MCP()
+}
 
 }
 \references{

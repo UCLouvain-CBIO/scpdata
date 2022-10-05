@@ -112,7 +112,9 @@ not stored.
 }
 
 \examples{
+\dontrun{
 dou2019_lysates()
+}
 
 }
 \references{

@@ -110,7 +110,9 @@ through an \code{AssayLink} object.
 }
 
 \examples{
+\dontrun{
 leduc2022()
+}
 
 }
 \references{

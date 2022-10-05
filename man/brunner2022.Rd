@@ -83,7 +83,9 @@ from the \code{rowData}.
 }
 
 \examples{
+\dontrun{
 brunner2022()
+}
 
 }
 \references{
