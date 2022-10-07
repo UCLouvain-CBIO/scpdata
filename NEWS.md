@@ -1,6 +1,10 @@
 
 # scpdata 1.5 
 
+## scpdata 1.5.5
+
+(nothing yet)
+
 ## scpdata 1.5.4
 
 - fix: fixed character encoding errors
