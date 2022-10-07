@@ -3,7 +3,7 @@
 
 ## scpdata 1.5.4
 
-(nothing yet)
+- fix: fixed character encoding errors
 
 ## scpdata 1.5.3
 

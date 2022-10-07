@@ -71,12 +71,12 @@ pooling. A target library was generated as well to
 perform prioritized DDA (Huffman et al. 2022) using MaxQuant.Live
 (2.0.3).
 \item \strong{Separation}: \code{bulk} - online nLC (Dionex UltiMate 3000 UHPLC)
-with a 25 cm × 75 μm IonOpticks Aurora Series UHPLC column
+with a 25 cm × 75 µm IonOpticks Aurora Series UHPLC column
 (AUR2-25075C18A), 200nL/min. \code{qe} - online nLC (Dionex UltiMate
-3000 UHPLC) with a 15 cm × 75 μm IonOpticks Aurora Series UHPLC
+3000 UHPLC) with a 15 cm × 75 µm IonOpticks Aurora Series UHPLC
 column (AUR2-15075C18A), 200nL/min. \code{tims} - nanoElute liquid
-chromatography system (Bruker Daltonics) using a 25 cm × 75 μm,
-1.6-μm C18 (AUR2-25075C18A-CSI, IonOpticks).
+chromatography system (Bruker Daltonics) using a 25 cm × 75 µm,
+1.6-µm C18 (AUR2-25075C18A-CSI, IonOpticks).
 \item \strong{Ionization}: ESI.
 \item \strong{Mass spectrometry}: cf article.
 \item \strong{Data analysis}: DIA-NN (1.8.1 beta 16).

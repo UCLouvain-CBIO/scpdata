@@ -52,7 +52,7 @@ sonication, overnight protein digestion with trypsin/lysC mix and
 desalting using EvoTips trap column (EvoSep)
 \item \strong{Separation}: online EvoSep One LC system using a 5 cm x 75 µm
 ID column with 1.9µm C18 beads (EvoSep) at 100nL/min flow rate.
-\item \strong{Ionization}: 10μm ID zero dead volume electrospray emitter
+\item \strong{Ionization}: 10µm ID zero dead volume electrospray emitter
 (Bruker Daltonik) + nanoelectro-spray ion source (Captive spray,
 Bruker Daltonik)
 \item \strong{Mass spectrometry}: DIA PASEF mode. Correlation between IM
