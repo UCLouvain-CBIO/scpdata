@@ -3,6 +3,8 @@
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![R-CMD-check-bioc](https://github.com/UCLouvain-CBIO/scpdata/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/UCLouvain-CBIO/scpdata/actions?query=workflow%3AR-CMD-check-bioc)
+[![Biocondu](https://github.com/UCLouvain-CBIO/scpdata/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/UCLouvain-CBIO/scpdata/actions?query=workflow%3AR-CMD-check-bioc)
+[![Bioconductor-devel Build Status](https://bioconductor.org/shields/build/devel/data-experiment/scpdata.svg)](http://bioconductor.org/checkResults/devel/data-experiment-LATEST/scpdata/)
 [![license](https://img.shields.io/badge/license-Artistic--2.0-brightgreen.svg)](https://opensource.org/licenses/Artistic-2.0)
 
 <img
