@@ -101,7 +101,7 @@ proteins.
 }
 
 \examples{
-\dontrun{
+\donttest{
 zhu2019EL()
 }
 

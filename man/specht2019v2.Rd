@@ -103,7 +103,7 @@ information.
 }
 
 \examples{
-\dontrun{
+\donttest{
 specht2019v2()
 }
 

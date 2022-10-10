@@ -110,7 +110,7 @@ through an \code{AssayLink} object.
 }
 
 \examples{
-\dontrun{
+\donttest{
 leduc2022()
 }
 

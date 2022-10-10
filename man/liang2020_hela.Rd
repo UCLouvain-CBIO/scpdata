@@ -95,7 +95,7 @@ the peptides and the proteins were added
 }
 
 \examples{
-\dontrun{
+\donttest{
 liang2020_hela()
 }
 

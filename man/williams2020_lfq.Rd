@@ -102,7 +102,7 @@ See \code{QFeatures::joinAssays} if you want to join the 30min and
 }
 
 \examples{
-\dontrun{
+\donttest{
 williams2020_lfq()
 }
 

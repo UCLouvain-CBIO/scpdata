@@ -84,7 +84,7 @@ adapted to match the PSM data. The peptide data were added to
 }
 
 \examples{
-\dontrun{
+\donttest{
 cong2020AC()
 }
 

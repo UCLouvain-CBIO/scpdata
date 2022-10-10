@@ -83,7 +83,7 @@ from the \code{rowData}.
 }
 
 \examples{
-\dontrun{
+\donttest{
 brunner2022()
 }
 

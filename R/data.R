@@ -101,7 +101,7 @@
 ##' ([link to article](https://doi.org/10.1101/665307)).
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' specht2019v2()
 ##' }
 ##'
@@ -214,7 +214,7 @@
 ##' ([link to article](http://dx.doi.org/10.1186/s13059-021-02267-5)).
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' specht2019v3()
 ##' }
 ##'
@@ -337,7 +337,7 @@
 ##' [dou2019_mouse], [dou2019_boosting]
 ##' 
 ##' @examples 
-##' \dontrun{
+##' \donttest{
 ##' dou2019_lysates()
 ##' }
 ##' 
@@ -469,7 +469,7 @@
 ##' [dou2019_lysates], [dou2019_boosting]
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' dou2019_mouse()
 ##' }
 ##' 
@@ -596,7 +596,7 @@
 ##' [dou2019_lysates], [dou2019_mouse]
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' dou2019_boosting()
 ##' }
 ##' 
@@ -687,7 +687,7 @@
 ##' ([link to article](http://dx.doi.org/10.1074/mcp.TIR118.000686)).
 ##' 
 ##' @examples 
-##' \dontrun{
+##' \donttest{
 ##' zhu2018MCP()
 ##' }
 ##' 
@@ -779,7 +779,7 @@
 ##' [zhu2018NC_lysates].
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' zhu2018NC_hela()
 ##' }
 ##' 
@@ -868,7 +868,7 @@
 ##' [zhu2018NC_hela].
 ##'     
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' zhu2018NC_lysates()
 ##' }
 ##' 
@@ -956,7 +956,7 @@
 ##' ([link to article](http://dx.doi.org/10.1038/s41467-018-03367-w)).
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' zhu2018NC_islets()
 ##' }
 ##' 
@@ -1048,7 +1048,7 @@
 ##' ([link to article](https://doi.org/10.1021/acs.analchem.9b04631)).
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' cong2020AC()
 ##' }
 ##' 
@@ -1157,7 +1157,7 @@
 ##' ([link to article](https://doi.org/10.7554/eLife.50777)).
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' zhu2019EL()
 ##' }
 ##' 
@@ -1260,7 +1260,7 @@
 ##' ([link to article](https://doi.org/10.1021/acs.analchem.0c04240)).
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' liang2020_hela()
 ##' }
 ##' 
@@ -1390,7 +1390,7 @@
 ##' ([link to article](http://dx.doi.org/10.1038/s41467-021-23667-y)).
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' schoof2021()
 ##' }
 ##' 
@@ -1513,14 +1513,14 @@
 ##' ([link to article](http://dx.doi.org/10.1038/nature10098)).
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' williams2020_lfq()
 ##' }
 ##' 
 ##' @keywords datasets
 ##' 
 "williams2020_lfq"
- 
+
 ####---- williams2020 TMT ----####
 
 
@@ -1613,7 +1613,7 @@
 ##' ([link to article](http://dx.doi.org/10.1021/acs.analchem.0c01551)).
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' williams2020_tmt()
 ##' }
 ##' 
@@ -1730,7 +1730,7 @@
 ##' [Link to article](https://doi.org/10.1101/2022.03.16.484655).
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' leduc2022()
 ##' }
 ##'
@@ -1836,7 +1836,7 @@
 ##' [Link to article](http://dx.doi.org/10.1038/s41587-022-01389-w)
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' derks2022()
 ##' }
 ##'
@@ -1925,7 +1925,7 @@
 ##' [Link to article](http://dx.doi.org/10.15252/msb.202110798)
 ##' 
 ##' @examples
-##' \dontrun{
+##' \donttest{
 ##' brunner2022()
 ##' }
 ##'

@@ -101,7 +101,7 @@ using the \code{Protein.Group} variable from the \code{rowData}.
 }
 
 \examples{
-\dontrun{
+\donttest{
 derks2022()
 }
 

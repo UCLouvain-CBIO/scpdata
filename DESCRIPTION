@@ -18,7 +18,7 @@ Description: The package disseminates mass spectrometry (MS)-based
     peptide and/or protein level for single cells or minute sample 
     amounts.
 Depends:
-    R (>= 4.1),
+    R (>= 4.2.0),
     QFeatures,
     ExperimentHub
 Imports:
@@ -42,7 +42,8 @@ biocViews:
     ReproducibleResearch,
     MassSpectrometryData,
     Proteome,
-    SingleCellData
+    SingleCellData,
+    PackageTypeData
 License: GPL-2
 Encoding: UTF-8
 LazyData: false

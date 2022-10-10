@@ -116,7 +116,7 @@ groups are not stored.
 }
 
 \examples{
-\dontrun{
+\donttest{
 dou2019_boosting()
 }
 
