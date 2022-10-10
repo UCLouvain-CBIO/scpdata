@@ -1,6 +1,14 @@
 
 # Single Cell Proteomics Data Package
 
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![R-CMD-check-bioc](https://github.com/UCLouvain-CBIO/scpdata/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/UCLouvain-CBIO/scpdata/actions?query=workflow%3AR-CMD-check-bioc)
+[![license](https://img.shields.io/badge/license-Artistic--2.0-brightgreen.svg)](https://opensource.org/licenses/Artistic-2.0)
+
+<img
+src="https://raw.githubusercontent.com/UCLouvain-CBIO/scpdata/master/sticker/sticker.png"
+height="150">
+
 This package contains standardized and annotated single-cell proteomics data.
 
 # Installation instruction 

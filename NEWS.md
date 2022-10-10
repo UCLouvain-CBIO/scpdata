@@ -3,7 +3,7 @@
 
 ## scpdata 1.5.5
 
-(nothing yet)
+- Added package sticker
 
 ## scpdata 1.5.4
 
