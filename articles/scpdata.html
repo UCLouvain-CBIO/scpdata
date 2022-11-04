@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
       </span>
     </div>
 
@@ -68,7 +68,7 @@ Gatto</h4>
                                     <h4 data-toc-skip class="author">Christophe
 Vanderaa</h4>
                         
-            <h4 data-toc-skip class="date">13 October 2022</h4>
+            <h4 data-toc-skip class="date">4 November 2022</h4>
       
       
       <div class="hidden name"><code>scpdata.Rmd</code></div>
@@ -103,7 +103,7 @@ the query function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ExperimentHub with 18 records</span></span>
-<span><span class="co">#&gt; # snapshotDate(): 2022-10-03</span></span>
+<span><span class="co">#&gt; # snapshotDate(): 2022-10-24</span></span>
 <span><span class="co">#&gt; # $dataprovider: PRIDE, MassIVE, SlavovLab website</span></span>
 <span><span class="co">#&gt; # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus</span></span>
 <span><span class="co">#&gt; # $rdataclass: QFeatures</span></span>
@@ -131,7 +131,7 @@ the description to make an informed choice about which data set to
 choose.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scpdata.html">scpdata</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; snapshotDate(): 2022-10-03</span></span>
+<span><span class="co">#&gt; snapshotDate(): 2022-10-24</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">info</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
@@ -322,62 +322,62 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] scpdata_1.5.6               ExperimentHub_2.5.0        
- [3] AnnotationHub_3.5.2         BiocFileCache_2.5.2        
- [5] dbplyr_2.2.1                QFeatures_1.7.2            
- [7] MultiAssayExperiment_1.23.9 SummarizedExperiment_1.27.3
- [9] Biobase_2.57.1              GenomicRanges_1.49.1       
-[11] GenomeInfoDb_1.33.7         IRanges_2.31.2             
-[13] S4Vectors_0.35.4            BiocGenerics_0.43.4        
-[15] MatrixGenerics_1.9.1        matrixStats_0.62.0         
-[17] BiocStyle_2.25.0           
+ [1] scpdata_1.7.0               ExperimentHub_2.6.0        
+ [3] AnnotationHub_3.6.0         BiocFileCache_2.6.0        
+ [5] dbplyr_2.2.1                QFeatures_1.8.0            
+ [7] MultiAssayExperiment_1.24.0 SummarizedExperiment_1.28.0
+ [9] Biobase_2.58.0              GenomicRanges_1.50.0       
+[11] GenomeInfoDb_1.34.0         IRanges_2.32.0             
+[13] S4Vectors_0.36.0            BiocGenerics_0.44.0        
+[15] MatrixGenerics_1.10.0       matrixStats_0.62.0         
+[17] BiocStyle_2.26.0           
 
 loaded via a namespace (and not attached):
- [1] ProtGenerics_1.29.1           bitops_1.0-7                 
+ [1] ProtGenerics_1.30.0           bitops_1.0-7                 
  [3] fs_1.5.2                      bit64_4.0.5                  
  [5] filelock_1.0.2                httr_1.4.4                   
  [7] rprojroot_2.0.3               tools_4.2.1                  
- [9] bslib_0.4.0                   utf8_1.2.2                   
+ [9] bslib_0.4.1                   utf8_1.2.2                   
 [11] R6_2.5.1                      DBI_1.1.3                    
 [13] lazyeval_0.2.2                withr_2.5.0                  
 [15] tidyselect_1.2.0              bit_4.0.4                    
 [17] curl_4.3.3                    compiler_4.2.1               
 [19] textshaping_0.3.6             cli_3.4.1                    
-[21] desc_1.4.2                    DelayedArray_0.23.2          
+[21] desc_1.4.2                    DelayedArray_0.24.0          
 [23] bookdown_0.29                 sass_0.4.2                   
 [25] rappdirs_0.3.3                pkgdown_2.0.6.9000           
 [27] systemfonts_1.0.4             stringr_1.4.1                
-[29] digest_0.6.29                 rmarkdown_2.17               
-[31] XVector_0.37.1                pkgconfig_2.0.3              
+[29] digest_0.6.30                 rmarkdown_2.17               
+[31] XVector_0.38.0                pkgconfig_2.0.3              
 [33] htmltools_0.5.3               highr_0.9                    
 [35] fastmap_1.1.0                 rlang_1.0.6                  
-[37] RSQLite_2.2.18                shiny_1.7.2                  
+[37] RSQLite_2.2.18                shiny_1.7.3                  
 [39] jquerylib_0.1.4               generics_0.1.3               
-[41] jsonlite_1.8.2                dplyr_1.0.10                 
+[41] jsonlite_1.8.3                dplyr_1.0.10                 
 [43] RCurl_1.98-1.9                magrittr_2.0.3               
 [45] GenomeInfoDbData_1.2.9        Matrix_1.5-1                 
 [47] Rcpp_1.0.9                    fansi_1.0.3                  
-[49] MsCoreUtils_1.9.2             lifecycle_1.0.3              
-[51] stringi_1.7.8                 yaml_2.3.5                   
-[53] MASS_7.3-58.1                 zlibbioc_1.43.0              
+[49] MsCoreUtils_1.10.0            lifecycle_1.0.3              
+[51] stringi_1.7.8                 yaml_2.3.6                   
+[53] MASS_7.3-58.1                 zlibbioc_1.44.0              
 [55] grid_4.2.1                    blob_1.2.3                   
 [57] promises_1.2.0.1              crayon_1.5.2                 
-[59] lattice_0.20-45               Biostrings_2.65.6            
-[61] KEGGREST_1.37.3               knitr_1.40                   
+[59] lattice_0.20-45               Biostrings_2.66.0            
+[61] KEGGREST_1.38.0               knitr_1.40                   
 [63] pillar_1.8.1                  igraph_1.3.5                 
 [65] glue_1.6.2                    BiocVersion_3.16.0           
-[67] evaluate_0.17                 BiocManager_1.30.18          
-[69] png_0.1-7                     vctrs_0.4.2                  
+[67] evaluate_0.17                 BiocManager_1.30.19          
+[69] png_0.1-7                     vctrs_0.5.0                  
 [71] httpuv_1.6.6                  purrr_0.3.5                  
-[73] clue_0.3-61                   assertthat_0.2.1             
-[75] cachem_1.0.6                  BiocBaseUtils_0.99.12        
-[77] xfun_0.33                     mime_0.12                    
-[79] xtable_1.8-4                  AnnotationFilter_1.21.0      
-[81] later_1.3.0                   ragg_1.2.3                   
-[83] SingleCellExperiment_1.19.1   tibble_3.1.8                 
-[85] AnnotationDbi_1.59.1          memoise_2.0.1                
+[73] clue_0.3-62                   assertthat_0.2.1             
+[75] cachem_1.0.6                  BiocBaseUtils_1.0.0          
+[77] xfun_0.34                     mime_0.12                    
+[79] xtable_1.8-4                  AnnotationFilter_1.22.0      
+[81] later_1.3.0                   ragg_1.2.4                   
+[83] SingleCellExperiment_1.20.0   tibble_3.1.8                 
+[85] AnnotationDbi_1.60.0          memoise_2.0.1                
 [87] cluster_2.1.4                 ellipsis_0.3.2               
-[89] interactiveDisplayBase_1.35.1</code></pre>
+[89] interactiveDisplayBase_1.36.0</code></pre>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
