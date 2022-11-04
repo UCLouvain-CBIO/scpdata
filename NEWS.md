@@ -1,4 +1,16 @@
 
+# scpdata 1.7
+
+## scpdata 1.7.0
+
+- New Bioconductor 3.17 (devel) release
+
+# scpdata 1.6
+
+## scpdata 1.6.0
+
+- New Bioconductor 3.16 (stable) release
+
 # scpdata 1.5 
 
 ## scpdata 1.5.6
