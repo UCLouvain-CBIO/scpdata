@@ -5,9 +5,21 @@ citEntry(entry = "article",
          author = personList(
            person(given = "Christophe", family = "Vanderaa"),
            person(given = "Laurent", family = "Gatto")),
-         journal = "arXiv",
-         year = "2022",
+         journal = "Curr Protoc",
+         year = "2023",
          textVersion = paste("Vanderaa Christophe and Laurent Gatto.",
                              "The current state of single-cell proteomics data analysis.",
-                             "arXiv:2210.01020; doi: https://doi.org/10.48550/arXiv.2210.01020 (2022).")
+                             "Curr Protoc; doi: http://dx.doi.org/10.1002/cpz1.658 (2023).")
+         )
+
+citEntry(entry = "article",  
+         title  = "Replication of single-cell proteomics data reveals important computational challenges",
+         author = personList(
+           person(given = "Christophe", family = "Vanderaa"),
+           person(given = "Laurent", family = "Gatto")),
+         journal = "Expert Rev Proteomics",
+         year = "2021",
+         textVersion = paste("Vanderaa Christophe and Laurent Gatto.",
+                             "Replication of single-cell proteomics data reveals important computational challenges.",
+                             "Expert Rev Protoemics; doi: http://dx.doi.org/10.1080/14789450.2021.1988571 (2022).")
          )

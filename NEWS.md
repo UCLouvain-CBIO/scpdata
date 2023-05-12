@@ -1,4 +1,20 @@
 
+# scpdata 1.9
+
+## scpdata 1.9.1
+
+- Updated citation
+
+## scpdata 1.9.0
+
+- New Bioconductor 3.18 (devel) release
+
+# scpdata 1.8
+
+## scpdata 1.8.0
+
+- New Bioconductor 3.17 (stable) release
+
 # scpdata 1.7
 
 ## scpdata 1.7.0
