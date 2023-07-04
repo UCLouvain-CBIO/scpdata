@@ -5,7 +5,7 @@
 ## Sample Preparation for Single-Cell Proteomics Applied to the Cell 
 ## Cycle.” bioRxiv. https://doi.org/10.1101/2021.04.24.441211.
 
-## This is the script for generating the pSCoPE dataset
+## This is the script for generating the plexDIA dataset
 
 library("scp")
 library("SCP.replication")

@@ -1621,14 +1621,15 @@
 ##' 
 "williams2020_tmt"
 
-####---- leduc2022 ----####
+####---- leduc2022_pSCoPE ----####
 
-##' Leduc et al. 2022 - SCoPE2 (biorRxiv): melanoma cells vs monocytes 
+##' Leduc et al. 2022 - pSCoPE (biorRxiv): melanoma cells vs monocytes 
 ##'
 ##' Single cell proteomics data acquired by the Slavov Lab. This is 
 ##' the dataset associated to the third version of the preprint. It
 ##' contains quantitative information of melanoma cells and monocytes
-##' at PSM, peptide and protein level.
+##' at PSM, peptide and protein level. This version of the data was
+##' acquired using the pSCoPE MS acquisition approach.
 ##' 
 ##' @format A [QFeatures] object with 138 assays, each assay being a 
 ##' [SingleCellExperiment] object: 
@@ -1654,7 +1655,7 @@
 ##'   for 2844 proteins and 1543 single-cells. The `proteins_norm2`
 ##'   data were imputed, batch corrected and normalized.
 ##' 
-##' The `colData(leduc2022())` contains cell type annotation and 
+##' The `colData(leduc2022_pSCoPE())` contains cell type annotation and 
 ##' batch annotation that are common to all assays. The description of
 ##' the `rowData` fields for the PSM data can be found in the 
 ##' [`MaxQuant` documentation](http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable).
@@ -1676,7 +1677,8 @@
 ##' - **Ionization**: ESI (1,800V).
 ##' - **Mass spectrometry**: Thermo Scientific Q-Exactive (MS1 
 ##'   resolution = 70,000; MS2 accumulation time = 300ms; MS2 
-##'   resolution = 70,000).
+##'   resolution = 70,000). Prioritized data acquisition was performed
+##'   using the pSCoPE protocol (Huffman et al. 2022)
 ##' - **Data analysis**: MaxQuant (1.6.17.0) + DART-ID
 ##' 
 ##' @section Data collection:
@@ -1712,31 +1714,158 @@
 ##' through an `AssayLink` object. 
 ##'  
 ##' @source 
-##' The data were downloaded from the 
+##' The data were downloaded from the
 ##' [Slavov Lab](https://scp.slavovlab.net/Leduc_et_al_2022) website.
-##' The raw data and the quantification data can also be found in the 
-##' massIVE repository `MSV000089159`: 
+##' The raw data and the quantification data can also be found in the
+##' massIVE repository `MSV000089159`:
 ##' ftp://massive.ucsd.edu/MSV000089159.
 ##' 
 ##' @references 
-##' Andrew Leduc, Gray Huffman, and Nikolai Slavov. 2022. “Droplet 
+##' Andrew Leduc, Gray Huffman, and Nikolai Slavov. 2022. “Droplet
 ##' Sample Preparation for Single-Cell Proteomics Applied to the Cell
 ##' Cycle.” bioRxiv. [Link to article](https://doi.org/10.1101/2021.04.24.441211)
 ##' 
-##' Gray Huffman, Andrew Leduc, Christoph Wichmann, Marco di Gioia, 
-##' Francesco Borriello, Harrison Specht, Jason Derks, et al. 2022. 
-##' “Prioritized Single-Cell Proteomics Reveals Molecular and 
-##' Functional Polarization across Primary Macrophages.” bioRxiv. 
+##' Gray Huffman, Andrew Leduc, Christoph Wichmann, Marco di Gioia,
+##' Francesco Borriello, Harrison Specht, Jason Derks, et al. 2022.
+##' “Prioritized Single-Cell Proteomics Reveals Molecular and
+##' Functional Polarization across Primary Macrophages.” bioRxiv.
 ##' [Link to article](https://doi.org/10.1101/2022.03.16.484655).
-##' 
+##'
+##' @seealso 
+##' [leduc2022_plexDIA]
+##'
 ##' @examples
 ##' \donttest{
-##' leduc2022()
+##' leduc2022_pSCoPE()
 ##' }
 ##'
 ##' @keywords datasets
 ##' 
-"leduc2022"
+"leduc2022_pSCoPE"
+
+####---- leduc2022_plexDIA ----####
+
+##' Leduc et al. 2022 - plexDIA (biorRxiv): melanoma cells 
+##'
+##' Single cell proteomics data acquired by the Slavov Lab. This is 
+##' the dataset associated to the fourth version of the preprint (and
+##' the Genome Biology publication). It contains quantitative 
+##' information of melanoma cells at precursor, peptide and protein level. 
+##' This version of the data was acquired using the plexDIA MS
+##' acquisition protocol.
+##' 
+##' @format A [QFeatures] object with 48 assays, each assay being a 
+##' [SingleCellExperiment] object: 
+##' 
+##' - Assay 1-45: precursor data acquired with a mTRAQ-3 protocol, 
+##'   hence those assays contain 3 columns. Columns hold quantitative 
+##'   information from single cells or negative control samples.
+##' - `Ms1Extracted`: the DIA-NN MS1 extracted signal, it combines the
+##'   information from assays 1-45.
+##' - `peptides`: peptide data containing quantitative data for 3,608
+##'   peptides and 104 single cells. The  data were filtered  to  1%
+##'   protein FDR.
+##' - `proteins`: protein data containing quantitative data for 508
+##'   proteins and 105 single cells. Note that the peptide and protein
+##'   data provided by the authors differ by 3 samples. The precursor
+##'   data were aggregated to protein intensity using maxLFQ. The 
+##'   protein data were further median normalized by column and by row,
+##'   log2 transformed, impute using KNN (k = 3), again median 
+##'   normalized by column and by row, batch corrected using ComBat,
+##'   and median normalized by column and by row once more.
+##'
+##' The `colData(leduc2022_plexDIA())` contains cell type annotation and 
+##' batch annotation that are common to all assays. The description of
+##' the `rowData` fields for the precursor data can be found in the 
+##' [`DIA-NN` documentation](https://github.com/vdemichev/DiaNN#readme).
+##' 
+##' @section Acquisition protocol:
+##' 
+##' The data were acquired using the following setup. More information
+##' can be found in the source article (see `References`).
+##' 
+##' - **Cell isolation**: CellenONE cell sorting.
+##' - **Sample preparation** performed using the improved SCoPE2
+##'   protocol using the CellenONE liquid handling system. nPOP cell 
+##'   lysis (DMSO) + trypsin digestion + mTRAQ-3
+##'   labeling and pooling.
+##' - **Separation**: online nLC (DionexUltiMate 3000 UHPLC with a 
+##'   25cm x 75um IonOpticks Aurora Series UHPLC column; 200nL/min).
+##' - **Ionization**: ESI (1,800V).
+##' - **Mass spectrometry**: Thermo Scientific Q-Exactive. The duty
+##'   cycle = 1 MS1 + 4 DIA MS2 windows (120 Th, 120 Th, 200 Th and 
+##'   580 Th, spanning 378-1,402 m/z). Each MS1 and MS2 scan was
+##'   conducted at 70,000 resolving power, 3×10E6 AGC and 300ms 
+##'   maximum injection time.
+##' - **Data analysis**: DIA-NN.
+##' 
+##' @section Data collection:
+##' 
+##' The PSM data were collected from a shared Google Drive folder that 
+##' is accessible from the SlavovLab website (see `Source` section). 
+##' The folder contains the following files of interest: 
+##' 
+##' - `annotation_plexDIA.csv`: sample annotation
+##' - `report_plexDIA_mel_nPOP.tsv`: the DIA-NN output file
+##'   with the precursor data
+##' - `report.pr_matrix_channels_ms1_extracted.tsv`: the DIA-NN
+##'   output file with the combined precursor data
+##' - `plexDIA_peptide.csv`: the processed data table containing the 
+##'   `peptide` data
+##' - `plexDIA_protein_imputed.csv`: the processed data table 
+##'   containing the `protein` data
+##' 
+##' We removed the failed runs as identified by the authors. We also
+##' formated the annotation and precuror quantification tables to 
+##' facilitate matching between corresponding columns. Both annotation
+##' and quantification tables are then combined in a single [QFeatures] 
+##' object using `scp::readSCPfromDIANN()`. 
+##'  
+##' The `plexDIA_peptide.csv` and `plexDIA_protein_imputed.csv` files
+##' were loaded and formated as [SingleCellExperiment] objects. The 
+##' columns names were adapted to match those in the `QFeatures` 
+##' object. The `SingleCellExperiment` objects were then added to the
+##' [QFeatures] object and the rows of the peptide data are linked to
+##' the rows of the precursor data based on the peptide sequence or
+##' the protein name through an `AssayLink` object.
+##'
+##' @source 
+##' The links to the data were found on the
+##' [Slavov Lab website](https://scp.slavovlab.net/Leduc_et_al_2022).
+##' The data were downloaded from the 
+##' [Google drive folder 1](https://drive.google.com/drive/folders/117ZUG5aFIJt0vrqIxpKXQJorNtekO-BV) and
+##' [Google drive folder 2](https://drive.google.com/drive/folders/12-H2a1mfSHZUGf8O50Cr0pPZ4zIDjTac).
+##' The raw data and the quantification data can also be found in the
+##' massIVE repository `MSV000089159`:
+##' ftp://massive.ucsd.edu/MSV000089159.
+##' 
+##' @references 
+##' Andrew Leduc, Gray Huffman, and Nikolai Slavov. 2022. “Droplet
+##' Sample Preparation for Single-Cell Proteomics Applied to the Cell
+##' Cycle.” bioRxiv. [Link to article](https://doi.org/10.1101/2021.04.24.441211)
+##' 
+##' Andrew Leduc, Gray Huffman, Joshua Cantlon, Saad Khan, and Nikolai
+##' Slavov. 2022. “Exploring Functional Protein Covariation across 
+##' Single Cells Using nPOP.” Genome Biology 23 (1): 261. 
+##' [Link to article](http://dx.doi.org/10.1186/s13059-022-02817-5)
+##'
+##' Jason Derks, Andrew Leduc, Georg Wallmann, Gray Huffman, Matthew 
+##' Willetts, Saad Khan, Harrison Specht, Markus Ralser, Vadim 
+##' Demichev, and Nikolai Slavov. 2023. “Increasing the Throughput of
+##' Sensitive Proteomics by plexDIA.” Nature Biotechnology 41 (1): 
+##' 50–59. [Link to article](http://dx.doi.org/10.1038/s41587-022-01389-w)
+##' 
+##' @seealso 
+##' [leduc2022_pSCoPE]
+##'
+##' @examples
+##' \donttest{
+##' leduc2022_plexDIA()
+##' }
+##'
+##' @keywords datasets
+##' 
+"leduc2022_plexDIA"
 
 ####---- derks2022 ----####
 
@@ -1933,3 +2062,196 @@
 ##' 
 "brunner2022"
 
+####---- woo2022_macrophage ----####
+
+##' Woo et al. 2022 (Cell Syst.): LPS-treated macrophages
+##'
+##' Single-cell data from macrophages subjected to 3 LPS 
+##' treatments. The data were 
+##' acquired using the TIFF (transfer identification based on FAIMS 
+##' filtering) acquisition method. The data contain 155 single cells:
+##' 54 control cells (no treatment), 52 cells treated with LPS during 
+##' 24h and 49 cells treated with LPS during 49h.
+##'
+##' @format A [QFeatures] object with 5 assays, each assay being a 
+##' [SingleCellExperiment] object: 
+##' 
+##' - `peptides_[intensity or LFQ]`: 2 assays containing peptide
+##'   quantities or normalized quantities using the maxLFQ method
+##'   as computed by MaxQuant.
+##' - `proteins_[intensity or iBAQ or LFQ]`: 3 assays containing
+##'   protein quantities or normalized proteins using the iBAQ or 
+##'   maxLFQ methods as computed by MaxQuant.
+##'   
+##' Sample annotation is stored in `colData(woo_macrophage())`.
+##' 
+##' @section Acquisition protocol:
+##' 
+##' The data were acquired using the following setup. More information
+##' can be found in the source article (see `References`).
+##' 
+##' - **Sample isolation**: cultured RAW 264.7 cells treated or not
+##'   with 100 ng/ul LPS. The cells were sorted using the Influx II 
+##'   cell sorter and deposited on a nanoPOTS chip.
+##' - **Sample preparation**: cells are lysed using using a DDM+DTT
+##'   lysis and reduction buffer. The proteins are alkylated with IAA 
+##'   and digested with LysC and trypsin. Samples are then acidified
+##'   with FA, vacuum dried and stored in freezer until data 
+##'   acquisition.
+##' - **Liquid chromatography**: peptides are loaded using an in-house
+##'   autosampler (Williams et al. 2020). The samples are concentrated
+##'   through a SPE column (4cm x 100µm i.d. packed with 5µm C18) with
+##'   microflow LC pump. The peptides are then eluted from an LC 
+##'   column (25cm x 50 µm i.d. packed with 1.7µm C18) from a 60 min
+##'   gradient (100nL/min).
+##' - **Mass spectrometry**: MS/MS was performed on an Orbitrap Fusion
+##'   Lumos Tribrid MS with FAIMSpro coupled to a 2.4 kV ESI. FAIMS
+##'   setup: 4-CV method (-45, -55, -65, -75 V). MS1 setup: resolution
+##'   = 120.000, range = 350-1500 m/z,AGC target of 1E6, accumulation 
+##'   of 254ms. MS2 setup: 30% HCD, resolution AGC 2E4, accumulation 
+##'   of 254ms.
+##' - **Raw data processing**: preprocessing using Maxquant v1.6.2.10
+##'   that use Andromeda search engine (with UniProtKB 2016-21-29). 
+##'   MBR was enabled.
+##' 
+##' @section Data collection:
+##' 
+##' All data were collected from the MASSIVE repository (accession ID: 
+##' MSV000085937). 
+##' 
+##' The peptide and protein data were extracted from the
+##' `peptides_RAW_LPS_scProteomics.txt` or
+##' `proteinGroups_RAW_LPS_scProteomics.txt` files, respectively, in
+##' the `RAW_LPS_SingleCellProteomics` folders.
+##' 
+##' The tables were split so that intensities, maxLFQ, and iBAQ 
+##' data are contained in separate tables. Tables are then 
+##' converted to [SingleCellExperiment] objects. Sample annotations 
+##' were inferred from the sample names. All data is combined in
+##' a [QFeatures] object. [AssayLinks] were stored between peptide 
+##' assays and their corresponding proteins assays based on the 
+##' leading razor protein (hence only unique peptides are linked to 
+##' proteins). 
+##' 
+##' The script to reproduce the `QFeatures` object is available at
+##' `system.file("scripts", "make-data_woo2022_macrophage.R", package = "scpdata")`
+##' 
+##' @source
+##'  
+##' The peptide and protein data can be downloaded from the MASSIVE 
+##' repository MSV000085937
+##' 
+##' @references 
+##' 
+##' **Source article**: Woo, Jongmin, Geremy C. Clair, Sarah M.
+##' Williams, Song Feng, Chia-Feng Tsai, Ronald J. Moore, William B.
+##' Chrisler, et al. 2022. “Three-Dimensional Feature Matching
+##' Improves Coverage for Single-Cell Proteomics Based on Ion Mobility
+##' Filtering.” Cell Systems 13 (5): 426–34.e4.
+##' ([link to article](http://dx.doi.org/10.1016/j.cels.2022.02.003)).
+##' 
+##' @examples
+##' \donttest{
+##' woo2022_macrophage()
+##' }
+##' 
+##' @keywords datasets
+##' 
+"woo2022_macrophage"
+
+####---- woo2022_lung ----####
+
+##' Woo et al. 2022 (Cell Syst.): 26 primary human lung cells
+##'
+##' Single-cell proteomics data from dissociated primary human lung
+##' cells. The data were 
+##' acquired using the TIFF (transfer identification based on FAIMS 
+##' filtering) acquisition method. The data contain 26 single cells.
+##'
+##' @format A [QFeatures] object with 5 assays, each assay being a 
+##' [SingleCellExperiment] object: 
+##' 
+##' - `peptides_[intensity or LFQ]`: 2 assays containing peptide
+##'   quantities or normalized quantities using the maxLFQ method
+##'   as computed by MaxQuant.
+##' - `proteins_[intensity or iBAQ or LFQ]`: 3 assays containing
+##'   protein quantities or normalized proteins using the iBAQ or 
+##'   maxLFQ methods as computed by MaxQuant.
+##'   
+##' Sample annotation is stored in `colData(woo_lung())`.
+##' 
+##' @section Acquisition protocol:
+##' 
+##' The data were acquired using the following setup. More information
+##' can be found in the source article (see `References`).
+##' 
+##' - **Sample isolation**: primary human lung cells were dissociated
+##'   following the protocol in Bandyopadhyay et al., 2018. The cells
+##'   were sorted using the Influx II cell sorter and deposited on a
+##'   nanoPOTS chip.
+##' - **Sample preparation**: cells are lysed using using a DDM+DTT
+##'   lysis and reduction buffer. The proteins are alkylated with IAA 
+##'   and digested with LysC and trypsin. Samples are then acidified
+##'   with FA, vacuum dried and stored in freezer until data 
+##'   acquisition.
+##' - **Liquid chromatography**: peptides are loaded using an in-house
+##'   autosampler (Williams et al. 2020). The samples are concentrated
+##'   through a SPE column (4cm x 100µm i.d. packed with 5µm C18) with
+##'   microflow LC pump. The peptides are then eluted from an LC 
+##'   column (25cm x 50 µm i.d. packed with 1.7µm C18) from a 60 min
+##'   gradient (100nL/min).
+##' - **Mass spectrometry**: MS/MS was performed on an Orbitrap Fusion
+##'   Lumos Tribrid MS with FAIMSpro coupled to a 2.4 kV ESI. FAIMS
+##'   setup: 4-CV method (-45, -55, -65, -75 V). MS1 setup: resolution
+##'   = 120.000, range = 350-1500 m/z,AGC target of 1E6, accumulation 
+##'   of 254ms. MS2 setup: 30% HCD, resolution AGC 2E4, accumulation 
+##'   of 254ms.
+##' - **Raw data processing**: preprocessing using Maxquant v1.6.2.10
+##'   that use Andromeda search engine (with UniProtKB 2016-21-29). 
+##'   MBR was enabled.
+##' 
+##' @section Data collection:
+##' 
+##' All data were collected from the MASSIVE repository (accession ID: 
+##' MSV000085937). 
+##' 
+##' The peptide and protein data were extracted from the
+##' `peptides_nondepleted_Lung_scProteomics.txt` or
+##' `proteinGroups_nondepleted_Lung_scProteomics.txt` files, 
+##' respectively, in the `NonDepleted_Lung_SingleCellProteomics`
+##' folders.
+##' 
+##' The tables were split so that intensities, maxLFQ, and iBAQ 
+##' data are contained in separate tables. Tables are then 
+##' converted to [SingleCellExperiment] objects. Sample annotations 
+##' were inferred from the sample names. All data is combined in
+##' a [QFeatures] object. [AssayLinks] were stored between peptide 
+##' assays and their corresponding proteins assays based on the 
+##' leading razor protein (hence only unique peptides are linked to 
+##' proteins). 
+##' 
+##' The script to reproduce the `QFeatures` object is available at
+##' `system.file("scripts", "make-data_woo2022_lung.R", package = "scpdata")`
+##' 
+##' @source
+##'  
+##' The peptide and protein data can be downloaded from the MASSIVE 
+##' repository MSV000085937
+##' 
+##' @references 
+##' 
+##' **Source article**: Woo, Jongmin, Geremy C. Clair, Sarah M.
+##' Williams, Song Feng, Chia-Feng Tsai, Ronald J. Moore, William B.
+##' Chrisler, et al. 2022. “Three-Dimensional Feature Matching
+##' Improves Coverage for Single-Cell Proteomics Based on Ion Mobility
+##' Filtering.” Cell Systems 13 (5): 426–34.e4.
+##' ([link to article](http://dx.doi.org/10.1016/j.cels.2022.02.003)).
+##' 
+##' @examples
+##' \donttest{
+##' woo2022_lung()
+##' }
+##' 
+##' @keywords datasets
+##' 
+"woo2022_lung"

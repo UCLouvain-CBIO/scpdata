@@ -15,6 +15,9 @@
    hubs@bioconductor.org
    Then upload the files using the provided link:
    `azcopy copy --recursive scpdata/ '<sas-url>'`
+   or more easily, use the R script. See the 
+   [help page](https://bioconductor.org/packages/devel/bioc/vignettes/HubPub/inst/doc/CreateAHubPackage.html#uploading-data-to-microsoft-azure-genomic-data-lake)
+   for more information
 7. Compile the documentation with roxygen2 and check package.
 8. Update the NEWS.md file and bump package version
 

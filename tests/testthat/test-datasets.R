@@ -28,3 +28,8 @@ test_that("all datasets are available", {
     }
 })
 
+test_that("leduc2022 throws a warning", {
+    test <- expect_warning(leduc2022())
+    expect_identical(length(test), 138L)
+})
+

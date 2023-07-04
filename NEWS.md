@@ -1,6 +1,12 @@
 
 # scpdata 1.9
 
+## scpdata 1.9.2
+
+- woo2022: added woo2022_lung and woo2022_macrophage
+- leduc2022: added leduc2022_plexDIA and renamed leduc2022 to
+  leduc2022_pSCoPE
+
 ## scpdata 1.9.1
 
 - Updated citation

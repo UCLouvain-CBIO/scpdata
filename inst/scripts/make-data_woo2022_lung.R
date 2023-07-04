@@ -23,7 +23,7 @@ f <- list.files(dataDir, pattern = "^pep",
                 recursive = TRUE, full.names = TRUE)
 peps <- read.delim(f)
 ## Get "raw" intensities
-pepsIntensity <- peps[, !grepl("^LFQ", colnames(peps))]
+pepsIntensity <- peps[, !grepl("^LFQ|Lib.$", colnames(peps))]
 pepsIntensity <- readSingleCellExperiment(
     pepsIntensity,
     ecol = grep("^Intensity.", colnames(pepsIntensity)),
@@ -47,7 +47,7 @@ prots <- read.delim(f)
 ## Remove unnecessary columns
 prots <- prots[, !grepl("^Identif|^MS.MS.count|^Peptides[.]|nique.peptides[.]|^Sequence.coverage", colnames(prots))]
 ## Get intensities
-protsIntensity <- prots[, !grepl("^iBAQ|^LFQ", colnames(prots))]
+protsIntensity <- prots[, !grepl("^iBAQ|^LFQ|Lib.$", colnames(prots))]
 protsIntensity <- readSingleCellExperiment(
     protsIntensity,
     ecol = grep("^Intensity.", colnames(protsIntensity)),
@@ -55,7 +55,7 @@ protsIntensity <- readSingleCellExperiment(
 )
 colnames(protsIntensity) <- gsub("Intensity.", "", colnames(protsIntensity))
 ## Get iBAQ normalized intensities
-protsIbaq <- prots[, !grepl("^Intensity.|^LFQ", colnames(prots))]
+protsIbaq <- prots[, !grepl("^Intensity.|^LFQ|Lib.$", colnames(prots))]
 protsIbaq <- readSingleCellExperiment(
     protsIbaq,
     ecol = grep("^iBAQ.", colnames(protsIbaq)),
@@ -81,14 +81,10 @@ summary <- read.delim(f)
 annot <- DataFrame(row.names = colnames(protsIntensity),
                    FileName = summary$Raw.file[match(colnames(protsIntensity), summary$Experiment)])
 annot$RunIndex <- sub("^(\\d*)_.*$", "\\1", annot$FileName)
-annot$IsSingleCell <- grepl("_SC_", annot$FileName)
 annot$Well <- sub("^.*Chip1_(.*?)_.*$", "\\1", annot$FileName)
 annot$WellRow <- sub("^.", "", annot$Well)
-annot$WellCol <- sub("\\d{2}", "", annot$Well)
+annot$WellCol <- gsub("\\d", "", annot$Well)
 annot$Undocumented <- sub("^.*SC_(.*)_Chip.*$", "\\1", annot$FileName)
-annot$Undocumented <- ifelse(grepl("Resting", annot$Undocumented), 
-                             annot$Undocumented, 
-                             NA)
 
 ####---- Create the QFeatures object ----####
 

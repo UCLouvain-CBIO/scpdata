@@ -53,7 +53,6 @@ idMeta <- paste0(sub("^X", "", meta$rawfile), meta$channel.x)
 sampleAnnotation$MelanomaSubCluster <- meta$sub[match(idAnnot, idMeta)]
 sampleAnnotation$MelanomaSubCluster <- recode(sampleAnnotation$MelanomaSubCluster, C1 = "A", C2 = "B")
 
-
 ####---- Prepare PSM data ----####
 
 ev <- read.delim(paste0(datadir, "ev_updated.txt"))
@@ -64,12 +63,12 @@ ev$modseq <- paste0(ev$Modified.sequence, ev$Charge)
 ev <- ev[ev$Set %in% sampleAnnotation$Set, ]
 
 ## Create the QFeatures object
-leduc2022_pSCoPE <- readSCP(ev, sampleAnnotation, 
-                 channelCol = "Channel", 
-                 batchCol = "Set")
+leduc2022_pSCoPE <- readSCP(ev, sampleAnnotation,
+                            channelCol = "Channel",
+                            batchCol = "Set")
 
 ## Clean protein names
-rdList <- lapply(rowData(leduc2022_pSCoPE), function (rd) {
+rdList <- lapply(rowData(leduc2022_pSCoPE), function(rd) {
     rd$Leading.razor.protein.id <- 
         gsub("^.*\\|(.*)\\|.*", "\\1", rd$Leading.razor.protein)
     rd$Leading.razor.protein.symbol <- 
@@ -138,6 +137,17 @@ leduc2022_pSCoPE <- addAssayLink(leduc2022_pSCoPE, from = "peptides_log", to = "
 rowData(processedData$proteins_processed) <- prots[rownames(processedData$proteins_processed), ]
 leduc2022_pSCoPE <- addAssay(leduc2022_pSCoPE, processedData$proteins_processed, name = "proteins_processed")
 leduc2022_pSCoPE <- addAssayLinkOneToOne(leduc2022_pSCoPE, from = "proteins_norm2", to = "proteins_processed")
+
+## Create more informative TMT labels
+tmtlabs <- c(
+    "TMT126", paste0(
+        "TMT", rep(127:134, each = 2), rep(c("N", "C"), 8)
+    ), "TMT135N"
+)
+leduc2022_pSCoPE$Channel <- factor(
+    tmtlabs[as.numeric(sub("RI", "", leduc2022_pSCoPE$Channel))],
+    levels = tmtlabs
+)
 
 # Save data as Rda file
 save(leduc2022_pSCoPE, 
