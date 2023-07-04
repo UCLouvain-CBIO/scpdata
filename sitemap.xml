@@ -43,6 +43,12 @@
     <loc>/reference/leduc2022.html</loc>
   </url>
   <url>
+    <loc>/reference/leduc2022_pSCoPE.html</loc>
+  </url>
+  <url>
+    <loc>/reference/leduc2022_plexDIA.html</loc>
+  </url>
+  <url>
     <loc>/reference/liang2020_hela.html</loc>
   </url>
   <url>
@@ -62,6 +68,12 @@
   </url>
   <url>
     <loc>/reference/williams2020_tmt.html</loc>
+  </url>
+  <url>
+    <loc>/reference/woo2022_lung.html</loc>
+  </url>
+  <url>
+    <loc>/reference/woo2022_macrophage.html</loc>
   </url>
   <url>
     <loc>/reference/zhu2018MCP.html</loc>

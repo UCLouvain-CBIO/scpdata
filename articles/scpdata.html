@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.7.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.9.1</span>
       </span>
     </div>
 
@@ -68,7 +68,7 @@ Gatto</h4>
                                     <h4 data-toc-skip class="author">Christophe
 Vanderaa</h4>
                         
-            <h4 data-toc-skip class="date">4 November 2022</h4>
+            <h4 data-toc-skip class="date">4 July 2023</h4>
       
       
       <div class="hidden name"><code>scpdata.Rmd</code></div>
@@ -102,9 +102,9 @@ infrastructure. We first create a connection with
 the query function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ExperimentHub with 18 records</span></span>
-<span><span class="co">#&gt; # snapshotDate(): 2022-10-24</span></span>
-<span><span class="co">#&gt; # $dataprovider: PRIDE, MassIVE, SlavovLab website</span></span>
+<span><span class="co">#&gt; ExperimentHub with 21 records</span></span>
+<span><span class="co">#&gt; # snapshotDate(): 2023-07-03</span></span>
+<span><span class="co">#&gt; # $dataprovider: MassIVE, PRIDE, SlavovLab website</span></span>
 <span><span class="co">#&gt; # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus</span></span>
 <span><span class="co">#&gt; # $rdataclass: QFeatures</span></span>
 <span><span class="co">#&gt; # additional mcols(): taxonomyid, genome, description,</span></span>
@@ -112,18 +112,18 @@ the query function.</p>
 <span><span class="co">#&gt; #   rdatapath, sourceurl, sourcetype </span></span>
 <span><span class="co">#&gt; # retrieve records with, e.g., 'object[["EH3899"]]' </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;            title           </span></span>
-<span><span class="co">#&gt;   EH3899 | specht2019v2    </span></span>
-<span><span class="co">#&gt;   EH3900 | specht2019v3    </span></span>
-<span><span class="co">#&gt;   EH3901 | dou2019_lysates </span></span>
-<span><span class="co">#&gt;   EH3902 | dou2019_mouse   </span></span>
-<span><span class="co">#&gt;   EH3903 | dou2019_boosting</span></span>
-<span><span class="co">#&gt;   ...      ...             </span></span>
-<span><span class="co">#&gt;   EH7295 | williams2020_lfq</span></span>
-<span><span class="co">#&gt;   EH7296 | williams2020_tmt</span></span>
-<span><span class="co">#&gt;   EH7711 | leduc2022       </span></span>
-<span><span class="co">#&gt;   EH7712 | derks2022       </span></span>
-<span><span class="co">#&gt;   EH7713 | brunner2022</span></span></code></pre></div>
+<span><span class="co">#&gt;            title             </span></span>
+<span><span class="co">#&gt;   EH3899 | specht2019v2      </span></span>
+<span><span class="co">#&gt;   EH3900 | specht2019v3      </span></span>
+<span><span class="co">#&gt;   EH3901 | dou2019_lysates   </span></span>
+<span><span class="co">#&gt;   EH3902 | dou2019_mouse     </span></span>
+<span><span class="co">#&gt;   EH3903 | dou2019_boosting  </span></span>
+<span><span class="co">#&gt;   ...      ...               </span></span>
+<span><span class="co">#&gt;   EH7713 | brunner2022       </span></span>
+<span><span class="co">#&gt;   EH8301 | leduc2022_pSCoPE  </span></span>
+<span><span class="co">#&gt;   EH8302 | leduc2022_plexDIA </span></span>
+<span><span class="co">#&gt;   EH8303 | woo2022_macrophage</span></span>
+<span><span class="co">#&gt;   EH8304 | woo2022_lung</span></span></code></pre></div>
 <p>Another way to get information about the available data sets is to
 call <code><a href="../reference/scpdata.html">scpdata()</a></code>. This will retrieve all the available
 metadata. For example, we can retrieve the data set titles along with
@@ -131,12 +131,11 @@ the description to make an informed choice about which data set to
 choose.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">info</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scpdata.html">scpdata</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; snapshotDate(): 2022-10-24</span></span>
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">info</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="4%">
-<col width="12%">
+<col width="13%">
 <col width="82%">
 </colgroup>
 <thead><tr class="header">
@@ -236,22 +235,40 @@ cell line culture.</td>
 leukemia cell line culture (MOLM-14, K562, CMK).</td>
 </tr>
 <tr class="even">
-<td align="left">EH7711</td>
-<td align="left">leduc2022</td>
-<td align="left">Single-cell proteomics data of 878 melanoma cells and
-877 monocytes.</td>
-</tr>
-<tr class="odd">
 <td align="left">EH7712</td>
 <td align="left">derks2022</td>
 <td align="left">Single-cell and bulk (100-cell) proteomics data of
 PDAC, melanoma cells and monocytes.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">EH7713</td>
 <td align="left">brunner2022</td>
 <td align="left">Single-cell proteomics data of cell cycle stages in
 HeLa.</td>
+</tr>
+<tr class="even">
+<td align="left">EH8301</td>
+<td align="left">leduc2022_pSCoPE</td>
+<td align="left">Single-cell proteomics data of 878 melanoma cells and
+877 monocytes (pSCoPE).</td>
+</tr>
+<tr class="odd">
+<td align="left">EH8302</td>
+<td align="left">leduc2022_plexDIA</td>
+<td align="left">Single-cell proteomics data of 126 melanoma cells
+(plexDIA).</td>
+</tr>
+<tr class="even">
+<td align="left">EH8303</td>
+<td align="left">woo2022_macrophage</td>
+<td align="left">Single-cell proteomics data from LPS-treated
+macrophages.</td>
+</tr>
+<tr class="odd">
+<td align="left">EH8304</td>
+<td align="left">woo2022_lung</td>
+<td align="left">Single-cell proteomics data from primary human lung
+cells.</td>
 </tr>
 </tbody>
 </table>
@@ -301,13 +318,13 @@ in SCP data</em> of the <code>scp</code> vignette.</p>
 <div class="section level2">
 <h2 class="unnumbered" id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<pre><code>R version 4.2.1 (2022-06-23)
+<pre><code>R version 4.3.1 (2023-06-16)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 20.04.5 LTS
+Running under: Ubuntu 22.04.2 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
-LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -317,67 +334,70 @@ locale:
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
+time zone: UTC
+tzcode source: system (glibc)
+
 attached base packages:
 [1] stats4    stats     graphics  grDevices utils     datasets  methods  
 [8] base     
 
 other attached packages:
- [1] scpdata_1.7.0               ExperimentHub_2.6.0        
- [3] AnnotationHub_3.6.0         BiocFileCache_2.6.0        
- [5] dbplyr_2.2.1                QFeatures_1.8.0            
- [7] MultiAssayExperiment_1.24.0 SummarizedExperiment_1.28.0
- [9] Biobase_2.58.0              GenomicRanges_1.50.0       
-[11] GenomeInfoDb_1.34.0         IRanges_2.32.0             
-[13] S4Vectors_0.36.0            BiocGenerics_0.44.0        
-[15] MatrixGenerics_1.10.0       matrixStats_0.62.0         
-[17] BiocStyle_2.26.0           
+ [1] scpdata_1.9.1               ExperimentHub_2.7.1        
+ [3] AnnotationHub_3.9.1         BiocFileCache_2.9.0        
+ [5] dbplyr_2.3.2                QFeatures_1.11.1           
+ [7] MultiAssayExperiment_1.27.0 SummarizedExperiment_1.31.1
+ [9] Biobase_2.61.0              GenomicRanges_1.53.1       
+[11] GenomeInfoDb_1.37.2         IRanges_2.35.2             
+[13] S4Vectors_0.39.1            BiocGenerics_0.47.0        
+[15] MatrixGenerics_1.13.0       matrixStats_1.0.0          
+[17] BiocStyle_2.29.0           
 
 loaded via a namespace (and not attached):
- [1] ProtGenerics_1.30.0           bitops_1.0-7                 
- [3] fs_1.5.2                      bit64_4.0.5                  
- [5] filelock_1.0.2                httr_1.4.4                   
- [7] rprojroot_2.0.3               tools_4.2.1                  
- [9] bslib_0.4.1                   utf8_1.2.2                   
-[11] R6_2.5.1                      DBI_1.1.3                    
-[13] lazyeval_0.2.2                withr_2.5.0                  
-[15] tidyselect_1.2.0              bit_4.0.4                    
-[17] curl_4.3.3                    compiler_4.2.1               
-[19] textshaping_0.3.6             cli_3.4.1                    
-[21] desc_1.4.2                    DelayedArray_0.24.0          
-[23] bookdown_0.29                 sass_0.4.2                   
-[25] rappdirs_0.3.3                pkgdown_2.0.6.9000           
-[27] systemfonts_1.0.4             stringr_1.4.1                
-[29] digest_0.6.30                 rmarkdown_2.17               
-[31] XVector_0.38.0                pkgconfig_2.0.3              
-[33] htmltools_0.5.3               highr_0.9                    
-[35] fastmap_1.1.0                 rlang_1.0.6                  
-[37] RSQLite_2.2.18                shiny_1.7.3                  
-[39] jquerylib_0.1.4               generics_0.1.3               
-[41] jsonlite_1.8.3                dplyr_1.0.10                 
-[43] RCurl_1.98-1.9                magrittr_2.0.3               
-[45] GenomeInfoDbData_1.2.9        Matrix_1.5-1                 
-[47] Rcpp_1.0.9                    fansi_1.0.3                  
-[49] MsCoreUtils_1.10.0            lifecycle_1.0.3              
-[51] stringi_1.7.8                 yaml_2.3.6                   
-[53] MASS_7.3-58.1                 zlibbioc_1.44.0              
-[55] grid_4.2.1                    blob_1.2.3                   
-[57] promises_1.2.0.1              crayon_1.5.2                 
-[59] lattice_0.20-45               Biostrings_2.66.0            
-[61] KEGGREST_1.38.0               knitr_1.40                   
-[63] pillar_1.8.1                  igraph_1.3.5                 
-[65] glue_1.6.2                    BiocVersion_3.16.0           
-[67] evaluate_0.17                 BiocManager_1.30.19          
-[69] png_0.1-7                     vctrs_0.5.0                  
-[71] httpuv_1.6.6                  purrr_0.3.5                  
-[73] clue_0.3-62                   assertthat_0.2.1             
-[75] cachem_1.0.6                  BiocBaseUtils_1.0.0          
-[77] xfun_0.34                     mime_0.12                    
-[79] xtable_1.8-4                  AnnotationFilter_1.22.0      
-[81] later_1.3.0                   ragg_1.2.4                   
-[83] SingleCellExperiment_1.20.0   tibble_3.1.8                 
-[85] AnnotationDbi_1.60.0          memoise_2.0.1                
-[87] cluster_2.1.4                 ellipsis_0.3.2               
-[89] interactiveDisplayBase_1.36.0</code></pre>
+ [1] tidyselect_1.2.0              dplyr_1.1.2                  
+ [3] blob_1.2.4                    Biostrings_2.69.2            
+ [5] filelock_1.0.2                bitops_1.0-7                 
+ [7] SingleCellExperiment_1.23.0   fastmap_1.1.1                
+ [9] lazyeval_0.2.2                RCurl_1.98-1.12              
+[11] promises_1.2.0.1              digest_0.6.32                
+[13] mime_0.12                     lifecycle_1.0.3              
+[15] cluster_2.1.4                 ellipsis_0.3.2               
+[17] ProtGenerics_1.33.1           KEGGREST_1.41.0              
+[19] interactiveDisplayBase_1.39.0 RSQLite_2.3.1                
+[21] magrittr_2.0.3                compiler_4.3.1               
+[23] rlang_1.1.1                   sass_0.4.6                   
+[25] tools_4.3.1                   igraph_1.5.0                 
+[27] utf8_1.2.3                    yaml_2.3.7                   
+[29] knitr_1.43                    S4Arrays_1.1.4               
+[31] bit_4.0.5                     curl_5.0.1                   
+[33] DelayedArray_0.27.8           withr_2.5.0                  
+[35] purrr_1.0.1                   desc_1.4.2                   
+[37] grid_4.3.1                    fansi_1.0.4                  
+[39] xtable_1.8-4                  MASS_7.3-60                  
+[41] cli_3.6.1                     rmarkdown_2.23               
+[43] crayon_1.5.2                  ragg_1.2.5                   
+[45] generics_0.1.3                httr_1.4.6                   
+[47] BiocBaseUtils_1.3.0           DBI_1.1.3                    
+[49] cachem_1.0.8                  stringr_1.5.0                
+[51] zlibbioc_1.47.0               AnnotationDbi_1.63.2         
+[53] AnnotationFilter_1.25.0       BiocManager_1.30.21          
+[55] XVector_0.41.1                vctrs_0.6.3                  
+[57] Matrix_1.5-4.1                jsonlite_1.8.7               
+[59] bookdown_0.34                 bit64_4.0.5                  
+[61] clue_0.3-64                   systemfonts_1.0.4            
+[63] jquerylib_0.1.4               glue_1.6.2                   
+[65] pkgdown_2.0.7.9000            stringi_1.7.12               
+[67] later_1.3.1                   BiocVersion_3.18.0           
+[69] tibble_3.2.1                  pillar_1.9.0                 
+[71] rappdirs_0.3.3                htmltools_0.5.5              
+[73] GenomeInfoDbData_1.2.10       R6_2.5.1                     
+[75] textshaping_0.3.6             rprojroot_2.0.3              
+[77] evaluate_0.21                 shiny_1.7.4                  
+[79] lattice_0.21-8                png_0.1-8                    
+[81] memoise_2.0.1                 httpuv_1.6.11                
+[83] bslib_0.5.0                   Rcpp_1.0.10                  
+[85] SparseArray_1.1.10            xfun_0.39                    
+[87] MsCoreUtils_1.13.1            fs_1.6.2                     
+[89] pkgconfig_2.0.3              </code></pre>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
@@ -404,7 +424,7 @@ license</a>.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
 </div>
 
       </footer>
