@@ -1,3 +1,31 @@
+---
+title: "Contribution guidelines"
+author:
+    - name: Christophe Vanderaa
+    - name: Laurent Gatto
+output:
+    BiocStyle::html_document:
+        self_contained: yes
+        toc: true
+        toc_float: true
+        toc_depth: 2
+        code_folding: show
+date: "`r BiocStyle::doc_date()`"
+package: "`r BiocStyle::pkg_ver('scpdata')`"
+vignette: >
+    %\VignetteIndexEntry{Contribution guidelines}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+    collapse = TRUE,
+    comment = "#>",
+    crop = NULL ## Related to https://stat.ethz.ch/pipermail/bioc-devel/2020-April/016656.html
+)
+```
+
 Welcome to the `scpdata` package, and thank you for your interest in
 contributing!
 
@@ -15,7 +43,7 @@ Contributions are very much welcome. We happily accept major
 contributions such as adding a new dataset, as well as minor
 contributions as fixing typos or improving current documentation.
 
-To facilitate our collaboration, this wiki page will guide you through
+To facilitate our collaboration, this vignette will guide you through
 the process of adding a new dataset to the package. We will first get
 you started with some basic guidelines on how to contribute using
 GitHub. We'll proceed with a description of the data structure and the
@@ -243,7 +271,7 @@ through Zenodo.
 
 ## 7. Almost done!
 
-Once your pull request is submitted, we take over and we will proceed 
+Once your pull request is submitted, we will take over and will proceed 
 to the following steps: 
 
 1. We will review your changes to ensure you comply with the above
