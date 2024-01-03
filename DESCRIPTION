@@ -1,21 +1,21 @@
 Package: scpdata
 Type: Package
 Title: Single-Cell Proteomics Data Package
-Version: 1.9.2
+Version: 1.11.1
 Authors@R:
     c(person("Christophe", "Vanderaa",
-	      email = "christophe.vanderaa@uclouvain.be",
-	      comment = c(ORCID = "0000-0001-7443-5427"),
-	      role = c("aut", "cre")),
+              email = "christophe.vanderaa@uclouvain.be",
+              comment = c(ORCID = "0000-0001-7443-5427"),
+              role = c("aut", "cre")),
       person("Laurent", "Gatto",
-	      email = "laurent.gatto@uclouvain.be",
-	      comment = c(ORCID = "0000-0002-1520-2268"),
-	      role = "aut"))
-Description: The package disseminates mass spectrometry (MS)-based 
-    single-cell proteomics (SCP) datasets. The data were collected 
-    from published work and formatted using the `scp` data structure. 
-    The data sets contain quantitative information at spectrum, 
-    peptide and/or protein level for single cells or minute sample 
+              email = "laurent.gatto@uclouvain.be",
+              comment = c(ORCID = "0000-0002-1520-2268"),
+              role = "aut"))
+Description: The package disseminates mass spectrometry (MS)-based
+    single-cell proteomics (SCP) datasets. The data were collected
+    from published work and formatted using the `scp` data structure.
+    The data sets contain quantitative information at spectrum,
+    peptide and/or protein level for single cells or minute sample
     amounts.
 Depends:
     R (>= 4.2.0),
@@ -35,9 +35,9 @@ Suggests:
     BiocCheck,
     rmarkdown,
     testthat
-biocViews: 
-    ExperimentData, 
-    ExpressionData, 
+biocViews:
+    ExperimentData,
+    ExpressionData,
     ExperimentHub,
     ReproducibleResearch,
     MassSpectrometryData,
