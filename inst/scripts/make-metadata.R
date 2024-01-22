@@ -220,7 +220,7 @@ meta <- list(
     ),
     data.frame(
         Title = "zhu2018NC_islets",
-        Description = paste0("Near SCP expression data for micro-dissected human ", 
+        Description = paste0("Near SCP expression data for micro-dissected human ",
                              "pancreas samples (control patients or type 1 ",
                              "diabetes) at PSM level"),
         BiocVersion = "3.13",
@@ -275,7 +275,7 @@ meta <- list(
     ),
     data.frame(
         Title = "zhu2019EL",
-        Description = paste0("SCP expression data for chicken utricle samples (1, ", 
+        Description = paste0("SCP expression data for chicken utricle samples (1, ",
                              "3, 5 or 20 cells) at PSM, peptide and protein level"),
         BiocVersion = "3.15",
         Genome = NA_character_,
@@ -574,6 +574,33 @@ meta <- list(
         ProteinsAvailable = TRUE,
         ContainsSingleCells = TRUE,
         Notes = NA_character_
+    ),
+    data.frame(
+      Title = "gregoire2023_scp",
+      Description = paste0("Single-cell proteomics data ",
+                           "from two monocyte cell lines"),
+      BiocVersion = "3.18",
+      Genome = NA_character_,
+      SourceType = "TXT",
+      SourceUrl = NA_character_,
+      SourceVersion = NA_character_,
+      Species = "Homo sapiens",
+      TaxonomyId = 9606,
+      Coordinate_1_based = TRUE,
+      DataProvider = "PRIDE",
+      Maintainer = "Samuel Gregoire <sameul.gregoire@uclouvain.be>",
+      RDataClass = "QFeatures",
+      DispatchClass = "Rda",
+      RDataPath = "scpdata/gregoire2023_scp.Rda",
+      PublicationDate = as.Date("2024/01/22"),
+      NumberAssays = 119,
+      PreprocessingSoftware = "Sage",
+      LabelingProtocol = "TMT-16",
+      PsmsAvailable = TRUE,
+      PeptidesAvailable = TRUE,
+      ProteinsAvailable = TRUE,
+      ContainsSingleCells = TRUE,
+      Notes = NA_character_
     )
 )
 meta <- do.call(rbind, meta)
