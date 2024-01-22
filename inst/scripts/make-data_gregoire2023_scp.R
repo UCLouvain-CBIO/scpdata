@@ -2,14 +2,13 @@
 ####---- Gregoire et al. 2023 ---####
 
 
-## Grégoire, Samuel and Vanderaa, Christophe and Pyr dit Ruys,
-## Sébastien and Mazzucchelli, Gabriel and Kune, Christopher and
-## Vertommen, Didier and Gatto, Laurent. 2023. "Standardised workflow
-## for mass spectrometry-based single-cell proteomics data processing
-## and analysis using the scp package." arXiv.
-## https://doi.org/10.48550/arXiv.2310.13598
+## Samuel Grégoire, Christophe Vanderaa, Sébastien Pyr dit Ruys,
+## Gabriel Mazzucchelli, Christopher Kune, Didier Vertommen and
+## Laurent Gatto. 2023. "Standardised workflow for mass spectrometry-
+## based single-cell proteomics data processing and analysis using the
+## scp package." arXiv. https://doi.org/10.48550/arXiv.2310.13598
 
-## This is the script for generating the pSCoPE dataset
+## This is the script for generating the scp dataset
 
 library(scp)
 library(dplyr)
@@ -82,12 +81,15 @@ sage_data$run <- sub("\\.mzML", "", sage_data$run)
 ## Add experiment batches
 sage_data$batch <- sub("_.*", "", sage_data$run)
 
+## QFeatures object
 gregoire2023_scp <- readSCP(featureData = sage_data,
                             colData = annotations,
                             channelCol = "channel",
                             batchCol = "run",
                             removeEmptyCols = TRUE,
                             sep = "_")
+
+rm(sage_data)
 
 ####---- Retrieve processed data ----####
 
@@ -233,7 +235,7 @@ gregoire2023_scp <- aggregateFeatures(gregoire2023_scp,
                          name = sub("peptides", "proteins", pep_assay_names))
 
 # Remove batch effects
-for (i in grep("norm_log|imptd", names(gregoire2023_scp))) {
+for (i in grep("proteins.*norm_log", names(gregoire2023_scp))) {
   ## Extract set
   sce <- getWithColData(gregoire2023_scp, names(gregoire2023_scp)[i])
   ## Batch correct assay
@@ -243,11 +245,11 @@ for (i in grep("norm_log|imptd", names(gregoire2023_scp))) {
   ## Name and add batch-corrected assay
   gregoire2023_scp <- addAssay(gregoire2023_scp,
                   y = sce,
-                  name = sub("_norm_log|mptd", "_batchC", names(gregoire2023_scp)[i]))
+                  name = sub("_norm_log", "_batchC", names(gregoire2023_scp)[i]))
   ## Add link between batch corrected and original assay
   gregoire2023_scp <- addAssayLinkOneToOne(gregoire2023_scp,
                               from = names(gregoire2023_scp)[i],
-                              to = sub("_norm_log|mptd", "_batchC", names(gregoire2023_scp)[i]))
+                              to = sub("_norm_log", "_batchC", names(gregoire2023_scp)[i]))
 }
 
 # Compute NIPALS dimensionality reduction
