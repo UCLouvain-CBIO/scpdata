@@ -3,6 +3,7 @@
 ## scpdata 1.11.1
 
 - Added contribution vignette.
+- gregoire2023: added dataset.
 
 # scpdata 1.9
 
