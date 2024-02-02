@@ -2256,9 +2256,10 @@
 ##'
 "woo2022_lung"
 
-####---- gregoire2023_scp ----####
+####---- gregoire2023_mixCTRL ----####
 
-##' Grégoire et al. 2023 - scp (arXiv): benchmark using monocytes/macrophages
+##' Grégoire et al. 2023 - _mixCTRL (arXiv): benchmark using
+##' monocytes/macrophages
 ##'
 ##' Single cell proteomics data acquired using the SCoPE2 protocol.
 ##' The dataset contains two monocytes cell lines (THP1 and U937) as
@@ -2291,7 +2292,7 @@
 ##'   All the data has been filtered to keep high quality features and
 ##'   samples.
 ##'
-##' The `colData(gregoire2023_scp())` contains cell type annotation and
+##' The `colData(gregoire2023_mixCTRL())` contains cell type annotation and
 ##' batch annotation that are common to all assays. The description of
 ##' the `rowData` fields for the PSM data can be found in the
 ##' [`sage` documentation](https://sage-docs.vercel.app/docs/results/search).
@@ -2337,7 +2338,9 @@
 ##' using the [scp::readSCP] function.
 ##'
 ##' The [QFeatures] object was processed as described in the author's
-##' manuscript (see `source`).
+##' manuscript (see `source`). Note that the imputed assays were used
+##' in the paper for illustrative purposes only and have not been
+##' reproduced here.
 ##'
 ##' @source
 ##' The data were downloaded from the [Zenodo repository](https://zenodo.org/records/8417228).
@@ -2354,9 +2357,9 @@
 ##'
 ##' @examples
 ##' \donttest{
-##' gregoire2023_scp()
+##' gregoire2023_mixCTRL()
 ##' }
 ##'
 ##' @keywords datasets
 ##'
-"gregoire2023_scp"
+"gregoire2023_mixCTRL"
