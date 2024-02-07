@@ -582,7 +582,7 @@ meta <- list(
       BiocVersion = "3.19",
       Genome = NA_character_,
       SourceType = "TXT",
-      SourceUrl = #add correct url,
+      SourceUrl = "https://www.ebi.ac.uk/pride/archive/projects/PXD046211",
       SourceVersion = NA_character_,
       Species = "Homo sapiens",
       TaxonomyId = 9606,
