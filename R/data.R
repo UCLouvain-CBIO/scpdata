@@ -1,5 +1,3 @@
-
-
 ####---- specht2019v2 ----####
 
 
@@ -2265,7 +2263,7 @@
 ##' The dataset contains two monocytes cell lines (THP1 and U937) as
 ##' well as controled mixtures of both and macrophage-like cells
 ##' produced upon PMA treatment. It contains quantitative information
-##' at PSM, peptide and protein level. Data was acquired using Lumos
+##' at PSM, peptide and protein levels. Data was acquired using Lumos
 ##' Orbitrap (mainly) and timsTOF SCP mass spectrometers.
 ##'
 ##' @format A [QFeatures] object with 119 assays, each assay being a
@@ -2300,7 +2298,7 @@
 ##' @section Acquisition protocol:
 ##'
 ##' The data were acquired using the following setup. More information
-##' can be found in the source article (see `References`).
+##' can be found in the source article (see *References*).
 ##'
 ##' - **Cell isolation**: BD FACSAria III cell sorting.
 ##' - **Sample preparation** performed using the SCoPE2 protocol: mPOP
@@ -2343,17 +2341,20 @@
 ##' reproduced here.
 ##'
 ##' @source
-##' The data were downloaded from the [Zenodo repository](https://zenodo.org/records/8417228).
-##' The raw data and the quantification data can also be found in the
-##' ProteomeXchange Consortium via the [PRIDE partner repository](https://www.ebi.ac.uk/pride/archive/projects/PXD046211)
-##' `PXD046211`.
+##' The data were downloaded from the [Zenodo
+##' repository](https://zenodo.org/records/8417228).  The raw data and
+##' the quantification data can also be found in the ProteomeXchange
+##' Consortium via the [PRIDE partner
+##' repository](https://www.ebi.ac.uk/pride/archive/projects/PXD046211),
+##' project `PXD046211`.
 ##'
 ##' @references
 ##' Samuel Grégoire, Christophe Vanderaa, Sébastien Pyr dit Ruys,
 ##' Gabriel Mazzucchelli, Christopher Kune, Didier Vertommen and
-##' Laurent Gatto. 2023. “Standardised workflow for mass spectrometry-
+##' Laurent Gatto. 2023. *Standardised workflow for mass spectrometry-
 ##' based single-cell proteomics data processing and analysis using
-##' the scp package.” arXiv. [Link to article](https://doi.org/10.48550/arXiv.2310.13598)
+##' the scp package.*
+##' arXiv. DOI:[10.48550/arXiv.2310.13598](https://doi.org/10.48550/arXiv.2310.13598)
 ##'
 ##' @examples
 ##' \donttest{
