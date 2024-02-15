@@ -1,9 +1,11 @@
+# scpdata 1.11
+
+## scpdata 1.11.1
+
+- Added contribution vignette.
+- gregoire2023_mixCTRL: added dataset.
 
 # scpdata 1.9
-
-## scpdata 1.9.3
-
-(nothing yet)
 
 ## scpdata 1.9.2
 
@@ -37,7 +39,7 @@
 
 - New Bioconductor 3.16 (stable) release
 
-# scpdata 1.5 
+# scpdata 1.5
 
 ## scpdata 1.5.6
 
@@ -52,7 +54,7 @@
 ## scpdata 1.5.3
 
 - tests: make sure each dataset is available
-- docs: don't run examples. They take too long and crash the checks. 
+- docs: don't run examples. They take too long and crash the checks.
 
 ## scpdata 1.5.2
 
@@ -78,7 +80,7 @@
 ## scpdata 1.3.1
 
 - williams2020: added 2 new datasets (need to be sent to EH)
-- all: added supplementary metadata fields in `metadata.csv`. 
+- all: added supplementary metadata fields in `metadata.csv`.
 - zhu2019EL: split protein data into protein_intensity and protein_iBAQ
 - dou2019: modified peptide data by excluding low-quality PSMs
 
@@ -96,8 +98,8 @@
 
 ## scpdata 1.1.2
 
-- dou2019_*: Fixed duplicated data, added identification score and 
-  probabilities data, and generated peptide data. 
+- dou2019_*: Fixed duplicated data, added identification score and
+  probabilities data, and generated peptide data.
 - zhu2018MCP: added protein data (intensity, LFQ and iBAQ)
 - zhu2018NC_*: added protein data (intensity, LFQ and iBAQ)
 - metadata: included additional meta fields: PreprocessingSoftware and

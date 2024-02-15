@@ -79,8 +79,8 @@ jobs:
           echo $biocversion
 
           ## Save the information for the next job
-          echo "::set-output name=imagename::${imagename}"
-          echo "::set-output name=biocversion::${biocversion}"
+          echo "imagename=${imagename}" >> $GITHUB_OUTPUT
+          echo "biocversion=${biocversion}" >> $GITHUB_OUTPUT
 
   R-CMD-check-bioc:
     ## This job then checks the R package using the Bioconductor docker that

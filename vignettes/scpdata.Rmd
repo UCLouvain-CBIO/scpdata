@@ -1,5 +1,5 @@
 ---
-title: "Single Cell Proteomics data sets."
+title: "Single Cell Proteomics data sets"
 author:
     - name: Laurent Gatto
     - name: Christophe Vanderaa
@@ -11,7 +11,7 @@ output:
         toc_depth: 2
         code_folding: show
 date: "`r BiocStyle::doc_date()`"
-package: "`r BiocStyle::pkg_ver('scp')`"
+package: "`r BiocStyle::pkg_ver('scpdata')`"
 vignette: >
     %\VignetteIndexEntry{Data Package for Single Cell Proteomics}
     %\VignetteEngine{knitr::rmarkdown}
