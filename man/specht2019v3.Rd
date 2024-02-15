@@ -88,7 +88,7 @@ The folder contains the following files of interest:
 \item \verb{batch_fp60-97.csv}: batch annotation
 }
 
-We combined the the sample annotation and the batch annotation in
+We combined the sample annotation and the batch annotation in
 a single table. We also formated the quantification table so that
 columns match with those of the annotation and filter only for
 single-cell runs. Both table are then combined in a single

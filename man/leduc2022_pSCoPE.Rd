@@ -95,7 +95,7 @@ data
 \code{proteins_processed} data
 }
 
-We combined the the sample annotation and the batch annotation in
+We combined the sample annotation and the batch annotation in
 a single table. We also formated the quantification table so that
 columns match with those of the annotations. Both annotation and
 quantification tables are then combined in a single \link{QFeatures}
