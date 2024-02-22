@@ -621,11 +621,11 @@ meta <- list(
       DispatchClass = "Rda",
       RDataPath = "scpdata/khan2023.Rda",
       PublicationDate = as.Date("2023/12/21"),
-      NumberAssays = 46,
+      NumberAssays = 47,
       PreprocessingSoftware = "MaxQuant",
       LabelingProtocol = "TMTPro 16plex",
       PsmsAvailable = TRUE,
-      PeptidesAvailable = FALSE,
+      PeptidesAvailable = TRUE,
       ProteinsAvailable = TRUE,
       ContainsSingleCells = TRUE,
       Notes = NA_character_

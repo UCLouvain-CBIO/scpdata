@@ -2379,13 +2379,15 @@
 ##' Data is available at PSM, and protein levels. The paper investigates the
 ##' dynamics of correlation modules at protein level.
 ##'
-##' @format A [QFeatures] object with 46 assays, each assay being a
+##' @format A [QFeatures] object with 47 assays, each assay being a
 ##' [SingleCellExperiment] object:
 ##'
 ##' - Assay 1-44: PSM data acquired with a TMTPro 16plex protocol, hence
 ##'   those assays contain 16 columns. Columns hold quantitative information
 ##'   from single-cell channels, carrier channels, reference channels, 
 ##'   empty (negative control) channels and unused channels.
+##' - `peptides`: peptide data containing quantitative data for 10055
+##'   peptides and 421 single-cells. 
 ##' - `proteins_imputed`: protein data containing quantitative data for 4096
 ##'   proteins and 421 single-cells with imputation. 
 ##' - `proteins_unimputed`: protein data containing quantitative data for 4096
@@ -2428,14 +2430,24 @@
 ##' columns match with those of the annotation and filter only for
 ##' single-cell runs. Both table are then combined in a single
 ##' [QFeatures] object using the [scp::readSCP] function.
-##'
+##' 
+##' The peptide data were generated from the SCoPE2 R script, 
+##' `EMTTGFB_singleCellProcessing.R`). The data were formated 
+##' to a [SingleCellExperiment] object and the sample metadata
+##' were matched to the column names (mapping is retrieved
+##' after running the SCoPE2 R script) and stored in the `colData`.
+##' The object is then added to the [QFeatures] object and the rows
+##' of the peptide data are linked to the rows of the PSM data based
+##' on the peptide sequence information through an `AssayLink` object.
+##' 
 ##' The imputed protein data were taken from the same google drive folder
 ##' (`EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_imputedNotBC.csv`).
 ##' The data were formated to a [SingleCellExperiment] object and the sample
 ##' metadata were matched to the column names (mapping is retrieved
 ##' after running the SCoPE2 R script, `EMTTGFB_singleCellProcessing.R`) and
-##' stored in the `colData`. The object is then added to the [QFeatures] object
-##' (containing the PSM assays).
+##' stored in the `colData`. The object is then added to the [QFeatures] object 
+##' and the rows of the peptide data are linked to the rows of the protein data
+##' based on the protein sequence information through an `AssayLink` object.
 ##'
 ##' The unimputed protein data were taken from the same google drive folder
 ##' (`EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_unimputed.csv`).
@@ -2443,7 +2455,8 @@
 ##' metadata were matched to the column names (mapping is retrieved
 ##' after running the SCoPE2 R script, `EMTTGFB_singleCellProcessing.R`) and
 ##' stored in the `colData`. The object is then added to the [QFeatures] object
-##' (containing the PSM assays).
+##' and the rows of the peptide data are linked to the rows of the protein data
+##' based on the protein sequence information through an `AssayLink` object.
 ##'
 ##' @source
 ##' The data were downloaded from the

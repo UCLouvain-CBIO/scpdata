@@ -102,6 +102,48 @@ read.csv(paste0(root, "annotation.csv")) %>%
 
 idMap <- read.csv(paste0(root, "cellIDToChannel.csv"), row.names = 1)
 
+####---- Add the peptide data ----####
+
+## The `peptides.csv` and `peptides_rowData.csv` files were generated using the
+## `EMTTGFB_singleCellProcessing.R` script from 
+## https://github.com/SlavovLab/EMT_TGFB_2023/tree/main.
+## `peptides.csv`: contains peptides x cells before the aggregation.
+## `peptides_rowData.csv`: contains rowData of peptides.
+
+read.csv(paste0(root, "peptides.csv")) %>%
+  rename(peptide = X) %>%
+  readSingleCellExperiment(ecol = 2:422, fnames = "peptide") ->
+  peptides
+
+colnames(peptides) <- idMap$Channel[match(colnames(peptides), idMap$cellID)]
+colData(peptides) <- DataFrame(annot[colnames(peptides), ])
+
+khan2023 <- addAssay(khan2023, peptides, name = "peptides")
+
+## First find which PSM assays were included
+sel <- sapply(grep("eSK", names(khan2023), value = TRUE), function(name) {
+  x <- khan2023[[name]]
+  ## Does the current PSM data have at least 1 colname in common with pep?
+  inColnames <- any(colnames(x) %in% colnames(peptides))
+  ## Does the current PSM data have at least 1 peptide sequence in common with pep?
+  inSequence <- any(rowData(x)$peptide %in% rowData(peptides)$peptide)
+  return(inColnames && inSequence) ## The PSM assay must fulfill both conditions
+})
+
+## Add an AssayLink that bridges the PSM assays and the peptide assay
+khan2023 <- addAssayLink(khan2023, from = which(sel), to = "peptides", 
+                             varFrom = rep("peptide", sum(sel)), varTo = "peptide")
+
+## Include rowData to peptides assay
+read.csv(paste0(root, "peptides_rowData.csv"), row.names = 1) %>%
+  select(pep, prot) %>%
+  mutate(peptide = pep, protein = prot, pep = NULL, prot = NULL) %>%
+  unique() %>%
+  DataFrame() ->
+  pepRow
+  
+rowData(khan2023[["peptides"]]) <- pepRow
+
 ####---- Add the protein data ----####
 
 ## Imputed and un-imputed protein quantity matrices downloaded from:  
@@ -118,6 +160,10 @@ colData(prot_imp) <- DataFrame(annot[colnames(prot_imp), ])
 
 khan2023 <- addAssay(khan2023, prot_imp, name = "proteins_imputed")
 
+## Add an AssayLink that bridges the PSM assays and the peptide assay
+khan2023 <- addAssayLink(khan2023, from = "peptides", to = "proteins_imputed", 
+                         varFrom = "protein", varTo = "protein")
+
 ## Add un-imputed protein data
 read.csv(paste0(root, "EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_unimputed.csv")) %>%
   rename(protein = X) %>%
@@ -128,7 +174,11 @@ colnames(prot_unimp) <- idMap$Channel[match(colnames(prot_unimp), idMap$cellID)]
 colData(prot_unimp) <- DataFrame(annot[colnames(prot_unimp), ])
 
 khan2023 <- addAssay(khan2023, prot_unimp, name = "proteins_unimputed")
-dim(assay(khan2023[[45]]))
+
+## Add an AssayLink that bridges the PSM assays and the peptide assay
+khan2023 <- addAssayLink(khan2023, from = "peptides", to = "proteins_unimputed", 
+                         varFrom = "protein", varTo = "protein")
+
 ## Save data
 save(khan2023,
      file = file.path(paste0(root, "khan2023.Rda")),
