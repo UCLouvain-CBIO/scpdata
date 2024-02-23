@@ -2431,14 +2431,14 @@
 ##' single-cell runs. Both table are then combined in a single
 ##' [QFeatures] object using the [scp::readSCP] function.
 ##' 
-##' The peptide data were generated from the SCoPE2 R script, 
-##' `EMTTGFB_singleCellProcessing.R`). The data were formated 
-##' to a [SingleCellExperiment] object and the sample metadata
-##' were matched to the column names (mapping is retrieved
-##' after running the SCoPE2 R script) and stored in the `colData`.
-##' The object is then added to the [QFeatures] object and the rows
-##' of the peptide data are linked to the rows of the PSM data based
-##' on the peptide sequence information through an `AssayLink` object.
+##' The peptide data were taken from the same google drive folder
+##' (`EpiToMesen.TGFB.nPoP_trial1_pepByCellMatrix_NSThreshDART_medIntCrNorm.txt`).
+##' The data were formated to a [SingleCellExperiment] object and the sample
+##' metadata were matched to the column names (mapping is retrieved
+##' after running the SCoPE2 R script, `EMTTGFB_singleCellProcessing.R`) and
+##' stored in the `colData`. The object is then added to the [QFeatures] object 
+##' and the rows of the PSM data are linked to the rows of the peptide data
+##' based on the peptide sequence information through an `AssayLink` object.
 ##' 
 ##' The imputed protein data were taken from the same google drive folder
 ##' (`EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_imputedNotBC.csv`).
@@ -2451,13 +2451,8 @@
 ##'
 ##' The unimputed protein data were taken from the same google drive folder
 ##' (`EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_unimputed.csv`).
-##' The data were formated to a [SingleCellExperiment] object and the sample
-##' metadata were matched to the column names (mapping is retrieved
-##' after running the SCoPE2 R script, `EMTTGFB_singleCellProcessing.R`) and
-##' stored in the `colData`. The object is then added to the [QFeatures] object
-##' and the rows of the peptide data are linked to the rows of the protein data
-##' based on the protein sequence information through an `AssayLink` object.
-##'
+##' The data were formated and added exactly as imputed data.
+##' 
 ##' @source
 ##' The data were downloaded from the
 ##' [Slavov Lab](https://scp.slavovlab.net/Khan_et_al_2023) website via a

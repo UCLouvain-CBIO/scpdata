@@ -104,15 +104,13 @@ idMap <- read.csv(paste0(root, "cellIDToChannel.csv"), row.names = 1)
 
 ####---- Add the peptide data ----####
 
-## The `peptides.csv` and `peptides_rowData.csv` files were generated using the
-## `EMTTGFB_singleCellProcessing.R` script from 
-## https://github.com/SlavovLab/EMT_TGFB_2023/tree/main.
-## `peptides.csv`: contains peptides x cells before the aggregation.
-## `peptides_rowData.csv`: contains rowData of peptides.
+## Peptide quantity matrix downloaded from:  
+## https://drive.google.com/drive/folders/1zCsRKWNQuAz5msxx0DfjDrIe6pUjqQmj
 
-read.csv(paste0(root, "peptides.csv")) %>%
-  rename(peptide = X) %>%
-  readSingleCellExperiment(ecol = 2:422, fnames = "peptide") ->
+peps <- read.delim(paste0(root, "EpiToMesen.TGFB.nPoP_trial1_pepByCellMatrix_NSThreshDART_medIntCrNorm.txt"))
+peps %>%
+  rename(peptide = pep) %>%
+  readSingleCellExperiment(ecol = 1:421, fnames = "peptide") ->
   peptides
 
 colnames(peptides) <- idMap$Channel[match(colnames(peptides), idMap$cellID)]
@@ -120,29 +118,24 @@ colData(peptides) <- DataFrame(annot[colnames(peptides), ])
 
 khan2023 <- addAssay(khan2023, peptides, name = "peptides")
 
+## Include rowData to peptides assay
+rowData(khan2023[["peptides"]]) <- DataFrame(peptide = peps$pep, 
+                                             protein = peps$prot)
+
 ## First find which PSM assays were included
-sel <- sapply(grep("eSK", names(khan2023), value = TRUE), function(name) {
-  x <- khan2023[[name]]
-  ## Does the current PSM data have at least 1 colname in common with pep?
-  inColnames <- any(colnames(x) %in% colnames(peptides))
-  ## Does the current PSM data have at least 1 peptide sequence in common with pep?
-  inSequence <- any(rowData(x)$peptide %in% rowData(peptides)$peptide)
-  return(inColnames && inSequence) ## The PSM assay must fulfill both conditions
+sel <- sapply(grep("eSK", names(khan2023), value = TRUE), 
+              function(name) {
+                x <- khan2023[[name]]
+                ## Does the current PSM data have at least 1 colname in common with pep?
+                inColnames <- any(colnames(x) %in% colnames(peptides))
+                ## Does the current PSM data have at least 1 peptide sequence in common with pep?
+                inSequence <- any(rowData(x)$peptide %in% rowData(peptides)$peptide)
+                return(inColnames && inSequence) ## The PSM assay must fulfill both conditions
 })
 
 ## Add an AssayLink that bridges the PSM assays and the peptide assay
 khan2023 <- addAssayLink(khan2023, from = which(sel), to = "peptides", 
                              varFrom = rep("peptide", sum(sel)), varTo = "peptide")
-
-## Include rowData to peptides assay
-read.csv(paste0(root, "peptides_rowData.csv"), row.names = 1) %>%
-  select(pep, prot) %>%
-  mutate(peptide = pep, protein = prot, pep = NULL, prot = NULL) %>%
-  unique() %>%
-  DataFrame() ->
-  pepRow
-  
-rowData(khan2023[["peptides"]]) <- pepRow
 
 ####---- Add the protein data ----####
 
