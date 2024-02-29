@@ -2459,7 +2459,7 @@
 ##' shared Google Drive
 ##' [folder](https://drive.google.com/drive/folders/1zCsRKWNQuAz5msxx0DfjDrIe6pUjqQmj).
 ##' The raw data and the quantification data can also be found in the
-##' massIVE repository `MSV000092872`:
+##' MassIVE repository `MSV000092872`:
 ##' ftp://MSV000092872@massive.ucsd.edu/.
 ##'
 ##' @references 
