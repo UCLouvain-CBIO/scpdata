@@ -24,7 +24,7 @@ design <- read.csv(paste0(root, "annotation.csv"))
 batch <- read.csv(paste0(root, "batch.csv"))
 
 ## Clean the sample metadata so that it meets the requirements for
-## `scp::readSCP`. The cell annotation and batch annotation are merge into a 
+## `scp::readSCP`. The cell annotation and batch annotation are merged into a 
 ## table
 inner_join(x = design %>% 
              pivot_longer(-Set, 
