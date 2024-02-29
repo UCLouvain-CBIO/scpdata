@@ -605,7 +605,7 @@ meta <- list(
     data.frame(
       Title = "khan2023",
       Description = paste0("Single-cell proteomics data ",
-                           "of 421 MCF-10A cells undergoing",
+                           "of 421 MCF-10A cells undergoing ",
                            "EMT triggered by TGFβ"),
       BiocVersion = "3.19",
       Genome = NA_character_,
