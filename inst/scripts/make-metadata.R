@@ -601,6 +601,34 @@ meta <- list(
       ProteinsAvailable = TRUE,
       ContainsSingleCells = TRUE,
       Notes = NA_character_
+    ),
+    data.frame(
+      Title = "khan2023",
+      Description = paste0("Single-cell proteomics data ",
+                           "of 421 MCF-10A cells undergoing ",
+                           "EMT triggered by TGFβ"),
+      BiocVersion = "3.19",
+      Genome = NA_character_,
+      SourceType = "TXT",
+      SourceUrl = "https://drive.google.com/drive/folders/1zCsRKWNQuAz5msxx0DfjDrIe6pUjqQmj",
+      SourceVersion = NA_character_,
+      Species = "Homo sapiens",
+      TaxonomyId = 9606,
+      Coordinate_1_based = TRUE,
+      DataProvider = "MassIVE",
+      Maintainer = "Enes Sefa Ayar <enes.ayar@uclouvain.be>",
+      RDataClass = "QFeatures",
+      DispatchClass = "Rda",
+      RDataPath = "scpdata/khan2023.Rda",
+      PublicationDate = as.Date("2023/12/21"),
+      NumberAssays = 47,
+      PreprocessingSoftware = "MaxQuant",
+      LabelingProtocol = "TMTPro 16plex",
+      PsmsAvailable = TRUE,
+      PeptidesAvailable = TRUE,
+      ProteinsAvailable = TRUE,
+      ContainsSingleCells = TRUE,
+      Notes = NA_character_
     )
 )
 meta <- do.call(rbind, meta)
