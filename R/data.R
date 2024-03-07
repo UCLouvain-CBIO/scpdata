@@ -2372,12 +2372,13 @@
 ##'
 ##' @description
 ##'
-##' Single-cell proteomics data was acquired by the Slavov Lab using SCoPE2 
-##' protocol, with Thermo Scientific Q-Exactive mass spectrometer, and with
-##' nPOP sample preparation method. The dataset contains quantitative 
-##' information on 421 MCF-10A single cells undergoing EMT triggered by TGFβ.
-##' Data is available at PSM, and protein levels. The paper investigates the
-##' dynamics of correlation modules at protein level.
+##' Single-cell samples were prepared using the nPOP sample preparation method. 
+##' Proteomics data were acquired using the SCoPE2 protocol on a Thermo 
+##' Scientific Q-Exactive mass spectrometer. The dataset contains quantitative 
+##' information on 421 MCF-10A single cells undergoing epithelial–mesenchymal 
+##' transition (EMT) triggered by TGFβ. The data are available at the PSM, and 
+##' protein levels. The paper investigates the dynamics of correlation modules
+##' at the protein level.
 ##'
 ##' @format A [QFeatures] object with 47 assays, each assay being a
 ##' [SingleCellExperiment] object:
@@ -2389,13 +2390,13 @@
 ##' - `peptides`: peptide data containing quantitative data for 10055
 ##'   peptides and 421 single-cells. 
 ##' - `proteins_imputed`: protein data containing quantitative data for 4096
-##'   proteins and 421 single-cells with imputation. 
+##'   proteins and 421 single-cells with k-nearest neighbors (KNN) imputation. 
 ##' - `proteins_unimputed`: protein data containing quantitative data for 4096
 ##'   proteins and 421 single-cells without imputation.
 ##'   
-##' The `colData(khan2023())` contains cell type annotation and
-##' batch annotation that are common to all assays. The description of
-##' the `rowData` fields for the PSM data can be found in the
+##' The `colData(khan2023())` contains cell type and batch annotations that 
+##' are common to all assays. The description of the `rowData` fields for the 
+##' PSM data can be found in the
 ##' [`MaxQuant` documentation](https://cox-labs.github.io/coxdocs/output_tables.html).
 ##'
 ##' @section Acquisition protocol:
@@ -2426,7 +2427,7 @@
 ##' - `batch.csv`: batch annotation
 ##'
 ##' We combined the sample annotation and the batch annotation in
-##' a single table. We also formated the quantification table so that
+##' a single table. We also formatted the quantification table so that
 ##' columns match with those of the annotation and filter only for
 ##' single-cell runs. Both table are then combined in a single
 ##' [QFeatures] object using the [scp::readSCP] function.
