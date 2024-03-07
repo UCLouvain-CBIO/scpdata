@@ -1,4 +1,3 @@
-
 ####---- EXPERIMENTHUB METADATA TABLE ----####
 
 meta <- list(
@@ -634,3 +633,11 @@ meta <- list(
 meta <- do.call(rbind, meta)
 
 write.csv(meta, "inst/extdata/metadata.csv")
+
+
+
+pkg_source <- file.path("~/dev", "scpdata")
+stopifnot(file.exists(pkg_source))
+
+AnnotationHubData::makeAnnotationHubMetadata(pathToPackage = pkg_source,
+                                             fileName = "metadata.csv")
