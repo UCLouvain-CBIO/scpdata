@@ -1,5 +1,9 @@
 # scpdata 1.11
 
+## scpdata 1.11.2
+
+- khan2023: added dataset.
+
 ## scpdata 1.11.1
 
 - Added contribution vignette.
