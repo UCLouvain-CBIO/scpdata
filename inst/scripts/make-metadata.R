@@ -610,7 +610,7 @@ meta <- list(
       BiocVersion = "3.19",
       Genome = NA_character_,
       SourceType = "TXT",
-      SourceUrl = "ftp://MSV000092872@massive.ucsd.edu/",
+      SourceUrl = "https://drive.google.com/drive/folders/1zCsRKWNQuAz5msxx0DfjDrIe6pUjqQmj",
       SourceVersion = NA_character_,
       Species = "Homo sapiens",
       TaxonomyId = 9606,
