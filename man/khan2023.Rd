@@ -38,13 +38,14 @@ ftp://MSV000092872@massive.ucsd.edu/.
 khan2023
 }
 \description{
-Single-cell samples were prepared using the nPOP sample preparation method.
-Proteomics data were acquired using the SCoPE2 protocol on a Thermo
-Scientific Q-Exactive mass spectrometer. The dataset contains quantitative
-information on 421 MCF-10A single cells undergoing epithelial–mesenchymal
-transition (EMT) triggered by TGFβ. The data are available at the PSM, and
-protein levels. The paper investigates the dynamics of correlation modules
-at the protein level.
+Single-cell samples were prepared using the nPOP sample
+preparation method.  Proteomics data were acquired using the
+SCoPE2 protocol on a Thermo Scientific Q-Exactive mass
+spectrometer. The dataset contains quantitative information on 421
+MCF-10A single cells undergoing epithelial–mesenchymal transition
+(EMT) triggered by TGF beta. The data are available at the PSM,
+and protein levels. The paper investigates the dynamics of
+correlation modules at the protein level.
 }
 \section{Acquisition protocol}{
 
