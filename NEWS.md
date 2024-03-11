@@ -8,6 +8,7 @@
 
 - Added contribution vignette.
 - gregoire2023_mixCTRL: added dataset.
+- khan2023: added dataset.
 
 # scpdata 1.9
 
