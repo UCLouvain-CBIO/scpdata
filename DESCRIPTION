@@ -14,6 +14,10 @@ Authors@R:
       person("Enes", "Ayar",
               email = "enes.ayar@uclouvain.be",
               comment = c(ORCID = "0000-0001-8881-9800"),
+              role = "dtc"),
+      person("Samuel", "Grégoire",
+              email = "samuel.gregoire@uclouvain.be",
+              comment = c(ORCID = "0000-0002-0900-7677"),
               role = "dtc"))
 Description: The package disseminates mass spectrometry (MS)-based
     single-cell proteomics (SCP) datasets. The data were collected
