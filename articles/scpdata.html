@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Single Cell Proteomics data sets • scpdata</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.11.3</span>
       </span>
     </div>
 
@@ -80,7 +80,7 @@ Gatto</h4>
                                     <h4 data-toc-skip class="author">Christophe
 Vanderaa</h4>
                         
-            <h4 data-toc-skip class="date">11 March 2024</h4>
+            <h4 data-toc-skip class="date">13 March 2024</h4>
       
       
       <div class="hidden name"><code>scpdata.Rmd</code></div>
@@ -366,7 +366,7 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] scpdata_1.11.2              ExperimentHub_2.11.1       
+ [1] scpdata_1.11.3              ExperimentHub_2.11.1       
  [3] AnnotationHub_3.11.1        BiocFileCache_2.11.1       
  [5] dbplyr_2.4.0                QFeatures_1.13.2           
  [7] MultiAssayExperiment_1.29.1 SummarizedExperiment_1.33.3
@@ -377,46 +377,46 @@ other attached packages:
 [17] BiocStyle_2.31.0           
 
 loaded via a namespace (and not attached):
- [1] tidyselect_1.2.0            dplyr_1.1.4                
+ [1] tidyselect_1.2.1            dplyr_1.1.4                
  [3] blob_1.2.4                  filelock_1.0.3             
- [5] Biostrings_2.71.2           bitops_1.0-7               
+ [5] Biostrings_2.71.3           bitops_1.0-7               
  [7] SingleCellExperiment_1.25.0 fastmap_1.1.1              
  [9] lazyeval_0.2.2              RCurl_1.98-1.14            
-[11] digest_0.6.34               mime_0.12                  
+[11] digest_0.6.35               mime_0.12                  
 [13] lifecycle_1.0.4             cluster_2.1.6              
 [15] ProtGenerics_1.35.3         KEGGREST_1.43.0            
 [17] RSQLite_2.3.5               magrittr_2.0.3             
 [19] compiler_4.4.0              rlang_1.1.3                
 [21] sass_0.4.8                  tools_4.4.0                
-[23] igraph_2.0.2                utf8_1.2.4                 
+[23] igraph_2.0.3                utf8_1.2.4                 
 [25] yaml_2.3.8                  knitr_1.45                 
-[27] S4Arrays_1.3.6              bit_4.0.5                  
-[29] curl_5.2.1                  DelayedArray_0.29.9        
-[31] abind_1.4-5                 withr_3.0.0                
-[33] purrr_1.0.2                 desc_1.4.3                 
-[35] grid_4.4.0                  fansi_1.0.6                
-[37] MASS_7.3-60.2               cli_3.6.2                  
-[39] rmarkdown_2.26              crayon_1.5.2               
-[41] ragg_1.2.7                  generics_0.1.3             
-[43] httr_1.4.7                  BiocBaseUtils_1.5.1        
-[45] DBI_1.2.2                   cachem_1.0.8               
-[47] zlibbioc_1.49.0             AnnotationDbi_1.65.2       
-[49] AnnotationFilter_1.27.0     BiocManager_1.30.22        
-[51] XVector_0.43.1              vctrs_0.6.5                
-[53] Matrix_1.6-5                jsonlite_1.8.8             
-[55] bookdown_0.38               bit64_4.0.5                
-[57] clue_0.3-65                 systemfonts_1.0.6          
-[59] jquerylib_0.1.4             glue_1.7.0                 
-[61] pkgdown_2.0.7.9000          BiocVersion_3.19.1         
-[63] tibble_3.2.1                pillar_1.9.0               
-[65] rappdirs_0.3.3              htmltools_0.5.7            
-[67] GenomeInfoDbData_1.2.11     R6_2.5.1                   
-[69] textshaping_0.3.7           evaluate_0.23              
-[71] lattice_0.22-5              png_0.1-8                  
-[73] memoise_2.0.1               bslib_0.6.1                
-[75] SparseArray_1.3.4           xfun_0.42                  
-[77] MsCoreUtils_1.15.4          fs_1.6.3                   
-[79] pkgconfig_2.0.3            </code></pre>
+[27] S4Arrays_1.3.6              htmlwidgets_1.6.4          
+[29] bit_4.0.5                   curl_5.2.1                 
+[31] DelayedArray_0.29.9         abind_1.4-5                
+[33] withr_3.0.0                 purrr_1.0.2                
+[35] desc_1.4.3                  grid_4.4.0                 
+[37] fansi_1.0.6                 MASS_7.3-60.2              
+[39] cli_3.6.2                   rmarkdown_2.26             
+[41] crayon_1.5.2                ragg_1.2.7                 
+[43] generics_0.1.3              httr_1.4.7                 
+[45] BiocBaseUtils_1.5.1         DBI_1.2.2                  
+[47] cachem_1.0.8                zlibbioc_1.49.0            
+[49] AnnotationDbi_1.65.2        AnnotationFilter_1.27.0    
+[51] BiocManager_1.30.22         XVector_0.43.1             
+[53] vctrs_0.6.5                 Matrix_1.6-5               
+[55] jsonlite_1.8.8              bookdown_0.38              
+[57] bit64_4.0.5                 clue_0.3-65                
+[59] systemfonts_1.0.6           jquerylib_0.1.4            
+[61] glue_1.7.0                  pkgdown_2.0.7.9000         
+[63] BiocVersion_3.19.1          tibble_3.2.1               
+[65] pillar_1.9.0                rappdirs_0.3.3             
+[67] htmltools_0.5.7             GenomeInfoDbData_1.2.11    
+[69] R6_2.5.1                    textshaping_0.3.7          
+[71] evaluate_0.23               lattice_0.22-5             
+[73] png_0.1-8                   memoise_2.0.1              
+[75] bslib_0.6.1                 SparseArray_1.3.4          
+[77] xfun_0.42                   MsCoreUtils_1.15.4         
+[79] fs_1.6.3                    pkgconfig_2.0.3            </code></pre>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
