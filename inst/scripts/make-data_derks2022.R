@@ -9,6 +9,7 @@ datadir <- "~/PhD/.localdata/SCP/derks2022/"
 
 ## Sample annotations
 
+
 sampleAnnot <- read.delim(paste0(datadir, "Meta_SingleCell_updated_1.tsv"))
 ## Add which dataset each sample is part of
 sampleAnnot$dataset <- sampleAnnot$Instrument
@@ -24,6 +25,8 @@ sampleAnnot$File.Name <- ifelse(sampleAnnot$Instrument == "timsTOFSCP",
 
 ## Bulk data
 
+## cf https://drive.google.com/drive/folders/1yRzuIXnMbt-_8_skOgiVkJksqc20RoLK
+
 # We load the DIA-NN main output table and the MS1 extracted report table.
 # These are read and combined in a `QFeatures`object. 
 extractedDataBulk <- read.delim(paste0(datadir, "qe_bulk/Report.pr_matrix_channels_ms1_extracted.tsv"))
@@ -37,6 +40,8 @@ bulk <- readSCPfromDIANN(colData = sampleAnnot,
 names(bulk)[length(bulk)] <- "bulk_prec_extracted"
 
 ## Load timsTOF-SCP data
+
+## cf https://drive.google.com/drive/folders/1RosRkMdYfhbQ-XtUNKly0TdCrZrUQVmO
 
 # We load the DIA-NN main output table and the MS1 extracted report table.
 # These are read and combined in a `QFeatures`object. 
@@ -52,6 +57,8 @@ tims <- readSCPfromDIANN(colData = sampleAnnot,
 names(tims)[length(tims)] <- "tims_prec_extracted"
 
 ## Load Q-Exactive data
+
+## cf https://drive.google.com/drive/folders/1b_pavZ2sufR3oYBy2z9fVepCRDKXGvyF
 
 # We load the DIA-NN main output table and the MS1 extracted report table.
 # These are read and combined in a `QFeatures`object. 
