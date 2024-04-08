@@ -2,7 +2,8 @@
 
 ## scpdata 1.11.3
 
-- nothing yet
+- leduc2022_pSCoPE: added cellenONE annotations
+- guise2024: added dataset
 
 ## scpdata 1.11.2
 

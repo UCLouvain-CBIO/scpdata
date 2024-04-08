@@ -470,7 +470,7 @@ meta <- list(
         Description = paste0("Single-cell proteomics data ",
                              "of 878 melanoma cells and 877 ",
                              "monocytes (pSCoPE)."),
-        BiocVersion = "3.18",
+        BiocVersion = "3.19",
         Genome = NA_character_,
         SourceType = "TXT",
         SourceUrl = "ftp://massive.ucsd.edu/MSV000089159/",
