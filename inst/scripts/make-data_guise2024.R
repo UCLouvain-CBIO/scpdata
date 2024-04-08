@@ -9,9 +9,9 @@
 
 ## All files were downloaded from the MASSIVE repo MSV000092119
 
-library(SingleCellExperiment)
-library(scp)
-library(tidyverse)
+library("SingleCellExperiment")
+library("scp")
+library("tidyverse")
 dataDir <-"~/Documents/.localData/SCP/guise2024/"
 
 ####---- Load sample annotations ----####
