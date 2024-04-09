@@ -2482,7 +2482,7 @@
 ##'
 ##' @examples
 ##' \donttest{
-##' khan2023(
+##' khan2023()
 ##' }
 ##'
 ##' @keywords datasets
