@@ -2593,7 +2593,7 @@
 ##'
 "guise2024"
 
-####---- petrosius_mouse ----####
+####---- petrosius2023_mES ----####
 
 ##' Petrosius et al, 2023 (Nat. Comm.): Mouse embryonic stem cell (mESC) in 
 ##' different culture conditions
@@ -2618,7 +2618,7 @@
 ##' - `proteins`: protein data containing quantitative data for 4270
 ##'   proteins and 603 single-cells. 
 ##'
-##' Sample annotation is stored in `colData(petrosius_mouse())`.
+##' Sample annotation is stored in `colData(petrosius2023_mES())`.
 ##'
 ##' @section Acquisition protocol:
 ##'
@@ -2652,25 +2652,13 @@
 ##'   rest of the experiments. Higher energy collisional dissociation (HCD) was 
 ##'   used for precursor fragmentation with a normalized collision energy (NCE) 
 ##'   of 33% and MS2 scan AGC target was set to 1000%. 
-##' - **Raw data processing**: Spectronaut 16 and 17 versions were used to 
-##'   process raw data files. DirectDIA analysis was run on pipeline mode using 
-##'   modified BGS factory settings. Specifically, the imputation strategy was 
-##'   set to “None” and Quantity MS level was changed to MS1. Trypsin and Lys-C 
-##'   were selected as digestion enzymes and N-terminal protein acetylation and 
-##'   methionine oxidation were set as variable modifications. 
-##'   Carbamidomethylation of cysteines was set as fixed modification for 
-##'   experiments that used diluted Hela peptides and removed when single-cell 
-##'   runs were searched. The single-cell GPF library runs were added to 
-##'   direct-DIA to supplement the single-cell dataset search. SILAC 
-##'   experiments were processed in Spectronaut 16, with the Pulsar search 
-##'   engine setting altered to accommodate multiplexed samples. Two label 
-##'   channels were enabled and fixed Arg10 and Lys8 modifications were added 
-##'   to the second channel. The in-Silico Generate Missing channel setting was 
-##'   used with the workflow set to “label.
+##' - **Raw data processing**: The mESC raw data files were processed with 
+##'   Spectronaut 17 and protein abundance tables exported and analyzed further 
+##'   with python. 
 ##'
 ##' @section Data collection:
 ##'
-##' The data were provided by the Author and is accessible at the Dataverse 
+##' The data were provided by the Author and is accessible at the [Dataverse]
 ##' (https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
 ##' The folder ('20240205_111248_mESC_SNEcombine_m15-m2i/') contains the 
 ##' following files of interest:
@@ -2679,13 +2667,14 @@
 ##' - `20240205_111251_Peptide Quant (Normal).tsv`: the peptide level data
 ##' - `20240205_111251_PGQuant (Normal).tsv`: the protein level data
 ##'
-##' The metadata downloaded from the https://zenodo.org/records/8146605.
+##' The metadata downloaded from the [Zenodo
+##' repository] (https://zenodo.org/records/8146605).
 ##' 
 ##' - `sample_facs.csv`: the metadata
 ##' 
 ##' We formatted the quantification table so that columns match with the 
 ##' metadata. Then, both tables are then combined in a single
-##' [QFeatures] object using the [scp::readSCP] function.
+##' [QFeatures] object using the [scp::readSCP()] function.
 ##' 
 ##' The peptide data were formated to a [SingleCellExperiment] object and the 
 ##' sample metadata were matched to the column names and stored in the `colData`.
@@ -2700,8 +2689,8 @@
 ##' protein sequence information through an `AssayLink` object.
 ##'
 ##' @source
-##' The peptide and protein data can be downloaded from the Dataverse
-##' https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT
+##' The peptide and protein data can be downloaded from the [Dataverse]
+##' (https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
 ##' The raw data and the quantification data can also be found in the
 ##' MassIVE repository `MSV000092429`:
 ##' ftp://MSV000092429@massive.ucsd.edu/.
@@ -2715,9 +2704,9 @@
 ##'
 ##' @examples
 ##' \donttest{
-##' petrosius_mouse()
+##' petrosius2023_mES()
 ##' }
 ##'
 ##' @keywords datasets
 ##'
-"petrosius_mouse"
+"petrosius2023_mES"

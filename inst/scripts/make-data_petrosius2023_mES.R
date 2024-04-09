@@ -40,7 +40,7 @@ ev %>%
   evproc
 
 ## Create the QFeatures object
-petrosius_mouse <- readSCP(evproc, 
+petrosius2023_mES <- readSCP(evproc, 
                     meta, 
                     channelCol = "Channel", 
                     batchCol = "Set",
@@ -74,10 +74,10 @@ colnames(pep) %>%
   colnames(pep)
 
 ## Include the peptide data in the QFeatures object
-petrosius_mouse <- addAssay(petrosius_mouse, pep, name = "peptides")
+petrosius2023_mES <- addAssay(petrosius2023_mES, pep, name = "peptides")
 
 ## Link the PSMs and the peptides
-petrosius_mouse <- addAssayLink(petrosius_mouse, 
+petrosius2023_mES <- addAssayLink(petrosius2023_mES, 
                            from = 1:603, 
                            to = "peptides",
                            varFrom = rep("EG.PrecursorId", 603),
@@ -112,18 +112,18 @@ colnames(pro) %>%
   colnames(pro)
 
 ## Include the peptide data in the QFeatures object
-petrosius_mouse <- addAssay(petrosius_mouse, pro, name = "proteins")
+petrosius2023_mES <- addAssay(petrosius2023_mES, pro, name = "proteins")
 
 ## Link the PSMs and the peptides
-petrosius_mouse <- addAssayLink(petrosius_mouse, 
+petrosius2023_mES <- addAssayLink(petrosius2023_mES, 
                                 from = "peptides", 
                                 to = "proteins",
                                 varFrom = "PG.ProteinAccessions",
                                 varTo = "PG.ProteinAccessions")
 
 ## Save data
-save(petrosius_mouse,
-     file = file.path(paste0(root, "petrosius_mouse.Rda")),
+save(petrosius2023_mES,
+     file = file.path(paste0(root, "petrosius2023_mES.Rda")),
      compress = "xz",
      compression_level = 9)
 

@@ -658,7 +658,7 @@ meta <- list(
         Notes = NA_character_
     ),
     data.frame(
-      Title = "petrosius_mouse",
+      Title = "petrosius2023_mES",
       Description = paste0("Mouse embryonic stem cells across ground-state (m2i) ",
                            "and differentiation-permissive (m15) culture conditions."),
       BiocVersion = "3.19",
@@ -673,7 +673,7 @@ meta <- list(
       Maintainer = "Enes Sefa Ayar <enes.ayar@uclouvain.be>",
       RDataClass = "QFeatures",
       DispatchClass = "Rda",
-      RDataPath = "scpdata/petrosius_mouse.Rda",
+      RDataPath = "scpdata/petrosius2023_mES.Rda",
       PublicationDate = as.Date("2024/04/09"),
       NumberAssays = 605,
       PreprocessingSoftware = "Spectronaut",
