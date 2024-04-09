@@ -470,7 +470,7 @@ meta <- list(
         Description = paste0("Single-cell proteomics data ",
                              "of 878 melanoma cells and 877 ",
                              "monocytes (pSCoPE)."),
-        BiocVersion = "3.18",
+        BiocVersion = "3.19",
         Genome = NA_character_,
         SourceType = "TXT",
         SourceUrl = "ftp://massive.ucsd.edu/MSV000089159/",
@@ -628,16 +628,36 @@ meta <- list(
       ProteinsAvailable = TRUE,
       ContainsSingleCells = TRUE,
       Notes = NA_character_
+    ),
+    data.frame(
+        Title = "guise2024",
+        Description = paste0("Single-cell proteomics data ",
+                             "of 108 postmortem CTL or ALS spinal ",
+                             "moto neurons"),
+        BiocVersion = "3.19",
+        Genome = NA_character_,
+        SourceType = "TXT",
+        SourceUrl = "ftp://massive.ucsd.edu/v05/MSV000092119/",
+        SourceVersion = NA_character_,
+        Species = "Homo sapiens",
+        TaxonomyId = 9606,
+        Coordinate_1_based = TRUE,
+        DataProvider = "MassIVE",
+        Maintainer = "Christophe Vanderaa <christophe.vanderaa@uclouvain.be>",
+        RDataClass = "QFeatures",
+        DispatchClass = "Rda",
+        RDataPath = "scpdata/guise2024.rda",
+        PublicationDate = as.Date("2024/01/05"),
+        NumberAssays = 47,
+        PreprocessingSoftware = "Proteome Discoverer",
+        LabelingProtocol = "LFQ",
+        PsmsAvailable = TRUE,
+        PeptidesAvailable = TRUE,
+        ProteinsAvailable = TRUE,
+        ContainsSingleCells = TRUE,
+        Notes = NA_character_
     )
 )
 meta <- do.call(rbind, meta)
 
 write.csv(meta, "inst/extdata/metadata.csv")
-
-
-
-pkg_source <- file.path("~/dev", "scpdata")
-stopifnot(file.exists(pkg_source))
-
-AnnotationHubData::makeAnnotationHubMetadata(pathToPackage = pkg_source,
-                                             fileName = "metadata.csv")

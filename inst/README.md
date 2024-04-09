@@ -14,7 +14,8 @@
 6. Contact Bioc team and upload Rda to Microsoft Azure: 
    hubs@bioconductor.org
    Then upload the files using the provided link:
-   `azcopy copy --recursive scpdata/ '<sas-url>'`
+   `azcopy copy --recursive scpdata/
+   'https://bioconductorhubs.blob.core.windows.net/staginghub?<sas-url>'`
    or more easily, use the R script. See the 
    [help page](https://bioconductor.org/packages/devel/bioc/vignettes/HubPub/inst/doc/CreateAHubPackage.html#uploading-data-to-microsoft-azure-genomic-data-lake)
    for more information

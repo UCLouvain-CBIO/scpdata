@@ -3,7 +3,7 @@
 \docType{data}
 \name{liang2020_hela}
 \alias{liang2020_hela}
-\title{Liang et al. 2020 ( (Anal. Chem.)): HeLa cells (MaxQuant preprocessing)}
+\title{Liang et al. 2020 (Anal. Chem.): HeLa cells (MaxQuant preprocessing)}
 \format{
 A \link{QFeatures} object with 17 assays, each assay being a
 \link{SingleCellExperiment} object:
@@ -15,7 +15,7 @@ A \link{QFeatures} object with 17 assays, each assay being a
 samples (all runs combined).
 }
 
-Sample annotation is stored in \code{colData(liang2020_hela_MQ())}.
+Sample annotation is stored in \code{colData(liang2020_hela())}.
 }
 \source{
 The PSM data can be downloaded from the PRIDE repository
