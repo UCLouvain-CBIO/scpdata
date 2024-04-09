@@ -1,5 +1,9 @@
 # scpdata 1.11
 
+## scpdata 1.11.4
+
+(nothing yet)
+
 ## scpdata 1.11.3
 
 - leduc2022_pSCoPE: added cellenONE annotations
