@@ -656,6 +656,33 @@ meta <- list(
         ProteinsAvailable = TRUE,
         ContainsSingleCells = TRUE,
         Notes = NA_character_
+    ),
+    data.frame(
+      Title = "petrosius_mouse",
+      Description = paste0("Mouse embryonic stem cells across ground-state (m2i) ",
+                           "and differentiation-permissive (m15) culture conditions."),
+      BiocVersion = "3.19",
+      Genome = NA_character_,
+      SourceType = "TXT",
+      SourceUrl = "https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT",
+      SourceVersion = NA_character_,
+      Species = "Homo sapiens",
+      TaxonomyId = 9606,
+      Coordinate_1_based = TRUE,
+      DataProvider = "Dataverse",
+      Maintainer = "Enes Sefa Ayar <enes.ayar@uclouvain.be>",
+      RDataClass = "QFeatures",
+      DispatchClass = "Rda",
+      RDataPath = "scpdata/petrosius_mouse.Rda",
+      PublicationDate = as.Date("2024/04/09"),
+      NumberAssays = 605,
+      PreprocessingSoftware = "Spectronaut",
+      LabelingProtocol = "LFQ",
+      PsmsAvailable = TRUE,
+      PeptidesAvailable = TRUE,
+      ProteinsAvailable = TRUE,
+      ContainsSingleCells = TRUE,
+      Notes = NA_character_
     )
 )
 meta <- do.call(rbind, meta)
