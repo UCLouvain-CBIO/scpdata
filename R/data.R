@@ -62,14 +62,14 @@
 ##' - `batch_fp60-97.csv`: batch annotation
 ##'
 ##' We combined the sample annotation and the batch annotation in
-##' a single table. We also formated the quantification table so that
+##' a single table. We also formatted the quantification table so that
 ##' columns match with those of the annotation and filter only for
 ##' single-cell runs. Both table are then combined in a single
-##' [QFeatures] object using the [scp::readSCP] function.
+##' [QFeatures] object using the [scp::readSCP()] function.
 ##'
 ##' The peptide data were taken from the Slavov lab directly
 ##' (`Peptides-raw.csv`). It is provided as a spreadsheet. The data
-##' were formated to a [SingleCellExperiment] object and the sample
+##' were formatted to a [SingleCellExperiment] object and the sample
 ##' metadata were matched to the column names (mapping is retrieved
 ##' after running the SCoPE2 R script) and stored in the `colData`.
 ##' The object is then added to the [QFeatures] object (containing the
@@ -77,7 +77,7 @@
 ##' rows of the PSM data based on the peptide sequence information
 ##' through an `AssayLink` object.
 ##'
-##' The protein data (`Proteins-processed.csv`) is formated similarly
+##' The protein data (`Proteins-processed.csv`) is formatted similarly
 ##' to the peptide data, and the rows of the proteins were mapped onto
 ##' the rows of the peptide data based on the protein sequence
 ##' information.
@@ -168,14 +168,14 @@
 ##' - `batch_fp60-97.csv`: batch annotation
 ##'
 ##' We combined the sample annotation and the batch annotation in
-##' a single table. We also formated the quantification table so that
+##' a single table. We also formatted the quantification table so that
 ##' columns match with those of the annotation and filter only for
 ##' single-cell runs. Both table are then combined in a single
-##' [QFeatures] object using the [scp::readSCP] function.
+##' [QFeatures] object using the [scp::readSCP()] function.
 ##'
 ##' The peptide data were taken from the Slavov lab directly
 ##' (`Peptides-raw.csv`). It is provided as a spreadsheet. The data
-##' were formated to a [SingleCellExperiment] object and the sample
+##' were formatted to a [SingleCellExperiment] object and the sample
 ##' metadata were matched to the column names (mapping is retrieved
 ##' after running the SCoPE2 R script) and stored in the `colData`.
 ##' The object is then added to the [QFeatures] object (containing the
@@ -183,7 +183,7 @@
 ##' rows of the PSM data based on the peptide sequence information
 ##' through an `AssayLink` object.
 ##'
-##' The protein data (`Proteins-processed.csv`) is formated similarly
+##' The protein data (`Proteins-processed.csv`) is formatted similarly
 ##' to the peptide data, and the rows of the proteins were mapped onto
 ##' the rows of the peptide data based on the protein sequence
 ##' information.
@@ -292,7 +292,7 @@
 ##' peptide or protein group are are separated by a `;`. The sample
 ##' annotation table was manually created based on the available
 ##' information provided in the article. The data were then converted
-##' to a [QFeatures] object using the [scp::readSCP] function.
+##' to a [QFeatures] object using the [scp::readSCP()] function.
 ##'
 ##' We generated the peptide data. First, we removed PSM matched to
 ##' contaminants or decoy peptides and ensured a 1% FDR. We aggregated
@@ -419,7 +419,7 @@
 ##' peptide or protein group are are separated by a `;`. The sample
 ##' annotation table was manually created based on the available
 ##' information provided in the article. The data were then converted
-##' to a [QFeatures] object using the [scp::readSCP] function.
+##' to a [QFeatures] object using the [scp::readSCP()] function.
 ##'
 ##' We generated the peptide data. First, we removed PSM matched to
 ##' contaminants or decoy peptides and ensured a 1% FDR. We aggregated
@@ -548,7 +548,7 @@
 ##' peptide or protein group are are separated by a `;`. The sample
 ##' annotation table was manually created based on the available
 ##' information provided in the article. The data were then converted
-##' to a [QFeatures] object using the [scp::readSCP] function.
+##' to a [QFeatures] object using the [scp::readSCP()] function.
 ##'
 ##' We generated the peptide data. First, we removed PSM matched to
 ##' contaminants or decoy peptides and ensured a 1% FDR. We aggregated
@@ -1019,7 +1019,7 @@
 ##' `evidence.txt` file containing the PSM identification and
 ##' quantification results. The sample annotation was inferred from
 ##' the samples names. The data were then converted to a [QFeatures]
-##' object using the [scp::readSCP] function.
+##' object using the [scp::readSCP()] function.
 ##'
 ##' The peptide data were processed similarly from the `peptides.txt`
 ##' file. The quantitative column names were adpated to match the PSM
@@ -1123,7 +1123,7 @@
 ##' The PSM data were found in the `evidence.txt` (in the
 ##' `Experiment 1+ 2`) folder. The PSM data were filtered so that it
 ##' contains only samples that are annotated. The data were then
-##' converted to a [QFeatures] object using the [scp::readSCP]
+##' converted to a [QFeatures] object using the [scp::readSCP()]
 ##' function.
 ##'
 ##' The peptide data were found in the `peptides.txt` file. The column
@@ -1227,7 +1227,7 @@
 ##' from table S3 in the paper.
 ##'
 ##' The PSM data were found in the `evidence.txt` file. The data were
-##' converted to a [QFeatures] object using the [scp::readSCP]
+##' converted to a [QFeatures] object using the [scp::readSCP()]
 ##' function.
 ##'
 ##' The peptide data were found in the `peptides.txt` file. The column
@@ -1344,7 +1344,7 @@
 ##' The PSM data were found in the `bulk_PSMs.txt` file. Contaminants
 ##' were defined based on the protein accessions listed in
 ##' `contaminant.txt`. The data were converted to a [QFeatures]
-##'  object using the [scp::readSCP] function.
+##'  object using the [scp::readSCP()] function.
 ##'
 ##' The protein data were found in the `bulk_Proteins.txt` file.
 ##' Contaminants were defined based on the protein accessions listed
@@ -1707,12 +1707,12 @@
 ##'   `proteins_processed` data
 ##'
 ##' We combined the sample annotation and the batch annotation in
-##' a single table. We also formated the quantification table so that
+##' a single table. We also formatted the quantification table so that
 ##' columns match with those of the annotations. Both annotation and
 ##' quantification tables are then combined in a single [QFeatures]
-##' object using the [scp::readSCP] function.
+##' object using the [scp::readSCP()] function.
 ##'
-##' The 4 CSV files were loaded and formated as [SingleCellExperiment]
+##' The 4 CSV files were loaded and formatted as [SingleCellExperiment]
 ##' objects and the sample metadata were matched to the column names
 ##' (mapping is retrieved after running the author's original R script)
 ##' and stored in the `colData`.
@@ -1824,13 +1824,13 @@
 ##'   containing the `protein` data
 ##'
 ##' We removed the failed runs as identified by the authors. We also
-##' formated the annotation and precuror quantification tables to
+##' formatted the annotation and precuror quantification tables to
 ##' facilitate matching between corresponding columns. Both annotation
 ##' and quantification tables are then combined in a single [QFeatures]
 ##' object using `scp::readSCPfromDIANN()`.
 ##'
 ##' The `plexDIA_peptide.csv` and `plexDIA_protein_imputed.csv` files
-##' were loaded and formated as [SingleCellExperiment] objects. The
+##' were loaded and formatted as [SingleCellExperiment] objects. The
 ##' columns names were adapted to match those in the `QFeatures`
 ##' object. The `SingleCellExperiment` objects were then added to the
 ##' [QFeatures] object and the rows of the peptide data are linked to
@@ -2343,7 +2343,7 @@
 ##' combined `cbio` and `giga` tables together and merged resulting
 ##' identification and quantification tables. Both annotation and
 ##' features tables are then combined in a single [QFeatures] object
-##' using the [scp::readSCP] function.
+##' using the [scp::readSCP()] function.
 ##'
 ##' The [QFeatures] object was processed as described in the author's
 ##' manuscript (see `source`). Note that the imputed assays were used
@@ -2441,11 +2441,11 @@
 ##' a single table. We also formatted the quantification table so that
 ##' columns match with those of the annotation and filter only for
 ##' single-cell runs. Both table are then combined in a single
-##' [QFeatures] object using the [scp::readSCP] function.
+##' [QFeatures] object using the [scp::readSCP()] function.
 ##'
 ##' The peptide data were taken from the same google drive folder
 ##' (`EpiToMesen.TGFB.nPoP_trial1_pepByCellMatrix_NSThreshDART_medIntCrNorm.txt`).
-##' The data were formated to a [SingleCellExperiment] object and the sample
+##' The data were formatted to a [SingleCellExperiment] object and the sample
 ##' metadata were matched to the column names (mapping is retrieved
 ##' after running the SCoPE2 R script, `EMTTGFB_singleCellProcessing.R`) and
 ##' stored in the `colData`. The object is then added to the [QFeatures] object
@@ -2454,7 +2454,7 @@
 ##'
 ##' The imputed protein data were taken from the same google drive folder
 ##' (`EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_imputedNotBC.csv`).
-##' The data were formated to a [SingleCellExperiment] object and the sample
+##' The data were formatted to a [SingleCellExperiment] object and the sample
 ##' metadata were matched to the column names (mapping is retrieved
 ##' after running the SCoPE2 R script, `EMTTGFB_singleCellProcessing.R`) and
 ##' stored in the `colData`. The object is then added to the [QFeatures] object
@@ -2463,7 +2463,7 @@
 ##'
 ##' The unimputed protein data were taken from the same google drive folder
 ##' (`EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_unimputed.csv`).
-##' The data were formated and added exactly as imputed data.
+##' The data were formatted and added exactly as imputed data.
 ##'
 ##' @source
 ##' The data were downloaded from the
@@ -2551,7 +2551,7 @@
 ##'
 ##' The PSM data were found in the
 ##' `Biogen_TDP43_Round2_Reanalysis_10-13-2021_PSMs.txt` file. The
-##' data were converted to a [QFeatures] object using the [scp::readSCP]
+##' data were converted to a [QFeatures] object using the [scp::readSCP()]
 ##' function. We could not find sample annotations for MS run ID:
 ##' F61, F34, F42, F88, F77, F8, F21, F5.
 ##'
