@@ -2711,7 +2711,7 @@
 ##'
 "petrosius2023_mES"
 
-####---- petrosius2023_AML ----####
+####---- petrosius2023_AstralAML ----####
 
 ##' Petrosius et al. 2023 (bioRxiv): AML hierarchy on Astral.
 ##'
@@ -2734,7 +2734,7 @@
 ##' - `proteins`: Protein data from the Spectronaut PGQuant file with
 ##'   LFQ quantities from the PG.Quantity column.
 ##'
-##' The `colData(petrosius2023_AML())` contains cell type annotation, batch
+##' The `colData(petrosius2023_AstralAML())` contains cell type annotation, batch
 ##' annotation and FACS data. The description of the `rowData` fields
 ##' can be found in the [`Spectronaut` user manual](https://biognosys.com/content/uploads/2023/03/Spectronaut-17_UserManual.pdf).
 ##'
@@ -2826,9 +2826,9 @@
 ##'
 ##' @examples
 ##' \donttest{
-##' petrosius2023_AML()
+##' petrosius2023_AstralAML()
 ##' }
 ##'
 ##' @keywords datasets
 ##'
-"petrosius2023_AML"
+"petrosius2023_AstralAML"
