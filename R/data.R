@@ -2667,7 +2667,7 @@
 ##' - `20240205_111251_Peptide Quant (Normal).tsv`: the peptide level data
 ##' - `20240205_111251_PGQuant (Normal).tsv`: the protein level data
 ##'
-##' The metadata downloaded from the [Zenodo
+##' The metadata were downloaded from the [Zenodo
 ##' repository] (https://zenodo.org/records/8146605).
 ##' 
 ##' - `sample_facs.csv`: the metadata
