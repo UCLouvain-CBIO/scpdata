@@ -2673,7 +2673,7 @@
 ##' - `msRuns_overview.csv`: Sample annotations.
 ##'
 ##' We added the FACS data to the sample annotations in a single table.
-##' Both annotation and PSM features tables are then combined in a
+##' Both annotations and PSM features tables are then combined in a
 ##' single [QFeatures] object using the [scp::readSCP()] function.
 ##'
 ##' The peptide data were obtained by aggregation of the PSM data to
