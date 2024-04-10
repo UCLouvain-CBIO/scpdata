@@ -686,6 +686,15 @@ meta <- list(
       Notes = NA_character_
     )
 )
-meta <- do.call(rbind, meta)
 
-write.csv(meta, "inst/extdata/metadata.csv")
+
+metadata <- do.call(rbind, meta)
+
+write.csv(metadata,
+          file = here::here("inst", "extdata", "metadata.csv"),
+          row.names = FALSE)
+
+stopifnot(file.exists(pkg_source <- here()))
+
+AnnotationHubData::makeAnnotationHubMetadata(pathToPackage = pkg_source,
+                                             fileName = "metadata.csv")
