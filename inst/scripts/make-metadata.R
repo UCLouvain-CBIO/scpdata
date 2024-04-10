@@ -685,7 +685,7 @@ meta <- list(
         Notes = NA_character_
     ),
     data.frame(
-        Title = "petrosius2023_AML",
+        Title = "petrosius2023_AstralAML",
         Description = paste0("Single-cell proteomics data ",
                              "of 4 cell types from the OCI-AML8227 ",
                              "model."),
@@ -701,7 +701,7 @@ meta <- list(
         Maintainer = "Samuel Gregoire <samuel.gregoire@uclouvain.be>",
         RDataClass = "QFeatures",
         DispatchClass = "Rda",
-        RDataPath = "scpdata/petrosius2023.Rda",
+        RDataPath = "scpdata/petrosius2023_AstralAML.Rda",
         PublicationDate = as.Date("2023/06/08"),
         NumberAssays = 217,
         PreprocessingSoftware = "Spectronaut",
