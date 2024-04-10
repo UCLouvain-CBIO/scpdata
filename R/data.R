@@ -2610,7 +2610,7 @@
 ##' @format A [QFeatures] object with 605 assays, each assay being a
 ##' [SingleCellExperiment] object:
 ##'
-##' - Assay 1-603: PSM data acquired with a orbitrap-based data-independent 
+##' - Assay 1-603: PSM data acquired with an orbitrap-based data-independent 
 ##'   acquisition (DIA) protocol, hence those assays contain single column 
 ##'   that contains the quantitative information.
 ##' - `peptides`: peptide data containing quantitative data for 9884
