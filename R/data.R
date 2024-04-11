@@ -2658,10 +2658,10 @@
 ##'
 ##' @section Data collection:
 ##'
-##' The data were provided by the Author and is accessible at the [Dataverse]
-##' (https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
-##' The folder ('20240205_111248_mESC_SNEcombine_m15-m2i/') contains the
-##' following files of interest:
+##' The data were provided by the Author and is accessible at the
+##' [Dataverse](https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
+##' The folder ('20240205_111248_mESC_SNEcombine_m15-m2i/') contains
+##' the following files of interest:
 ##'
 ##' - `20240205_111251_PEPQuant (Normal).tsv`: the PSM level data
 ##' - `20240205_111251_Peptide Quant (Normal).tsv`: the peptide level data
@@ -2687,12 +2687,11 @@
 ##' of the peptide data are linked to the rows of the protein data based on the
 ##' protein sequence information through an `AssayLink` object.
 ##'
-##' @source
-##' The peptide and protein data can be downloaded from the [Dataverse]
-##' (https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
-##' The raw data and the quantification data can also be found in the
-##' MassIVE repository `MSV000092429`:
-##' ftp://MSV000092429@massive.ucsd.edu/.
+##' @source The peptide and protein data can be downloaded from the
+##'     [Dataverse](https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
+##'     The raw data and the quantification data can also be found in
+##'     the MassIVE repository `MSV000092429`:
+##'     ftp://MSV000092429@massive.ucsd.edu/.
 ##'
 ##' @references
 ##' **Source article**: Petrosius, V., Aragon-Fernandez, P., Üresin, N. et al.
@@ -2779,10 +2778,10 @@
 ##'
 ##' @section Data collection:
 ##'
-##' The data were provided by the authors and is accessible at the [Dataverse]
-##' (https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
-##' The dataset ('Astral AML single-cell data from Petrosius et al. 2023 preprint')
-##' contains the following files of interest:
+##' The data were provided by the authors and is accessible at the
+##' [Dataverse](https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
+##' The dataset ('Astral AML single-cell data from Petrosius et
+##' al. 2023 preprint') contains the following files of interest:
 ##'
 ##' - `20240201_130747_PEPQuant (Normal).tsv`: the PSM level data
 ##' - `20240201_130747_PGQuant (Normal).tsv`: the protein level data
@@ -2808,19 +2807,20 @@
 ##' has therefore not been normalized, log-transformed or
 ##' batch-corrected.
 ##'
-##' @source
-##' The PSM data, protein data and sample annotations can be downloaded
-##' from the dataset 'Astral AML single-cell data from Petrosius et al. 2023 preprint'
-##' in the [Dataverse](https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT).
+##' @source The PSM data, protein data and sample annotations can be
+##'     downloaded from the dataset 'Astral AML single-cell data from
+##'     Petrosius et al. 2023 preprint' in the
+##'     [Dataverse](https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT).
 ##'
 ##' @references
+##'
 ##' Valdemaras Petrosius, Pedro Aragon-Fernandez, Tabiwang N. Arrey,
 ##' Nil Üresin, Benjamin Furtwängler, Hamish Stewart, Eduard Denisov,
-##' Johannes Petzoldt, Amelia C. Peterson, Christian Hock, Eugen Damoc,
-##' Alexander Makarov, Vlad Zabrouskov, Bo T. Porse and Erwin M. Schoof.
-##' 2023. "Evaluating the capabilities of the Astral mass analyzer for
-##' single-cell proteomics." biorxiv.
-##' https://doi.org/10.1101/2023.06.06.543943
+##' Johannes Petzoldt, Amelia C. Peterson, Christian Hock, Eugen
+##' Damoc, Alexander Makarov, Vlad Zabrouskov, Bo T. Porse and Erwin
+##' M. Schoof.
+##' 2023. "Evaluating the capabilities of the Astral mass analyzer for single-cell proteomics."
+##' biorxiv.  https://doi.org/10.1101/2023.06.06.543943
 ##' DOI:[10.1101/2023.06.06.543943](https://doi.org/10.1101/2023.06.06.543943)
 ##'
 ##' @examples

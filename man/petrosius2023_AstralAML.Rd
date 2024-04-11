@@ -22,9 +22,10 @@ annotation and FACS data. The description of the \code{rowData} fields
 can be found in the \href{https://biognosys.com/content/uploads/2023/03/Spectronaut-17_UserManual.pdf}{\code{Spectronaut} user manual}.
 }
 \source{
-The PSM data, protein data and sample annotations can be downloaded
-from the dataset 'Astral AML single-cell data from Petrosius et al. 2023 preprint'
-in the \href{https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT}{Dataverse}.
+The PSM data, protein data and sample annotations can be
+downloaded from the dataset 'Astral AML single-cell data from
+Petrosius et al. 2023 preprint' in the
+\href{https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT}{Dataverse}.
 }
 \usage{
 petrosius2023_AstralAML
@@ -84,10 +85,10 @@ to MS1 and the quantity type set to area under the curve.
 \section{Data collection}{
 
 
-The data were provided by the authors and is accessible at the \link{Dataverse}
-(https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
-The dataset ('Astral AML single-cell data from Petrosius et al. 2023 preprint')
-contains the following files of interest:
+The data were provided by the authors and is accessible at the
+\href{https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT}{Dataverse}
+The dataset ('Astral AML single-cell data from Petrosius et
+al. 2023 preprint') contains the following files of interest:
 \itemize{
 \item \verb{20240201_130747_PEPQuant (Normal).tsv}: the PSM level data
 \item \verb{20240201_130747_PGQuant (Normal).tsv}: the protein level data
@@ -124,11 +125,11 @@ petrosius2023_AstralAML()
 \references{
 Valdemaras Petrosius, Pedro Aragon-Fernandez, Tabiwang N. Arrey,
 Nil Üresin, Benjamin Furtwängler, Hamish Stewart, Eduard Denisov,
-Johannes Petzoldt, Amelia C. Peterson, Christian Hock, Eugen Damoc,
-Alexander Makarov, Vlad Zabrouskov, Bo T. Porse and Erwin M. Schoof.
-2023. "Evaluating the capabilities of the Astral mass analyzer for
-single-cell proteomics." biorxiv.
-https://doi.org/10.1101/2023.06.06.543943
+Johannes Petzoldt, Amelia C. Peterson, Christian Hock, Eugen
+Damoc, Alexander Makarov, Vlad Zabrouskov, Bo T. Porse and Erwin
+M. Schoof.
+2023. "Evaluating the capabilities of the Astral mass analyzer for single-cell proteomics."
+biorxiv.  https://doi.org/10.1101/2023.06.06.543943
 DOI:\href{https://doi.org/10.1101/2023.06.06.543943}{10.1101/2023.06.06.543943}
 }
 \keyword{datasets}

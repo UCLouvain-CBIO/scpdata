@@ -21,10 +21,10 @@ proteins and 603 single-cells.
 Sample annotation is stored in \code{colData(petrosius2023_mES())}.
 }
 \source{
-The peptide and protein data can be downloaded from the \link{Dataverse}
-(https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
-The raw data and the quantification data can also be found in the
-MassIVE repository \code{MSV000092429}:
+The peptide and protein data can be downloaded from the
+\href{https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT}{Dataverse}
+The raw data and the quantification data can also be found in
+the MassIVE repository \code{MSV000092429}:
 ftp://MSV000092429@massive.ucsd.edu/.
 }
 \usage{
@@ -81,10 +81,10 @@ with python.
 \section{Data collection}{
 
 
-The data were provided by the Author and is accessible at the \link{Dataverse}
-(https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT)
-The folder ('20240205_111248_mESC_SNEcombine_m15-m2i/') contains the
-following files of interest:
+The data were provided by the Author and is accessible at the
+\href{https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT}{Dataverse}
+The folder ('20240205_111248_mESC_SNEcombine_m15-m2i/') contains
+the following files of interest:
 \itemize{
 \item \verb{20240205_111251_PEPQuant (Normal).tsv}: the PSM level data
 \item \verb{20240205_111251_Peptide Quant (Normal).tsv}: the peptide level data
