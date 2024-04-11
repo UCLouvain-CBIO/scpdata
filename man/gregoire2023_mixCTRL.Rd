@@ -96,7 +96,7 @@ We combined the sample annotations in a single table. We also
 combined \code{cbio} and \code{giga} tables together and merged resulting
 identification and quantification tables. Both annotation and
 features tables are then combined in a single \link{QFeatures} object
-using the \link[scp:readSCP]{scp::readSCP} function.
+using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
 The \link{QFeatures} object was processed as described in the author's
 manuscript (see \code{source}). Note that the imputed assays were used

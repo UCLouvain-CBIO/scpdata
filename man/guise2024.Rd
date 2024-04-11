@@ -75,7 +75,7 @@ The sample annotations were combined from the tables in
 
 The PSM data were found in the
 \verb{Biogen_TDP43_Round2_Reanalysis_10-13-2021_PSMs.txt} file. The
-data were converted to a \link{QFeatures} object using the \link[scp:readSCP]{scp::readSCP}
+data were converted to a \link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}}
 function. We could not find sample annotations for MS run ID:
 F61, F34, F42, F88, F77, F8, F21, F5.
 

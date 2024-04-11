@@ -81,14 +81,14 @@ The folder contains the following files of interest:
 }
 
 We combined the sample annotation and the batch annotation in
-a single table. We also formated the quantification table so that
+a single table. We also formatted the quantification table so that
 columns match with those of the annotation and filter only for
 single-cell runs. Both table are then combined in a single
-\link{QFeatures} object using the \link[scp:readSCP]{scp::readSCP} function.
+\link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
 The peptide data were taken from the Slavov lab directly
 (\code{Peptides-raw.csv}). It is provided as a spreadsheet. The data
-were formated to a \link{SingleCellExperiment} object and the sample
+were formatted to a \link{SingleCellExperiment} object and the sample
 metadata were matched to the column names (mapping is retrieved
 after running the SCoPE2 R script) and stored in the \code{colData}.
 The object is then added to the \link{QFeatures} object (containing the
@@ -96,7 +96,7 @@ PSM assays) and the rows of the peptide data are linked to the
 rows of the PSM data based on the peptide sequence information
 through an \code{AssayLink} object.
 
-The protein data (\code{Proteins-processed.csv}) is formated similarly
+The protein data (\code{Proteins-processed.csv}) is formatted similarly
 to the peptide data, and the rows of the proteins were mapped onto
 the rows of the peptide data based on the protein sequence
 information.

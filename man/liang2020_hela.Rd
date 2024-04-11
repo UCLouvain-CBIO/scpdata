@@ -77,7 +77,7 @@ The sample annotations were collected from the methods section and
 from table S3 in the paper.
 
 The PSM data were found in the \code{evidence.txt} file. The data were
-converted to a \link{QFeatures} object using the \link[scp:readSCP]{scp::readSCP}
+converted to a \link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}}
 function.
 
 The peptide data were found in the \code{peptides.txt} file. The column

@@ -94,13 +94,13 @@ containing the \code{protein} data
 }
 
 We removed the failed runs as identified by the authors. We also
-formated the annotation and precuror quantification tables to
+formatted the annotation and precuror quantification tables to
 facilitate matching between corresponding columns. Both annotation
 and quantification tables are then combined in a single \link{QFeatures}
 object using \code{scp::readSCPfromDIANN()}.
 
 The \code{plexDIA_peptide.csv} and \code{plexDIA_protein_imputed.csv} files
-were loaded and formated as \link{SingleCellExperiment} objects. The
+were loaded and formatted as \link{SingleCellExperiment} objects. The
 columns names were adapted to match those in the \code{QFeatures}
 object. The \code{SingleCellExperiment} objects were then added to the
 \link{QFeatures} object and the rows of the peptide data are linked to

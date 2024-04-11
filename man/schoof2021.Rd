@@ -90,7 +90,7 @@ available from different files into a single table available using
 The PSM data were found in the \code{bulk_PSMs.txt} file. Contaminants
 were defined based on the protein accessions listed in
 \code{contaminant.txt}. The data were converted to a \link{QFeatures}
-object using the \link[scp:readSCP]{scp::readSCP} function.
+object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
 The protein data were found in the \code{bulk_Proteins.txt} file.
 Contaminants were defined based on the protein accessions listed

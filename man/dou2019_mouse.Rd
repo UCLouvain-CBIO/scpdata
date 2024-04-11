@@ -95,7 +95,7 @@ protein groups. Feature annotations that are not common within a
 peptide or protein group are are separated by a \verb{;}. The sample
 annotation table was manually created based on the available
 information provided in the article. The data were then converted
-to a \link{QFeatures} object using the \link[scp:readSCP]{scp::readSCP} function.
+to a \link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
 We generated the peptide data. First, we removed PSM matched to
 contaminants or decoy peptides and ensured a 1\% FDR. We aggregated

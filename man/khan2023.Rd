@@ -83,11 +83,11 @@ We combined the sample annotation and the batch annotation in
 a single table. We also formatted the quantification table so that
 columns match with those of the annotation and filter only for
 single-cell runs. Both table are then combined in a single
-\link{QFeatures} object using the \link[scp:readSCP]{scp::readSCP} function.
+\link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
 The peptide data were taken from the same google drive folder
 (\code{EpiToMesen.TGFB.nPoP_trial1_pepByCellMatrix_NSThreshDART_medIntCrNorm.txt}).
-The data were formated to a \link{SingleCellExperiment} object and the sample
+The data were formatted to a \link{SingleCellExperiment} object and the sample
 metadata were matched to the column names (mapping is retrieved
 after running the SCoPE2 R script, \code{EMTTGFB_singleCellProcessing.R}) and
 stored in the \code{colData}. The object is then added to the \link{QFeatures} object
@@ -96,7 +96,7 @@ based on the peptide sequence information through an \code{AssayLink} object.
 
 The imputed protein data were taken from the same google drive folder
 (\code{EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_imputedNotBC.csv}).
-The data were formated to a \link{SingleCellExperiment} object and the sample
+The data were formatted to a \link{SingleCellExperiment} object and the sample
 metadata were matched to the column names (mapping is retrieved
 after running the SCoPE2 R script, \code{EMTTGFB_singleCellProcessing.R}) and
 stored in the \code{colData}. The object is then added to the \link{QFeatures} object
@@ -105,7 +105,7 @@ based on the protein sequence information through an \code{AssayLink} object.
 
 The unimputed protein data were taken from the same google drive folder
 (\code{EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_unimputed.csv}).
-The data were formated and added exactly as imputed data.
+The data were formatted and added exactly as imputed data.
 }
 
 \examples{

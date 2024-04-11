@@ -70,7 +70,7 @@ repository (accession ID: PXD016921).  We downloaded the
 \code{evidence.txt} file containing the PSM identification and
 quantification results. The sample annotation was inferred from
 the samples names. The data were then converted to a \link{QFeatures}
-object using the \link[scp:readSCP]{scp::readSCP} function.
+object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
 The peptide data were processed similarly from the \code{peptides.txt}
 file. The quantitative column names were adpated to match the PSM

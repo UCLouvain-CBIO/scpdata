@@ -81,7 +81,7 @@ of the annotation table available on the PRIDE repository.
 The PSM data were found in the \code{evidence.txt} (in the
 \verb{Experiment 1+ 2}) folder. The PSM data were filtered so that it
 contains only samples that are annotated. The data were then
-converted to a \link{QFeatures} object using the \link[scp:readSCP]{scp::readSCP}
+converted to a \link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}}
 function.
 
 The peptide data were found in the \code{peptides.txt} file. The column

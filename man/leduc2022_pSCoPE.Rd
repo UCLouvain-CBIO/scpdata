@@ -106,12 +106,12 @@ data
 }
 
 We combined the sample annotation and the batch annotation in
-a single table. We also formated the quantification table so that
+a single table. We also formatted the quantification table so that
 columns match with those of the annotations. Both annotation and
 quantification tables are then combined in a single \link{QFeatures}
-object using the \link[scp:readSCP]{scp::readSCP} function.
+object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
-The 4 CSV files were loaded and formated as \link{SingleCellExperiment}
+The 4 CSV files were loaded and formatted as \link{SingleCellExperiment}
 objects and the sample metadata were matched to the column names
 (mapping is retrieved after running the author's original R script)
 and stored in the \code{colData}.
