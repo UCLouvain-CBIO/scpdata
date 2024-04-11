@@ -17,9 +17,9 @@ library(tidyverse)
 ## '20240205_111251_PEPQuant (Normal).tsv' = contains the PSM data.
 ## 'sample_facs.csv' = contains the cell annotations.
 
-root <- "~/localdata/SCP/petrosiusmESC/20240205_111248_mESC_SNEcombine_m15-m2i/"
-ev <- read.delim(paste0(root, "20240205_111251_PEPQuant (Normal).tsv"))
-design <- read.delim(paste0(root, "sample_facs.csv"))
+root <- "https://dataverse.uclouvain.be/api/access/datafile/"
+ev <- read.delim(url(paste0(root, "24333")))
+design <- read.delim(url("https://zenodo.org/records/8146605/files/sample_facs.csv?download=1"))
 
 ####---- Create sample annotation ----####
 design %>%
@@ -48,11 +48,11 @@ petrosius2023_mES <- readSCP(evproc,
 
 
 ####---- Peptide data ----####
-## The peptide data downloaded from the https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT  
+## The peptide data downloaded from the same Dataverse repository.
 ## '20240205_111251_Peptide Quant (Normal).tsv' contains the peptide data.
 
 ## Load the peptide level quantification data
-pep_data <- read.delim(paste0(root, "20240205_111251_Peptide Quant (Normal).tsv"))
+pep_data <- read.delim(url(paste0(root, "24332")))
 
 ## Clean quantitative data
 pep_data %>%
@@ -85,10 +85,10 @@ petrosius2023_mES <- addAssayLink(petrosius2023_mES,
 
 
 ####---- Add the protein data ----####
-## The peptide data downloaded from the https://dataverse.uclouvain.be/dataset.xhtml?persistentId=doi:10.14428/DVN/EMAVLT
+## The protein data downloaded from the same Dataverse repository.
 ## '20240205_111251_PGQuant (Normal).tsv' contains the protein data.
 
-prot_data <- read.delim(paste0(root, "20240205_111251_PGQuant (Normal).tsv"))
+prot_data <- read.delim(url(paste0(root, "24331")))
 
 ## Clean quantitative data
 prot_data %>% 
@@ -123,7 +123,7 @@ petrosius2023_mES <- addAssayLink(petrosius2023_mES,
 
 ## Save data
 save(petrosius2023_mES,
-     file = file.path(paste0(root, "petrosius2023_mES.Rda")),
+     file = file.path("~/localdata/SCP/petrosiusmESC/20240205_111248_mESC_SNEcombine_m15-m2i/petrosius2023_mES.Rda"),
      compress = "xz",
      compression_level = 9)
 
