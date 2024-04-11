@@ -91,8 +91,7 @@ following files of interest:
 \item \verb{20240205_111251_PGQuant (Normal).tsv}: the protein level data
 }
 
-The metadata were downloaded from the \link[=Zenodo
-repository]{Zenodo repository} (https://zenodo.org/records/8146605).
+The metadata were downloaded from the \href{https://zenodo.org/records/8146605}{Zenodo repository}.
 \itemize{
 \item \code{sample_facs.csv}: the metadata
 }
