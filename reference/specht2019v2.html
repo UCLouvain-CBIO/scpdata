@@ -130,20 +130,20 @@ The folder contains the following files of interest:</p><ul><li><p><code>ev_upda
 <li><p><code>annotation_fp60-97.csv</code>: sample annotation</p></li>
 <li><p><code>batch_fp60-97.csv</code>: batch annotation</p></li>
 </ul><p>We combined the sample annotation and the batch annotation in
-a single table. We also formated the quantification table so that
+a single table. We also formatted the quantification table so that
 columns match with those of the annotation and filter only for
 single-cell runs. Both table are then combined in a single
-<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP</a> function.</p>
+<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
 <p>The peptide data were taken from the Slavov lab directly
 (<code>Peptides-raw.csv</code>). It is provided as a spreadsheet. The data
-were formated to a SingleCellExperiment object and the sample
+were formatted to a SingleCellExperiment object and the sample
 metadata were matched to the column names (mapping is retrieved
 after running the SCoPE2 R script) and stored in the <code>colData</code>.
 The object is then added to the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object (containing the
 PSM assays) and the rows of the peptide data are linked to the
 rows of the PSM data based on the peptide sequence information
 through an <code>AssayLink</code> object.</p>
-<p>The protein data (<code>Proteins-processed.csv</code>) is formated similarly
+<p>The protein data (<code>Proteins-processed.csv</code>) is formatted similarly
 to the peptide data, and the rows of the proteins were mapped onto
 the rows of the peptide data based on the protein sequence
 information.</p>
@@ -188,7 +188,7 @@ Macrophage Heterogeneity." bioRxiv.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
       </footer></div>

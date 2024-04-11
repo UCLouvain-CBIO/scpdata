@@ -137,10 +137,10 @@ files of interest:</p><ul><li><p><code>ev_updated_NS.DIA.txt</code>: the MaxQuan
 a single table. We also formatted the quantification table so that
 columns match with those of the annotation and filter only for
 single-cell runs. Both table are then combined in a single
-<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP</a> function.</p>
+<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
 <p>The peptide data were taken from the same google drive folder
 (<code>EpiToMesen.TGFB.nPoP_trial1_pepByCellMatrix_NSThreshDART_medIntCrNorm.txt</code>).
-The data were formated to a SingleCellExperiment object and the sample
+The data were formatted to a SingleCellExperiment object and the sample
 metadata were matched to the column names (mapping is retrieved
 after running the SCoPE2 R script, <code>EMTTGFB_singleCellProcessing.R</code>) and
 stored in the <code>colData</code>. The object is then added to the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object
@@ -148,7 +148,7 @@ and the rows of the PSM data are linked to the rows of the peptide data
 based on the peptide sequence information through an <code>AssayLink</code> object.</p>
 <p>The imputed protein data were taken from the same google drive folder
 (<code>EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_imputedNotBC.csv</code>).
-The data were formated to a SingleCellExperiment object and the sample
+The data were formatted to a SingleCellExperiment object and the sample
 metadata were matched to the column names (mapping is retrieved
 after running the SCoPE2 R script, <code>EMTTGFB_singleCellProcessing.R</code>) and
 stored in the <code>colData</code>. The object is then added to the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object
@@ -156,7 +156,7 @@ and the rows of the peptide data are linked to the rows of the protein data
 based on the protein sequence information through an <code>AssayLink</code> object.</p>
 <p>The unimputed protein data were taken from the same google drive folder
 (<code>EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_unimputed.csv</code>).
-The data were formated and added exactly as imputed data.</p>
+The data were formatted and added exactly as imputed data.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -196,7 +196,7 @@ transition." bioRxiv.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
       </footer></div>

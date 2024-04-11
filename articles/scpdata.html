@@ -80,7 +80,7 @@ Gatto</h4>
                                     <h4 data-toc-skip class="author">Christophe
 Vanderaa</h4>
                         
-            <h4 data-toc-skip class="date">9 April 2024</h4>
+            <h4 data-toc-skip class="date">11 April 2024</h4>
       
       
       <div class="hidden name"><code>scpdata.Rmd</code></div>
@@ -114,9 +114,9 @@ infrastructure. We first create a connection with
 the query function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ExperimentHub with 24 records</span></span>
-<span><span class="co">#&gt; # snapshotDate(): 2024-04-08</span></span>
-<span><span class="co">#&gt; # $dataprovider: MassIVE, PRIDE, SlavovLab website</span></span>
+<span><span class="co">#&gt; ExperimentHub with 26 records</span></span>
+<span><span class="co">#&gt; # snapshotDate(): 2024-04-11</span></span>
+<span><span class="co">#&gt; # $dataprovider: MassIVE, PRIDE, SlavovLab website, Dataverse</span></span>
 <span><span class="co">#&gt; # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus</span></span>
 <span><span class="co">#&gt; # $rdataclass: QFeatures</span></span>
 <span><span class="co">#&gt; # additional mcols(): taxonomyid, genome, description,</span></span>
@@ -124,18 +124,18 @@ the query function.</p>
 <span><span class="co">#&gt; #   rdatapath, sourceurl, sourcetype </span></span>
 <span><span class="co">#&gt; # retrieve records with, e.g., 'object[["EH3899"]]' </span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;            title               </span></span>
-<span><span class="co">#&gt;   EH3899 | specht2019v2        </span></span>
-<span><span class="co">#&gt;   EH3900 | specht2019v3        </span></span>
-<span><span class="co">#&gt;   EH3901 | dou2019_lysates     </span></span>
-<span><span class="co">#&gt;   EH3902 | dou2019_mouse       </span></span>
-<span><span class="co">#&gt;   EH3903 | dou2019_boosting    </span></span>
-<span><span class="co">#&gt;   ...      ...                 </span></span>
-<span><span class="co">#&gt;   EH8303 | woo2022_macrophage  </span></span>
-<span><span class="co">#&gt;   EH8304 | woo2022_lung        </span></span>
-<span><span class="co">#&gt;   EH9450 | gregoire2023_mixCTRL</span></span>
-<span><span class="co">#&gt;   EH9477 | khan2023            </span></span>
-<span><span class="co">#&gt;   EH9487 | guise2024</span></span></code></pre></div>
+<span><span class="co">#&gt;            title                  </span></span>
+<span><span class="co">#&gt;   EH3899 | specht2019v2           </span></span>
+<span><span class="co">#&gt;   EH3900 | specht2019v3           </span></span>
+<span><span class="co">#&gt;   EH3901 | dou2019_lysates        </span></span>
+<span><span class="co">#&gt;   EH3902 | dou2019_mouse          </span></span>
+<span><span class="co">#&gt;   EH3903 | dou2019_boosting       </span></span>
+<span><span class="co">#&gt;   ...      ...                    </span></span>
+<span><span class="co">#&gt;   EH9450 | gregoire2023_mixCTRL   </span></span>
+<span><span class="co">#&gt;   EH9477 | khan2023               </span></span>
+<span><span class="co">#&gt;   EH9487 | guise2024              </span></span>
+<span><span class="co">#&gt;   EH9497 | petrosius2023_mES      </span></span>
+<span><span class="co">#&gt;   EH9498 | petrosius2023_AstralAML</span></span></code></pre></div>
 <p>Another way to get information about the available data sets is to
 call <code><a href="../reference/scpdata.html">scpdata()</a></code>. This will retrieve all the available
 metadata. For example, we can retrieve the data set titles along with
@@ -147,8 +147,8 @@ choose.</p>
 <table class="table">
 <colgroup>
 <col width="4%">
-<col width="14%">
-<col width="80%">
+<col width="16%">
+<col width="79%">
 </colgroup>
 <thead><tr class="header">
 <th align="left"></th>
@@ -300,6 +300,18 @@ undergoing EMT triggered by TGF-beta</td>
 <td align="left">Single-cell proteomics data of 108 postmortem CTL or
 ALS spinal moto neurons</td>
 </tr>
+<tr class="odd">
+<td align="left">EH9497</td>
+<td align="left">petrosius2023_mES</td>
+<td align="left">Mouse embryonic stem cells across ground-state (m2i)
+and differentiation-permissive (m15) culture conditions.</td>
+</tr>
+<tr class="even">
+<td align="left">EH9498</td>
+<td align="left">petrosius2023_AstralAML</td>
+<td align="left">Single-cell proteomics data of 4 cell types from the
+OCI-AML8227 model.</td>
+</tr>
 </tbody>
 </table>
 <p>To get one of the data sets (<em>e.g.</em>
@@ -379,7 +391,7 @@ other attached packages:
  [9] Biobase_2.63.1              GenomicRanges_1.55.4       
 [11] GenomeInfoDb_1.39.13        IRanges_2.37.1             
 [13] S4Vectors_0.41.6            BiocGenerics_0.49.1        
-[15] MatrixGenerics_1.15.0       matrixStats_1.2.0          
+[15] MatrixGenerics_1.15.0       matrixStats_1.3.0          
 [17] BiocStyle_2.31.0           
 
 loaded via a namespace (and not attached):
@@ -396,7 +408,7 @@ loaded via a namespace (and not attached):
 [21] sass_0.4.9                  tools_4.5.0                
 [23] igraph_2.0.3                utf8_1.2.4                 
 [25] yaml_2.3.8                  knitr_1.46                 
-[27] S4Arrays_1.3.6              htmlwidgets_1.6.4          
+[27] S4Arrays_1.3.7              htmlwidgets_1.6.4          
 [29] bit_4.0.5                   curl_5.2.1                 
 [31] DelayedArray_0.29.9         abind_1.4-5                
 [33] withr_3.0.0                 purrr_1.0.2                
@@ -413,7 +425,7 @@ loaded via a namespace (and not attached):
 [55] jsonlite_1.8.8              bookdown_0.38              
 [57] bit64_4.0.5                 clue_0.3-65                
 [59] systemfonts_1.0.6           jquerylib_0.1.4            
-[61] glue_1.7.0                  pkgdown_2.0.7.9000         
+[61] glue_1.7.0                  pkgdown_2.0.8              
 [63] BiocVersion_3.19.1          UCSC.utils_0.99.5          
 [65] tibble_3.2.1                pillar_1.9.0               
 [67] rappdirs_0.3.3              htmltools_0.5.8.1          
@@ -421,7 +433,7 @@ loaded via a namespace (and not attached):
 [71] textshaping_0.3.7           evaluate_0.23              
 [73] lattice_0.22-6              png_0.1-8                  
 [75] memoise_2.0.1               bslib_0.7.0                
-[77] SparseArray_1.3.4           xfun_0.43                  
+[77] SparseArray_1.3.5           xfun_0.43                  
 [79] MsCoreUtils_1.15.6          fs_1.6.3                   
 [81] pkgconfig_2.0.3            </code></pre>
 </div>
@@ -450,7 +462,7 @@ license</a>.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
       </footer>
