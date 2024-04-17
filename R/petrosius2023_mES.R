@@ -33,20 +33,14 @@
 ##'   into a 384-well Eppendorf LoBind PCR plate (Eppendorf AG) containing 1 microL
 ##'   of lysis buffer.
 ##' - **Sample preparation**: Single-cell protein lysates were digested with
-##'   2 ng of Trypsin (Sigma cat. Nr. T6567) supplied in 1 microL of digestion
-##'   buffer (100mM TEAB pH 8.5, 1:5000 (v/v) benzonase (Sigma cat. Nr. E1014)).
-##'   The digestion was carried out overnight at 37 °C, and subsequently
-##'   acidified by the addition of 1 microL 1% (v/v) trifluoroacetic acid (TFA).
-##'   All liquid dispensing was done using an I-DOT One instrument (Dispendix).
-##' - **Liquid chromatography**: The Evosep one liquid chromatography system was
-##'   used for DIA isolation window survey and HRMS1-DIA experiments.The standard
-##'   31 min or 58min pre-defined Whisper gradients were used, where peptide
-##'   elution is carried out with 100 nl/min flow rate. A 15 cm × 75 microm
-##'   ID column (PepSep) with 1.9 microm C18 beads (Dr. Maisch, Germany) and a 10
-##'   microm ID silica electrospray emitter (PepSep) was used. Both LC systems were
-##'   coupled online to an orbitrap Eclipse TribridMass Spectrometer
-##'   (ThermoFisher Scientific) via an EasySpray ion source connected to a
-##'   FAIMSPro device.
+##'   2 ng of Trypsin supplied in 1 microL of digestion buffer which was 
+##'   carried out overnight at 37 °C, and subsequently acidified by the 
+##'   addition of 1 microL 1% (v/v) trifluoroacetic acid (TFA). All liquid 
+##'   dispensing was done using an I-DOT One instrument.
+##' - **Liquid chromatography**: For the HRMS1-DIA experiments and the DIA 
+##'   isolation window survey, the Evosep One liquid chromatography was used.
+##'   The standard 31 min or 58min pre-defined Whisper gradients were used with a 
+##'   flow rate of 100 nl/min for peptide elution. 
 ##' - **Mass spectrometry**: The mass spectrometer was operated in positive
 ##'   mode with the FAIMSPro interface compensation voltage set to -45 V.
 ##'   MS1 scans were carried out at 120,000 resolution with an automatic gain
@@ -56,8 +50,7 @@
 ##'   used for precursor fragmentation with a normalized collision energy (NCE)
 ##'   of 33% and MS2 scan AGC target was set to 1000%.
 ##' - **Raw data processing**: The mESC raw data files were processed with
-##'   Spectronaut 17 and protein abundance tables exported and analyzed further
-##'   with python.
+##'   Spectronaut 17.
 ##'
 ##' @section Data collection:
 ##'
