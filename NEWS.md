@@ -2,7 +2,7 @@
 
 ## scpdata 1.11.4
 
-(nothing yet)
+- fix non-ASCII characters
 
 ## scpdata 1.11.3
 
