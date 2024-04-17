@@ -1,8 +1,8 @@
 pandoc: 3.1.1
 pkgdown: 2.0.8.9000
-pkgdown_sha: 627e8e5dcc31a2a98fc56d196ca86f9e533b72cc
+pkgdown_sha: a319c9cd635bce82ea631f38060d464b41bfbb21
 articles:
   contribution_guidelines: contribution_guidelines.html
   scpdata: scpdata.html
-last_built: 2024-04-17T13:55Z
+last_built: 2024-04-17T16:54Z
 
