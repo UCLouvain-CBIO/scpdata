@@ -2626,26 +2626,26 @@
 ##' can be found in the source article (see `References`).
 ##'
 ##' - **Sample isolation**: Cell sorting was done on a Sony MA900 cell sorter
-##'   using a 130 μm sorting chip. Cells were sorted at single-cell resolution,
-##'   into a 384-well Eppendorf LoBind PCR plate (Eppendorf AG) containing 1 μL
+##'   using a 130 microm sorting chip. Cells were sorted at single-cell resolution,
+##'   into a 384-well Eppendorf LoBind PCR plate (Eppendorf AG) containing 1 microL
 ##'   of lysis buffer.
 ##' - **Sample preparation**: Single-cell protein lysates were digested with
-##'   2 ng of Trypsin (Sigma cat. Nr. T6567) supplied in 1 μL of digestion
+##'   2 ng of Trypsin (Sigma cat. Nr. T6567) supplied in 1 microL of digestion
 ##'   buffer (100mM TEAB pH 8.5, 1:5000 (v/v) benzonase (Sigma cat. Nr. E1014)).
 ##'   The digestion was carried out overnight at 37 °C, and subsequently
-##'   acidified by the addition of 1 μL 1% (v/v) trifluoroacetic acid (TFA).
+##'   acidified by the addition of 1 microL 1% (v/v) trifluoroacetic acid (TFA).
 ##'   All liquid dispensing was done using an I-DOT One instrument (Dispendix).
 ##' - **Liquid chromatography**: The Evosep one liquid chromatography system was
 ##'   used for DIA isolation window survey and HRMS1-DIA experiments.The standard
 ##'   31 min or 58min pre-defined Whisper gradients were used, where peptide
-##'   elution is carried out with 100 nl/min flow rate. A 15 cm × 75 μm
-##'   ID column (PepSep) with 1.9 μm C18 beads (Dr. Maisch, Germany) and a 10
-##'   μm ID silica electrospray emitter (PepSep) was used. Both LC systems were
+##'   elution is carried out with 100 nl/min flow rate. A 15 cm × 75 microm
+##'   ID column (PepSep) with 1.9 microm C18 beads (Dr. Maisch, Germany) and a 10
+##'   microm ID silica electrospray emitter (PepSep) was used. Both LC systems were
 ##'   coupled online to an orbitrap Eclipse TribridMass Spectrometer
 ##'   (ThermoFisher Scientific) via an EasySpray ion source connected to a
 ##'   FAIMSPro device.
 ##' - **Mass spectrometry**: The mass spectrometer was operated in positive
-##'   mode with the FAIMSPro interface compensation voltage set to −45 V.
+##'   mode with the FAIMSPro interface compensation voltage set to -45 V.
 ##'   MS1 scans were carried out at 120,000 resolution with an automatic gain
 ##'   control (AGC) of 300% and maximum injection time set to auto. For the DIA
 ##'   isolation window survey a scan range of 500–900 was used and 400–1000
@@ -2743,12 +2743,12 @@
 ##'
 ##' - **Cell isolation**: Cell sorting was done on a FACS Aria III or
 ##'   Aria II instrument, controlled by the DIVA software package and
-##'   operated with a 100 μm nozzle. Cells were sorted at single-cell
+##'   operated with a 100 microm nozzle. Cells were sorted at single-cell
 ##'   resolution, into a 384-well Eppendorf LoBind PCR plate containing
-##'   1 μL of lysis buffer.
+##'   1 microL of lysis buffer.
 ##' - **Sample preparation** Single-cell protein lysates were digested
-##'   overnight at 37°C with 2 ng of Trypsin supplied in 1 μL of
-##'   digestion buffer. Digestion was stopped by the addition of 1 μL
+##'   overnight at 37°C with 2 ng of Trypsin supplied in 1 microL of
+##'   digestion buffer. Digestion was stopped by the addition of 1 microL
 ##'   1% (v/v) trifluoroacetic acid (TFA). All liquid dispensing was
 ##'   done using an I-DOT One instrument.
 ##' - **Liquid chromatography**: Chromatographic separation of peptides
@@ -2758,7 +2758,7 @@
 ##'   well plate using a 25 uL injection loop on 11.8 min gradients.
 ##' - **Mass spectrometry**: Acquisition was conducted with an Orbitrap
 ##'   Astral mass spectrometer operated in positive mode with the
-##'   FAIMSPro interface compensation voltage set to −45 V.
+##'   FAIMSPro interface compensation voltage set to -45 V.
 ##'   MS1 scans were acquired with the Orbitrap at a resolution of
 ##'   120,000 and a scan range of 400 to 900 m/z with normalized
 ##'   automatic gain control (AGC) target of 300 % and maximum

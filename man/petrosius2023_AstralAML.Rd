@@ -47,12 +47,12 @@ can be found in the source article (see \emph{References}).
 \itemize{
 \item \strong{Cell isolation}: Cell sorting was done on a FACS Aria III or
 Aria II instrument, controlled by the DIVA software package and
-operated with a 100 μm nozzle. Cells were sorted at single-cell
+operated with a 100 microm nozzle. Cells were sorted at single-cell
 resolution, into a 384-well Eppendorf LoBind PCR plate containing
-1 μL of lysis buffer.
+1 microL of lysis buffer.
 \item \strong{Sample preparation} Single-cell protein lysates were digested
-overnight at 37°C with 2 ng of Trypsin supplied in 1 μL of
-digestion buffer. Digestion was stopped by the addition of 1 μL
+overnight at 37°C with 2 ng of Trypsin supplied in 1 microL of
+digestion buffer. Digestion was stopped by the addition of 1 microL
 1\% (v/v) trifluoroacetic acid (TFA). All liquid dispensing was
 done using an I-DOT One instrument.
 \item \strong{Liquid chromatography}: Chromatographic separation of peptides
@@ -62,7 +62,7 @@ valves were configured to perform direct injections from a 384
 well plate using a 25 uL injection loop on 11.8 min gradients.
 \item \strong{Mass spectrometry}: Acquisition was conducted with an Orbitrap
 Astral mass spectrometer operated in positive mode with the
-FAIMSPro interface compensation voltage set to −45 V.
+FAIMSPro interface compensation voltage set to -45 V.
 MS1 scans were acquired with the Orbitrap at a resolution of
 120,000 and a scan range of 400 to 900 m/z with normalized
 automatic gain control (AGC) target of 300 \% and maximum
