@@ -3,6 +3,7 @@
 ## scpdata 1.11.4
 
 - fix non-ASCII characters
+- split data.R into multiple data specific files
 
 ## scpdata 1.11.3
 
