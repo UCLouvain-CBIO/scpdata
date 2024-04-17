@@ -38,17 +38,17 @@
 ##'   addition of 1 microL 1% (v/v) trifluoroacetic acid (TFA). All liquid 
 ##'   dispensing was done using an I-DOT One instrument.
 ##' - **Liquid chromatography**: For the HRMS1-DIA experiments and the DIA 
-##'   isolation window survey, the Evosep One liquid chromatography was used.
-##'   The standard 31 min or 58min pre-defined Whisper gradients were used with a 
-##'   flow rate of 100 nl/min for peptide elution. 
+##'   isolation window survey, Evosep One liquid chromatography was used.
+##'   The standard 31-minute or 58-minute pre-defined Whisper gradients were 
+##'   used with a flow rate of 100 nl/min for peptide elution. 
 ##' - **Mass spectrometry**: The mass spectrometer was operated in positive
 ##'   mode with the FAIMSPro interface compensation voltage set to -45 V.
 ##'   MS1 scans were carried out at 120,000 resolution with an automatic gain
 ##'   control (AGC) of 300% and maximum injection time set to auto. For the DIA
-##'   isolation window survey a scan range of 500–900 was used and 400–1000
+##'   isolation window survey, a scan range of 500–900 was used, and 400–1000
 ##'   rest of the experiments. Higher energy collisional dissociation (HCD) was
 ##'   used for precursor fragmentation with a normalized collision energy (NCE)
-##'   of 33% and MS2 scan AGC target was set to 1000%.
+##'   of 33% and the MS2 scan AGC target was set to 1000%.
 ##' - **Raw data processing**: The mESC raw data files were processed with
 ##'   Spectronaut 17.
 ##'
