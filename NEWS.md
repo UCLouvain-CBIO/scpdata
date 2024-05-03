@@ -1,3 +1,19 @@
+# scpdata 1.12
+
+## scpdata 1.13.1
+
+(nothing yet)
+
+## scpdata 1.13.0
+
+- New Bioconductor 3.20 (devel) release
+
+# scpdata 1.12
+
+## scpdata 1.12.0
+
+- New Bioconductor 3.19 (stable) release
+
 # scpdata 1.11
 
 ## scpdata 1.11.4
