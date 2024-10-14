@@ -61,12 +61,13 @@ ev %>%
   filter(Set %in% meta$Set) ->
   evproc
 
+
 ## Create the QFeatures object
-khan2023 <- readSCP(evproc, 
-                        meta, 
-                        channelCol = "Channel", 
-                        batchCol = "Set",
-                        removeEmptyCols = TRUE)
+khan2023 <- readSCP(evproc,
+                    meta,
+                    channelCol = "Channel",
+                    batchCol = "Set",
+                    removeEmptyCols = TRUE)
 
 ####---- Get the annotation table ----####
 
@@ -143,9 +144,10 @@ khan2023 <- addAssayLink(khan2023, from = which(sel), to = "peptides",
 ## https://drive.google.com/drive/folders/1zCsRKWNQuAz5msxx0DfjDrIe6pUjqQmj
 
 ## Add imputed protein data
-read.csv(paste0(root, "EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_imputedNotBC.csv")) %>%
-  rename(protein = X) %>%
-  readSingleCellExperiment(ecol = 2:422, fnames = "protein") ->
+data <- read.delim(paste0(root, "EpiToMesen.TGFB.nPoP_trial1_1PercDartFDRTMTBulkDIA.WallE_imputed.txt"))
+data$protein <- rownames(data)
+data %>% 
+  readSingleCellExperiment(ecol = 1:420, fnames = 'protein') ->
   prot_imp
 
 colnames(prot_imp) <- idMap$Channel[match(colnames(prot_imp), idMap$cellID)]
@@ -154,13 +156,14 @@ colData(prot_imp) <- DataFrame(annot[colnames(prot_imp), ])
 khan2023 <- addAssay(khan2023, prot_imp, name = "proteins_imputed")
 
 ## Add an AssayLink that bridges the PSM assays and the peptide assay
-khan2023 <- addAssayLink(khan2023, from = "peptides", to = "proteins_imputed", 
+khan2023 <- addAssayLink(khan2023, from = "peptides", to = "proteins_imputed",
                          varFrom = "protein", varTo = "protein")
 
 ## Add un-imputed protein data
-read.csv(paste0(root, "EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_unimputed.csv")) %>%
-  rename(protein = X) %>%
-  readSingleCellExperiment(ecol = 2:422, fnames = "protein") ->
+data <- read.delim(paste0(root, "EpiToMesen.TGFB.nPoP_trial1_1PercDartFDRTMTBulkDIA.WallE_unimputed.txt"))
+data$protein <- rownames(data)
+data %>%
+  readSingleCellExperiment(ecol = 1:420, fnames = 'protein') ->
   prot_unimp
 
 colnames(prot_unimp) <- idMap$Channel[match(colnames(prot_unimp), idMap$cellID)]
@@ -169,7 +172,7 @@ colData(prot_unimp) <- DataFrame(annot[colnames(prot_unimp), ])
 khan2023 <- addAssay(khan2023, prot_unimp, name = "proteins_unimputed")
 
 ## Add an AssayLink that bridges the PSM assays and the peptide assay
-khan2023 <- addAssayLink(khan2023, from = "peptides", to = "proteins_unimputed", 
+khan2023 <- addAssayLink(khan2023, from = "peptides", to = "proteins_unimputed",
                          varFrom = "protein", varTo = "protein")
 
 ## Save data
