@@ -20,10 +20,10 @@
 ##'   empty (negative control) channels and unused channels.
 ##' - `peptides`: peptide data containing quantitative data for 10055
 ##'   peptides and 421 single-cells.
-##' - `proteins_imputed`: protein data containing quantitative data for 4096
-##'   proteins and 421 single-cells with k-nearest neighbors (KNN) imputation.
-##' - `proteins_unimputed`: protein data containing quantitative data for 4096
-##'   proteins and 421 single-cells without imputation.
+##' - `proteins_imputed`: protein data containing quantitative data for 4571
+##'   proteins and 420 single-cells with k-nearest neighbors (KNN) imputation.
+##' - `proteins_unimputed`: protein data containing quantitative data for 4571
+##'   proteins and 420 single-cells without imputation.
 ##'
 ##' The `colData(khan2023())` contains cell type and batch annotations that
 ##' are common to all assays. The description of the `rowData` fields for the
@@ -73,7 +73,7 @@
 ##' based on the peptide sequence information through an `AssayLink` object.
 ##'
 ##' The imputed protein data were taken from the same google drive folder
-##' (`EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_imputedNotBC.csv`).
+##' (`EpiToMesen.TGFB.nPoP_trial1_1PercDartFDRTMTBulkDIA.WallE_imputed.txt`).
 ##' The data were formatted to a [SingleCellExperiment] object and the sample
 ##' metadata were matched to the column names (mapping is retrieved
 ##' after running the SCoPE2 R script, `EMTTGFB_singleCellProcessing.R`) and
@@ -82,7 +82,7 @@
 ##' based on the protein sequence information through an `AssayLink` object.
 ##'
 ##' The unimputed protein data were taken from the same google drive folder
-##' (`EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_unimputed.csv`).
+##' (`EpiToMesen.TGFB.nPoP_trial1_1PercDartFDRTMTBulkDIA.WallE_unimputed.txt`).
 ##' The data were formatted and added exactly as imputed data.
 ##'
 ##' @source
@@ -97,8 +97,8 @@
 ##' @references
 ##' Saad Khan, Rachel Conover, Anand R. Asthagiri, Nikolai Slavov. 2023.
 ##' "Dynamics of single-cell protein covariation during epithelial–mesenchymal
-##' transition." bioRxiv.
-##' ([link to article](https://doi.org/10.1101/2023.12.21.572913)).
+##' transition." Journal of Proteome Research.
+##' ([link to article](https://pubs.acs.org/doi/10.1021/acs.jproteome.4c00277)).
 ##'
 ##' @examples
 ##' \donttest{
