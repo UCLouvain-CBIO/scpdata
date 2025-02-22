@@ -99,8 +99,14 @@ sce <- scpModelWorkflow(
 scpModelFilterThreshold(sce) <- 3
 
 #########################################################
-## Serialise object
+## Add sce with scplainer models
+ai2025a <- addAssay(ai2025a, sce, "precursors_stats")
+ai2025a <- addAssayLinkOneToOne(ai2025a, "precursors_log", "precursors_stats")
 
+stopifnot(validObject(ai2025a))
+
+#########################################################
+## Serialise object
 save(ai2025a,
      file = file.path("../extdata/ai2025a.rda"),
      compress = "xz",

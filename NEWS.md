@@ -2,8 +2,7 @@
 
 ## scpdata 1.13.2
 
-- New datasets: ai2025a and ai2025i, adult and induced cardiomyocytes
-  from Ai et al. (2025).
+- New dataset: ai2025a, adult cardiomyocytes from Ai et al. (2025).
 
 ## scpdata 1.13.1
 
