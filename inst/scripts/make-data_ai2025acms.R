@@ -1,11 +1,17 @@
+suppressPackageStartupMessages({
+    library(tidyverse)
+    library(QFeatures)
+    library(scp)
+})
+
 stopifnot(packageVersion("MsDataHub") >= "1.7.1")
 stopifnot(packageVersion("QFeatures") >= "1.17.2")
 
-library(tidyverse)
-library(QFeatures)
+
+#########################################################
+## Preparing the data
 
 ai2025aTab <- read_tsv(MsDataHub::Ai2025_aCMs_report.tsv())
-
 
 tab <- tibble(File.Name = unique(ai2025aTab[[1]])) |>
     mutate(Sample = sub("^.+CM_PROJECT\\\\", "", File.Name)) |>
@@ -34,45 +40,48 @@ ai2025a <- readSCPfromDIANN(ai2025aTab,
                          fnames = "Precursor.Id")
 
 ## Setting the names of the QFeatures objects
-ai2025a <- MultiAssayExperiment::renamePrimary(ai2025a, ai2025a$Sample)
 names(ai2025a) <- ai2025a$Sample
-
 
 #########################################################
 ## Processing from the vignette
-acms <- zeroIsNA(ai2025a, names(ai2025a))
-acms <- filterFeatures(acms, ~ abs(RT - Predicted.RT) < 0.18) |>
+ai2025a <- zeroIsNA(ai2025a, names(ai2025a)) |>
+    filterFeatures(~ abs(RT - Predicted.RT) < 0.18) |>
     filterFeatures(~ !grepl(";", Protein.Names) &
                        Proteotypic == 1)
 
 
-acms$MedianIntensity <- sapply(names(acms), function(i) {
-    median(log2(assay(acms[[i]])), na.rm = TRUE)
+## Add cell-level QC metrics
+ai2025a$MedianIntensity <- sapply(names(ai2025a), function(i) {
+    median(log2(assay(ai2025a[[i]])), na.rm = TRUE)
 })
-acms$TotalIds <- nrows(acms)
+ai2025a$TotalIds <- nrows(ai2025a)
 
-acms <- joinAssays(acms, i = names(acms), name = "precursors")
+## Join, log-transform and aggregate
+ai2025a <- joinAssays(ai2025a, i = names(ai2025a), name = "precursors")
 
-acms <- logTransform(acms, "precursors", "precursors_log")
+ai2025a <- logTransform(ai2025a, "precursors", "precursors_log")
 
-acms <- aggregateFeatures(acms,
-                          i = "precursors_log",
-                          name = "peptides",
-                          fcol = "Modified.Sequence",
-                          fun = colMedians,
-                          na.rm = TRUE)
+ai2025a <- aggregateFeatures(ai2025a,
+                             i = "precursors_log",
+                             name = "peptides",
+                             fcol = "Modified.Sequence",
+                             fun = colMedians,
+                             na.rm = TRUE)
 
-acms <- aggregateFeatures(acms,
-                          i = "peptides",
-                          name = "proteins",
-                          fcol = "Protein.Ids",
-                          fun = colMedians,
-                          na.rm = TRUE)
+ai2025a <- aggregateFeatures(ai2025a,
+                             i = "peptides",
+                             name = "proteins",
+                             fcol = "Protein.Ids",
+                             fun = colMedians,
+                             na.rm = TRUE)
+
+ai2025a
 
 #########################################################
 ## Statistical modelling
 
-sce <- getWithColData(acms, "precursors_log")
+sce <- getWithColData(ai2025a, "precursors_log")
+
 sce <- sce[, sce$HeartLocation != "sytox"]
 
 sce <- scpModelWorkflow(
