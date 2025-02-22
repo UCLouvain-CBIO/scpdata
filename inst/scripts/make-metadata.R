@@ -809,7 +809,7 @@ meta <- list(
       RDataPath = "scpdata/ai2025a.Rda",
       PublicationDate = as.Date("2025/02/22"),
       NumberAssays = 304,
-      PreprocessingSoftware = "DIA-MM",
+      PreprocessingSoftware = "DIA-NN",
       LabelingProtocol = "LFQ",
       PsmsAvailable = TRUE,
       PeptidesAvailable = TRUE,
