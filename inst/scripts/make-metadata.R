@@ -793,7 +793,7 @@ meta <- list(
     ),
     data.frame(
       Title = "ai2025a",
-      Description = paste0("Single-cell proteomics data of adult cardiomyocytes"),
+      Description = paste0("Single-cell proteomics data of adult cardiomyocytes from Ai et al. (2025)"),
       BiocVersion = "3.21",
       Genome = NA_character_,
       SourceType = "TXT",
