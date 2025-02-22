@@ -37,6 +37,61 @@ ai2025a <- readSCPfromDIANN(ai2025aTab,
 ai2025a <- MultiAssayExperiment::renamePrimary(ai2025a, ai2025a$Sample)
 names(ai2025a) <- ai2025a$Sample
 
+
+#########################################################
+## Processing from the vignette
+acms <- zeroIsNA(ai2025a, names(ai2025a))
+acms <- filterFeatures(acms, ~ abs(RT - Predicted.RT) < 0.18) |>
+    filterFeatures(~ !grepl(";", Protein.Names) &
+                       Proteotypic == 1)
+
+
+acms$MedianIntensity <- sapply(names(acms), function(i) {
+    median(log2(assay(acms[[i]])), na.rm = TRUE)
+})
+acms$TotalIds <- nrows(acms)
+
+acms <- joinAssays(acms, i = names(acms), name = "precursors")
+
+acms <- logTransform(acms, "precursors", "precursors_log")
+
+acms <- aggregateFeatures(acms,
+                          i = "precursors_log",
+                          name = "peptides",
+                          fcol = "Modified.Sequence",
+                          fun = colMedians,
+                          na.rm = TRUE)
+
+acms <- aggregateFeatures(acms,
+                          i = "peptides",
+                          name = "proteins",
+                          fcol = "Protein.Ids",
+                          fun = colMedians,
+                          na.rm = TRUE)
+
+#########################################################
+## Statistical modelling
+
+sce <- getWithColData(acms, "precursors_log")
+sce <- sce[, sce$HeartLocation != "sytox"]
+
+sce <- scpModelWorkflow(
+    sce,
+    formula = ~ 1 + ## intercept
+        ## normalisation
+        MedianIntensity +
+        ## batch effects
+        PlateRow +
+        Subject +
+        ## biological variability
+        HeartLocation,
+    verbose = FALSE)
+
+scpModelFilterThreshold(sce) <- 3
+
+#########################################################
+## Serialise object
+
 save(ai2025a,
      file = file.path("../extdata/ai2025a.rda"),
      compress = "xz",
