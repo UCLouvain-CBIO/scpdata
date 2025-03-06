@@ -14,10 +14,10 @@ from single-cell channels, carrier channels, reference channels,
 empty (negative control) channels and unused channels.
 \item \code{peptides}: peptide data containing quantitative data for 10055
 peptides and 421 single-cells.
-\item \code{proteins_imputed}: protein data containing quantitative data for 4096
-proteins and 421 single-cells with k-nearest neighbors (KNN) imputation.
-\item \code{proteins_unimputed}: protein data containing quantitative data for 4096
-proteins and 421 single-cells without imputation.
+\item \code{proteins_imputed}: protein data containing quantitative data for 4571
+proteins and 420 single-cells with k-nearest neighbors (KNN) imputation.
+\item \code{proteins_unimputed}: protein data containing quantitative data for 4571
+proteins and 420 single-cells without imputation.
 }
 
 The \code{colData(khan2023())} contains cell type and batch annotations that
@@ -95,7 +95,7 @@ and the rows of the PSM data are linked to the rows of the peptide data
 based on the peptide sequence information through an \code{AssayLink} object.
 
 The imputed protein data were taken from the same google drive folder
-(\code{EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_imputedNotBC.csv}).
+(\code{EpiToMesen.TGFB.nPoP_trial1_1PercDartFDRTMTBulkDIA.WallE_imputed.txt}).
 The data were formatted to a \link{SingleCellExperiment} object and the sample
 metadata were matched to the column names (mapping is retrieved
 after running the SCoPE2 R script, \code{EMTTGFB_singleCellProcessing.R}) and
@@ -104,7 +104,7 @@ and the rows of the peptide data are linked to the rows of the protein data
 based on the protein sequence information through an \code{AssayLink} object.
 
 The unimputed protein data were taken from the same google drive folder
-(\code{EpiToMesen.TGFB.nPoP_trial1_ProtByCellMatrix_NSThreshDART_medIntCrNorm_unimputed.csv}).
+(\code{EpiToMesen.TGFB.nPoP_trial1_1PercDartFDRTMTBulkDIA.WallE_unimputed.txt}).
 The data were formatted and added exactly as imputed data.
 }
 
@@ -117,7 +117,7 @@ khan2023()
 \references{
 Saad Khan, Rachel Conover, Anand R. Asthagiri, Nikolai Slavov. 2023.
 "Dynamics of single-cell protein covariation during epithelial–mesenchymal
-transition." bioRxiv.
-(\href{https://doi.org/10.1101/2023.12.21.572913}{link to article}).
+transition." Journal of Proteome Research.
+(\href{https://pubs.acs.org/doi/10.1021/acs.jproteome.4c00277}{link to article}).
 }
 \keyword{datasets}

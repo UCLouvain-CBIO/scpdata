@@ -806,7 +806,7 @@ meta <- list(
       Maintainer = "Laurent Gatto <laurent.gatto@uclouvain.be>",
       RDataClass = "QFeatures",
       DispatchClass = "Rda",
-      RDataPath = "scpdata/ai2025a.Rda",
+      RDataPath = "scpdata/ai2025a.rda",
       PublicationDate = as.Date("2025/02/22"),
       NumberAssays = 304,
       PreprocessingSoftware = "DIA-NN",
