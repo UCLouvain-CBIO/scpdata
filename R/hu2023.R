@@ -58,7 +58,7 @@
 ##' The oocyte protein data shared by the author and it is accessible from the
 ##' [Shared File](https://biopic-my.sharepoint.cn/:x:/g/personal/humo_biopic_pku_edu_cn/EfX4CHedVopLuSx2OJNj6LABdESGNdKz4Eh8Zawvd-fNNQ?e=E5m09k&xsdata=MDV8MDJ8ZW5lcy5heWFyQHVjbG91dmFpbi5iZXxjYjY2M2MwYzNjMDY0YjZhNjc1NTA4ZGM4YzMzNjc1YXw3YWIwOTBkNGZhMmU0ZWNmYmM3YzQxMjdiNGQ1ODJlY3wxfDB8NjM4NTM5Mzk5NjI1Mzg1NDQ3fFVua25vd258VFdGcGJHWnNiM2Q4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazFoYVd3aUxDSlhWQ0k2TW4wPXwwfHx8&sdata=Zmt4YnZFZFViTitJRkdTc0FTK2thMjdTT0EzV2JJeS83WlZmV3R6SzdvRT0%3d)
 ##' The K563 protein data is accessible from the
-##' [GitHub] https://github.com/dionezhang/CPM/blob/master/ProteinAbundance.Rdata
+##' GitHub (https://github.com/dionezhang/CPM/blob/master/ProteinAbundance.Rdata).
 ##'
 ##' - `DataMatrix-oocyte-20240614.csv`: normalized imputed protein matrix
 ##' - `ProteinAbundance.Rdata`: protein matrices (normalized, log transformed)
@@ -78,20 +78,21 @@
 ##' stored in the `colData`. The object is then added to the [QFeatures] object.
 ##'
 ##' @source
-##' The oocyte data were downloaded from the
-##' [Shared File](https://biopic-my.sharepoint.cn/:x:/g/personal/humo_biopic_pku_edu_cn/EfX4CHedVopLuSx2OJNj6LABdESGNdKz4Eh8Zawvd-fNNQ?e=E5m09k&xsdata=MDV8MDJ8ZW5lcy5heWFyQHVjbG91dmFpbi5iZXxjYjY2M2MwYzNjMDY0YjZhNjc1NTA4ZGM4YzMzNjc1YXw3YWIwOTBkNGZhMmU0ZWNmYmM3YzQxMjdiNGQ1ODJlY3wxfDB8NjM4NTM5Mzk5NjI1Mzg1NDQ3fFVua25vd258VFdGcGJHWnNiM2Q4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazFoYVd3aUxDSlhWQ0k2TW4wPXwwfHx8&sdata=Zmt4YnZFZFViTitJRkdTc0FTK2thMjdTT0EzV2JJeS83WlZmV3R6SzdvRT0%3d)
-##' The K563 cells protein data downloaded from the
-##' [GitHub] https://github.com/dionezhang/CPM/blob/master/ProteinAbundance.Rdata
-##' The raw data and the quantification data can also be found in the
-##' MassIVE repository `MSV000089625`:
-##' ftp://MSV000089625@massive.ucsd.edu/.
+##'
+##' The oocyte data were downloaded from the [Shared
+##'     File](https://biopic-my.sharepoint.cn/:x:/g/personal/humo_biopic_pku_edu_cn/EfX4CHedVopLuSx2OJNj6LABdESGNdKz4Eh8Zawvd-fNNQ?e=E5m09k&xsdata=MDV8MDJ8ZW5lcy5heWFyQHVjbG91dmFpbi5iZXxjYjY2M2MwYzNjMDY0YjZhNjc1NTA4ZGM4YzMzNjc1YXw3YWIwOTBkNGZhMmU0ZWNmYmM3YzQxMjdiNGQ1ODJlY3wxfDB8NjM4NTM5Mzk5NjI1Mzg1NDQ3fFVua25vd258VFdGcGJHWnNiM2Q4ZXlKV0lqb2lNQzR3TGpBd01EQWlMQ0pRSWpvaVYybHVNeklpTENKQlRpSTZJazFoYVd3aUxDSlhWQ0k2TW4wPXwwfHx8&sdata=Zmt4YnZFZFViTitJRkdTc0FTK2thMjdTT0EzV2JJeS83WlZmV3R6SzdvRT0%3d)
+##'     The K563 cells protein data downloaded from the GitHub
+##'     (https://github.com/dionezhang/CPM/blob/master/ProteinAbundance.Rdata)
+##'     The raw data and the quantification data can also be found in the
+##'     MassIVE repository `MSV000089625`: ftp://MSV000089625@massive.ucsd.edu/.
 ##'
 ##' @references
-##' Hu, M., Zhang, Y., Yuan, Y., Ma, W., Zheng, Y., Gu, Q., & Xie, X. S. 2023.
-##' “Correlated protein modules revealing functional coordination of interacting
-##' proteins are detected by single-cell proteomics.”. The Journal of Physical
-##' Chemistry B,
-##' ([link to article](https://doi.org/10.1021/acs.jpcb.3c00014)).
+##'
+##' - Hu, M., Zhang, Y., Yuan, Y., Ma, W., Zheng, Y., Gu, Q., & Xie, X. S. 2023.
+##'   “Correlated protein modules revealing functional coordination of
+##'   interacting proteins are detected by single-cell proteomics.”. The Journal
+##'   of Physical Chemistry B, ([link to
+##'   article](https://doi.org/10.1021/acs.jpcb.3c00014)).
 ##'
 ##' @aliases hu2023
 ##' @aliases hu2023_K562
