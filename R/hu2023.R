@@ -44,7 +44,7 @@
 ##'   The effective gradient was 70 mins, allowing 16 cells per day.
 ##' - **Ionization**: Peptides were analyzed using an Orbitrap Eclipse mass
 ##'   spectrometer with a FAIMS Pro interface. FAIMS compensation voltages of
-##'   −55 and −70 V were applied, with a 1-second cycle time for both voltages.
+##'   -55 and -70 V were applied, with a 1-second cycle time for both voltages.
 ##' - **Mass spectrometry**: MS spectra were acquired with the Orbitrap
 ##'   analyzer, while MS/MS spectra were acquired with a linear ion trap
 ##'   analyzer. The maximum ion injection time for MS/MS was 200 ms.
