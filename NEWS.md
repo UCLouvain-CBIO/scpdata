@@ -1,13 +1,13 @@
-# scpdata 1.13
+# scpdata 1.15
 
-## scpdata 1.13.2
+## scpdata 1.15.1
 
 - New dataset: ai2025a, adult cardiomyocytes from Ai et al. (2025).
 
-## scpdata 1.13.1
-
 - New datasets: krull2024, hu2023_K562 and hu2023_oocyte and
   fixed khan2023 imputed data.
+
+# scpdata 1.13
 
 ## scpdata 1.13.0
 
