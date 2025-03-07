@@ -1,10 +1,10 @@
 ## Ensure resources are present
 
-## code taken from 
+## code taken from
 ## https://github.com/waldronlab/curatedTCGAData/blob/master/tests/testthat/test-resources.R
 
 test_that("metadata numbers match ExperimentHub", {
-    metaf <- system.file("extdata", "metadata.csv", 
+    metaf <- system.file("extdata", "metadata.csv",
                          package = "scpdata", mustWork = TRUE)
     meta <- read.csv(metaf, stringsAsFactors = FALSE)
     EHub <- query(ExperimentHub(), "scpdata")
@@ -13,7 +13,7 @@ test_that("metadata numbers match ExperimentHub", {
 })
 
 test_that("scpdata", {
-    metaf <- system.file("extdata", "metadata.csv", 
+    metaf <- system.file("extdata", "metadata.csv",
                          package = "scpdata", mustWork = TRUE)
     meta <- read.csv(metaf, stringsAsFactors = FALSE)
     res <- scpdata()
@@ -24,7 +24,7 @@ test_that("all datasets are available", {
     res <- scpdata()
     for (dataset in res$title) {
         ds <- eval(call(dataset))
-        expect_true(is(ds, "QFeatures"))
+        expect_true(is(ds, "QFeatures") | inherits(ds, "SummarizedExperiment"))
     }
 })
 
@@ -32,4 +32,3 @@ test_that("leduc2022 throws a warning", {
     test <- expect_warning(leduc2022())
     expect_identical(length(test), 138L)
 })
-

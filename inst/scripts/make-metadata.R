@@ -790,6 +790,32 @@ meta <- list(
       ProteinsAvailable = TRUE,
       ContainsSingleCells = TRUE,
       Notes = NA_character_
+    ),
+    data.frame(
+      Title = "ai2025a",
+      Description = paste0("Single-cell proteomics data of adult cardiomyocytes from Ai et al. (2025)"),
+      BiocVersion = "3.21",
+      Genome = NA_character_,
+      SourceType = "TXT",
+      SourceUrl = "ftp://massive.ucsd.edu/v07/MSV000094438/updates/2024-10-23_bineka_5deafa61/other/Supplementary%20Files/aCMs/report.tsv",
+      SourceVersion = NA_character_,
+      Species = "Homo sapiens",
+      TaxonomyId = 9606,
+      Coordinate_1_based = TRUE,
+      DataProvider = "MassIVE",
+      Maintainer = "Laurent Gatto <laurent.gatto@uclouvain.be>",
+      RDataClass = "QFeatures",
+      DispatchClass = "Rda",
+      RDataPath = "scpdata/ai2025a.rda",
+      PublicationDate = as.Date("2025/02/22"),
+      NumberAssays = 304,
+      PreprocessingSoftware = "DIA-NN",
+      LabelingProtocol = "LFQ",
+      PsmsAvailable = TRUE,
+      PeptidesAvailable = TRUE,
+      ProteinsAvailable = TRUE,
+      ContainsSingleCells = TRUE,
+      Notes = "DIA-NN output retrieved using MsDataHub::Ai2025_aCMs_report.tsv()"
     )
 )
 
@@ -800,7 +826,7 @@ write.csv(metadata,
           file = here::here("inst", "extdata", "metadata.csv"),
           row.names = FALSE)
 
-stopifnot(file.exists(pkg_source <- here()))
+stopifnot(file.exists(pkg_source <- here::here()))
 
 AnnotationHubData::makeAnnotationHubMetadata(pathToPackage = pkg_source,
                                              fileName = "metadata.csv")
