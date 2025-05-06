@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.15.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
       </span>
     </div>
 
@@ -79,7 +79,7 @@ Gatto</h4>
                                     <h4 data-toc-skip class="author">Christophe
 Vanderaa</h4>
                         
-            <h4 data-toc-skip class="date">7 March 2025</h4>
+            <h4 data-toc-skip class="date">6 May 2025</h4>
       
 
       <div class="hidden name"><code>scpdata.Rmd</code></div>
@@ -114,7 +114,7 @@ the query function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; ExperimentHub with 30 records</span></span>
-<span><span class="co">#&gt; # snapshotDate(): 2025-03-06</span></span>
+<span><span class="co">#&gt; # snapshotDate(): 2025-04-21</span></span>
 <span><span class="co">#&gt; # $dataprovider: MassIVE, PRIDE, SlavovLab website, Dataverse</span></span>
 <span><span class="co">#&gt; # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus</span></span>
 <span><span class="co">#&gt; # $rdataclass: QFeatures, SingleCellExperiment</span></span>
@@ -381,7 +381,7 @@ in SCP data</em> of the <code>scp</code> vignette.</p>
 <div class="section level2">
 <h2 class="unnumbered" id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<pre><code>R Under development (unstable) (2025-02-24 r87814)
+<pre><code>R version 4.5.0 (2025-04-11)
 Platform: x86_64-pc-linux-gnu
 Running under: Ubuntu 24.04.2 LTS
 
@@ -405,58 +405,57 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] scpdata_1.15.1              ExperimentHub_2.15.0       
- [3] AnnotationHub_3.15.0        BiocFileCache_2.15.1       
- [5] dbplyr_2.5.0                QFeatures_1.17.4           
- [7] MultiAssayExperiment_1.33.9 SummarizedExperiment_1.37.0
- [9] Biobase_2.67.0              GenomicRanges_1.59.1       
-[11] GenomeInfoDb_1.43.4         IRanges_2.41.3             
-[13] S4Vectors_0.45.4            BiocGenerics_0.53.6        
-[15] generics_0.1.3              MatrixGenerics_1.19.1      
-[17] matrixStats_1.5.0           BiocStyle_2.35.0           
+ [1] scpdata_1.17.1              ExperimentHub_2.99.0       
+ [3] AnnotationHub_3.99.0        BiocFileCache_2.99.0       
+ [5] dbplyr_2.5.0                QFeatures_1.19.0           
+ [7] MultiAssayExperiment_1.35.1 SummarizedExperiment_1.39.0
+ [9] Biobase_2.69.0              GenomicRanges_1.61.0       
+[11] GenomeInfoDb_1.45.3         IRanges_2.43.0             
+[13] S4Vectors_0.47.0            BiocGenerics_0.55.0        
+[15] generics_0.1.3              MatrixGenerics_1.21.0      
+[17] matrixStats_1.5.0           BiocStyle_2.37.0           
 
 loaded via a namespace (and not attached):
  [1] tidyselect_1.2.1            dplyr_1.1.4                
- [3] blob_1.2.4                  Biostrings_2.75.4          
- [5] filelock_1.0.3              SingleCellExperiment_1.29.1
+ [3] blob_1.2.4                  Biostrings_2.77.0          
+ [5] filelock_1.0.3              SingleCellExperiment_1.31.0
  [7] fastmap_1.2.0               lazyeval_0.2.2             
- [9] digest_0.6.37               mime_0.12                  
-[11] lifecycle_1.0.4             cluster_2.1.8              
-[13] ProtGenerics_1.39.2         KEGGREST_1.47.0            
-[15] RSQLite_2.3.9               magrittr_2.0.3             
-[17] compiler_4.5.0              rlang_1.1.5                
-[19] sass_0.4.9                  tools_4.5.0                
-[21] igraph_2.1.4                yaml_2.3.10                
-[23] knitr_1.49                  S4Arrays_1.7.3             
-[25] htmlwidgets_1.6.4           bit_4.6.0                  
-[27] curl_6.2.1                  DelayedArray_0.33.6        
-[29] plyr_1.8.9                  abind_1.4-8                
-[31] withr_3.0.2                 purrr_1.0.4                
-[33] desc_1.4.3                  grid_4.5.0                 
-[35] MASS_7.3-65                 cli_3.6.4                  
-[37] rmarkdown_2.29              crayon_1.5.3               
-[39] ragg_1.3.3                  httr_1.4.7                 
-[41] reshape2_1.4.4              BiocBaseUtils_1.9.0        
-[43] DBI_1.2.3                   cachem_1.1.0               
-[45] stringr_1.5.1               AnnotationDbi_1.69.0       
-[47] AnnotationFilter_1.31.0     BiocManager_1.30.25        
-[49] XVector_0.47.2              vctrs_0.6.5                
-[51] Matrix_1.7-2                jsonlite_1.9.1             
-[53] bookdown_0.42               bit64_4.6.0-1              
-[55] clue_0.3-66                 systemfonts_1.2.1          
-[57] tidyr_1.3.1                 jquerylib_0.1.4            
-[59] glue_1.8.0                  pkgdown_2.1.1.9000         
-[61] stringi_1.8.4               BiocVersion_3.21.1         
-[63] UCSC.utils_1.3.1            tibble_3.2.1               
-[65] pillar_1.10.1               rappdirs_0.3.3             
-[67] htmltools_0.5.8.1           GenomeInfoDbData_1.2.13    
-[69] R6_2.6.1                    textshaping_1.0.0          
-[71] evaluate_1.0.3              lattice_0.22-6             
-[73] png_0.1-8                   memoise_2.0.1              
-[75] bslib_0.9.0                 Rcpp_1.0.14                
-[77] SparseArray_1.7.6           xfun_0.51                  
-[79] MsCoreUtils_1.19.0          fs_1.6.5                   
-[81] pkgconfig_2.0.3            </code></pre>
+ [9] digest_0.6.37               lifecycle_1.0.4            
+[11] cluster_2.1.8.1             ProtGenerics_1.41.0        
+[13] KEGGREST_1.49.0             RSQLite_2.3.11             
+[15] magrittr_2.0.3              compiler_4.5.0             
+[17] rlang_1.1.6                 sass_0.4.10                
+[19] tools_4.5.0                 igraph_2.1.4               
+[21] yaml_2.3.10                 knitr_1.50                 
+[23] S4Arrays_1.9.0              htmlwidgets_1.6.4          
+[25] bit_4.6.0                   curl_6.2.2                 
+[27] DelayedArray_0.35.1         plyr_1.8.9                 
+[29] abind_1.4-8                 withr_3.0.2                
+[31] purrr_1.0.4                 desc_1.4.3                 
+[33] grid_4.5.0                  MASS_7.3-65                
+[35] cli_3.6.5                   rmarkdown_2.29             
+[37] crayon_1.5.3                ragg_1.4.0                 
+[39] httr_1.4.7                  reshape2_1.4.4             
+[41] BiocBaseUtils_1.11.0        DBI_1.2.3                  
+[43] cachem_1.1.0                stringr_1.5.1              
+[45] AnnotationDbi_1.71.0        AnnotationFilter_1.33.0    
+[47] BiocManager_1.30.25         XVector_0.49.0             
+[49] vctrs_0.6.5                 Matrix_1.7-3               
+[51] jsonlite_2.0.0              bookdown_0.43              
+[53] bit64_4.6.0-1               clue_0.3-66                
+[55] systemfonts_1.2.3           tidyr_1.3.1                
+[57] jquerylib_0.1.4             glue_1.8.0                 
+[59] pkgdown_2.1.2.9000          stringi_1.8.7              
+[61] BiocVersion_3.22.0          UCSC.utils_1.5.0           
+[63] tibble_3.2.1                pillar_1.10.2              
+[65] rappdirs_0.3.3              htmltools_0.5.8.1          
+[67] R6_2.6.1                    httr2_1.1.2                
+[69] textshaping_1.0.1           evaluate_1.0.3             
+[71] lattice_0.22-7              png_0.1-8                  
+[73] memoise_2.0.1               bslib_0.9.0                
+[75] Rcpp_1.0.14                 SparseArray_1.9.0          
+[77] xfun_0.52                   MsCoreUtils_1.21.0         
+[79] fs_1.6.6                    pkgconfig_2.0.3            </code></pre>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
@@ -481,7 +480,7 @@ license</a>.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.9000.</p>
 </div>
 
       </footer>
