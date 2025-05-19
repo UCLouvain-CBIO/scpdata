@@ -1,3 +1,13 @@
+# scpdata 1.17
+
+## scpdata 1.17.1
+
+- Fix encoding in man page.
+
+## scpdata 1.17.0
+
+- New devel version.
+
 # scpdata 1.15
 
 ## scpdata 1.15.1

@@ -1,9 +1,9 @@
-##' Krull et al, 2024 (Nature Communications): IFN-γ response
+##' Krull et al, 2024 (Nature Communications): IFN-\eqn{\gamma} response
 ##'
 ##' They develop a new strategy for data-independent acquisition (DIA) that 
 ##' leverages the co-analysis of low-input samples alongside a corresponding 
 ##' enhancer (ME) of higher input. Using DIA-ME, they investigate the 
-##' proteomic response of U-2 OS cells to interferon gamma (IFN-y) at 
+##' proteomic response of U-2 OS cells to interferon gamma (IFN-\eqn{\gamma}) at 
 ##' the single-cell level.
 ##'
 ##' @format A [QFeatures] object with 159 assays, each assay being a
@@ -70,7 +70,7 @@
 ##'
 ##' @references
 ##' Krull, K. K., Ali, S. A., & Krijgsveld, J. 2024. "Enhanced feature matching
-##' in single-cell proteomics characterizes IFN-γ response and co-existence of
+##' in single-cell proteomics characterizes IFN-\eqn{\gamma} response and co-existence of
 ##' Cell States." Nature Communications, 15(1). 
 ##' [Link to article](https://doi.org/10.1038/s41467-024-52605-x) 
 ##' 
