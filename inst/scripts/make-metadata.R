@@ -816,6 +816,34 @@ meta <- list(
       ProteinsAvailable = TRUE,
       ContainsSingleCells = TRUE,
       Notes = "DIA-NN output retrieved using MsDataHub::Ai2025_aCMs_report.tsv()"
+    ),
+    data.frame(
+      Title = "bubis2025",
+      Description = paste0("Single-cell proteomics data ",
+                           "of HeLa, K562, A549, H460, TE-like and hPS cells ",
+                           "acquired on the Astral MS."),
+      BiocVersion = "3.21",
+      Genome = NA_character_,
+      SourceType = "TXT",
+      SourceUrl = "https://www.ebi.ac.uk/pride/archive/projects/PXD049412",
+      SourceVersion = NA_character_,
+      Species = "Homo sapiens",
+      TaxonomyId = 9606,
+      Coordinate_1_based = TRUE,
+      DataProvider = "MassIVE",
+      Maintainer = "Samuel Gregoire <samuel.gregoire@uclouvain.be>",
+      RDataClass = "QFeatures",
+      DispatchClass = "Rda",
+      RDataPath = "scpdata/bubis2025.Rda",
+      PublicationDate = as.Date("2025/08/19"),
+      NumberAssays = 602,
+      PreprocessingSoftware = "Spectronaut",
+      LabelingProtocol = "LFQ",
+      PsmsAvailable = TRUE,
+      PeptidesAvailable = TRUE,
+      ProteinsAvailable = TRUE,
+      ContainsSingleCells = TRUE,
+      Notes = NA_character_
     )
 )
 
