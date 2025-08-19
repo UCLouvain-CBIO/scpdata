@@ -130,13 +130,8 @@ sa$cellType[grepl("_SC_hPSC", sa$runCol)] <- "hPSC"
 ## Throughput
 sa$throughput <- str_extract(sa$runCol, "\\d+SPD")
 
-## Instrument
-sa$instrument <- "Astral"
-sa$instrument[grep("E0", sa$runCol)] <- "Exploris 480"
-
 ## CV
 sa$FAIMS_CV <- "-48V"
-sa$FAIMS_CV[sa$instrument == "Exploris 480"] <- "-50V"
 sa$FAIMS_CV[grep("FAIMSCV.38", sa$runCol)] <- "-38V"
 sa$FAIMS_CV[grep("FAIMSCV.58", sa$runCol)] <- "-58V"
 sa$FAIMS_CV[grep("FAIMSCV.68", sa$runCol)] <- "-68V"
@@ -148,7 +143,6 @@ sa$FAIMS_CV[grep("noFAIMS", sa$runCol)] <- "no FAIMS"
 sa$fig <- NA
 sa$fig[grep("DDM|Nov_col", sa$runCol)] <- "fig 1"
 sa$fig[grep("_CV\\..8|noFAIMS", sa$runCol)] <- "fig 2"
-sa$fig[grep("Y", sa$runCol)] <- "fig 3"
 sa$fig[grep("A549|H460|50SPD_blank|blank_50SPD", sa$file)] <- "fig 4"
 sa$fig[grep("gas3p8_blank|gas3p8_SC_TE|gas3p8_SC_hPSC", sa$file)] <- "fig 5"
 
@@ -182,12 +176,6 @@ bubis2025 <- joinAssays(bubis2025,
                   name = "peptides_fig2")
 colData(bubis2025[["peptides_fig2"]]) <- colData(bubis2025)[bubis2025$fig == "fig 2", ]
 
-
-bubis2025 <- joinAssays(bubis2025,
-                  i = grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 3"],
-                  name = "peptides_fig3")
-colData(bubis2025[["peptides_fig3"]]) <- colData(bubis2025)[bubis2025$fig == "fig 3", ]
-
 bubis2025 <- joinAssays(bubis2025,
                   i = grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 4"],
                   name = "peptides_fig4")
@@ -197,6 +185,10 @@ bubis2025 <- joinAssays(bubis2025,
                   i = grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 5"],
                   name = "peptides_fig5")
 colData(bubis2025[["peptides_fig5"]]) <- colData(bubis2025)[bubis2025$fig == "fig 5", ]
+
+## Remove individual peptide sets
+
+bubis2025 <- bubis2025[, , !grepl("peptide_", names(bubis2025))]
 
 ####---- Retrieve Protein data ----####
 
@@ -306,11 +298,6 @@ bubis2025_prot <- joinAssays(bubis2025_prot,
 colData(bubis2025_prot[["proteins_fig2"]]) <- colData(bubis2025_prot)[bubis2025_prot$fig == "fig 2", ]
 
 bubis2025_prot <- joinAssays(bubis2025_prot,
-                       i = names(bubis2025_prot)[bubis2025_prot$fig == "fig 3"],
-                       name = "proteins_fig3")
-colData(bubis2025_prot[["proteins_fig3"]]) <- colData(bubis2025_prot)[bubis2025_prot$fig == "fig 3", ]
-
-bubis2025_prot <- joinAssays(bubis2025_prot,
                        i = names(bubis2025_prot)[bubis2025_prot$fig == "fig 4"],
                        name = "proteins_fig4")
 colData(bubis2025_prot[["proteins_fig4"]]) <- colData(bubis2025_prot)[bubis2025_prot$fig == "fig 4", ]
@@ -324,7 +311,6 @@ colData(bubis2025_prot[["proteins_fig5"]]) <- colData(bubis2025_prot)[bubis2025_
 
 bubis2025 <- addAssay(bubis2025, bubis2025_prot[["proteins_fig1"]], "proteins_fig1")
 bubis2025 <- addAssay(bubis2025, bubis2025_prot[["proteins_fig2"]], "proteins_fig2")
-bubis2025 <- addAssay(bubis2025, bubis2025_prot[["proteins_fig3"]], "proteins_fig3")
 bubis2025 <- addAssay(bubis2025, bubis2025_prot[["proteins_fig4"]], "proteins_fig4")
 bubis2025 <- addAssay(bubis2025, bubis2025_prot[["proteins_fig5"]], "proteins_fig5")
 
