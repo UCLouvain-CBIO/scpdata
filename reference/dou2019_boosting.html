@@ -81,7 +81,7 @@ otherwise 1 empty well was added. Each boosting setting (0ng, 5ng,
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 7 assays, each assay being a
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 7 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p><code>Boosting_X_run_Y</code>: PSM data with 10 columns corresponding to
 the TMT-10plex channels. The <code>X</code> indicates the boosting amount
 (0ng, 5ng or 50ng) and <code>Y</code> indicates the run number (1 or 2).</p></li>
@@ -142,15 +142,15 @@ protein groups. Feature annotations that are not common within a
 peptide or protein group are are separated by a <code>;</code>. The sample
 annotation table was manually created based on the available
 information provided in the article. The data were then converted
-to a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
+to a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
 <p>We generated the peptide data. First, we removed PSM matched to
 contaminants or decoy peptides and ensured a 1% FDR. We aggregated
 the PSM to peptides based on the peptide (or peptide group)
 sequence(s) using the median PSM instenity. The peptide data for
 the different runs were then joined in a single assay (see
-<a href="https://rdrr.io/pkg/QFeatures/man/joinAssays.html" class="external-link">QFeatures::joinAssays</a>), again based on the peptide sequence(s).
+<a href="https://rformassspectrometry.github.io/QFeatures/reference/joinAssays.html" class="external-link">QFeatures::joinAssays</a>), again based on the peptide sequence(s).
 We then removed the peptide groups. Links between the peptide and
-the PSM data were created using <a href="https://rdrr.io/pkg/QFeatures/man/AssayLinks.html" class="external-link">QFeatures::addAssayLink</a>. Note
+the PSM data were created using <a href="https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html" class="external-link">QFeatures::addAssayLink</a>. Note
 that links between PSM and peptide groups are not stored.</p>
 <p>The protein data were downloaded from <code>Supporting information</code>
 section from the publisher's website (see <code>Sources</code>). The data is
@@ -161,7 +161,7 @@ contains 7 sheets from which we took the 2nd, 4th and 6th sheets
 combined protein data for the duplicate runs given the boosting
 amount. We joined the data for all boosting ration based on the
 protein name and converted the data to a SingleCellExperiment
-object. We then added the object as a new assay in the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a>
+object. We then added the object as a new assay in the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a>
 dataset (containing the PSM data). Links between the proteins and
 the corresponding PSM were created. Note that links to protein
 groups are not stored.</p>
@@ -211,7 +211,7 @@ September
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>

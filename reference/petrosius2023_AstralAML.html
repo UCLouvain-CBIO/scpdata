@@ -77,7 +77,7 @@ analysis was performed with Spectronaut version 17.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 217 assays, each assay being a
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 217 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p>Assays 1-215: PSM data from the Spectronaut PEPQuant file with
 LFQ quantities from the FG.MS1Quantity column.</p></li>
 <li><p><code>peptides</code>: Peptide data resulting from the PSM to peptide
@@ -152,17 +152,17 @@ al. 2023 preprint') contains the following files of interest:</p><ul><li><p><cod
 <li><p><code>msRuns_overview.csv</code>: Sample annotations.</p></li>
 </ul><p>We added the FACS data to the sample annotations in a single table.
 Both annotations and PSM features tables are then combined in a
-single <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
+single <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
 <p>The peptide data were obtained by aggregation of the PSM data to
 the peptide level. All of the resulting peptides assays were joined
 into a single assays. Individual peptides assays were discarded.</p>
 <p>The protein data were formatted from the <code>20240201_130747_PGQuant (Normal).tsv</code>
 to a SingleCellExperiment object and the sample metadata were
 matched to the column names and stored in the  <code>colData</code>. The
-object is then added to the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object and the rows of the
+object is then added to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object and the rows of the
 peptide data are linked to the rows of the protein data based on
 the protein sequence information through an <code>AssayLink</code> object.</p>
-<p>Note that the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object has not been further processed and
+<p>Note that the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object has not been further processed and
 has therefore not been normalized, log-transformed or
 batch-corrected.</p>
     </div>
@@ -209,7 +209,7 @@ DOI:<a href="https://doi.org/10.1101/2023.06.06.543943" class="external-link">10
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>

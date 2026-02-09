@@ -71,7 +71,7 @@ peptide and protein level.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 179 assays, each assay being a
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 179 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p>Assay 1-63: PSM data for SCoPE2 sets acquired with a TMT-11plex
 protocol, hence those assays contain 11 columns. Columns
 hold quantitative information from single-cell channels, carrier
@@ -133,13 +133,13 @@ The folder contains the following files of interest:</p><ul><li><p><code>ev_upda
 a single table. We also formatted the quantification table so that
 columns match with those of the annotation and filter only for
 single-cell runs. Both table are then combined in a single
-<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
+<a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
 <p>The peptide data were taken from the Slavov lab directly
 (<code>Peptides-raw.csv</code>). It is provided as a spreadsheet. The data
 were formatted to a SingleCellExperiment object and the sample
 metadata were matched to the column names (mapping is retrieved
 after running the SCoPE2 R script) and stored in the <code>colData</code>.
-The object is then added to the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object (containing the
+The object is then added to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object (containing the
 PSM assays) and the rows of the peptide data are linked to the
 rows of the PSM data based on the peptide sequence information
 through an <code>AssayLink</code> object.</p>
@@ -189,7 +189,7 @@ Macrophage Heterogeneity." bioRxiv.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>

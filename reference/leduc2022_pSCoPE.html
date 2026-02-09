@@ -73,7 +73,7 @@ acquired using the pSCoPE MS acquisition approach.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 138 assays, each assay being a
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 138 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p>Assay 1-134: PSM data acquired with a TMT-18plex protocol, hence
 those assays contain 18 columns. Columns hold quantitative
 information from single-cell channels, carrier channels,
@@ -159,13 +159,13 @@ data</p></li>
 </ul><p>We combined the sample annotation and the batch annotation in
 a single table. We also formatted the quantification table so that
 columns match with those of the annotations. Both annotation and
-quantification tables are then combined in a single <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a>
+quantification tables are then combined in a single <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a>
 object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
 <p>The 4 CSV files were loaded and formatted as SingleCellExperiment
 objects and the sample metadata were matched to the column names
 (mapping is retrieved after running the author's original R script)
 and stored in the <code>colData</code>.
-The object is then added to the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object (containing the
+The object is then added to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object (containing the
 PSM assays) and the rows of the peptide data are linked to the
 rows of the PSM data based on the peptide sequence information
 through an <code>AssayLink</code> object.</p>
@@ -217,7 +217,7 @@ Functional Polarization across Primary Macrophages.” bioRxiv.
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>

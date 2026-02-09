@@ -73,7 +73,7 @@ the single-cell level.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 159 assays, each assay being a
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 159 assays, each assay being a
 SingleCellExperiment object.</p><ul><li><p>Assay 1-158: DIA-NN main output report table split for each
 acquisition run. First 15 run acquires 10 single cells (MEs) and,
 remaining 143 run acquires 1 single cell. It contains the results
@@ -130,7 +130,7 @@ for spectrum prediction, retention times, and ion mobility.</p></li>
 in the <code>03_SingleCell_Searches.zip</code> file.</p>
 <p>We loaded the DIA-NN main report table and generated a sample
 annotation table based on the MS file names. We next combined the
-sample annotation and the DIANN tables into a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object
+sample annotation and the DIANN tables into a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object
 following the <code>scp</code> data structure. We loaded the proteins group
 matrix as a SingleCellExperiment object, and added the protein data
 as a new assay and link the precursors to proteins using the
@@ -152,12 +152,12 @@ Cell States." Nature Communications, 15(1).
 <span class="r-msg co"><span class="r-pr">#&gt;</span> loading from cache</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> An instance of class QFeatures (type: scp) with 159 sets:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] D:\Data\KK\KK35\03_MEs\20230629_KK_10SC_control_01_A11_1_14185.d: SingleCellExperiment with 3521 rows and 1 columns </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] D:\Data\KK\KK35\03_MEs\20230629_KK_10SC_control_02_B11_1_14186.d: SingleCellExperiment with 3349 rows and 1 columns </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] D:\Data\KK\KK35\03_MEs\20230629_KK_10SC_control_03_C11_1_14188.d: SingleCellExperiment with 3277 rows and 1 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] X20230626_KK_SC_control_01_A6_1_14065: SingleCellExperiment with 1986 rows and 1 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] X20230626_KK_SC_control_02_B6_1_14066: SingleCellExperiment with 2730 rows and 1 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] X20230626_KK_SC_control_03_C6_1_14067: SingleCellExperiment with 1555 rows and 1 columns </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [157] D:\Data\KK\KK35\20230630_KK_SC_IFNy_79_E10_1_14262.d: SingleCellExperiment with 1110 rows and 1 columns </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [158] D:\Data\KK\KK35\20230630_KK_SC_IFNy_81_G10_1_14264.d: SingleCellExperiment with 1483 rows and 1 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [157] X20230630_KK_SC_IFNy_79_E10_1_14262: SingleCellExperiment with 1110 rows and 1 columns </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [158] X20230630_KK_SC_IFNy_81_G10_1_14264: SingleCellExperiment with 1483 rows and 1 columns </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [159] proteins: SingleCellExperiment with 1553 rows and 143 columns </span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
@@ -175,7 +175,7 @@ Cell States." Nature Communications, 15(1).
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>

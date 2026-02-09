@@ -75,7 +75,7 @@ high) and supporting cells (FM1-43 low). The sample contain either
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object with 62 assays, each assay being a
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 62 assays, each assay being a
 SingleCellExperiment object:</p><ul><li><p><code>XYZw</code>: 60 assays containing PSM data. The sample are annotated
 as follows. <code>X</code> indicates the experiment, either 1 or 2. <code>Y</code>
 indicated the FM1-43 signal, either high (H) or low (L). <code>Z</code>
@@ -135,20 +135,20 @@ of the annotation table available on the PRIDE repository.</p>
 <p>The PSM data were found in the <code>evidence.txt</code> (in the
 <code>Experiment 1+ 2</code>) folder. The PSM data were filtered so that it
 contains only samples that are annotated. The data were then
-converted to a <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code>
+converted to a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code>
 function.</p>
 <p>The peptide data were found in the <code>peptides.txt</code> file. The column
 names holding the quantitative data were adapted to match the
-sample names in the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object. The data were then
+sample names in the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object. The data were then
 converted to a SingleCellExperiment object and then inserted in
-the <a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object. Links between the PSMs and the peptides
+the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object. Links between the PSMs and the peptides
 were added</p>
 <p>A similar procedure was applied to the protein data. The data were
 found in the <code>proteinGroups.txt</code> file. We split the protein table
 to separate the two types of quantification: summed intensity and
 intensity based absolute quantification (iBAQ). Both tables are
 converted to SingleCellExperiment objects and are added to the
-<a href="https://rdrr.io/pkg/QFeatures/man/QFeatures-class.html" class="external-link">QFeatures</a> object as well as the <code>AssayLink</code> between peptides and
+<a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object as well as the <code>AssayLink</code> between peptides and
 proteins.</p>
     </div>
     <div id="references">
@@ -191,7 +191,7 @@ Expression during Hair-Cell Development.” eLife 8 (November).
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>
