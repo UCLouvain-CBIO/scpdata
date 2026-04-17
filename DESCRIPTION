@@ -4,7 +4,7 @@ Title: Single-Cell Proteomics Data Package
 Version: 1.17.1
 Authors@R:
     c(person("Christophe", "Vanderaa",
-              email = "christophe.vanderaa@uclouvain.be",
+              email = "vanderaa.christophe@gmail.com",
               comment = c(ORCID = "0000-0001-7443-5427"),
               role = c("aut", "cre")),
       person("Laurent", "Gatto",
