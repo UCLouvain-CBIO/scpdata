@@ -716,7 +716,7 @@ meta <- list(
       Title = "krull2024",
       Description = paste0("Single-cell proteomics data ",
                            "IFN-γ response of U-2 OS cells"),
-      BiocVersion = "3.19",
+      BiocVersion = "3.21",
       Genome = NA_character_,
       SourceType = "TXT",
       SourceUrl = "https://www.ebi.ac.uk/pride/archive/projects/PXD053464",
