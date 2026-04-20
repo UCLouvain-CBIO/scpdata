@@ -5,8 +5,8 @@
 \alias{petrosius2023_AstralAML}
 \title{Petrosius et al. 2023 (bioRxiv): AML hierarchy on Astral.}
 \format{
-A \link{QFeatures} object with 217 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 217 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item Assays 1-215: PSM data from the Spectronaut PEPQuant file with
 LFQ quantities from the FG.MS1Quantity column.
@@ -99,20 +99,20 @@ al. 2023 preprint') contains the following files of interest:
 
 We added the FACS data to the sample annotations in a single table.
 Both annotations and PSM features tables are then combined in a
-single \link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
+single \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
 The peptide data were obtained by aggregation of the PSM data to
 the peptide level. All of the resulting peptides assays were joined
 into a single assays. Individual peptides assays were discarded.
 
 The protein data were formatted from the \verb{20240201_130747_PGQuant (Normal).tsv}
-to a \link{SingleCellExperiment} object and the sample metadata were
+to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object and the sample metadata were
 matched to the column names and stored in the  \code{colData}. The
-object is then added to the \link{QFeatures} object and the rows of the
+object is then added to the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object and the rows of the
 peptide data are linked to the rows of the protein data based on
 the protein sequence information through an \code{AssayLink} object.
 
-Note that the \link{QFeatures} object has not been further processed and
+Note that the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object has not been further processed and
 has therefore not been normalized, log-transformed or
 batch-corrected.
 }

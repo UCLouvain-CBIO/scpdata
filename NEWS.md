@@ -1,3 +1,9 @@
+# scpdata 1.19
+
+## scpdata 1.19.1
+
+- Add wu2026 dataset.
+
 # scpdata 1.17
 
 ## scpdata 1.17.2
