@@ -5,8 +5,8 @@
 \alias{cong2020AC}
 \title{Cong et al. 2020 (Ana. Chem.): HeLa single cells}
 \format{
-A \link{QFeatures} object with 9 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 9 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item \verb{100/20 HeLa cells}: 2 assays containing PSM data for a bulk
 of 100 or 20 HeLa cells, respectively.
@@ -69,18 +69,18 @@ The PSM, peptide and protein data were collected from the PRIDE
 repository (accession ID: PXD016921).  We downloaded the
 \code{evidence.txt} file containing the PSM identification and
 quantification results. The sample annotation was inferred from
-the samples names. The data were then converted to a \link{QFeatures}
+the samples names. The data were then converted to a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures}
 object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
 The peptide data were processed similarly from the \code{peptides.txt}
 file. The quantitative column names were adpated to match the PSM
-data. The peptide data were added to \link{QFeatures} object and link
+data. The peptide data were added to \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object and link
 between the features were stored.
 
 The protein data were similarly processed from the
 \code{proteinGroups.txt} file. The quantitative column names were
 adapted to match the PSM data. The peptide data were added to
-\link{QFeatures} object and link between the features were stored.
+\link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object and link between the features were stored.
 }
 
 \examples{

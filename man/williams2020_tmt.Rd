@@ -5,8 +5,8 @@
 \alias{williams2020_tmt}
 \title{Williams et al. 2020 (Anal. Chem.): 3 AML cell line}
 \format{
-A \link{QFeatures} object with 4 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 4 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item \verb{peptides_[intensity or corrected]}: 2 assays containing peptide
 reporter ion intensities or corrected reporter ion intensities
@@ -78,10 +78,10 @@ files, respectively, in the \code{AML_SingleCell} folders.
 
 The tables were duplicated so that intensisities and corrected
 intensities are contained in separate tables. Tables are then
-converted to \link{SingleCellExperiment} objects. Sample annotations
+converted to \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} objects. Sample annotations
 were inferred from the sample names, from table S2 and from the
 Experimental Section of the paper. All data is combined in
-a \link{QFeatures} object. \link{AssayLinks} were stored between peptide
+a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object. \link[QFeatures:AssayLinks]{QFeatures::AssayLinks} were stored between peptide
 assays and their corresponding proteins assays based on the
 leading razor protein (hence only unique peptides are linked to
 proteins).

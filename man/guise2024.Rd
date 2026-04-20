@@ -5,8 +5,8 @@
 \alias{guise2024}
 \title{Guise et al. 2020 (Cell Rep.): postmortem ALS spinal moto neurons}
 \format{
-A \link{QFeatures} object with 102 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 102 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item \verb{F*}: 100 assays containing PSM data.
 \item \code{peptides}: quantitative data for 34,315 peptides in 108 samples.
@@ -75,23 +75,23 @@ The sample annotations were combined from the tables in
 
 The PSM data were found in the
 \verb{Biogen_TDP43_Round2_Reanalysis_10-13-2021_PSMs.txt} file. The
-data were converted to a \link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}}
+data were converted to a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}}
 function. We could not find sample annotations for MS run ID:
 F61, F34, F42, F88, F77, F8, F21, F5.
 
 The peptide data were found in the
 \verb{Biogen_TDP43_Round2_Reanalysis_10-13-2021_PeptideGroups.txt}
 file. The column names holding the quantitative data were adapted
-to match the sample names in the \link{QFeatures} object. The data were
-then converted to a \link{SingleCellExperiment} object and then
-inserted in the \link{QFeatures} object.
+to match the sample names in the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object. The data were
+then converted to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object and then
+inserted in the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object.
 
 A similar procedure was applied to the protein data. The data were
 found in the
 \verb{Biogen_TDP43_Round2_Reanalysis_10-13-2021_Proteins.txt} file. The
 column names were
-adapted, the data were converted to a \link{SingleCellExperiment}
-object and then inserted in the \link{QFeatures} object.
+adapted, the data were converted to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment}
+object and then inserted in the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object.
 }
 
 \examples{
