@@ -6,8 +6,8 @@
 \title{Grégoire et al. 2023 - mixCTRL (arXiv): benchmark using
 monocytes/macrophages}
 \format{
-A \link{QFeatures} object with 119 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 119 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item Assays 1-42: PSM data acquired with a TMT-16plex protocol, hence
 those assays contain 16 columns. Columns hold quantitative
@@ -95,10 +95,10 @@ files.
 We combined the sample annotations in a single table. We also
 combined \code{cbio} and \code{giga} tables together and merged resulting
 identification and quantification tables. Both annotation and
-features tables are then combined in a single \link{QFeatures} object
+features tables are then combined in a single \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object
 using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
-The \link{QFeatures} object was processed as described in the author's
+The \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object was processed as described in the author's
 manuscript (see \code{source}). Note that the imputed assays were used
 in the paper for illustrative purposes only and have not been
 reproduced here.

@@ -5,8 +5,8 @@
 \alias{zhu2019EL}
 \title{Zhu et al. 2019 (eLife): chicken utricle cells}
 \format{
-A \link{QFeatures} object with 62 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 62 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item \code{XYZw}: 60 assays containing PSM data. The sample are annotated
 as follows. \code{X} indicates the experiment, either 1 or 2. \code{Y}
@@ -81,22 +81,22 @@ of the annotation table available on the PRIDE repository.
 The PSM data were found in the \code{evidence.txt} (in the
 \verb{Experiment 1+ 2}) folder. The PSM data were filtered so that it
 contains only samples that are annotated. The data were then
-converted to a \link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}}
+converted to a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}}
 function.
 
 The peptide data were found in the \code{peptides.txt} file. The column
 names holding the quantitative data were adapted to match the
-sample names in the \link{QFeatures} object. The data were then
-converted to a \link{SingleCellExperiment} object and then inserted in
-the \link{QFeatures} object. Links between the PSMs and the peptides
+sample names in the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object. The data were then
+converted to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object and then inserted in
+the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object. Links between the PSMs and the peptides
 were added
 
 A similar procedure was applied to the protein data. The data were
 found in the \code{proteinGroups.txt} file. We split the protein table
 to separate the two types of quantification: summed intensity and
 intensity based absolute quantification (iBAQ). Both tables are
-converted to \link{SingleCellExperiment} objects and are added to the
-\link{QFeatures} object as well as the \code{AssayLink} between peptides and
+converted to \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} objects and are added to the
+\link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object as well as the \code{AssayLink} between peptides and
 proteins.
 }
 

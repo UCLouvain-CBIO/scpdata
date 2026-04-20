@@ -5,8 +5,8 @@
 \alias{leduc2022_plexDIA}
 \title{Leduc et al. 2022 - plexDIA (biorRxiv): melanoma cells}
 \format{
-A \link{QFeatures} object with 48 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 48 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item Assay 1-45: precursor data acquired with a mTRAQ-3 protocol,
 hence those assays contain 3 columns. Columns hold quantitative
@@ -96,14 +96,14 @@ containing the \code{protein} data
 We removed the failed runs as identified by the authors. We also
 formatted the annotation and precuror quantification tables to
 facilitate matching between corresponding columns. Both annotation
-and quantification tables are then combined in a single \link{QFeatures}
+and quantification tables are then combined in a single \link[QFeatures:QFeatures-class]{QFeatures::QFeatures}
 object using \code{scp::readSCPfromDIANN()}.
 
 The \code{plexDIA_peptide.csv} and \code{plexDIA_protein_imputed.csv} files
-were loaded and formatted as \link{SingleCellExperiment} objects. The
+were loaded and formatted as \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} objects. The
 columns names were adapted to match those in the \code{QFeatures}
 object. The \code{SingleCellExperiment} objects were then added to the
-\link{QFeatures} object and the rows of the peptide data are linked to
+\link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object and the rows of the peptide data are linked to
 the rows of the precursor data based on the peptide sequence or
 the protein name through an \code{AssayLink} object.
 }

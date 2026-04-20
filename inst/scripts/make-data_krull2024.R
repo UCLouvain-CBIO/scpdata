@@ -18,13 +18,12 @@ root <- "~/localdata/SCP/krull2024/"
 
 report <- read.delim(paste0(root, "report.tsv"))
 
-## Correct the colname 
-report <- report %>% 
-  rename(MS1.Area = Ms1.Area)
+## Match file names with protein assay sample names
+report$File.Name <- paste0("X", report$Run)
 
 ## Build the annotation table from the run names
 annot <- DataFrame(File.Name = unique(report$File.Name))
-annot$Run <- gsub("^D.*[\\]|[.]d$", "", annot$File.Name)
+annot$Run <- sub("X", "", annot$File.Name)
 otherVars <- strsplit(annot$Run, "_")
 otherVars <- lapply(otherVars, function(x) {
   if (length(x) == 12) x <- x[-4]
@@ -36,9 +35,11 @@ colnames(otherVars) <- c("Date", "..undetermined..", "SampleAnnotation",
                          "..undetermined..", "RunID")
 annot <- cbind(annot, otherVars)
 annot <- annot[, !grepl("\\.\\.undetermined\\.\\.", colnames(annot))]
+rownames(annot) <- annot$File.Name
 
 ## Format to a QFeatures object
-krull2024 <- readSCPfromDIANN(annot, report)
+krull2024 <- readSCPfromDIANN(report)
+colData(krull2024) <- annot
 
 ####---- Add the protein data ----####
 ## Data downloaded from:

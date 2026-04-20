@@ -6,8 +6,8 @@
 \title{Petrosius et al, 2023 (Nat. Comm.): Mouse embryonic stem cell (mESC) in
 different culture conditions}
 \format{
-A \link{QFeatures} object with 605 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 605 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item Assay 1-603: PSM data acquired with an orbitrap-based data-independent
 acquisition (DIA) protocol, hence those assays contain single column
@@ -91,17 +91,17 @@ The metadata were downloaded from the \href{https://zenodo.org/records/8146605}{
 
 We formatted the quantification table so that columns match with the
 metadata. Then, both tables are then combined in a single
-\link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
+\link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
-The peptide data were formated to a \link{SingleCellExperiment} object and the
+The peptide data were formated to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object and the
 sample metadata were matched to the column names and stored in the \code{colData}.
-The object is then added to the \link{QFeatures} object and the rows of the PSM
+The object is then added to the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object and the rows of the PSM
 data are linked to the rows of the peptide data based on the peptide sequence
 information through an \code{AssayLink} object.
 
-The protein data were formated to a \link{SingleCellExperiment} object and
+The protein data were formated to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object and
 the sample metadata were matched to the column names and stored in the
-\code{colData}. The object is then added to the \link{QFeatures} object and the rows
+\code{colData}. The object is then added to the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object and the rows
 of the peptide data are linked to the rows of the protein data based on the
 protein sequence information through an \code{AssayLink} object.
 }
