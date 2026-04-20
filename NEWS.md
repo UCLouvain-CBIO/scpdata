@@ -3,12 +3,9 @@
 ## scpdata 1.19.1
 
 - Add wu2026 dataset.
+- Fix colData of krull2024() dataset.
 
 # scpdata 1.17
-
-## scpdata 1.17.2
-
-- Fix colData of krull2024() dataset.
 
 ## scpdata 1.17.1
 
