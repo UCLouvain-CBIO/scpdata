@@ -5,8 +5,8 @@
 \alias{dou2019_boosting}
 \title{Dou et al. 2019 (Anal. Chem.): testing boosting ratios}
 \format{
-A \link{QFeatures} object with 7 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 7 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item \code{Boosting_X_run_Y}: PSM data with 10 columns corresponding to
 the TMT-10plex channels. The \code{X} indicates the boosting amount
@@ -88,7 +88,7 @@ protein groups. Feature annotations that are not common within a
 peptide or protein group are are separated by a \verb{;}. The sample
 annotation table was manually created based on the available
 information provided in the article. The data were then converted
-to a \link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
+to a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
 We generated the peptide data. First, we removed PSM matched to
 contaminants or decoy peptides and ensured a 1\% FDR. We aggregated
@@ -108,8 +108,8 @@ contains 7 sheets from which we took the 2nd, 4th and 6th sheets
 \verb{05 - 50ng boost raw data}, respectively). The sheets contain the
 combined protein data for the duplicate runs given the boosting
 amount. We joined the data for all boosting ration based on the
-protein name and converted the data to a \link{SingleCellExperiment}
-object. We then added the object as a new assay in the \link{QFeatures}
+protein name and converted the data to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment}
+object. We then added the object as a new assay in the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures}
 dataset (containing the PSM data). Links between the proteins and
 the corresponding PSM were created. Note that links to protein
 groups are not stored.

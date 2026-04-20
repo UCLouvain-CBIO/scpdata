@@ -6,8 +6,8 @@
 \title{Derks et al. 2022 - plexDIA (Nat. Biotechnol.): PDAC vs melanoma
 cells vs monocytes}
 \format{
-A \link{QFeatures} object with 66 assays, each assay being a
-\link{SingleCellExperiment} object. The assays either hold the DIA-NN
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 66 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object. The assays either hold the DIA-NN
 main output report table or the DIA-NN MS1 extracted signal table.
 The DIA-NN main output report table contains the results of the spectrum
 identification and quantification. The DIA-NN MS1 extracted
@@ -91,10 +91,10 @@ The data were collected from a shared Google Drive
 that is accessible from the SlavovLab website (see \code{Source} section).
 
 For each dataset separately, we combined the sample annotation
-and the DIANN tables in a \link{QFeatures} object following the \code{scp}
+and the DIANN tables in a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object following the \code{scp}
 data structure. We then combined the three datasets in a single
 \code{QFeatures} object. We load the proteins table processed by the
-authors as a \link{SingleCellExperiment} object and adapted the sample
+authors as a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object and adapted the sample
 names to match those in the \code{QFeatures} object. We added the
 protein data as a new assay and link the precursors to proteins
 using the \code{Protein.Group} variable from the \code{rowData}.

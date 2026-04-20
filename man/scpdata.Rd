@@ -17,10 +17,10 @@ single-cell proteomics datasets. The datasets were collected from
 published work and formatted to a standardized data framework.
 The \code{scp} frameworks stores the expression data for different MS
 levels (identified spectrum, peptide, or protein) in separate
-assays. Each assay is an object of class \link{SingleCellExperiment}
+assays. Each assay is an object of class \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment}
 that allows easy integration with state-of-the-art single-cell
 analysis tools. All assays are contained in a single object of
-class \link{QFeatures}. An overview of the data structure is shown
+class \link[QFeatures:QFeatures-class]{QFeatures::QFeatures}. An overview of the data structure is shown
 provided in the \code{scp} package.
 
 The \code{scpdata()} function returns a summary table with all
