@@ -816,6 +816,33 @@ meta <- list(
       ProteinsAvailable = TRUE,
       ContainsSingleCells = TRUE,
       Notes = "DIA-NN output retrieved using MsDataHub::Ai2025_aCMs_report.tsv()"
+    ),
+    data.frame(
+  	Title = "wu2026",
+  	Description = paste0("Label-free single-cell proteomics data from prenatal human brain tissue ",
+                       "(gestational weeks 13, 15, and 19) from Wu et al. (2026)"),
+  	BiocVersion = "3.22",
+  	Genome = NA_character_,
+  	SourceType = "TXT",
+  	SourceUrl = "https://www.ebi.ac.uk/pride/archive/projects/PXD071075",
+  	SourceVersion = NA_character_,
+  	Species = "Homo sapiens",
+  	TaxonomyId = 9606,
+  	Coordinate_1_based = TRUE,
+  	DataProvider = "PRIDE",
+  	Maintainer = "Léopold Guyot <leopoldguyot@uclouvain.be>",
+  	RDataClass = "QFeatures",
+  	DispatchClass = "Rda",
+  	RDataPath = "scpdata/wu2026.rda",
+  	PublicationDate = as.Date("2026/01/27"),
+  	NumberAssays = 2313,
+  	PreprocessingSoftware = "DIA-NN",
+  	LabelingProtocol = "LFQ",
+  	PsmsAvailable = TRUE,
+  	PeptidesAvailable = TRUE,
+  	ProteinsAvailable = TRUE,
+        ContainsSingleCells = TRUE,
+        Notes = "DIA-NN output retrieved from PRIDE repository accession PXD071075"
     )
 )
 

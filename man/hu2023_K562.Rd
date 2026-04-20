@@ -8,7 +8,7 @@
 \title{Hu et al, 2023 (The Journal of Physical Chemistry B): Correlated protein
 modules}
 \format{
-Two \link{SingleCellExperiment} objects:
+Two \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} objects:
 \itemize{
 \item \code{proteins_K562}: protein data containing quantitative data for 1249
 proteins and 69 single-cells with zero imputation.
@@ -86,18 +86,18 @@ GitHub (https://github.com/dionezhang/CPM/blob/master/ProteinAbundance.Rdata).
 }
 
 We initialized an empty QFeatures object and added the corresponding
-protein assays as \link{SingleCellExperiment} objects.
+protein assays as \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} objects.
 
 The oocyte protein data were exported from the shared link as
 (\verb{DataMatrix-oocyte-20240614.csv}). The data were formatted to a
-\link{SingleCellExperiment} object and the SampleType information were added
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object and the SampleType information were added
 as only metadata, and stored in the \code{colData}. The object is then added
-to the \link{QFeatures} object.
+to the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object.
 
 The 562 cells protein data were downloaded from the GitHub link and loaded
-to the memory. The \code{Norm} object were formatted to a \link{SingleCellExperiment}
+to the memory. The \code{Norm} object were formatted to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment}
 object and the SampleType information were added as only metadata, and
-stored in the \code{colData}. The object is then added to the \link{QFeatures} object.
+stored in the \code{colData}. The object is then added to the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object.
 }
 
 \examples{

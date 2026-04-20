@@ -5,8 +5,8 @@
 \alias{zhu2018MCP}
 \title{Zhu et al. 2018 (Mol. Cel. Prot.): rat brain laser dissections}
 \format{
-A \link{QFeatures} object with 4 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 4 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item \code{peptides}: quantitative information for 13,055 peptides from
 24 samples
@@ -74,13 +74,13 @@ and the \code{MaxQuant_ProteinGroups.txt} files containing the
 combined identification and quantification
 results. The sample annotations were inferred from the names of
 columns holding the quantification data and the information in the
-article. The peptides data were converted to a \link{SingleCellExperiment}
+article. The peptides data were converted to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment}
 object. We split the protein table to separate the three types of
 quantification: protein intensity, label-free quantitification
 (LFQ) and intensity based absolute quantification (iBAQ). Each
-table is converted to a \link{SingleCellExperiment} object along with
+table is converted to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object along with
 the remaining protein annotations. The 4 objects are combined in
-a single \link{QFeatures} object and feature links are created based on
+a single \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object and feature links are created based on
 the peptide leading razor protein ID and the protein ID.
 }
 

@@ -5,8 +5,8 @@
 \alias{williams2020_lfq}
 \title{Williams et al. 2020 (Anal. Chem.): MCF10A cell line}
 \format{
-A \link{QFeatures} object with 9 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 9 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item \verb{peptides_[30 or 60]min_[intensity or LFQ]}: 3 assays
 containing peptide intensities or LFQ normalized
@@ -83,9 +83,9 @@ or \verb{ProteinGroups[...].txt} files, respectively, in the
 The tables were duplicated so that peptide intensisities, peptide
 LFQ, protein intensities, protein LFQ and protein intensities are
 contained in separate tables. Tables are then converted to
-\link{SingleCellExperiment} objects. Sample annotations were infered
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} objects. Sample annotations were infered
 from the sample names and from the paper. All data is combined in
-a \link{QFeatures} object. \link{AssayLinks} were stored between peptide
+a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object. \link[QFeatures:AssayLinks]{QFeatures::AssayLinks} were stored between peptide
 assays and their corresponding proteins assays based on the
 leading razor protein (hence only unique peptides are linked to
 proteins).

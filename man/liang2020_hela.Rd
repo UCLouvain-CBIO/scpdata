@@ -5,8 +5,8 @@
 \alias{liang2020_hela}
 \title{Liang et al. 2020 (Anal. Chem.): HeLa cells (MaxQuant preprocessing)}
 \format{
-A \link{QFeatures} object with 17 assays, each assay being a
-\link{SingleCellExperiment} object:
+A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 17 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
 \itemize{
 \item \verb{HeLa_*}: 15 assays containing PSM data.
 \item \code{peptides}: quantitative data for 48705 peptides in 15 samples
@@ -77,20 +77,20 @@ The sample annotations were collected from the methods section and
 from table S3 in the paper.
 
 The PSM data were found in the \code{evidence.txt} file. The data were
-converted to a \link{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}}
+converted to a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}}
 function.
 
 The peptide data were found in the \code{peptides.txt} file. The column
 names holding the quantitative data were adapted to match the
-sample names in the \link{QFeatures} object. The data were then
-converted to a \link{SingleCellExperiment} object and then inserted in
-the \link{QFeatures} object. Links between the PSMs and the peptides
+sample names in the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object. The data were then
+converted to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object and then inserted in
+the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object. Links between the PSMs and the peptides
 were added
 
 A similar procedure was applied to the protein data. The data were
 found in the \code{proteinGroups.txt} file. The column names were
-adapted, the data were converted to a \link{SingleCellExperiment}
-object and then inserted in the \link{QFeatures} object. Links between
+adapted, the data were converted to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment}
+object and then inserted in the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object. Links between
 the peptides and the proteins were added
 }
 
