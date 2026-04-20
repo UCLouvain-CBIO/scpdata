@@ -1,7 +1,6 @@
 library(scp)
 library(tidyr)
 library(dplyr)
-library(ggplot2)
 
 pep <- read.table("/mnt/disk3/leopoldguyot/PXD071075/peptide_report.tsv",
     header = TRUE,
@@ -13,6 +12,8 @@ prot <- read.table("/mnt/disk3/leopoldguyot/PXD071075/protein_report.tsv",
 )
 
 design <- read.csv("~/dev/2025-phd-leopold-guyot/year1/scpdata_datasets/data/1.clean_meta.csv")
+
+# Prepare peptide table
 rownames(design) <- design$ID
 pep <- pep %>%
     separate(Run,
@@ -30,24 +31,42 @@ pep$Sample <- dplyr::recode(
 )
 
 pep$cellID <- paste(pep$Sample, pep$Number, sep = "_")
-cat("PSM")
-qfeatures <- readSCP(pep, runCol = "cellID", quantCols = c("Precursor.Quantity"), fnames = "Precursor.Id")
-colData(qfeatures) <- as(design, "DataFrame")
-psmNames <- names(qfeatures)
-pepNames <- paste0("peptides_", names(qfeatures))
+
+# Loading PSM
+wu2026 <- readSCP(pep, runCol = "cellID", quantCols = c("Precursor.Quantity"), fnames = "Precursor.Id")
+# add colData
+colData(wu2026) <- as(design, "DataFrame")
+
+psmNames <- names(wu2026)
+pepNames <- paste0("peptides_", names(wu2026))
 
 
-cat("Peptides")
-qfeatures <- aggregateFeatures(qfeatures,
+# Aggregate to peptide level
+wu2026 <- aggregateFeatures(wu2026,
     i = psmNames,
     name = pepNames,
     fcol = "Modified.Sequence",
     fun = matrixStats::colMedians
 )
 
-qfeatures <- joinAssays(qfeatures, pepNames, name = "peptides")
+wu2026 <- joinAssays(wu2026, pepNames, name = "peptides")
+wu2026 <- wu2026[, , setdiff(names(wu2026), pepNames)]
+wu2026 <- addAssayLink(wu2026,
+    from = psmNames,
+    to = "peptides",
+    varFrom = rep("Modified.Sequence", length(psmNames)),
+    varTo = "Modified.Sequence"
+)
 
-cat("Proteins")
+# Aggregate to protein level
+wu2026 <- aggregateFeatures(wu2026,
+    i = "peptides",
+    name = "proteins",
+    fcol = "Protein.Ids",
+    fun = matrixStats::colMedians
+)
+
+# Add paper's protein data
 protse <- readSummarizedExperiment(prot,
     quantCols = grep("Evosep", colnames(prot)),
     fnames = "Protein.Ids"
@@ -76,8 +95,12 @@ colnames(protse) <- sapply(old_names, rename_col)
 
 protse <- protse[!duplicated(rownames(protse))]
 
-qfeatures <- addAssay(qfeatures, protse, "imported_proteins")
+wu2026 <- addAssay(wu2026, protse, "imported_proteins")
 
-qfeatures <- addAssayLink(qfeatures, "peptides", "imported_proteins", varFrom = "Protein.Ids", varTo = "Protein.Ids")
+wu2026 <- addAssayLink(wu2026, "peptides", "imported_proteins", varFrom = "Protein.Ids", varTo = "Protein.Ids")
 
-saveRDS(qfeatures, "./wu2026.rds")
+save(wu2026,
+    file = "/mnt/disk3/leopoldguyot/wu2026.rda",
+    compress = "xz",
+    compression_level = 9
+)
