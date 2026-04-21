@@ -415,7 +415,7 @@ meta <- list(
         Description = paste0("Single-cell and bulk (100-cell) ",
                              "proteomics data of PDAC, melanoma cells ",
                              "and monocytes."),
-        BiocVersion = "3.16",
+        BiocVersion = "3.21",
         Genome = NA_character_,
         SourceType = "TXT",
         SourceUrl = "ftp://massive.ucsd.edu/MSV000089093/",
