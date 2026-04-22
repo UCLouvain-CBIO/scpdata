@@ -4,6 +4,7 @@
 
 - Add wu2026 dataset.
 - Fix colData of krull2024() dataset.
+- Fix mismatch of sample ids in derks2022() dataset.
 
 # scpdata 1.17
 
