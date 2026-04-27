@@ -1,8 +1,10 @@
 # scpdata 1.19
 
+## scpdata 1.19.2
+- Revert BiocVersion for modified datasets (changed in 1.19.1).
+
 ## scpdata 1.19.1
 
-- Add wu2026 dataset.
 - Fix colData of krull2024() dataset.
 - Fix mismatch of sample ids in derks2022() dataset.
 
@@ -21,7 +23,6 @@
 ## scpdata 1.15.1
 
 - New dataset: ai2025a, adult cardiomyocytes from Ai et al. (2025).
-
 - New datasets: krull2024, hu2023_K562 and hu2023_oocyte and
   fixed khan2023 imputed data.
 
