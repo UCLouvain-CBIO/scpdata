@@ -21,7 +21,7 @@ acquired using the pSCoPE MS acquisition approach."><!-- mathjax --><script src=
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -73,8 +73,8 @@ acquired using the pSCoPE MS acquisition approach.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 138 assays, each assay being a
-SingleCellExperiment object:</p><ul><li><p>Assay 1-134: PSM data acquired with a TMT-18plex protocol, hence
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 138 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p>Assay 1-134: PSM data acquired with a TMT-18plex protocol, hence
 those assays contain 18 columns. Columns hold quantitative
 information from single-cell channels, carrier channels,
 reference channels, empty (negative control) channels and
@@ -159,13 +159,13 @@ data</p></li>
 </ul><p>We combined the sample annotation and the batch annotation in
 a single table. We also formatted the quantification table so that
 columns match with those of the annotations. Both annotation and
-quantification tables are then combined in a single <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a>
+quantification tables are then combined in a single <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a>
 object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
-<p>The 4 CSV files were loaded and formatted as SingleCellExperiment
+<p>The 4 CSV files were loaded and formatted as <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a>
 objects and the sample metadata were matched to the column names
 (mapping is retrieved after running the author's original R script)
 and stored in the <code>colData</code>.
-The object is then added to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object (containing the
+The object is then added to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object (containing the
 PSM assays) and the rows of the peptide data are linked to the
 rows of the PSM data based on the peptide sequence information
 through an <code>AssayLink</code> object.</p>

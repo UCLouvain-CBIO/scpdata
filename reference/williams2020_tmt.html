@@ -23,7 +23,7 @@ article. The samples contain either carrier (10 ng), reference
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -77,8 +77,8 @@ article. The samples contain either carrier (10 ng), reference
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 4 assays, each assay being a
-SingleCellExperiment object:</p><ul><li><p><code>peptides_[intensity or corrected]</code>: 2 assays containing peptide
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 4 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p><code>peptides_[intensity or corrected]</code>: 2 assays containing peptide
 reporter ion intensities or corrected reporter ion intensities
 as computed by MaxQuant.</p></li>
 <li><p><code>proteins_[intensity or corrected]</code>: 2 assays containing protein
@@ -133,10 +133,10 @@ MSV000085230).</p>
 files, respectively, in the <code>AML_SingleCell</code> folders.</p>
 <p>The tables were duplicated so that intensisities and corrected
 intensities are contained in separate tables. Tables are then
-converted to SingleCellExperiment objects. Sample annotations
+converted to <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> objects. Sample annotations
 were inferred from the sample names, from table S2 and from the
 Experimental Section of the paper. All data is combined in
-a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object. <a href="https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html" class="external-link">AssayLinks</a> were stored between peptide
+a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object. <a href="https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html" class="external-link">QFeatures::AssayLinks</a> were stored between peptide
 assays and their corresponding proteins assays based on the
 leading razor protein (hence only unique peptides are linked to
 proteins).</p>

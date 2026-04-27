@@ -22,7 +22,7 @@ data independent (DIA) acquisition mode."><!-- mathjax --><script src="https://c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -75,8 +75,8 @@ data independent (DIA) acquisition mode.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 435 assays, each assay being a
-SingleCellExperiment object.</p><ul><li><p>Assay 1-434: DIA-NN main output report table split for each
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 435 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object.</p><ul><li><p>Assay 1-434: DIA-NN main output report table split for each
 acquisition run. Since each run acquires 1 single cell, each
 assay contains a single column. It contains the results
 of the spectrum identification and quantification.</p></li>
@@ -129,9 +129,9 @@ to 20 eV at 1/K0=0.6 Vs cm^2.</p></li>
 in the <code>DIANN1.8_SingleCells_CellCycle.zip</code> file.</p>
 <p>We loaded the DIA-NN main report table and generated a sample
 annotation table based on the MS file names. We next combined the
-sample annotation and the DIANN tables into a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object
+sample annotation and the DIANN tables into a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object
 following the <code>scp</code> data structure. We loaded the proteins group
-matrix as a SingleCellExperiment object, fixed ambiguous
+matrix as a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object, fixed ambiguous
 protein group names, and added the protein data as a new assay and
 link the precursors to proteins using the <code>Protein.Group</code> variable
 from the <code>rowData</code>.</p>
@@ -151,8 +151,6 @@ Biology 18 (3): e10798.
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="fu">brunner2022</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> see ?scpdata and browseVignettes('scpdata') for documentation</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Error while performing HEAD request.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>    Proceeding without cache information.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> loading from cache</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> An instance of class QFeatures (type: scp) with 435 sets:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

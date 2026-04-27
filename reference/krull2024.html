@@ -21,7 +21,7 @@ the single-cell level."><!-- mathjax --><script src="https://cdnjs.cloudflare.co
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -73,8 +73,8 @@ the single-cell level.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 159 assays, each assay being a
-SingleCellExperiment object.</p><ul><li><p>Assay 1-158: DIA-NN main output report table split for each
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 159 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object.</p><ul><li><p>Assay 1-158: DIA-NN main output report table split for each
 acquisition run. First 15 run acquires 10 single cells (MEs) and,
 remaining 143 run acquires 1 single cell. It contains the results
 of the spectrum identification and quantification.</p></li>
@@ -130,9 +130,9 @@ for spectrum prediction, retention times, and ion mobility.</p></li>
 in the <code>03_SingleCell_Searches.zip</code> file.</p>
 <p>We loaded the DIA-NN main report table and generated a sample
 annotation table based on the MS file names. We next combined the
-sample annotation and the DIANN tables into a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object
+sample annotation and the DIANN tables into a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object
 following the <code>scp</code> data structure. We loaded the proteins group
-matrix as a SingleCellExperiment object, and added the protein data
+matrix as a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object, and added the protein data
 as a new assay and link the precursors to proteins using the
 <code>Protein.Group</code> variable from the <code>rowData</code>.</p>
     </div>

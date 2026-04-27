@@ -23,7 +23,7 @@ single cells, 3 cells, 10 cells  50 cells."><!-- mathjax --><script src="https:/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -77,8 +77,8 @@ single cells, 3 cells, 10 cells  50 cells.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 9 assays, each assay being a
-SingleCellExperiment object:</p><ul><li><p><code>peptides_[30 or 60]min_[intensity or LFQ]</code>: 3 assays
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 9 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p><code>peptides_[30 or 60]min_[intensity or LFQ]</code>: 3 assays
 containing peptide intensities or LFQ normalized
 quantifications (see <code>References</code>) for either a 30min or a 60 min
 gradient.</p></li>
@@ -138,9 +138,9 @@ or <code>ProteinGroups[...].txt</code> files, respectively, in the
 <p>The tables were duplicated so that peptide intensisities, peptide
 LFQ, protein intensities, protein LFQ and protein intensities are
 contained in separate tables. Tables are then converted to
-SingleCellExperiment objects. Sample annotations were infered
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> objects. Sample annotations were infered
 from the sample names and from the paper. All data is combined in
-a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object. <a href="https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html" class="external-link">AssayLinks</a> were stored between peptide
+a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object. <a href="https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html" class="external-link">QFeatures::AssayLinks</a> were stored between peptide
 assays and their corresponding proteins assays based on the
 leading razor protein (hence only unique peptides are linked to
 proteins).</p>

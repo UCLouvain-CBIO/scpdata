@@ -19,7 +19,7 @@ concentration is acquired in triplicate."><!-- mathjax --><script src="https://c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -69,8 +69,8 @@ concentration is acquired in triplicate.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 4 assays, each assay being a
-SingleCellExperiment object:</p><ul><li><p><code>peptides</code>: quantitative information for 14,921 peptides from
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 4 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p><code>peptides</code>: quantitative information for 14,921 peptides from
 9 lysate samples</p></li>
 <li><p><code>proteins_intensity</code>: quantitative information for 2,199
 proteins from 9 lysate samples</p></li>
@@ -120,13 +120,13 @@ and the <code>Vail_Prep_Vail_proteinGroups.txt</code> files containing the
 combined identification and quantification
 results. The sample annotations were inferred from the names of
 columns holding the quantification data and the information in the
-article. The peptides data were converted to a SingleCellExperiment
+article. The peptides data were converted to a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a>
 object. We split the protein table to separate the three types of
 quantification: protein intensity, label-free quantitification
 (LFQ) and intensity based absolute quantification (iBAQ). Each
-table is converted to a SingleCellExperiment object along with
+table is converted to a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object along with
 the remaining protein annotations. The 4 objects are combined in
-a single <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object and feature links are created based on
+a single <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object and feature links are created based on
 the peptide leading razor protein ID and the protein ID.</p>
     </div>
     <div id="references">

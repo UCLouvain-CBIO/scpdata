@@ -22,7 +22,7 @@ from type 1 diabetes (T1D) patients (n=9)."><!-- mathjax --><script src="https:/
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -75,8 +75,8 @@ from type 1 diabetes (T1D) patients (n=9).</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 4 assays, each assay being a
-SingleCellExperiment object:</p><ul><li><p><code>peptides</code>: quantitative information for 24,321 peptides from
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 4 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p><code>peptides</code>: quantitative information for 24,321 peptides from
 18 islet samples</p></li>
 <li><p><code>proteins_intensity</code>: quantitative information for 3,278
 proteins from 18 islet samples</p></li>
@@ -124,12 +124,12 @@ and the <code>Islet_t1d_ct_proteinGroups.txt</code> files containing the
 combined identification and quantification results. The sample
 types were inferred from the names of columns holding the
 quantification data. The peptides data were converted to a
-SingleCellExperiment object. We split the protein table to
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object. We split the protein table to
 separate the three types of quantification: protein intensity,
 label-free quantitification (LFQ) and intensity based absolute
 quantification (iBAQ). Each table is converted to a
-SingleCellExperiment object along with the remaining protein
-annotations. The 4 objects are combined in a single <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a>
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object along with the remaining protein
+annotations. The 4 objects are combined in a single <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a>
 object and feature links are created based on the peptide leading
 razor protein ID and the protein ID.</p>
     </div>

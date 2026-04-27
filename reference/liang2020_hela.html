@@ -22,7 +22,7 @@ dilution of a bulk sample."><!-- mathjax --><script src="https://cdnjs.cloudflar
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -75,8 +75,8 @@ dilution of a bulk sample.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 17 assays, each assay being a
-SingleCellExperiment object:</p><ul><li><p><code>HeLa_*</code>: 15 assays containing PSM data.</p></li>
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 17 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p><code>HeLa_*</code>: 15 assays containing PSM data.</p></li>
 <li><p><code>peptides</code>: quantitative data for 48705 peptides in 15 samples
 (all runs are combined).</p></li>
 <li><p><code>proteins</code>: quantitative data for 3970 protein groups in 15
@@ -131,18 +131,18 @@ PXD021882).</p>
 <p>The sample annotations were collected from the methods section and
 from table S3 in the paper.</p>
 <p>The PSM data were found in the <code>evidence.txt</code> file. The data were
-converted to a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code>
+converted to a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code>
 function.</p>
 <p>The peptide data were found in the <code>peptides.txt</code> file. The column
 names holding the quantitative data were adapted to match the
-sample names in the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object. The data were then
-converted to a SingleCellExperiment object and then inserted in
-the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object. Links between the PSMs and the peptides
+sample names in the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object. The data were then
+converted to a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object and then inserted in
+the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object. Links between the PSMs and the peptides
 were added</p>
 <p>A similar procedure was applied to the protein data. The data were
 found in the <code>proteinGroups.txt</code> file. The column names were
-adapted, the data were converted to a SingleCellExperiment
-object and then inserted in the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object. Links between
+adapted, the data were converted to a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a>
+object and then inserted in the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object. Links between
 the peptides and the proteins were added</p>
     </div>
     <div id="references">

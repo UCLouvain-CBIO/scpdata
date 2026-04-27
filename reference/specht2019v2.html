@@ -20,7 +20,7 @@ peptide and protein level."><!-- mathjax --><script src="https://cdnjs.cloudflar
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -71,8 +71,8 @@ peptide and protein level.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 179 assays, each assay being a
-SingleCellExperiment object:</p><ul><li><p>Assay 1-63: PSM data for SCoPE2 sets acquired with a TMT-11plex
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 179 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p>Assay 1-63: PSM data for SCoPE2 sets acquired with a TMT-11plex
 protocol, hence those assays contain 11 columns. Columns
 hold quantitative information from single-cell channels, carrier
 channels, reference channels, empty (blank) channels and unused
@@ -133,13 +133,13 @@ The folder contains the following files of interest:</p><ul><li><p><code>ev_upda
 a single table. We also formatted the quantification table so that
 columns match with those of the annotation and filter only for
 single-cell runs. Both table are then combined in a single
-<a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
+<a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
 <p>The peptide data were taken from the Slavov lab directly
 (<code>Peptides-raw.csv</code>). It is provided as a spreadsheet. The data
-were formatted to a SingleCellExperiment object and the sample
+were formatted to a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object and the sample
 metadata were matched to the column names (mapping is retrieved
 after running the SCoPE2 R script) and stored in the <code>colData</code>.
-The object is then added to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object (containing the
+The object is then added to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object (containing the
 PSM assays) and the rows of the peptide data are linked to the
 rows of the PSM data based on the peptide sequence information
 through an <code>AssayLink</code> object.</p>

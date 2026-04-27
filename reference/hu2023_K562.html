@@ -25,7 +25,7 @@ in SCP than those corresponding mRNAs."><!-- mathjax --><script src="https://cdn
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ in SCP than those corresponding mRNAs.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>Two SingleCellExperiment objects:</p><ul><li><p><code>proteins_K562</code>: protein data containing quantitative data for 1249
+    <p>Two <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> objects:</p><ul><li><p><code>proteins_K562</code>: protein data containing quantitative data for 1249
 proteins and 69 single-cells with zero imputation.</p></li>
 <li><p><code>proteins_oocyte</code>: protein data containing quantitative data for 3422
 proteins and 137 single-cells with zero imputation.</p></li>
@@ -138,16 +138,16 @@ The K563 protein data is accessible from the
 GitHub (https://github.com/dionezhang/CPM/blob/master/ProteinAbundance.Rdata).</p><ul><li><p><code>DataMatrix-oocyte-20240614.csv</code>: normalized imputed protein matrix</p></li>
 <li><p><code>ProteinAbundance.Rdata</code>: protein matrices (normalized, log transformed)</p></li>
 </ul><p>We initialized an empty QFeatures object and added the corresponding
-protein assays as SingleCellExperiment objects.</p>
+protein assays as <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> objects.</p>
 <p>The oocyte protein data were exported from the shared link as
 (<code>DataMatrix-oocyte-20240614.csv</code>). The data were formatted to a
-SingleCellExperiment object and the SampleType information were added
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object and the SampleType information were added
 as only metadata, and stored in the <code>colData</code>. The object is then added
-to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object.</p>
+to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object.</p>
 <p>The 562 cells protein data were downloaded from the GitHub link and loaded
-to the memory. The <code>Norm</code> object were formatted to a SingleCellExperiment
+to the memory. The <code>Norm</code> object were formatted to a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a>
 object and the SampleType information were added as only metadata, and
-stored in the <code>colData</code>. The object is then added to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object.</p>
+stored in the <code>colData</code>. The object is then added to the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object.</p>
     </div>
     <div id="references">
     <h2>References</h2>

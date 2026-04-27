@@ -22,7 +22,7 @@ multiplexing."><!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/li
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scpdata</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.17.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.19.2</span>
       </span>
     </div>
 
@@ -75,8 +75,8 @@ multiplexing.</p>
 
     <div id="format">
     <h2>Format</h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 66 assays, each assay being a
-SingleCellExperiment object. The assays either hold the DIA-NN
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 66 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object. The assays either hold the DIA-NN
 main output report table or the DIA-NN MS1 extracted signal table.
 The DIA-NN main output report table contains the results of the spectrum
 identification and quantification. The DIA-NN MS1 extracted
@@ -143,10 +143,10 @@ chromatography system (Bruker Daltonics) using a 25 cm × 75 µm,
 <a href="https://drive.google.com/drive/folders/1pUC2zgXKtKYn22mlor0lmUDK0frgwL" class="external-link">folder</a>
 that is accessible from the SlavovLab website (see <code>Source</code> section).</p>
 <p>For each dataset separately, we combined the sample annotation
-and the DIANN tables in a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object following the <code>scp</code>
+and the DIANN tables in a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object following the <code>scp</code>
 data structure. We then combined the three datasets in a single
 <code>QFeatures</code> object. We load the proteins table processed by the
-authors as a SingleCellExperiment object and adapted the sample
+authors as a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object and adapted the sample
 names to match those in the <code>QFeatures</code> object. We added the
 protein data as a new assay and link the precursors to proteins
 using the <code>Protein.Group</code> variable from the <code>rowData</code>.</p>
