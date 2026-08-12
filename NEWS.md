@@ -1,3 +1,9 @@
+# scpdata 1.21
+
+## scpdata 1.21.0
+
+- New devel version
+
 # scpdata 1.19
 
 ## scpdata 1.19.2
