@@ -816,6 +816,33 @@ meta <- list(
       ProteinsAvailable = TRUE,
       ContainsSingleCells = TRUE,
       Notes = "DIA-NN output retrieved using MsDataHub::Ai2025_aCMs_report.tsv()"
+    ),
+    data.frame(
+      Title = "leduc2025",
+      Description = paste0("Principles of protein abundance regulation across",
+                           " single cells in a mammalian tissue Leduc et al, (2025)"),
+      BiocVersion = "3.23",
+      Genome = NA_character_,
+      SourceType = "CSV",
+      SourceUrl = "https://massive.ucsd.edu/ProteoSAFe/dataset.jsp?task=4b22e2f4fcde424daf16857507045a4c",
+      SourceVersion = NA_character_,
+      Species = "Mus musculus",
+      TaxonomyId = 10090,
+      Coordinate_1_based = TRUE,
+      DataProvider = "MassIVE",
+      Maintainer = "Enes Sefa Ayar <enes.ayar@uclouvain.be>",
+      RDataClass = "QFeatures",
+      DispatchClass = "Rda",
+      RDataPath = "scpdata/leduc2025.rda",
+      PublicationDate = as.Date("2026/08/12"),
+      NumberAssays = 11,
+      PreprocessingSoftware = "DIA-NN",
+      LabelingProtocol = "mTRAQ",
+      PsmsAvailable = FALSE,
+      PeptidesAvailable = TRUE,
+      ProteinsAvailable = TRUE,
+      ContainsSingleCells = TRUE,
+      Notes = NA_character_
     )
     ## data.frame(
     ##   Title = "bubis2025",
