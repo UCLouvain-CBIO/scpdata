@@ -2,7 +2,7 @@
 
 ## scpdata 1.21.1
 
-- Nothing yet
+- Remove LazyData, use GPL-3
 
 ## scpdata 1.21.0
 
