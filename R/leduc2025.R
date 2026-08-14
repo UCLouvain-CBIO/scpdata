@@ -1,4 +1,4 @@
-##' Leduc et al, 2025 (biorRxiv): Principles of protein abundance regulation
+##' Leduc et al, 2025 (bioRxiv): Principles of protein abundance regulation
 ##' across single cells in a mammalian tissue
 ##'
 ##' @description
