@@ -101,7 +101,8 @@
 ##' The data were downloaded from the
 ##' [Slavov Lab](https://scp.slavovlab.net/Leduc_et_al_2025) website via a
 ##' shared Zenodo folder
-##' [folder](https://zenodo.org/records/14902834).
+##' [folder](https://zenodo.org/records/21904283).
+##' Zenodo repository https://doi.org/10.5281/zenodo.21904283
 ##' The raw data and the quantification data can also be found in the
 ##' MassIVE repository `MSV000098940`:
 ##' ftp://massive-ftp.ucsd.edu/v10/MSV000098940/.
