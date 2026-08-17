@@ -1,3 +1,14 @@
+# scpdata 1.21
+
+## scpdata 1.21.1
+
+- Remove LazyData, use GPL-3.
+- Add leduc2025 data.
+
+## scpdata 1.21.0
+
+- New devel version.
+
 # scpdata 1.19
 
 ## scpdata 1.19.2
