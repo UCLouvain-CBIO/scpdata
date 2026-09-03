@@ -2,15 +2,24 @@ library(scp)
 library(tidyr)
 library(dplyr)
 
+# All data are also available in zenodo:
+# https://doi.org/10.5281/zenodo.22283331 
+
+# https://www.ebi.ac.uk/pride/archive/projects/PXD071075
+
 pep <- read.table("/mnt/disk3/leopoldguyot/PXD071075/peptide_report.tsv",
     header = TRUE,
     sep = "\t"
 )
+
+# https://www.ebi.ac.uk/pride/archive/projects/PXD071075
+
 prot <- read.table("/mnt/disk3/leopoldguyot/PXD071075/protein_report.tsv",
     header = TRUE,
     sep = "\t"
 )
 
+# https://github.com/SingleCellProteomics/Brain/blob/master/data/1.clean_meta.csv
 design <- read.csv("~/dev/2025-phd-leopold-guyot/year1/scpdata_datasets/data/1.clean_meta.csv")
 
 # Prepare peptide table

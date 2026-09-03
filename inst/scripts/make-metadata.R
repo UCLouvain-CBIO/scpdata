@@ -879,7 +879,7 @@ meta <- list(
         Title = "wu2026",
         Description = paste0("Label-free single-cell proteomics data from prenatal human brain tissue ",
                            "(gestational weeks 13, 15, and 19) from Wu et al. (2026)"),
-        BiocVersion = "3.22",
+        BiocVersion = "3.24",
         Genome = NA_character_,
         SourceType = "TXT",
         SourceUrl = "https://www.ebi.ac.uk/pride/archive/projects/PXD071075",
