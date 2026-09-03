@@ -892,7 +892,7 @@ meta <- list(
         RDataClass = "QFeatures",
         DispatchClass = "Rda",
         Location_Prefix = "https://zenodo.org/",
-        RDataPath = "records/19660264/files/wu2026.rda",
+        RDataPath = "records/22283331/files/wu2026.rda",
         PublicationDate = as.Date("2026/01/27"),
         NumberAssays = 2313,
         PreprocessingSoftware = "DIA-NN",
