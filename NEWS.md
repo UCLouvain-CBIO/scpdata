@@ -1,5 +1,9 @@
 # scpdata 1.21
 
+## scpdata 1.21.3
+
+- Add wu2026 dataset.
+
 ## scpdata 1.21.2
 
 - Add missing leduc2025 man page.
