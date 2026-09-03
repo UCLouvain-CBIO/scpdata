@@ -1,8 +1,25 @@
+# scpdata 1.21
+
+## scpdata 1.21.2
+
+- Add missing leduc2025 man page.
+
+## scpdata 1.21.1
+
+- Remove LazyData, use GPL-3.
+- Add leduc2025 data.
+
+## scpdata 1.21.0
+
+- New devel version.
+
 # scpdata 1.19
+
+## scpdata 1.19.2
+- Revert BiocVersion for modified datasets (changed in 1.19.1).
 
 ## scpdata 1.19.1
 
-- Add wu2026 dataset.
 - Fix colData of krull2024() dataset.
 - Fix mismatch of sample ids in derks2022() dataset.
 
@@ -21,7 +38,6 @@
 ## scpdata 1.15.1
 
 - New dataset: ai2025a, adult cardiomyocytes from Ai et al. (2025).
-
 - New datasets: krull2024, hu2023_K562 and hu2023_oocyte and
   fixed khan2023 imputed data.
 
