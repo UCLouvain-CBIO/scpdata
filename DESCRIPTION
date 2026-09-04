@@ -1,7 +1,7 @@
 Package: scpdata
 Type: Package
 Title: Single-Cell Proteomics Data Package
-Version: 1.21.2
+Version: 1.21.3
 Authors@R:
     c(person("Christophe", "Vanderaa",
               email = "vanderaa.christophe@gmail.com",
@@ -18,6 +18,10 @@ Authors@R:
       person("Samuel", "Grégoire",
               email = "samuel.gregoire@uclouvain.be",
               comment = c(ORCID = "0000-0002-0900-7677"),
+              role = "dtc"),
+      person("Léopold", "Guyot",
+              email = "leopold.guyot@uclouvain.be",
+              comment = c(ORCID = "0009-0005-2217-3855"),
               role = "dtc"))
 Description: The package disseminates mass spectrometry (MS)-based
     single-cell proteomics (SCP) datasets. The data were collected
