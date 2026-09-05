@@ -1,15 +1,13 @@
 # Single Cell Proteomics Data Package
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-<!-- [![R-CMD-check-bioc](https://github.com/UCLouvain-CBIO/scpdata/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/UCLouvain-CBIO/scpdata/actions?query=workflow%3AR-CMD-check-bioc) -->
-<!-- [![Bioconductor-devel Build Status](https://bioconductor.org/shields/build/devel/data-experiment/scpdata.svg)](http://bioconductor.org/checkResults/devel/data-experiment-LATEST/scpdata/) -->
-
-
-<img
-src="https://raw.githubusercontent.com/UCLouvain-CBIO/scpdata/master/pkgdown/favicon/apple-touch-icon-120x120.png">
+<img src="sticker/sticker.png" align="right" height="139" alt="" />
 
 The `scpdata` package contains standardized and annotated single-cell
 proteomics data.
+
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+<!-- [![R-CMD-check-bioc](https://github.com/UCLouvain-CBIO/scpdata/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/UCLouvain-CBIO/scpdata/actions?query=workflow%3AR-CMD-check-bioc) -->
+<!-- [![Bioconductor-devel Build Status](https://bioconductor.org/shields/build/devel/data-experiment/scpdata.svg)](http://bioconductor.org/checkResults/devel/data-experiment-LATEST/scpdata/) -->
 
 # Installation instruction
 
