@@ -4,7 +4,7 @@ library("data.table")
 
 ## report <- fread("~/PhD/.localdata/SCP/brunner2022/20210919_DIANN_SingleCellOutput.tsv")
 report <- fread("~/Downloads/DIANN1.8_SingleCells_CellCycle/20210919_DIANN_SingleCellOutput.tsv")
-report$File.Name <- sub("^.+202010", "202010", report$File.Name)
+report$File.Name <- sub("^.+2020", "2020", report$File.Name)
 
 ## Build the annotation table from the run names
 annot <- DataFrame(File.Name = unique(report$File.Name))
@@ -36,9 +36,22 @@ brunner2022 <- aggregateFeatures(
     fun = colMedians,
     na.rm = TRUE)
 
-x <- joinAssays(brunner2022,
-                grep("modpep", names(brunner2022)),
-                name = "modpep")
+brunner2022 <- joinAssays(brunner2022,
+                          grep("modpep", names(brunner2022)),
+                          name = "modpep")
+brunner2022 <- logTransform(brunner2022, i = "modpep",
+                            name = "logmodpep")
+brunner2022 <- aggregateFeatures(brunner2022,
+                                 i = "logmodpep",
+                                 name = "logpep",
+                                 fcol = "Stripped.Sequence",
+                                 fun = colMedians)
+brunner2022 <- aggregateFeatures(brunner2022,
+                                 i = "logpep",
+                                 name = "logprot",
+                                 fcol = "Protein.Group",
+                                 fun = colMedians)
+
 
 ## The protein data
 ## pgTable <- read.delim("~/PhD/.localdata/SCP/brunner2022/20210919_DIANN_SingleCellOutput.pg_matrix.tsv",
@@ -46,6 +59,7 @@ x <- joinAssays(brunner2022,
 
 pgTable <- read.delim("~/Downloads/DIANN1.8_SingleCells_CellCycle/20210919_DIANN_SingleCellOutput.pg_matrix.tsv",
                       check.names = FALSE)
+names(pgTable) <- sub("^.+2020", "2020", names(pgTable))
 prots <- readSingleCellExperiment(pgTable, quantCols = unique(report$File.Name),
                                   fnames = "Protein.Names")
 prots <- prots[rownames(prots) != ""]
