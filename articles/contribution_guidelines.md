@@ -39,7 +39,10 @@ us:
 - Optionally, either code that uses the above tables to produce a
   `QFeatutes` object in R or a `mulink` object in Python, or the
   serialised objects (`rda`, `rds` or `h5mu` for the `QFeatures` object
-  in R, or `h5mu` for the `mulink` object in Python).
+  in R, or `h5mu` for the `mulink` object in Python). The *What do we
+  expect?* and*Create the QFeatures object* sections below provide
+  useful help to create the `QFeatures` objects. Please don’t hesitate
+  to get in touch if you have additional questions.
 
 The best way to share these is a [Zenodo](https://zenodo.org/) archive,
 as it is permanent and avoids any data loss, it provides a unique DOI

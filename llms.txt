@@ -1,6 +1,6 @@
 # Single Cell Proteomics Data Package
 
-![](sticker/sticker.png)
+![scpdata sticker](reference/figures/sticker.png)
 
 The `scpdata` package contains standardized and annotated single-cell
 proteomics data.
