@@ -1,13 +1,13 @@
 # Single Cell Proteomics Data Package
 
-[![Project Status: Active – The project has reached a stable, usable
-state and is being actively
-developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-
-![](https://raw.githubusercontent.com/UCLouvain-CBIO/scpdata/master/pkgdown/favicon/apple-touch-icon-120x120.png)
+![](sticker/sticker.png)
 
 The `scpdata` package contains standardized and annotated single-cell
 proteomics data.
+
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 # Installation instruction
 

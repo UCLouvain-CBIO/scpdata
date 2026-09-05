@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">scpdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.4</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,6 +75,9 @@ Gatto</h4>
 
     
     
+<div class="section level2">
+<h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
 <p>Welcome to the <code>scpdata</code> package, and thank you for your
 interest in contributing!</p>
 <p>The <code>scpdata</code> data package is a repository of curated mass
@@ -85,21 +88,58 @@ wrangling. We currently provide data at the peptide-to-spectrum match
 (PSM) level, the peptide level and/or the protein level. The package
 also encompasses a large diversity of technologies, including DDA and
 DIA, label-free and multiplexed experiments from various laboratories
-such as the Slavov Lab, the Kelly Lab, and the Schoof Lab.</p>
+such as the Slavov Lab, the Kelly Lab, and the Schoof Lab among
+others.</p>
 <p>Contributions are very much welcome. We happily accept major
 contributions such as adding a new dataset, as well as minor
 contributions as fixing typos or improving current documentation.</p>
 <p>To facilitate our collaboration, this vignette will guide you through
-the process of adding a new dataset to the package. We will first get
-you started with some basic guidelines on how to contribute using
-GitHub. We’ll proceed with a description of the data structure and the
-data pieces we expect. Next, we will provide an overview of the
-package’s folder structure to help you navigate through the project.
-Finally, we’ll explain the workflow you should follow to add your
-dataset to the repository.</p>
+the process of adding a new dataset to the package. We welcome two types
+of contributions: a contribution via an external repository or archive,
+and a direct contribution to the package via a pull request for those
+familiar with Github and R package development.</p>
+</div>
 <div class="section level2">
-<h2 id="getting-started-with-github">Getting started with GitHub<a class="anchor" aria-label="anchor" href="#getting-started-with-github"></a>
+<h2 id="contribution-via-an-external-source">Contribution via an external source<a class="anchor" aria-label="anchor" href="#contribution-via-an-external-source"></a>
 </h2>
+<p>The easiest way to contribute data is to share the following data
+with us:</p>
+<ul>
+<li>the quantitative tables, as produced by the many software that are
+used throughout the community such as Proteome Discoverer, DIA-NN,
+Spectronaut, …</li>
+<li>A sample/cell annotation table, that links the cells, their
+biological annotations, any known batch effects to the mass spectrometry
+runs.</li>
+<li>A description of the data, including links to papers or
+pre-prints.</li>
+<li>Optionally, either code that uses the above tables to produce a
+<code>QFeatutes</code> object in R or a <code>mulink</code> object in
+Python, or the serialised objects (<code>rda</code>, <code>rds</code> or
+<code>h5mu</code> for the <code>QFeatures</code> object in R, or
+<code>h5mu</code> for the <code>mulink</code> object in Python).</li>
+</ul>
+<p>The best way to share these is a <a href="https://zenodo.org/" class="external-link">Zenodo</a> archive, as it is permanent and
+avoids any data loss, it provides a unique DOI data identifier, and
+allows you to add metadata and authorship of your data. Alternatively,
+any other data source will work, and we will create the Zenodo archive
+ourselves.</p>
+<p>Before any contribution, feel free to get in touch, ideally through a
+<a href="https://github.com/UCLouvain-CBIO/scpdata/issues" class="external-link">Github
+issue</a>, or alternatively by email.</p>
+</div>
+<div class="section level2">
+<h2 id="contribution-via-a-pull-request">Contribution via a pull request<a class="anchor" aria-label="anchor" href="#contribution-via-a-pull-request"></a>
+</h2>
+<p>We will first get you started with some basic guidelines on how to
+contribute using GitHub. We’ll proceed with a description of the data
+structure and the data pieces we expect. Next, we will provide an
+overview of the package’s folder structure to help you navigate through
+the project. Finally, we’ll explain the workflow you should follow to
+add your dataset to the repository.</p>
+<div class="section level3">
+<h3 id="getting-started-with-github">Getting started with GitHub<a class="anchor" aria-label="anchor" href="#getting-started-with-github"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Fork the <code>scpdata</code> GitHub repository (<a href="https://github.com/UCLouvain-CBIO/scpdata/fork" class="external-link">click
 here</a>).</li>
@@ -116,21 +156,21 @@ request</a>.</li>
 open a <a href="https://github.com/UCLouvain-CBIO/scpdata/issues/new/choose" class="external-link">new
 issue</a> and we’ll be happy to provide additional guidance.</p>
 </div>
-<div class="section level2">
-<h2 id="what-do-we-expect">What do we expect?<a class="anchor" aria-label="anchor" href="#what-do-we-expect"></a>
-</h2>
 <div class="section level3">
-<h3 id="qfeatures-object">
-<code>QFeatures</code> object<a class="anchor" aria-label="anchor" href="#qfeatures-object"></a>
+<h3 id="what-do-we-expect">What do we expect?<a class="anchor" aria-label="anchor" href="#what-do-we-expect"></a>
 </h3>
+<div class="section level4">
+<h4 id="qfeatures-object">
+<code>QFeatures</code> object<a class="anchor" aria-label="anchor" href="#qfeatures-object"></a>
+</h4>
 <p>All datasets in <code>scpdata</code> are stored in a
 <code>QFeatures</code> object (see <a href="https://uclouvain-cbio.github.io/scp/articles/QFeatures_nutshell.html" class="external-link">intro
 vignette</a>). The object is created following the <a href="https://github.com/UCLouvain-CBIO/scp" class="external-link"><code>scp</code></a> data
 framework, as described in <a href="https://uclouvain-cbio.github.io/scp-teaching/read_scp_data" class="external-link">this
 short demo</a>.</p>
-<div class="section level4">
-<h4 id="feature-data">Feature data<a class="anchor" aria-label="anchor" href="#feature-data"></a>
-</h4>
+<div class="section level5">
+<h5 id="feature-data">Feature data<a class="anchor" aria-label="anchor" href="#feature-data"></a>
+</h5>
 <p>We refer to feature data as the data generated by MS data
 identification and quantification tools. Depending on the tool, features
 may represent PSMs, peptides and/or proteins. For instance, MaxQuant
@@ -145,9 +185,9 @@ in a <code>SingleCellExperiment</code> object. Feature annotations are
 stored in the <code>rowData</code> and the quantitative values are
 stored in the <code>assay</code>.</p>
 </div>
-<div class="section level4">
-<h4 id="sample-annotations">Sample annotations<a class="anchor" aria-label="anchor" href="#sample-annotations"></a>
-</h4>
+<div class="section level5">
+<h5 id="sample-annotations">Sample annotations<a class="anchor" aria-label="anchor" href="#sample-annotations"></a>
+</h5>
 <p>Sample annotations contain information about each sample (single
 cell) in the dataset. This information is generated by the experimenter
 and should contain biological descriptors, such as the cell line or the
@@ -167,32 +207,32 @@ Proteomics Experiments.” Nature Methods 20 (3): 375–86.</p>
 </blockquote>
 </div>
 </div>
-<div class="section level3">
-<h3 id="experiment-description">Experiment description<a class="anchor" aria-label="anchor" href="#experiment-description"></a>
-</h3>
+<div class="section level4">
+<h4 id="experiment-description">Experiment description<a class="anchor" aria-label="anchor" href="#experiment-description"></a>
+</h4>
 <p>We also require the collection of experimental data that describes
 the dataset. This information is commonly retrieved from the publication
 associated with the dataset and provides a scientific context to the
 dataset. This information is used for building the dataset
 documentation.</p>
 </div>
-<div class="section level3">
-<h3 id="data-source-information">Data source information<a class="anchor" aria-label="anchor" href="#data-source-information"></a>
-</h3>
+<div class="section level4">
+<h4 id="data-source-information">Data source information<a class="anchor" aria-label="anchor" href="#data-source-information"></a>
+</h4>
 <p>Finally, the <code>ExperimentHub</code> project, on which
 <code>scpdata</code> relies, requires every dataset to thoroughly
 provide a description of the data sources.</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="folder-structure">Folder structure<a class="anchor" aria-label="anchor" href="#folder-structure"></a>
-</h2>
+<div class="section level3">
+<h3 id="folder-structure">Folder structure<a class="anchor" aria-label="anchor" href="#folder-structure"></a>
+</h3>
 <p>We here provide an overview of the key folders and files relevant
 when contributing a new dataset. The current files may provide a source
 of inspiration when preparing a new dataset.</p>
-<div class="section level3">
-<h3 id="instscripts">inst/scripts/<a class="anchor" aria-label="anchor" href="#instscripts"></a>
-</h3>
+<div class="section level4">
+<h4 id="instscripts">inst/scripts/<a class="anchor" aria-label="anchor" href="#instscripts"></a>
+</h4>
 <p>The folder contains all R scripts used to generate the
 <code>QFeatures</code> objects from the source files, one script for
 each dataset. Each script is named as follows: <code>make-data_</code> +
@@ -203,29 +243,29 @@ to a dataset and the columns contains the data source information. The
 table is stored in <code>inst/extdata/metadata.csv</code>, which should
 never be changed manually.</p>
 </div>
-<div class="section level3">
-<h3 id="r">R/<a class="anchor" aria-label="anchor" href="#r"></a>
-</h3>
+<div class="section level4">
+<h4 id="r">R/<a class="anchor" aria-label="anchor" href="#r"></a>
+</h4>
 <p>The folder contains 3 R scripts, but new contributions should only
 consider the <code>data.R</code> and can safely ignore the other two.
 The <code>data.R</code> script contains the documentation for each
 dataset, formatted using <code>roxygen2</code> markup.</p>
 </div>
-<div class="section level3">
-<h3 id="man">man/<a class="anchor" aria-label="anchor" href="#man"></a>
-</h3>
+<div class="section level4">
+<h4 id="man">man/<a class="anchor" aria-label="anchor" href="#man"></a>
+</h4>
 <p>The folder contains the compiled documentation manuals, one for each
 dataset. These were automatically generated by <code>roxygen2</code> and
 should never be changed manually.</p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
-</h2>
-<p>In practice, contributing a new dataset involves 6 steps.</p>
 <div class="section level3">
-<h3 id="collect-data">1. Collect data<a class="anchor" aria-label="anchor" href="#collect-data"></a>
+<h3 id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
 </h3>
+<p>In practice, contributing a new dataset involves 6 steps.</p>
+<div class="section level4">
+<h4 id="collect-data">1. Collect data<a class="anchor" aria-label="anchor" href="#collect-data"></a>
+</h4>
 <p>If you want to contribute an already published dataset, identify the
 data sources for all feature data and the sample annotations. This is
 generally provided in the article, but you may need to request
@@ -234,9 +274,9 @@ additional information from the authors.</p>
 feature data and the sample annotation table are available from a public
 repository (eg PRIDE, MASSive or Zenodo).</p>
 </div>
-<div class="section level3">
-<h3 id="create-the-qfeatures-object">2. Create the <code>QFeatures</code> object<a class="anchor" aria-label="anchor" href="#create-the-qfeatures-object"></a>
-</h3>
+<div class="section level4">
+<h4 id="create-the-qfeatures-object">2. Create the <code>QFeatures</code> object<a class="anchor" aria-label="anchor" href="#create-the-qfeatures-object"></a>
+</h4>
 <p>Create a new R script,
 <code>inst/scripts/make-data_DATASET_NAME.R</code>, which contains all
 the code to convert the data source data into the <code>QFeatures</code>
@@ -263,9 +303,9 @@ MaxLFQ normalised values. You should favour the former over the latter
 two, which you could add as supplementary assays (for example, see <a href="https://github.com/UCLouvain-CBIO/scpdata/blob/master/inst/scripts/make-data_woo2022_macrophage.R" class="external-link">here</a>).</li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="document-the-dataset">3. Document the dataset<a class="anchor" aria-label="anchor" href="#document-the-dataset"></a>
-</h3>
+<div class="section level4">
+<h4 id="document-the-dataset">3. Document the dataset<a class="anchor" aria-label="anchor" href="#document-the-dataset"></a>
+</h4>
 <p>Add the data documentation and the data collection procedure in
 <code>scpdata/R/data.R</code>. Use <code>roxygen2</code> markup
 language. The documentation is structured as follows, but you can best
@@ -314,9 +354,9 @@ recommend adding the example as follows:</li>
 your dataset, ensuring your data set is correctly exported.</li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="update-metadata">4. Update metadata<a class="anchor" aria-label="anchor" href="#update-metadata"></a>
-</h3>
+<div class="section level4">
+<h4 id="update-metadata">4. Update metadata<a class="anchor" aria-label="anchor" href="#update-metadata"></a>
+</h4>
 <p>Add the data source information in the
 <code>inst/script/make-metadata.R</code> script and run the complete
 script that will update the <code>inst/extdata/metadata.csv</code>. You
@@ -332,18 +372,18 @@ comprehensive description of the fields.</p>
 valid by running
 <code>ExperimentHubData::makeExperimentHubMetadata("scpdata")</code>.</p>
 </div>
-<div class="section level3">
-<h3 id="create-a-pull-request">5. Create a pull request<a class="anchor" aria-label="anchor" href="#create-a-pull-request"></a>
-</h3>
+<div class="section level4">
+<h4 id="create-a-pull-request">5. Create a pull request<a class="anchor" aria-label="anchor" href="#create-a-pull-request"></a>
+</h4>
 <p>Push any change you made to GitHub and open a pull request to notify
 us of your contribution. The pull request should include all the commits
 related to the dataset you want to contribute. Provide in the
 description where we can retrieve your <code>QFeatures</code> object,
 e.g. through Zenodo.</p>
 </div>
-<div class="section level3">
-<h3 id="almost-done">6. Almost done!<a class="anchor" aria-label="anchor" href="#almost-done"></a>
-</h3>
+<div class="section level4">
+<h4 id="almost-done">6. Almost done!<a class="anchor" aria-label="anchor" href="#almost-done"></a>
+</h4>
 <p>Once your pull request is submitted, we will take over and will
 proceed to the following steps:</p>
 <ol style="list-style-type: decimal">
@@ -359,6 +399,7 @@ package is still valid. We may eventually request changes.</li>
 <li>If this is your first contribution, we will add your name to the
 package authors.</li>
 </ol>
+</div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

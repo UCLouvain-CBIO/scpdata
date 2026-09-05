@@ -129,7 +129,7 @@ of the `scp` vignette.
     [8] base     
 
     other attached packages:
-     [1] scpdata_1.21.3              ExperimentHub_3.3.2        
+     [1] scpdata_1.21.4              ExperimentHub_3.3.2        
      [3] AnnotationHub_4.3.2         BiocFileCache_3.3.0        
      [5] dbplyr_2.6.0                QFeatures_1.23.1           
      [7] MultiAssayExperiment_1.39.1 SummarizedExperiment_1.43.0
