@@ -7,7 +7,7 @@ proteomics data.
 [![R-CMD-check-bioc](https://github.com/UCLouvain-CBIO/scpdata/workflows/R-CMD-check-bioc/badge.svg)](https://github.com/UCLouvain-CBIO/scpdata/actions?query=workflow%3AR-CMD-check-bioc)
 <!-- [![Bioconductor-devel Build Status](https://bioconductor.org/shields/build/devel/data-experiment/scpdata.svg)](http://bioconductor.org/checkResults/devel/data-experiment-LATEST/scpdata/) -->
 
-<img src="man/figures/sticker.png" align="right" width="139" style="padding: 10px;" alt="scpdata sticker">
+<img src="man/figures/sticker.png" align="right" width="180" style="padding: 10px;" alt="scpdata sticker">
 
 # Installation instruction
 
