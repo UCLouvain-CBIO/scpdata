@@ -5,8 +5,8 @@
 \alias{brunner2022}
 \title{Brunner et al. 2022 (Mol. Syst. Biol.): cell cycle state study}
 \format{
-A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 435 assays, each assay being a
-\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object.
+A \link[QFeatures:QFeatures]{QFeatures} object with 435 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object.
 \itemize{
 \item Assay 1-434: DIA-NN main output report table split for each
 acquisition run. Since each run acquires 1 single cell, each
@@ -29,7 +29,7 @@ The data were downloaded from PRIDE
 with accession ID \code{PXD024043}.
 }
 \usage{
-brunner2022
+data(brunner2022)
 }
 \description{
 Single cell proteomics data acquired by the Mann Lab using a newly
@@ -74,9 +74,9 @@ in the \code{DIANN1.8_SingleCells_CellCycle.zip} file.
 
 We loaded the DIA-NN main report table and generated a sample
 annotation table based on the MS file names. We next combined the
-sample annotation and the DIANN tables into a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object
+sample annotation and the DIANN tables into a \link[QFeatures:QFeatures]{QFeatures} object
 following the \code{scp} data structure. We loaded the proteins group
-matrix as a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object, fixed ambiguous
+matrix as a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object, fixed ambiguous
 protein group names, and added the protein data as a new assay and
 link the precursors to proteins using the \code{Protein.Group} variable
 from the \code{rowData}.

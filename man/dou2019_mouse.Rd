@@ -5,8 +5,8 @@
 \alias{dou2019_mouse}
 \title{Dou et al. 2019 (Anal. Chem.): murine cell lines}
 \format{
-A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 13 assays, each assay being a
-\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
+A \link[QFeatures:QFeatures]{QFeatures} object with 13 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object:
 \itemize{
 \item \code{Single_Cell_Chip_X_Y}: PSM data with 11 columns corresponding
 to the TMT channels (see \code{Notes}). The \code{X} indicates the chip
@@ -29,7 +29,7 @@ The protein data can be downloaded from the
 website (Supporting information section).
 }
 \usage{
-dou2019_mouse
+data(dou2019_mouse)
 }
 \description{
 Single-cell proteomics using nanoPOTS combined with TMT isobaric
@@ -95,7 +95,7 @@ protein groups. Feature annotations that are not common within a
 peptide or protein group are are separated by a \verb{;}. The sample
 annotation table was manually created based on the available
 information provided in the article. The data were then converted
-to a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
+to a \link[QFeatures:QFeatures]{QFeatures} object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
 We generated the peptide data. First, we removed PSM matched to
 contaminants or decoy peptides and ensured a 1\% FDR. We aggregated
@@ -104,7 +104,7 @@ sequence(s) using the median PSM instenity. The peptide data for
 the different runs were then joined in a single assay (see
 \link[QFeatures:joinAssays]{QFeatures::joinAssays}), again based on the peptide sequence(s).
 We then removed the peptide groups. Links between the peptide and
-the PSM data were created using \link[QFeatures:AssayLinks]{QFeatures::addAssayLink}. Note
+the PSM data were created using \link[QFeatures:addAssayLink]{QFeatures::addAssayLink}. Note
 that links between PSM and peptide groups are not stored.
 
 The protein data were downloaded from \verb{Supporting information}
@@ -112,8 +112,8 @@ section from the publisher's website (see \code{Sources}). The data is
 supplied as an Excel file \code{ac9b03349_si_005.xlsx}. The file
 contains 7 sheets from which we only took the 2nd (named
 \verb{01 - Raw sc protein data}) with the combined protein data for the
-12 runs. We converted the data to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object
-and added the object as a new assay in the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} dataset
+12 runs. We converted the data to a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object
+and added the object as a new assay in the \link[QFeatures:QFeatures]{QFeatures} dataset
 (containing the PSM data). Links between the proteins and the
 corresponding PSM were created. Note that links to protein groups
 are not stored.

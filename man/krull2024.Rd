@@ -5,8 +5,8 @@
 \alias{krull2024}
 \title{Krull et al, 2024 (Nature Communications): IFN-\eqn{\gamma} response}
 \format{
-A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 159 assays, each assay being a
-\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object.
+A \link[QFeatures:QFeatures]{QFeatures} object with 159 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object.
 \itemize{
 \item Assay 1-158: DIA-NN main output report table split for each
 acquisition run. First 15 run acquires 10 single cells (MEs) and,
@@ -28,7 +28,7 @@ The data were downloaded from PRIDE
 with accession ID \code{PXD053464}.
 }
 \usage{
-krull2024
+data(krull2024)
 }
 \description{
 They develop a new strategy for data-independent acquisition (DIA) that
@@ -76,9 +76,9 @@ in the \verb{03_SingleCell_Searches.zip} file.
 
 We loaded the DIA-NN main report table and generated a sample
 annotation table based on the MS file names. We next combined the
-sample annotation and the DIANN tables into a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object
+sample annotation and the DIANN tables into a \link[QFeatures:QFeatures]{QFeatures} object
 following the \code{scp} data structure. We loaded the proteins group
-matrix as a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object, and added the protein data
+matrix as a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object, and added the protein data
 as a new assay and link the precursors to proteins using the
 \code{Protein.Group} variable from the \code{rowData}.
 }
