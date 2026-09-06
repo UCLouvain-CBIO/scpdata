@@ -10,14 +10,32 @@
 ##' @format A [QFeatures] object with 435 assays, each assay being a
 ##' [SingleCellExperiment] object.
 ##'
-##' - Assay 1-434: DIA-NN main output report table split for each
-##'   acquisition run. Since each run acquires 1 single cell, each
-##'   assay contains a single column. It contains the results
-##'   of the spectrum identification and quantification.
-##' - `protein`: DIA-NN protein group matrix, containing normalised
-##'   quantities for 2476 protein groups in 434 single cells. Proteins
-##'   are filtered at 1% FDR, using global q-values for protein groups
-##'   and both global and run-specific q-values for precursors.
+##' - Sets `prec_*` (1-434): DIA-NN precursor main output report table split for
+##'   each acquisition run. Since each run acquires 1 single cell, each assay
+##'   contains a single column. It contains the results of the spectrum
+##'   identification and quantification.
+##'
+##' - Sets `modpep_*` (435-868): precursor data aggregated to modified peptides
+##'   sequences using median aggregation.
+##'
+##' - Set `modpep` (869): joined modified peptide sequences for 434 single
+##'   cells.
+##'
+##' - Set `logmodpep` (870): log-transformed modified peptide sequences for 434
+##'   single cells.
+##'
+##' - Set `logpep` (871): log-transformed stripped peptides data for 434 single
+##'   cells. This set contains the median-aggregated values from the previous
+##'   one.
+##'
+##' - Set `logproteins` (872): log-transformed protein data for 2662 proteins
+##'   and 434 single cells. This set contains the median-aggregated values from
+##'   the previous one.
+##'
+##' - Set `proteinsDiann` (873): DIA-NN protein group matrix, containing
+##'   normalised quantities for 2476 protein groups in 434 single
+##'   cells. Proteins are filtered at 1% FDR, using global q-values for protein
+##'   groups and both global and run-specific q-values for precursors.
 ##'
 ##' The `colData(brunner2022())` contains cell type annotations and
 ##' batch annotations. The description of the `rowData` fields for the
