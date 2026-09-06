@@ -5,8 +5,8 @@
 \alias{leduc2022_pSCoPE}
 \title{Leduc et al. 2022 - pSCoPE (biorRxiv): melanoma cells vs monocytes}
 \format{
-A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 138 assays, each assay being a
-\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
+A \link[QFeatures:QFeatures]{QFeatures} object with 138 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object:
 \itemize{
 \item Assay 1-134: PSM data acquired with a TMT-18plex protocol, hence
 those assays contain 18 columns. Columns hold quantitative
@@ -53,7 +53,7 @@ massIVE repository \code{MSV000089159}:
 ftp://massive.ucsd.edu/MSV000089159.
 }
 \usage{
-leduc2022_pSCoPE
+data(leduc2022_pSCoPE)
 }
 \description{
 Single cell proteomics data acquired by the Slavov Lab. This is
@@ -108,14 +108,14 @@ data
 We combined the sample annotation and the batch annotation in
 a single table. We also formatted the quantification table so that
 columns match with those of the annotations. Both annotation and
-quantification tables are then combined in a single \link[QFeatures:QFeatures-class]{QFeatures::QFeatures}
+quantification tables are then combined in a single \link[QFeatures:QFeatures]{QFeatures}
 object using the \code{\link[scp:readSCP]{scp::readSCP()}} function.
 
-The 4 CSV files were loaded and formatted as \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment}
+The 4 CSV files were loaded and formatted as \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}
 objects and the sample metadata were matched to the column names
 (mapping is retrieved after running the author's original R script)
 and stored in the \code{colData}.
-The object is then added to the \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object (containing the
+The object is then added to the \link[QFeatures:QFeatures]{QFeatures} object (containing the
 PSM assays) and the rows of the peptide data are linked to the
 rows of the PSM data based on the peptide sequence information
 through an \code{AssayLink} object.

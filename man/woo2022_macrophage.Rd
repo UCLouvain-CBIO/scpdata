@@ -5,8 +5,8 @@
 \alias{woo2022_macrophage}
 \title{Woo et al. 2022 (Cell Syst.): LPS-treated macrophages}
 \format{
-A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 5 assays, each assay being a
-\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
+A \link[QFeatures:QFeatures]{QFeatures} object with 5 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object:
 \itemize{
 \item \verb{peptides_[intensity or LFQ]}: 2 assays containing peptide
 quantities or normalized quantities using the maxLFQ method
@@ -23,7 +23,7 @@ The peptide and protein data can be downloaded from the MASSIVE
 repository MSV000085937
 }
 \usage{
-woo2022_macrophage
+data(woo2022_macrophage)
 }
 \description{
 Single-cell data from macrophages subjected to 3 LPS
@@ -78,9 +78,9 @@ the \code{RAW_LPS_SingleCellProteomics} folders.
 
 The tables were split so that intensities, maxLFQ, and iBAQ
 data are contained in separate tables. Tables are then
-converted to \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} objects. Sample annotations
+converted to \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} objects. Sample annotations
 were inferred from the sample names. All data is combined in
-a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object. \link[QFeatures:AssayLinks]{QFeatures::AssayLinks} were stored between peptide
+a \link[QFeatures:QFeatures]{QFeatures} object. \link[QFeatures:AssayLinks]{AssayLinks} were stored between peptide
 assays and their corresponding proteins assays based on the
 leading razor protein (hence only unique peptides are linked to
 proteins).

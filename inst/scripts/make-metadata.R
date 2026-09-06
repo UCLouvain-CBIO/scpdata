@@ -902,7 +902,7 @@ meta <- list(
         ProteinsAvailable = TRUE,
         ContainsSingleCells = TRUE,
         Notes = "DIA-NN output retrieved from PRIDE repository accession PXD071075"
-    )
+    ),
     data.frame(
       Title = "bubis2025",
       Description = paste0("Single-cell proteomics data ",

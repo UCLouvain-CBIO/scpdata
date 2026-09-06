@@ -39,7 +39,7 @@ The data used and generated as part of the scpdata repackaging is available
 in the \href{https://doi.org/10.5281/zenodo.21904283}{Zenodo archive}.
 }
 \usage{
-leduc2025
+data(leduc2025)
 }
 \description{
 Single-cell samples were prepared using the nPOP glass-slide sample

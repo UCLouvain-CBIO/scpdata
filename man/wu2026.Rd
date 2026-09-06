@@ -6,8 +6,8 @@
 \title{Wu et al., 2026 (Nature Biotechnology): single-cell proteomic landscape
 of the developing human brain}
 \format{
-A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 2313 sets, each set being a
-\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object:
+A \link[QFeatures:QFeatures]{QFeatures} object with 2313 sets, each set being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object:
 \itemize{
 \item Set 1-2310: log-transformed precursor-level single-cell data (one
 column per set) from DIA-NN reports.
@@ -27,7 +27,7 @@ The data were downloaded from the PRIDE repository with accession ID
 https://www.ebi.ac.uk/pride/archive/projects/PXD071075
 }
 \usage{
-wu2026
+data(wu2026)
 }
 \description{
 Label-free single-cell proteomics data from prenatal human brain tissue
@@ -63,7 +63,7 @@ The \code{QFeatures} object was built from the DIA-NN peptide and protein report
 tables and a sample annotation table. PSM-level data were imported with
 \code{\link[scp:readSCP]{scp::readSCP()}}, log-transformed, aggregated to peptide-level features, and
 joined across single-cell runs. The protein report table was imported as a
-\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment}, added as an set, and linked to peptide-level data.
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment}, added as an set, and linked to peptide-level data.
 
 The script to reproduce the \code{QFeatures} object is available at
 \code{inst/scripts/make-data_wu2026.R}.

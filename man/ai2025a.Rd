@@ -8,7 +8,7 @@
 An object of class \code{function} of length 1.
 }
 \usage{
-ai2025a
+data(ai2025a)
 }
 \description{
 The manuscript analysed cardiomyocytes derived from iPSC cells and adult

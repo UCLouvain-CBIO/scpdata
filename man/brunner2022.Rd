@@ -5,17 +5,29 @@
 \alias{brunner2022}
 \title{Brunner et al. 2022 (Mol. Syst. Biol.): cell cycle state study}
 \format{
-A \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object with 435 assays, each assay being a
-\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object.
+A \link[QFeatures:QFeatures]{QFeatures} object with 435 assays, each assay being a
+\link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object.
 \itemize{
-\item Assay 1-434: DIA-NN main output report table split for each
-acquisition run. Since each run acquires 1 single cell, each
-assay contains a single column. It contains the results
-of the spectrum identification and quantification.
-\item \code{protein}: DIA-NN protein group matrix, containing normalised
-quantities for 2476 protein groups in 434 single cells. Proteins
-are filtered at 1\% FDR, using global q-values for protein groups
-and both global and run-specific q-values for precursors.
+\item Sets \verb{prec_*} (1-434): DIA-NN precursor main output report table split for
+each acquisition run. Since each run acquires 1 single cell, each assay
+contains a single column. It contains the results of the spectrum
+identification and quantification.
+\item Sets \verb{modpep_*} (435-868): precursor data aggregated to modified peptides
+sequences using median aggregation.
+\item Set \code{modpep} (869): joined modified peptide sequences for 434 single
+cells.
+\item Set \code{logmodpep} (870): log-transformed modified peptide sequences for 434
+single cells.
+\item Set \code{logpep} (871): log-transformed stripped peptides data for 434 single
+cells. This set contains the median-aggregated values from the previous
+one.
+\item Set \code{logproteins} (872): log-transformed protein data for 2662 proteins
+and 434 single cells. This set contains the median-aggregated values from
+the previous one.
+\item Set \code{proteinsDiann} (873): DIA-NN protein group matrix, containing
+normalised quantities for 2476 protein groups in 434 single
+cells. Proteins are filtered at 1\% FDR, using global q-values for protein
+groups and both global and run-specific q-values for precursors.
 }
 
 The \code{colData(brunner2022())} contains cell type annotations and
@@ -29,7 +41,7 @@ The data were downloaded from PRIDE
 with accession ID \code{PXD024043}.
 }
 \usage{
-brunner2022
+data(brunner2022)
 }
 \description{
 Single cell proteomics data acquired by the Mann Lab using a newly
@@ -74,9 +86,9 @@ in the \code{DIANN1.8_SingleCells_CellCycle.zip} file.
 
 We loaded the DIA-NN main report table and generated a sample
 annotation table based on the MS file names. We next combined the
-sample annotation and the DIANN tables into a \link[QFeatures:QFeatures-class]{QFeatures::QFeatures} object
+sample annotation and the DIANN tables into a \link[QFeatures:QFeatures]{QFeatures} object
 following the \code{scp} data structure. We loaded the proteins group
-matrix as a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment::SingleCellExperiment} object, fixed ambiguous
+matrix as a \link[SingleCellExperiment:SingleCellExperiment]{SingleCellExperiment} object, fixed ambiguous
 protein group names, and added the protein data as a new assay and
 link the precursors to proteins using the \code{Protein.Group} variable
 from the \code{rowData}.
