@@ -19,7 +19,7 @@ proteins <- paste0(dataDir, "msv000100684/FragPipe/tmt-report/abundance_protein_
 ####---- Sample annotations ----####
 
 ## Get sample names
-    annots <- data.frame(
+annots <- data.frame(
     SampleName = grep("PBMCs", colnames(proteins), value = TRUE)
 ) |>
     ## Extract annotations from sample names
@@ -33,7 +33,7 @@ proteins <- paste0(dataDir, "msv000100684/FragPipe/tmt-report/abundance_protein_
             .default = "Target4"
         ),
         ChannelType = case_when(
-            Channel %in% c("127C", "134D") ~ "Isotope",
+            Channel %in% c("127C", "134ND") ~ "Isotope",
             Channel %in% c("135CD", "134C", "135N") ~ "Blank",
             grepl("^Ref", SampleName) ~ "Bridge",
             .default = "Single-Cell"
@@ -81,28 +81,19 @@ fulcher2026 <- addAssayLink(
     varTo = "Protein"
 )
 
-####---- Save data ----####
-
-# Save data as Rda file
-save(
-    fulcher2026,
-    file = "~/Documents/research/.localData/scpdata/fulcher2026.rda",
-    compress = "xz",
-    compression_level = 9
-)
-
 ####---- Test data with scplainer ----####
 
 library("ggplot2")
 library("patchwork")
 
 ## Minimal processing
-fulcher2026 <- zeroIsNA(fulcher2026, names(fulcher2026))
-fulcher2026 <- logTransform(fulcher2026, "peptides", "peptides_log")
-fulcher2026$NPeptides <- colSums(!is.na(assay(fulcher2026[["peptides"]])))
-fulcher2026$NProteins <- colSums(!is.na(assay(fulcher2026[["proteins"]])))
-fulcher2026$MedianIntensity <- colMedians(assay(fulcher2026[["peptides_log"]]), na.rm = TRUE)
-colData(fulcher2026) |>
+se <- getWithColData(fulcher2026,  "peptides")
+se <- zeroIsNA(se)
+se <- logTransform(se)
+se$NPeptides <- colSums(!is.na(assay(se)))
+se$NProteins <- colSums(!is.na(assay(se)))
+se$MedianIntensity <- colMedians(assay(se), na.rm = TRUE)
+colData(se) |>
     data.frame() |>
     ggplot() +
     aes(
@@ -112,29 +103,53 @@ colData(fulcher2026) |>
         shape = RemovedByAuthors
     ) +
     geom_point()
-fulcher2026 <- subsetByColData(fulcher2026, !fulcher2026$RemovedByAuthors)
+se <- se[, !se$RemovedByAuthors & ChannelType == "Single-Cell"]
 
 ## scplainer
-sce <- getWithColData(fulcher2026, "peptides_log")
-sce <- scpModelWorkflow(
-    sce,
+se <- scpModelWorkflow(
+    se,
     formula = ~ 1 + ## intercept
         MedianIntensity + ## normalization
         ## batch effects
         Channel + PoolId
 )
-scpModelFilterPlot(sce)
-scpModelFilterThreshold(sce) <- 5
+scpModelFilterPlot(se)
+scpModelFilterThreshold(se) <- 5
 (caRes <- scpComponentAnalysis(
-    sce, ncomp = 2, method = "APCA", effect = character(0)
+    se, ncomp = 2, method = "APCA", effect = character(0)
 ))
 caResCells <- caRes$bySample
-sce$cell <- colnames(sce)
-caResCells <- scpAnnotateResults(caResCells, colData(sce), by = "cell")
+se$cell <- colnames(se)
+caResCells <- scpAnnotateResults(caResCells, colData(se), by = "cell")
 ## Plot results
 scpComponentPlot(
     caResCells,
     pointParams = list(aes(colour = NPeptides, shape = as.factor(LC)))
 ) |>
     wrap_plots() +
-    plot_layout(guides = "collect")
+    plot_layout(guides = "collect") &
+    scale_colour_continuous(type = "viridis")
+## Add modelled data back to QFeatures object
+## Keep only set-specific cell annotations
+keep <- c("NPeptides", "NProteins", "MedianIntensity")
+colData(se) <- colData(se)[, keep]
+fulcher2026 <- addAssay(fulcher2026, se, "proteins_modelled")
+fulcher2026 <- addAssayLink(
+    fulcher2026,
+    from = "proteins",
+    to = "proteins_modelled",
+    varFrom = "Protein",
+    varTo = "Protein"
+)
+
+####---- Save data ----####
+
+# Save data as Rda file
+save(
+     fulcher2026,
+     file = "~/Documents/research/.localData/scpdata/fulcher2026.rda",
+     compress = "xz",
+     compression_level = 9
+)
+
+
