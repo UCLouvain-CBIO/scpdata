@@ -103,7 +103,7 @@ colData(se) |>
         shape = RemovedByAuthors
     ) +
     geom_point()
-se <- se[, !se$RemovedByAuthors & ChannelType == "Single-Cell"]
+se <- se[, !se$RemovedByAuthors & se$ChannelType == "Single-Cell"]
 
 ## scplainer
 se <- scpModelWorkflow(
@@ -133,13 +133,11 @@ scpComponentPlot(
 ## Keep only set-specific cell annotations
 keep <- c("NPeptides", "NProteins", "MedianIntensity")
 colData(se) <- colData(se)[, keep]
-fulcher2026 <- addAssay(fulcher2026, se, "proteins_modelled")
-fulcher2026 <- addAssayLink(
+fulcher2026 <- addAssay(fulcher2026, se, "peptides_modelled")
+fulcher2026 <- addAssayLinkOneToOne(
     fulcher2026,
-    from = "proteins",
-    to = "proteins_modelled",
-    varFrom = "Protein",
-    varTo = "Protein"
+    from = "peptides",
+    to = "peptides_modelled"
 )
 
 ####---- Save data ----####
