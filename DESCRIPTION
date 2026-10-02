@@ -1,16 +1,16 @@
 Package: scpdata
 Type: Package
 Title: Single-Cell Proteomics Data Package
-Version: 1.21.4
+Version: 1.21.5
 Authors@R:
     c(person("Christophe", "Vanderaa",
               email = "vanderaa.christophe@gmail.com",
               comment = c(ORCID = "0000-0001-7443-5427"),
-              role = c("aut", "cre")),
+              role = "aut"),
       person("Laurent", "Gatto",
               email = "laurent.gatto@uclouvain.be",
               comment = c(ORCID = "0000-0002-1520-2268"),
-              role = "aut"),
+              role = c("aut", "cre")),
       person("Enes", "Ayar",
               email = "enes.ayar@uclouvain.be",
               comment = c(ORCID = "0000-0001-8881-9800"),

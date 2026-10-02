@@ -1,5 +1,9 @@
 # scpdata 1.21
 
+## scpdata 1.21.5
+
+- Update maintainer.
+
 ## scpdata 1.21.4
 
 - Update contribution guidelines.
