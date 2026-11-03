@@ -15,7 +15,7 @@ digest but at higher amount (10 ng)."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">scpdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,15 +53,11 @@ single-cell amounts (0.2 ng). The boosting wells contain the same
 digest but at higher amount (10 ng).</p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">dou2019_lysates</span></span></code></pre></div>
-    </div>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 3 assays, each assay being a
-<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p><code>Hela_run_1</code>: PSM data with 10 columns corresponding to the
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 3 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment</a> object:</p><ul><li><p><code>Hela_run_1</code>: PSM data with 10 columns corresponding to the
 TMT-10plex channels. Columns hold quantitative information for
 HeLa lysate samples (either 0, 0.2 or 10ng). This is the data
 for run 1.</p></li>
@@ -124,7 +120,7 @@ protein groups. Feature annotations that are not common within a
 peptide or protein group are are separated by a <code>;</code>. The sample
 annotation table was manually created based on the available
 information provided in the article. The data were then converted
-to a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
+to a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
 <p>We generated the peptide data. First, we removed PSM matched to
 contaminants or decoy peptides and ensured a 1% FDR. We aggregated
 the PSM to peptides based on the peptide (or peptide group)
@@ -139,8 +135,8 @@ section from the publisher's website (see <code>Sources</code>). The data is
 supplied as an Excel file <code>ac9b03349_si_003.xlsx</code>. The file
 contains 7 sheets from which we only took the sheet 6 (named
 <code>5 - Run 1 and 2 raw data</code>) with the combined protein data for the
-two runs. We converted the data to a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a>
-object and added the object as a new assay in the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a>
+two runs. We converted the data to a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment</a>
+object and added the object as a new assay in the <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a>
 dataset (containing the PSM data). Links between the proteins and
 the peptides were created. Note that links to protein groups are
 not stored.</p>

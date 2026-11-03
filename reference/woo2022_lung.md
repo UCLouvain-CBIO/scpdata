@@ -4,18 +4,12 @@ Single-cell proteomics data from dissociated primary human lung cells.
 The data were acquired using the TIFF (transfer identification based on
 FAIMS filtering) acquisition method. The data contain 26 single cells.
 
-## Usage
-
-``` r
-woo2022_lung
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 5 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `peptides_[intensity or LFQ]`: 2 assays containing peptide quantities
@@ -77,12 +71,12 @@ in the `NonDepleted_Lung_SingleCellProteomics` folders.
 
 The tables were split so that intensities, maxLFQ, and iBAQ data are
 contained in separate tables. Tables are then converted to
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 objects. Sample annotations were inferred from the sample names. All
 data is combined in a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object.
-[QFeatures::AssayLinks](https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html)
+[AssayLinks](https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html)
 were stored between peptide assays and their corresponding proteins
 assays based on the leading razor protein (hence only unique peptides
 are linked to proteins).

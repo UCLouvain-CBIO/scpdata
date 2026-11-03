@@ -17,7 +17,7 @@ data independent (DIA) acquisition mode."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">scpdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,15 +56,11 @@ using a label-free sample preparation protocole combined to a
 data independent (DIA) acquisition mode.</p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">brunner2022</span></span></code></pre></div>
-    </div>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 435 assays, each assay being a
-<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object.</p><ul><li><p>Assay 1-434: DIA-NN main output report table split for each
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 435 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment</a> object.</p><ul><li><p>Assay 1-434: DIA-NN main output report table split for each
 acquisition run. Since each run acquires 1 single cell, each
 assay contains a single column. It contains the results
 of the spectrum identification and quantification.</p></li>
@@ -117,9 +113,9 @@ to 20 eV at 1/K0=0.6 Vs cm^2.</p></li>
 in the <code>DIANN1.8_SingleCells_CellCycle.zip</code> file.</p>
 <p>We loaded the DIA-NN main report table and generated a sample
 annotation table based on the MS file names. We next combined the
-sample annotation and the DIANN tables into a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object
+sample annotation and the DIANN tables into a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object
 following the <code>scp</code> data structure. We loaded the proteins group
-matrix as a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object, fixed ambiguous
+matrix as a <a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment</a> object, fixed ambiguous
 protein group names, and added the protein data as a new assay and
 link the precursors to proteins using the <code>Protein.Group</code> variable
 from the <code>rowData</code>.</p>

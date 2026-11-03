@@ -6,18 +6,12 @@ cell, 10 cells, 150 cells or 500 cells. Samples containing between 0 and
 10 cells are isolated using micro-pipetting while samples containing
 between 150 and 500 cells were prepared using dilution of a bulk sample.
 
-## Usage
-
-``` r
-liang2020_hela
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 17 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `HeLa_*`: 15 assays containing PSM data.
@@ -82,7 +76,7 @@ table S3 in the paper.
 
 The PSM data were found in the `evidence.txt` file. The data were
 converted to a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using the
 [`scp::readSCP()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html)
 function.
@@ -90,19 +84,19 @@ function.
 The peptide data were found in the `peptides.txt` file. The column names
 holding the quantitative data were adapted to match the sample names in
 the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object. The data were then converted to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and then inserted in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object. Links between the PSMs and the peptides were added
 
 A similar procedure was applied to the protein data. The data were found
 in the `proteinGroups.txt` file. The column names were adapted, the data
 were converted to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and then inserted in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object. Links between the peptides and the proteins were added
 
 ## References

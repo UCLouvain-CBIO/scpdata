@@ -5,18 +5,12 @@ version 3 of the data released in October 2020. It contains quantitative
 information of macrophages and monocytes at PSM, peptide and protein
 level.
 
-## Usage
-
-``` r
-specht2019v3
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 179 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - Assay 1-63: PSM data for SCoPE2 sets acquired with a TMT-11plex
@@ -94,7 +88,7 @@ We combined the sample annotation and the batch annotation in a single
 table. We also formatted the quantification table so that columns match
 with those of the annotation and filter only for single-cell runs. Both
 table are then combined in a single
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using the
 [`scp::readSCP()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html)
 function.
@@ -102,11 +96,11 @@ function.
 The peptide data were taken from the Slavov lab directly
 (`Peptides-raw.csv`). It is provided as a spreadsheet. The data were
 formatted to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and the sample metadata were matched to the column names (mapping
 is retrieved after running the SCoPE2 R script) and stored in the
 `colData`. The object is then added to the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object (containing the PSM assays) and the rows of the peptide data are
 linked to the rows of the PSM data based on the peptide sequence
 information through an `AssayLink` object.

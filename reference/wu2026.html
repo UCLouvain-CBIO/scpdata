@@ -11,7 +11,7 @@ proteomes and developmental trajectories at single-cell resolution."></head><bod
 
     <a class="navbar-brand me-2" href="../index.html">scpdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,15 +47,11 @@ proteomes and developmental trajectories at single-cell resolution."></head><bod
 proteomes and developmental trajectories at single-cell resolution.</p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">wu2026</span></span></code></pre></div>
-    </div>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 2313 sets, each set being a
-<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p>Set 1-2310: log-transformed precursor-level single-cell data (one
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 2313 sets, each set being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment</a> object:</p><ul><li><p>Set 1-2310: log-transformed precursor-level single-cell data (one
 column per set) from DIA-NN reports.</p></li>
 <li><p><code>peptides</code>: peptide-level data containing quantitative data for 17755
 peptides in 2310 single cells.</p></li>
@@ -100,7 +96,7 @@ proteome.</p></li>
 tables and a sample annotation table. PSM-level data were imported with
 <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code>, log-transformed, aggregated to peptide-level features, and
 joined across single-cell runs. The protein report table was imported as a
-<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a>, added as an set, and linked to peptide-level data.</p>
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment</a>, added as an set, and linked to peptide-level data.</p>
 <p>The script to reproduce the <code>QFeatures</code> object is available at
 <code>inst/scripts/make-data_wu2026.R</code>.</p>
     </div>

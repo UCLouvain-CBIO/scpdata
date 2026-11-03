@@ -8,18 +8,12 @@ profiling mouse embryonic stem cell culture conditions, showcasing
 heterogeneity in global proteomes, and highlighting differences in the
 expression of key metabolic enzymes in distinct cell subclusters.
 
-## Usage
-
-``` r
-petrosius2023_mES
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 605 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - Assay 1-603: PSM data acquired with an orbitrap-based data-independent
@@ -95,25 +89,25 @@ repository](https://zenodo.org/records/8146605).
 
 We formatted the quantification table so that columns match with the
 metadata. Then, both tables are then combined in a single
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using the
 [`scp::readSCP()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html)
 function.
 
 The peptide data were formated to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and the sample metadata were matched to the column names and
 stored in the `colData`. The object is then added to the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object and the rows of the PSM data are linked to the rows of the
 peptide data based on the peptide sequence information through an
 `AssayLink` object.
 
 The protein data were formated to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and the sample metadata were matched to the column names and
 stored in the `colData`. The object is then added to the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object and the rows of the peptide data are linked to the rows of the
 protein data based on the protein sequence information through an
 `AssayLink` object.

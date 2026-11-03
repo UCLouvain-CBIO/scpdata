@@ -6,6 +6,9 @@
   : Ai et al., Cardiomyocytes Single Cell Proteomics, MCP (2025)
 - [`brunner2022`](https://UCLouvain-CBIO.github.io/scpdata/reference/brunner2022.md)
   : Brunner et al. 2022 (Mol. Syst. Biol.): cell cycle state study
+- [`bubis2025`](https://UCLouvain-CBIO.github.io/scpdata/reference/bubis2025.md)
+  : Bubis et al. 2023 (Nat Methods): Challenging the Astral mass
+  analyzer.
 - [`cong2020AC`](https://UCLouvain-CBIO.github.io/scpdata/reference/cong2020AC.md)
   : Cong et al. 2020 (Ana. Chem.): HeLa single cells
 - [`derks2022`](https://UCLouvain-CBIO.github.io/scpdata/reference/derks2022.md)
@@ -23,12 +26,14 @@
 - [`guise2024`](https://UCLouvain-CBIO.github.io/scpdata/reference/guise2024.md)
   : Guise et al. 2020 (Cell Rep.): postmortem ALS spinal moto neurons
 - [`hu2023_K562`](https://UCLouvain-CBIO.github.io/scpdata/reference/hu2023_K562.md)
+  [`hu2023`](https://UCLouvain-CBIO.github.io/scpdata/reference/hu2023_K562.md)
+  [`hu2023_oocyte`](https://UCLouvain-CBIO.github.io/scpdata/reference/hu2023_K562.md)
   : Hu et al, 2023 (The Journal of Physical Chemistry B): Correlated
   protein modules
 - [`khan2023`](https://UCLouvain-CBIO.github.io/scpdata/reference/khan2023.md)
   : Khan et al, 2023 (biorRxiv): Epithelial–Mesenchymal Transition
 - [`krull2024`](https://UCLouvain-CBIO.github.io/scpdata/reference/krull2024.md)
-  : Krull et al, 2024 (Nature Communications): IFN-\\\gamma\\ response
+  : Krull et al, 2024 (Nature Communications): IFN-\\(\gamma\\) response
 - [`leduc2022()`](https://UCLouvain-CBIO.github.io/scpdata/reference/leduc2022.md)
   : Deprecated leduc2022 dataset
 - [`leduc2022_pSCoPE`](https://UCLouvain-CBIO.github.io/scpdata/reference/leduc2022_pSCoPE.md)

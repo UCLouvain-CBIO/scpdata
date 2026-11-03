@@ -17,7 +17,7 @@ Orbitrap (mainly) and timsTOF SCP mass spectrometers."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">scpdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,15 +56,11 @@ at PSM, peptide and protein levels. Data was acquired using Lumos
 Orbitrap (mainly) and timsTOF SCP mass spectrometers.</p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">gregoire2023_mixCTRL</span></span></code></pre></div>
-    </div>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 119 assays, each assay being a
-<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p>Assays 1-42: PSM data acquired with a TMT-16plex protocol, hence
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 119 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment</a> object:</p><ul><li><p>Assays 1-42: PSM data acquired with a TMT-16plex protocol, hence
 those assays contain 16 columns. Columns hold quantitative
 information from single-cell channels, carrier channels,
 blank (negative control) channels and unused channels.</p></li>
@@ -133,9 +129,9 @@ files.</p></li>
 </ul><p>We combined the sample annotations in a single table. We also
 combined <code>cbio</code> and <code>giga</code> tables together and merged resulting
 identification and quantification tables. Both annotation and
-features tables are then combined in a single <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object
+features tables are then combined in a single <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object
 using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
-<p>The <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object was processed as described in the author's
+<p>The <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object was processed as described in the author's
 manuscript (see <code>source</code>). Note that the imputed assays were used
 in the paper for illustrative purposes only and have not been
 reproduced here.</p>

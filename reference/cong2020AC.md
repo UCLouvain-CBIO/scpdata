@@ -8,18 +8,12 @@ The samples are single Hela cells. Bulk samples (100 and 20 cells) were
 also included in the experiment to increase the idendtification rate
 thanks to between-run matching (cf MaxQuant).
 
-## Usage
-
-``` r
-cong2020AC
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 9 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `100/20 HeLa cells`: 2 assays containing PSM data for a bulk of 100 or
@@ -76,7 +70,7 @@ repository (accession ID: PXD016921). We downloaded the `evidence.txt`
 file containing the PSM identification and quantification results. The
 sample annotation was inferred from the samples names. The data were
 then converted to a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using the
 [`scp::readSCP()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html)
 function.
@@ -84,13 +78,13 @@ function.
 The peptide data were processed similarly from the `peptides.txt` file.
 The quantitative column names were adpated to match the PSM data. The
 peptide data were added to
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object and link between the features were stored.
 
 The protein data were similarly processed from the `proteinGroups.txt`
 file. The quantitative column names were adapted to match the PSM data.
 The peptide data were added to
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object and link between the features were stored.
 
 ## References

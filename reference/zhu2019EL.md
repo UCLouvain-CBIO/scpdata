@@ -6,18 +6,12 @@ epithelium and separated into hair cells (FM1-43 high) and supporting
 cells (FM1-43 low). The sample contain either 1 cell (n = 28), 3 cells
 (n = 7), 5 cells (n = 8) or 20 cells (n = 14).
 
-## Usage
-
-``` r
-zhu2019EL
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 62 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `XYZw`: 60 assays containing PSM data. The sample are annotated as
@@ -84,7 +78,7 @@ annotation table available on the PRIDE repository.
 The PSM data were found in the `evidence.txt` (in the `Experiment 1+ 2`)
 folder. The PSM data were filtered so that it contains only samples that
 are annotated. The data were then converted to a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using the
 [`scp::readSCP()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html)
 function.
@@ -92,20 +86,20 @@ function.
 The peptide data were found in the `peptides.txt` file. The column names
 holding the quantitative data were adapted to match the sample names in
 the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object. The data were then converted to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and then inserted in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object. Links between the PSMs and the peptides were added
 
 A similar procedure was applied to the protein data. The data were found
 in the `proteinGroups.txt` file. We split the protein table to separate
 the two types of quantification: summed intensity and intensity based
 absolute quantification (iBAQ). Both tables are converted to
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 objects and are added to the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object as well as the `AssayLink` between peptides and proteins.
 
 ## References

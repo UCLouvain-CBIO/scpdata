@@ -7,18 +7,12 @@ to demonstrate successful use of the new nanoPOTS autosampler presented
 in the source article. The samples contain either carrier (10 ng),
 reference (0.2ng), empty or single-cell samples..
 
-## Usage
-
-``` r
-williams2020_tmt
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 4 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `peptides_[intensity or corrected]`: 2 assays containing peptide
@@ -80,13 +74,13 @@ files, respectively, in the `AML_SingleCell` folders.
 The tables were duplicated so that intensisities and corrected
 intensities are contained in separate tables. Tables are then converted
 to
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 objects. Sample annotations were inferred from the sample names, from
 table S2 and from the Experimental Section of the paper. All data is
 combined in a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object.
-[QFeatures::AssayLinks](https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html)
+[AssayLinks](https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html)
 were stored between peptide assays and their corresponding proteins
 assays based on the leading razor protein (hence only unique peptides
 are linked to proteins).

@@ -6,18 +6,12 @@ FAIMS filtering) acquisition method. The data contain 155 single cells:
 54 control cells (no treatment), 52 cells treated with LPS during 24h
 and 49 cells treated with LPS during 49h.
 
-## Usage
-
-``` r
-woo2022_macrophage
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 5 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `peptides_[intensity or LFQ]`: 2 assays containing peptide quantities
@@ -78,12 +72,12 @@ The peptide and protein data were extracted from the
 
 The tables were split so that intensities, maxLFQ, and iBAQ data are
 contained in separate tables. Tables are then converted to
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 objects. Sample annotations were inferred from the sample names. All
 data is combined in a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object.
-[QFeatures::AssayLinks](https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html)
+[AssayLinks](https://rformassspectrometry.github.io/QFeatures/reference/AssayLinks.html)
 were stored between peptide assays and their corresponding proteins
 assays based on the leading razor protein (hence only unique peptides
 are linked to proteins).

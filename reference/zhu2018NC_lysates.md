@@ -4,18 +4,12 @@ Near single-cell proteomics data of HeLa lysates at different
 concentrations (10, 40 and 140 cell equivalent). Each concentration is
 acquired in triplicate.
 
-## Usage
-
-``` r
-zhu2018NC_lysates
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 4 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `peptides`: quantitative information for 14,921 peptides from 9 lysate
@@ -71,15 +65,15 @@ PXD006847). We downloaded the `Vail_Prep_Vail_peptides.txt` and the
 identification and quantification results. The sample annotations were
 inferred from the names of columns holding the quantification data and
 the information in the article. The peptides data were converted to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object. We split the protein table to separate the three types of
 quantification: protein intensity, label-free quantitification (LFQ) and
 intensity based absolute quantification (iBAQ). Each table is converted
 to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object along with the remaining protein annotations. The 4 objects are
 combined in a single
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object and feature links are created based on the peptide leading razor
 protein ID and the protein ID.
 

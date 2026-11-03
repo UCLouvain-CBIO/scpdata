@@ -14,10 +14,14 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 To install the stable version from Bioconductor:
 
-`if`` ``(``!`[`requireNamespace`](https://rdrr.io/r/base/ns-load.html)`(``"BiocManager"``)``)`` `` `[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"BiocManager"``)`` ``BiocManager``::`[`install`](https://bioconductor.github.io/BiocManager/reference/install.html)`(``"scpdata"``)`
+\
+`if`` ``(``!`[`requireNamespace`](https://rdrr.io/r/base/ns-load.html)`(``"BiocManager"``)``)`\
+`    `[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"BiocManager"``)`\
+`BiocManager``::`[`install`](https://bioconductor.github.io/BiocManager/reference/install.html)`(``"scpdata"``)`
 
 To install the development version from GitHub:
 
+\
 `BiocManager``::`[`install`](https://bioconductor.github.io/BiocManager/reference/install.html)`(``"UCLouvain-CBIO/scpdata"``)`
 
 # Loading a data set
@@ -26,7 +30,9 @@ The available datasets can be accessed through `ExperimentHub`. Use
 [`scpdata()`](https://UCLouvain-CBIO.github.io/scpdata/reference/scpdata.md)
 to display the table with available datasets.
 
-[`library`](https://rdrr.io/r/base/library.html)`(`[`scpdata`](https://UCLouvain-CBIO.github.io/scpdata/)`)`` `[`scpdata`](https://UCLouvain-CBIO.github.io/scpdata/reference/scpdata.md)`(``)`
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`scpdata`](https://UCLouvain-CBIO.github.io/scpdata/)`)`\
+[`scpdata`](https://UCLouvain-CBIO.github.io/scpdata/reference/scpdata.md)`(``)`
 
 You can either use the `ExperimentHub` interface or use the functions
 provided `scpdata` to retrieve the data set of interest.
@@ -38,13 +44,16 @@ browse and query the database to look up a data set of interest (see
 [`?ExperimentHub`](https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html)
 for more information).
 
-`eh`` ``<-`` `[`ExperimentHub`](https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html)`(``)`` ``query``(``eh``, ``"scpdata"``)`
+\
+`eh`` ``<-`` `[`ExperimentHub`](https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html)`(``)`\
+`query``(``eh``, ``"scpdata"``)`
 
 Suppose you are interested in the `specht2019v2` data set, you can
 retrieve the data using the corresponding `ExperimentHub` ID. In this
 case the ID is `EH3899`.
 
-`scp`` ``<-`` ``eh``[[``"EH3899"``]``]`
+\
+`scp`` ``<-`` ``eh``[[``"EH3899"``]``]`
 
 ## Loading data using the `scpdata` functions
 
@@ -53,13 +62,15 @@ case the ID is `EH3899`.
 [`specht2019v2()`](https://UCLouvain-CBIO.github.io/scpdata/reference/specht2019v2.md)
 function.
 
-`scp`` ``<-`` `[`specht2019v2`](https://UCLouvain-CBIO.github.io/scpdata/reference/specht2019v2.md)`(``)`
+\
+`scp`` ``<-`` `[`specht2019v2`](https://UCLouvain-CBIO.github.io/scpdata/reference/specht2019v2.md)`(``)`
 
 The documentation of each function contains information about its
 corresponding data set. The information includes a description of the
 data content, the acquisition protocol, the data collection procedure,
 and some associated references and data sources.
 
+\
 `?``specht2019v2`
 
 # Available data

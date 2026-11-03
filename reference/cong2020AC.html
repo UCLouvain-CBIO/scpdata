@@ -21,7 +21,7 @@ increase the idendtification rate thanks to between-run matching
 
     <a class="navbar-brand me-2" href="../index.html">scpdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.5</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,15 +62,11 @@ increase the idendtification rate thanks to between-run matching
 (cf MaxQuant).</p>
     </div>
 
-    <div class="section level2">
-    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">cong2020AC</span></span></code></pre></div>
-    </div>
 
     <div class="section level2">
     <h2 id="format">Format<a class="anchor" aria-label="anchor" href="#format"></a></h2>
-    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object with 9 assays, each assay being a
-<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment::SingleCellExperiment</a> object:</p><ul><li><p><code>100/20 HeLa cells</code>: 2 assays containing PSM data for a bulk
+    <p>A <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object with 9 assays, each assay being a
+<a href="https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html" class="external-link">SingleCellExperiment</a> object:</p><ul><li><p><code>100/20 HeLa cells</code>: 2 assays containing PSM data for a bulk
 of 100 or 20 HeLa cells, respectively.</p></li>
 <li><p><code>Blank</code>: assay containing the PSM data for a blank sample</p></li>
 <li><p><code>Single cell X</code>: 4 assays containing PSM data for a single cell.
@@ -117,16 +113,16 @@ Single cells: accumulation time = 500ms; resolution = 240,000.</p></li>
 repository (accession ID: PXD016921).  We downloaded the
 <code>evidence.txt</code> file containing the PSM identification and
 quantification results. The sample annotation was inferred from
-the samples names. The data were then converted to a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a>
+the samples names. The data were then converted to a <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a>
 object using the <code><a href="https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html" class="external-link">scp::readSCP()</a></code> function.</p>
 <p>The peptide data were processed similarly from the <code>peptides.txt</code>
 file. The quantitative column names were adpated to match the PSM
-data. The peptide data were added to <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object and link
+data. The peptide data were added to <a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object and link
 between the features were stored.</p>
 <p>The protein data were similarly processed from the
 <code>proteinGroups.txt</code> file. The quantitative column names were
 adapted to match the PSM data. The peptide data were added to
-<a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures::QFeatures</a> object and link between the features were stored.</p>
+<a href="https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html" class="external-link">QFeatures</a> object and link between the features were stored.</p>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>

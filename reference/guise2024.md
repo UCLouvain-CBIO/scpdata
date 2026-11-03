@@ -8,18 +8,12 @@ Miami Brain Bank using laser capture microdissection (LCM). Additional
 information about the amount of TDP-43 intra-cellular levels has been
 assigned into levels 0 to 4.
 
-## Usage
-
-``` r
-guise2024
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 102 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `F*`: 100 assays containing PSM data.
@@ -78,7 +72,7 @@ The sample annotations were combined from the tables in
 The PSM data were found in the
 `Biogen_TDP43_Round2_Reanalysis_10-13-2021_PSMs.txt` file. The data were
 converted to a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using the
 [`scp::readSCP()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html)
 function. We could not find sample annotations for MS run ID: F61, F34,
@@ -88,19 +82,19 @@ The peptide data were found in the
 `Biogen_TDP43_Round2_Reanalysis_10-13-2021_PeptideGroups.txt` file. The
 column names holding the quantitative data were adapted to match the
 sample names in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object. The data were then converted to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and then inserted in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object.
 
 A similar procedure was applied to the protein data. The data were found
 in the `Biogen_TDP43_Round2_Reanalysis_10-13-2021_Proteins.txt` file.
 The column names were adapted, the data were converted to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and then inserted in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object.
 
 ## References

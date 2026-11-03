@@ -5,18 +5,12 @@ contains quantitative information at PSM and protein level. The samples
 are commercial Hela lysates diluted to single-cell amounts (0.2 ng). The
 boosting wells contain the same digest but at higher amount (10 ng).
 
-## Usage
-
-``` r
-dou2019_lysates
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 3 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `Hela_run_1`: PSM data with 10 columns corresponding to the TMT-10plex
@@ -88,7 +82,7 @@ annotations that are not common within a peptide or protein group are
 are separated by a `;`. The sample annotation table was manually created
 based on the available information provided in the article. The data
 were then converted to a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using the
 [`scp::readSCP()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html)
 function.
@@ -109,9 +103,9 @@ from the publisher's website (see `Sources`). The data is supplied as an
 Excel file `ac9b03349_si_003.xlsx`. The file contains 7 sheets from
 which we only took the sheet 6 (named `5 - Run 1 and 2 raw data`) with
 the combined protein data for the two runs. We converted the data to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and added the object as a new assay in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 dataset (containing the PSM data). Links between the proteins and the
 peptides were created. Note that links to protein groups are not stored.
 

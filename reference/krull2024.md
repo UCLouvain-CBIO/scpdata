@@ -1,23 +1,17 @@
-# Krull et al, 2024 (Nature Communications): IFN-\\\gamma\\ response
+# Krull et al, 2024 (Nature Communications): IFN-\\(\gamma\\) response
 
 They develop a new strategy for data-independent acquisition (DIA) that
 leverages the co-analysis of low-input samples alongside a corresponding
 enhancer (ME) of higher input. Using DIA-ME, they investigate the
-proteomic response of U-2 OS cells to interferon gamma (IFN-\\\gamma\\)
-at the single-cell level.
-
-## Usage
-
-``` r
-krull2024
-```
+proteomic response of U-2 OS cells to interferon gamma
+(IFN-\\(\gamma\\)) at the single-cell level.
 
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 159 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object.
 
 - Assay 1-158: DIA-NN main output report table split for each
@@ -83,10 +77,10 @@ the `03_SingleCell_Searches.zip` file.
 We loaded the DIA-NN main report table and generated a sample annotation
 table based on the MS file names. We next combined the sample annotation
 and the DIANN tables into a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object following the `scp` data structure. We loaded the proteins group
 matrix as a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object, and added the protein data as a new assay and link the
 precursors to proteins using the `Protein.Group` variable from the
 `rowData`.
@@ -94,9 +88,9 @@ precursors to proteins using the `Protein.Group` variable from the
 ## References
 
 Krull, K. K., Ali, S. A., & Krijgsveld, J. 2024. "Enhanced feature
-matching in single-cell proteomics characterizes IFN-\\\gamma\\ response
-and co-existence of Cell States." Nature Communications, 15(1). [Link to
-article](https://doi.org/10.1038/s41467-024-52605-x)
+matching in single-cell proteomics characterizes IFN-\\(\gamma\\)
+response and co-existence of Cell States." Nature Communications, 15(1).
+[Link to article](https://doi.org/10.1038/s41467-024-52605-x)
 
 ## Examples
 

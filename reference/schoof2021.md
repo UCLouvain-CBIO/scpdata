@@ -11,18 +11,12 @@ a known 1:1:1 mix of cells (PROG, LSC and BLAST) or are isolated
 directly from the bulk sample. Samples were isolated and annotated using
 flow cytometry.
 
-## Usage
-
-``` r
-schoof2021
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 194 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `F*`: 192 assays containing PSM quantification data for 16 TMT
@@ -92,7 +86,7 @@ available from different files into a single table available using
 The PSM data were found in the `bulk_PSMs.txt` file. Contaminants were
 defined based on the protein accessions listed in `contaminant.txt`. The
 data were converted to a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using the
 [`scp::readSCP()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html)
 function.
@@ -101,7 +95,7 @@ The protein data were found in the `bulk_Proteins.txt` file.
 Contaminants were defined based on the protein accessions listed in
 `contaminant.txt`.The column names holding the quantitative data were
 adapted to match the sample names in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object. Unnecessary feature annotations (such as in which assay a
 protein is found) were removed. Feature names were created following the
 procedure in SCeptre: features names are the protein symbol (or
@@ -109,9 +103,9 @@ accession if missing) and if duplicated symbols are present (protein
 isoforms), they are made unique by appending the protein accession.
 Contaminants were defined based on the protein accessions listed in
 `contaminant.txt`. The data were then converted to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and inserted in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object.
 
 The log-normalized protein data were found in the `bulk.h5ad` file. This
@@ -121,9 +115,9 @@ the `scanpy` Python module. The object was then converted to a
 `SingleCellExperiment` object using the `zellkonverter` package. The
 column names holding the quantitative data were adapted to match the
 sample names in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object. The data were then inserted in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object.
 
 The script to reproduce the `QFeatures` object is available at

@@ -6,18 +6,12 @@ Biology publication). It contains quantitative information of melanoma
 cells at precursor, peptide and protein level. This version of the data
 was acquired using the plexDIA MS acquisition protocol.
 
-## Usage
-
-``` r
-leduc2022_plexDIA
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 48 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - Assay 1-45: precursor data acquired with a mTRAQ-3 protocol, hence
@@ -103,17 +97,17 @@ We removed the failed runs as identified by the authors. We also
 formatted the annotation and precuror quantification tables to
 facilitate matching between corresponding columns. Both annotation and
 quantification tables are then combined in a single
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using
 [`scp::readSCPfromDIANN()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html).
 
 The `plexDIA_peptide.csv` and `plexDIA_protein_imputed.csv` files were
 loaded and formatted as
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 objects. The columns names were adapted to match those in the
 `QFeatures` object. The `SingleCellExperiment` objects were then added
 to the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object and the rows of the peptide data are linked to the rows of the
 precursor data based on the peptide sequence or the protein name through
 an `AssayLink` object.

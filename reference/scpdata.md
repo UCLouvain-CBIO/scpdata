@@ -6,10 +6,10 @@ formatted to a standardized data framework. The `scp` frameworks stores
 the expression data for different MS levels (identified spectrum,
 peptide, or protein) in separate assays. Each assay is an object of
 class
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 that allows easy integration with state-of-the-art single-cell analysis
 tools. All assays are contained in a single object of class
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html).
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html).
 An overview of the data structure is shown provided in the `scp`
 package.
 
@@ -40,7 +40,7 @@ Christophe Vanderaa
 ## Examples
 
 ``` r
-## List available datasets and their metadata 
+## List available datasets and their metadata
 scpdata()
 #> DataFrame with 32 rows and 15 columns
 #>                 title  dataprovider       species taxonomyid      genome

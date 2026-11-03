@@ -6,18 +6,12 @@ acinar cells (PDAC; HPAF-II), melanoma cells (WM989-A6-G3) and monocytes
 (U-937) at precursor and protein level. The each run acquired 3 samples
 thanks to mTRAQ multiplexing.
 
-## Usage
-
-``` r
-derks2022
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 66 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object. The assays either hold the DIA-NN main output report table or
 the DIA-NN MS1 extracted signal table. The DIA-NN main output report
 table contains the results of the spectrum identification and
@@ -93,11 +87,11 @@ that is accessible from the SlavovLab website (see `Source` section).
 
 For each dataset separately, we combined the sample annotation and the
 DIANN tables in a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object following the `scp` data structure. We then combined the three
 datasets in a single `QFeatures` object. We load the proteins table
 processed by the authors as a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object and adapted the sample names to match those in the `QFeatures`
 object. We added the protein data as a new assay and link the precursors
 to proteins using the `Protein.Group` variable from the `rowData`.

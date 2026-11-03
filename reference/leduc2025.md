@@ -8,12 +8,6 @@ data are available at the peptide, and protein levels. The paper
 investigates the protein regulation by translation and protein clearance
 using a matching single cell RNA Sequencing data.
 
-## Usage
-
-``` r
-leduc2025
-```
-
 ## Format
 
 A

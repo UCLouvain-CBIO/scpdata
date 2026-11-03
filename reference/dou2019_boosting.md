@@ -9,18 +9,12 @@ boosting), 5 ng or 50 ng. When boosting was applied, 1 reference well
 and 1 boosting well were added, otherwise 1 empty well was added. Each
 boosting setting (0ng, 5ng, 50ng) was run in duplicate.
 
-## Usage
-
-``` r
-dou2019_boosting
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 7 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - `Boosting_X_run_Y`: PSM data with 10 columns corresponding to the
@@ -91,7 +85,7 @@ annotations that are not common within a peptide or protein group are
 are separated by a `;`. The sample annotation table was manually created
 based on the available information provided in the article. The data
 were then converted to a
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using the
 [`scp::readSCP()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html)
 function.
@@ -116,9 +110,9 @@ which we took the 2nd, 4th and 6th sheets (named
 combined protein data for the duplicate runs given the boosting amount.
 We joined the data for all boosting ration based on the protein name and
 converted the data to a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object. We then added the object as a new assay in the
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 dataset (containing the PSM data). Links between the proteins and the
 corresponding PSM were created. Note that links to protein groups are
 not stored.

@@ -7,18 +7,12 @@ treatment. It contains quantitative information at PSM, peptide and
 protein levels. Data was acquired using Lumos Orbitrap (mainly) and
 timsTOF SCP mass spectrometers.
 
-## Usage
-
-``` r
-gregoire2023_mixCTRL
-```
-
 ## Format
 
 A
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object with 119 assays, each assay being a
-[SingleCellExperiment::SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
+[SingleCellExperiment](https://rdrr.io/pkg/SingleCellExperiment/man/SingleCellExperiment.html)
 object:
 
 - Assays 1-42: PSM data acquired with a TMT-16plex protocol, hence those
@@ -105,13 +99,13 @@ We combined the sample annotations in a single table. We also combined
 `cbio` and `giga` tables together and merged resulting identification
 and quantification tables. Both annotation and features tables are then
 combined in a single
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object using the
 [`scp::readSCP()`](https://UCLouvain-CBIO.github.io/scp/reference/readSCP.html)
 function.
 
 The
-[QFeatures::QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/reference/QFeatures-class.html)
 object was processed as described in the author's manuscript (see
 `source`). Note that the imputed assays were used in the paper for
 illustrative purposes only and have not been reproduced here.
