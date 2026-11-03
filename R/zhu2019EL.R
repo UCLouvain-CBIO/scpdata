@@ -101,4 +101,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"zhu2019EL"
+##' @name zhu2019EL
+NULL

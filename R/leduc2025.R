@@ -121,4 +121,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"leduc2025"
+##' @name leduc2025
+NULL

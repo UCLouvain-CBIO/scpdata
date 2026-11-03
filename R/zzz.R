@@ -2,10 +2,10 @@
 
 ##' @importFrom utils packageVersion
 .onAttach <- function(libname, pkgname) {
-    msg <- paste0("\nThis is scpdata version ", 
+    msg <- paste0("\nThis is scpdata version ",
                     packageVersion("scpdata"),
                     ".\nUse 'scpdata()' to list available data sets.")
-    packageStartupMessage(msg)  
+    packageStartupMessage(msg)
 }
 
 ##' @importFrom utils read.csv

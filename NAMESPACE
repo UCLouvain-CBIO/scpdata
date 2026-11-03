@@ -7,5 +7,7 @@ import(QFeatures)
 import(SingleCellExperiment)
 importFrom(AnnotationHub,query)
 importFrom(S4Vectors,mcols)
-importFrom(utils,packageVersion)
-importFrom(utils,read.csv)
+importFrom(utils,
+  packageVersion,
+  read.csv
+)

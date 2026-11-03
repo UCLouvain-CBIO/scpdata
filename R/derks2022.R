@@ -100,4 +100,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"derks2022"
+##' @name derks2022
+NULL

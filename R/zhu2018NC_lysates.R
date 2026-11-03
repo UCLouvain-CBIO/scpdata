@@ -1,4 +1,4 @@
-##' Zhu et al. 2018 (Nat. Comm.): HeLa lysates
+2##' Zhu et al. 2018 (Nat. Comm.): HeLa lysates
 ##'
 ##' Near single-cell proteomics data of HeLa lysates at different
 ##' concentrations (10, 40 and 140 cell equivalent). Each
@@ -82,4 +82,5 @@
 ##' @keywords datasets
 ##'
 ##'
-"zhu2018NC_lysates"
+##' @name zhu2018NC_lysates
+NULL

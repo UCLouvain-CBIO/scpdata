@@ -1,4 +1,4 @@
-##' Petrosius et al, 2023 (Nat. Comm.): Mouse embryonic stem cell (mESC) in
+0##' Petrosius et al, 2023 (Nat. Comm.): Mouse embryonic stem cell (mESC) in
 ##' different culture conditions
 ##'
 ##' @description
@@ -33,14 +33,14 @@
 ##'   into a 384-well Eppendorf LoBind PCR plate (Eppendorf AG) containing 1 microL
 ##'   of lysis buffer.
 ##' - **Sample preparation**: Single-cell protein lysates were digested with
-##'   2 ng of Trypsin supplied in 1 microL of digestion buffer which was 
-##'   carried out overnight at 37 °C, and subsequently acidified by the 
-##'   addition of 1 microL 1% (v/v) trifluoroacetic acid (TFA). All liquid 
+##'   2 ng of Trypsin supplied in 1 microL of digestion buffer which was
+##'   carried out overnight at 37 °C, and subsequently acidified by the
+##'   addition of 1 microL 1% (v/v) trifluoroacetic acid (TFA). All liquid
 ##'   dispensing was done using an I-DOT One instrument.
-##' - **Liquid chromatography**: For the HRMS1-DIA experiments and the DIA 
+##' - **Liquid chromatography**: For the HRMS1-DIA experiments and the DIA
 ##'   isolation window survey, Evosep One liquid chromatography was used.
-##'   The standard 31-minute or 58-minute pre-defined Whisper gradients were 
-##'   used with a flow rate of 100 nl/min for peptide elution. 
+##'   The standard 31-minute or 58-minute pre-defined Whisper gradients were
+##'   used with a flow rate of 100 nl/min for peptide elution.
 ##' - **Mass spectrometry**: The mass spectrometer was operated in positive
 ##'   mode with the FAIMSPro interface compensation voltage set to -45 V.
 ##'   MS1 scans were carried out at 120,000 resolution with an automatic gain
@@ -103,4 +103,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"petrosius2023_mES"
+##' @name petrosius2023_mES
+NULL

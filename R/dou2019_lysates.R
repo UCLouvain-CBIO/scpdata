@@ -115,5 +115,5 @@
 ##'
 ##' @keywords datasets
 ##'
-##'
-"dou2019_lysates"
+##' @name dou2019_lysates
+NULL

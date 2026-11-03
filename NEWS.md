@@ -3,6 +3,8 @@
 ## scpdata 1.21.5
 
 - Update maintainer.
+- Add bubis2025 data.
+- Using @name in documentation.
 
 ## scpdata 1.21.4
 

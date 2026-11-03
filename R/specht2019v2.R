@@ -102,4 +102,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"specht2019v2"
+##' @name specht2019v2
+NULL

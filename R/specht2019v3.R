@@ -1,4 +1,4 @@
-##' Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs monocytes
+0##' Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs monocytes
 ##' (version 3)
 ##'
 ##' Single cell proteomics data acquired by the Slavov Lab. This is
@@ -107,4 +107,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"specht2019v3"
+##' @name specht2019v3
+NULL

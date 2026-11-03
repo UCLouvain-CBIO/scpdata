@@ -129,4 +129,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"bubis2025"
+##' @name bubis2025
+NULL

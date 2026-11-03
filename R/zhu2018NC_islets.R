@@ -79,4 +79,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"zhu2018NC_islets"
+##' @name zhu2018NC_islets
+NULL

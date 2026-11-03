@@ -61,4 +61,4 @@ Encoding: UTF-8
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 URL: https://UCLouvain-CBIO.github.io/scpdata/
-Config/roxygen2/version: 8.1.0
+Config/roxygen2/version: 8.1.1

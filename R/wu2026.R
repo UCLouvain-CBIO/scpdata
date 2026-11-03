@@ -69,4 +69,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"wu2026"
+##' @name wu2026
+NULL

@@ -29,7 +29,7 @@ about the data content and the data collection can be found in the
 corresponding manual pages.
 }
 \examples{
-## List available datasets and their metadata 
+## List available datasets and their metadata
 scpdata()
 
 ## Load data using the ExperimentHub interface

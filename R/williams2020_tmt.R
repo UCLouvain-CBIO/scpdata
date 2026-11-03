@@ -1,4 +1,4 @@
-##' Williams et al. 2020 (Anal. Chem.): 3 AML cell line
+1##' Williams et al. 2020 (Anal. Chem.): 3 AML cell line
 ##'
 ##' Single-cell label data from three acute myeloid
 ##' leukemia cell line culture (MOLM-14, K562, CMK). The data were
@@ -93,4 +93,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"williams2020_tmt"
+##' @name williams2020_tmt
+NULL

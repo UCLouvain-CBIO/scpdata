@@ -82,4 +82,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"brunner2022"
+##' @name brunner2022
+NULL

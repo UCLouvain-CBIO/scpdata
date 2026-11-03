@@ -126,4 +126,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"leduc2022_pSCoPE"
+##' @name leduc2022_pSCoPE
+NULL

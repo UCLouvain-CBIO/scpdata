@@ -107,4 +107,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"khan2023"
+##' @name khan2023
+NULL

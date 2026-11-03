@@ -95,4 +95,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"liang2020_hela"
+##' @name liang2020_hela
+NULL
