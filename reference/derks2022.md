@@ -82,7 +82,7 @@ be found in the source article (see `References`).
 ## Data collection
 
 The data were collected from a shared Google Drive
-[folder](https://drive.google.com/drive/folders/1pUC2zgXKtKYn22mlor0lmUDK0frgwL)
+[folder](https://drive.google.com/drive/folders/116XGOyPpn6g0qWz8i32ZU215kjSZm-KJ)
 that is accessible from the SlavovLab website (see `Source` section).
 
 For each dataset separately, we combined the sample annotation and the
