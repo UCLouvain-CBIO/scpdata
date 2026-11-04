@@ -84,7 +84,7 @@ specht2019v2 <- readSCP(ev,
 ####---- Include the peptide data ----####
 
 ## The `Peptides-raw.csv` and `Cells.csv` files were downloaded from 
-## https://scope2.slavovlab.net/docs/data.
+## https://scope2.slavovlab.net/mass-spec/data.
 ## The `id_to_channel.RData` file was generated using the `SCoPE2_analysis.R`
 ## script from https://github.com/cvanderaa/SCoPE2/tree/1483b8e4e5e55a77ed2813133f89f415c0403437/code
 
@@ -142,7 +142,7 @@ specht2019v2 <- addAssayLink(specht2019v2, from = which(sel), to = "peptides",
 ####---- Include the protein data ----####
 
 ## The `Proteins-processed.csv` and `Cells.csv` file was downloaded from 
-## https://scope2.slavovlab.net/docs/data 
+## https://scope2.slavovlab.net/mass-spec/data 
 read.csv(paste0(dataDir, "Proteins-processed.csv")) %>%
   rename(protein = X) %>%
   readSingleCellExperiment(ecol = -1, fnames = "protein") ->

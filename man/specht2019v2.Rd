@@ -27,7 +27,7 @@ proteins and 1018 single-cells.
 The \code{colData(specht2019v2())} contains cell type annotation and
 batch annotation that are common to all assays. The description of
 the \code{rowData} fields for the PSM data can be found in the
-\href{http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable}{\code{MaxQuant} documentation}.
+\href{https://cox-labs.github.io/coxdocs/output_tables.html}{\code{MaxQuant} documentation}.
 }
 \source{
 The data were downloaded from the

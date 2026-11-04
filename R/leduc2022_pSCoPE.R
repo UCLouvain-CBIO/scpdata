@@ -43,7 +43,7 @@
 ##' data analysis. The main population is encoded as `A` while the
 ##' small population is encoded `B`. The description of the `rowData`
 ##' fields for the PSM data can be found in the
-##' [`MaxQuant` documentation](http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable).
+##' [`MaxQuant` documentation](https://cox-labs.github.io/coxdocs/output_tables.html).
 ##'
 ##' @section Acquisition protocol:
 ##'
