@@ -107,7 +107,7 @@
 ##' [folder](https://zenodo.org/records/22649483).
 ##'
 ##' The data used and generated as part of the scpdata repackaging is available
-##' in the [Zenodo archive]().
+##' in the [Zenodo archive](https://doi.org/10.5281/zenodo.24007418).
 ##'
 ##' @references
 ##' Khoury L, et al., Single-cell proteomics reveals cell-type-specific
