@@ -931,6 +931,34 @@ meta <- list(
       ProteinsAvailable = TRUE,
       ContainsSingleCells = TRUE,
       Notes = NA_character_),
+    data.frame(
+      Title = "khoury2026",
+      Description = paste0("Single-cell proteomics reveals cell-type-specific",
+                           " functional coordination in PBMCs Khoury et al, (2026)"),
+      BiocVersion = "3.23",
+      Genome = NA_character_,
+      SourceType = "CSV",
+      SourceUrl = "https://zenodo.org/records/24007418/files/khoury2026.rda",
+      SourceVersion = NA_character_,
+      Species = "Homo sapiens",
+      TaxonomyId = 9606,
+      Coordinate_1_based = TRUE,
+      DataProvider = "Zenodo",
+      Maintainer = "Enes Sefa Ayar <enes.ayar@uclouvain.be>",
+      RDataClass = "QFeatures",
+      DispatchClass = "Rda",
+      Location_Prefix = "https://zenodo.org/",
+      RDataPath = "records/24007418/files/khoury2026.rda",
+      PublicationDate = as.Date("2026/11/06"),
+      NumberAssays = 1103,
+      PreprocessingSoftware = "DIA-NN",
+      LabelingProtocol = "mTRAQ",
+      PsmsAvailable = TRUE,
+      PeptidesAvailable = TRUE,
+      ProteinsAvailable = TRUE,
+      ContainsSingleCells = TRUE,
+      Notes = NA_character_
+    )
 )
 
 metadata <- do.call(rbind, meta)
