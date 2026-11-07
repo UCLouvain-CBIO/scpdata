@@ -100,7 +100,7 @@ by creating an issue on the the
 
 ## License
 
-The `scpdata` code is provided under a permissive
+The `scpdata` code is provided under a
 [GPL-3.0](https://opensource.org/license/gpl-3.0).  The documentation,
 including the manual pages and the vignettes, are distributed under a
 [CC BY-SA license](https://creativecommons.org/licenses/by-sa/2.0/).
