@@ -7,7 +7,7 @@ test_that("metadata numbers match ExperimentHub", {
     metaf <- system.file("extdata", "metadata.csv",
                          package = "scpdata", mustWork = TRUE)
     meta <- read.csv(metaf, stringsAsFactors = FALSE)
-    EHub <- query(ExperimentHub(), "scpdata") ## same as mcols(scpdata())
+    EHub <- query(ExperimentHub(), "scpdata")
     ## [2026-11-03 Tue] Changing the two expectations below, as they fail by
     ## default whenever a new experiment is added, i.e. regularly in devel. This
     ## unnecessarily increases maintenance burdens.
