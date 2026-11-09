@@ -58,7 +58,7 @@ hyaluronidase, DNase and dispase enzyme cocktail.
 \item \strong{Sample preparation}: nPOP sample preparation. Cell lysis (DMSO and heat)
 was followed by overnight trypsin digestion, then TMTpro 35-plex labelling.
 Labelled samples were pooled and dried for injection. Channel 126C was used
-as a carrier and 127N as a reference.
+as a carrier and 127N as a reference. Cells were labeled in sets of 29.
 \item \strong{Separation}: online nLC (Vanquish Neo UHPLC) with a 25 cm x 75 µm
 IonOpticks column.
 \item \strong{Mass spectrometry}: Orbitrap Exploris 480 with prioritised data
