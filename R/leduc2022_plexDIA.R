@@ -118,4 +118,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"leduc2022_plexDIA"
+##' @name leduc2022_plexDIA
+NULL

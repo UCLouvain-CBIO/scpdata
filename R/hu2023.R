@@ -106,4 +106,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"hu2023_K562"
+##' @name hu2023_K562
+NULL

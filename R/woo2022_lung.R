@@ -91,4 +91,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"woo2022_lung"
+##' @name woo2022_lung
+NULL

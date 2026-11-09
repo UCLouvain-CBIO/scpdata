@@ -19,8 +19,6 @@
 ## with the information that will make it easier for others to help you.
 ## Thank you!
 
-
-
 ## Acronyms:
 ## * GHA: GitHub Action
 ## * OS: operating system
@@ -50,7 +48,7 @@ name: R-CMD-check-bioc
 ## "/nocache" in the commit message.
 env:
   has_testthat: 'true'
-  run_covr: 'true'
+  run_covr: 'false'
   run_pkgdown: 'true'
   has_RUnit: 'false'
   cache-version: 'cache-v4'

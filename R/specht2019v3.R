@@ -1,4 +1,4 @@
-##' Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs monocytes
+0##' Specht et al. 2019 - SCoPE2 (biorRxiv): macrophages vs monocytes
 ##' (version 3)
 ##'
 ##' Single cell proteomics data acquired by the Slavov Lab. This is
@@ -27,7 +27,7 @@
 ##' The `colData(specht2019v2())` contains cell type annotation and
 ##' batch annotation that are common to all assays. The description of
 ##' the `rowData` fields for the PSM data can be found in the
-##' [`MaxQuant` documentation](http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable).
+##' [`MaxQuant` documentation](https://cox-labs.github.io/coxdocs/output_tables.html).
 ##'
 ##' @section Acquisition protocol:
 ##'
@@ -86,7 +86,7 @@
 ##'
 ##' @source
 ##' The data were downloaded from the
-##' [Slavov Lab](https://scope2.slavovlab.net/docs/data) website via a
+##' [Slavov Lab](https://scope2.slavovlab.net/mass-spec/data) website via a
 ##' shared Google Drive
 ##' [folder](https://drive.google.com/drive/folders/1VzBfmNxziRYqayx3SP-cOe2gu129Obgx).
 ##' The raw data and the quantification data can also be found in the
@@ -107,4 +107,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"specht2019v3"
+##' @name specht2019v3
+NULL

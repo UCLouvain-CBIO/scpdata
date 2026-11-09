@@ -4,7 +4,7 @@ library("SCP.replication")
 library("tidyverse")
 
 ## All data files were retrieved from this Google Drive repository:
-## https://drive.google.com/drive/folders/1pUC2zgXKtKYn22mlor0lmUDK0frgwL_-
+## https://drive.google.com/drive/folders/116XGOyPpn6g0qWz8i32ZU215kjSZm-KJ_-
 datadir <- "~/PhD/.localdata/SCP/derks2022/"
 
 ## Sample annotations

@@ -1,4 +1,4 @@
-##' Zhu et al. 2018 (Mol. Cel. Prot.): rat brain laser dissections
+2##' Zhu et al. 2018 (Mol. Cel. Prot.): rat brain laser dissections
 ##'
 ##' Near single-cell proteomics data of laser captured
 ##' micro-dissection samples. The samples are 24 brain sections from
@@ -83,4 +83,5 @@
 ##' @keywords datasets
 ##'
 ##'
-"zhu2018MCP"
+##' @name zhu2018MCP
+NULL

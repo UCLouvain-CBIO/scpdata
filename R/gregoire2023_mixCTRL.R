@@ -105,4 +105,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"gregoire2023_mixCTRL"
+##' @name gregoire2023_mixCTRL
+NULL

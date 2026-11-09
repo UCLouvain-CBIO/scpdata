@@ -119,5 +119,5 @@
 ##'
 ##' @keywords datasets
 ##'
-##'
-"dou2019_boosting"
+##' @name dou2019_boosting
+NULL

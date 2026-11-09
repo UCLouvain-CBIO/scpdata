@@ -123,4 +123,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"dou2019_mouse"
+##' @name dou2019_mouse
+NULL

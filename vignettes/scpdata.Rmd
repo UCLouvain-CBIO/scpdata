@@ -28,53 +28,61 @@ knitr::opts_chunk$set(
 
 # The `scpdata` package
 
-`scpdata` disseminates mass spectrometry (MS)-based single-cell 
-proteomics (SCP) data sets formatted using the `scp` data structure. 
-The data structure is described in the 
-[`scp` vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html).
+`scpdata` disseminates mass spectrometry (MS)-based single-cell
+proteomics (SCP) data sets formatted using the `scp` data structure.
+The data structure is `QFeatures` from the
+[QFeatures](https://rformassspectrometry.github.io/QFeatures/), and is
+described in the [`scp`
+vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html). The
+vignette describing [supported input formats for
+`readQFeatures()`](https://rformassspectrometry.github.io/QFeatures/articles/readQFeatures2.html)
+(equally applicable to single-cell proteomics data) describes how to
+import quantitative data tables from farious different third-party
+software.
 
-In this vignette, we describe how to access the SCP data sets. To 
+In this vignette, we describe how to access the SCP data sets. To
 start, we load the `scpdata` package.
-    
+
 ```{r load_scp, message = FALSE}
 library("scpdata")
 ```
 
 # Load data from `ExperimentHub`
 
-The data is stored using the 
-[`ExperimentHub`](https://bioconductor.org/packages/release/bioc/html/ExperimentHub.html) 
-infrastructure. We first create a connection with `ExperimentHub`. 
+The data is stored and managed through the
+[`ExperimentHub`](https://bioconductor.org/packages/release/bioc/html/ExperimentHub.html)
+infrastructure. We first create a connection with `ExperimentHub`.
 
 ```{r EH, message = FALSE}
 eh <- ExperimentHub()
 ```
 
-You can list all data sets available in `scpdata` using the query 
+You can list all data sets available in `scpdata` using the query
 function.
 
 ```{r EH_query, message = FALSE}
 query(eh, "scpdata")
 ```
 
-Another way to get information about the available data sets is to 
-call `scpdata()`. This will retrieve all the available metadata. For 
-example, we can retrieve the data set titles along with the 
+Another way to get information about the available data sets is to
+call `scpdata()`. This will retrieve all the available metadata. For
+example, we can retrieve the data set titles along with the
 description to make an informed choice about which data set to choose.
 
 ```{r scpdata_fun}
 info <- scpdata()
 knitr::kable(info[, c("title", "description")])
 ```
-To get one of the data sets (*e.g.* `dou2019_lysates`) you can either 
-retrieve it using the `ExperimentHub` query function 
+
+To get one of the data sets (*e.g.* `dou2019_lysates`) you can either
+retrieve it using the `ExperimentHub` query function
 
 ```{r download_EH}
 scp <- eh[["EH3901"]]
 scp
 ```
 
-or you can the use the built-in functions from `scpdata` 
+or you can the use the built-in functions from `scpdata`
 
 ```{r download_scpdata}
 scp <- dou2019_lysates()
@@ -83,20 +91,20 @@ scp
 
 # Data sets information
 
-Each data set has been extensively documented in a separate man page 
-(*e.g.* `?dou2019_lysates`). You can find information about the data 
-content, the acquisition protocol, the data collection procedure as 
+Each data set has been extensively documented in a separate man page
+(*e.g.* `?dou2019_lysates`). You can find information about the data
+content, the acquisition protocol, the data collection procedure as
 well as the data sources and reference.
 
-# Data manipulation 
+# Data manipulation
 
-For more information about manipulating the data sets, check the 
-[`scp`](http://bioconductor.org/packages/release/bioc/html/scp.html) 
-package. The `scp` 
-[vignette](http://bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html) 
-will guide you through a typical SCP data processing workflow. Once 
-your data is loaded from `scpdata` you can skip section 2 
-*Read in SCP data* of the `scp` vignette.
+For more information about manipulating the data sets, check the
+[`scp`](http://bioconductor.org/packages/release/bioc/html/scp.html)
+package. The `scp`
+[vignette](http://bioconductor.org/packages/release/bioc/vignettes/scp/inst/doc/scp.html)
+will guide you through a typical SCP data processing workflow. Once
+your data is loaded from `scpdata` you can skip section 2 *Read in SCP
+data* of the `scp` vignette.
 
 # Session information {-}
 

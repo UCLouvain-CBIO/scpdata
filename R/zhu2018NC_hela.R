@@ -1,4 +1,4 @@
-##' Zhu et al. 2018 (Nat. Comm.): HeLa titration
+2##' Zhu et al. 2018 (Nat. Comm.): HeLa titration
 ##'
 ##' Near single-cell proteomics data of HeLa samples containing
 ##' different number of cells. There are three groups of cell
@@ -83,4 +83,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"zhu2018NC_hela"
+##' @name zhu2018NC_hela
+NULL

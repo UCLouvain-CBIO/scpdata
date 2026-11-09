@@ -1,4 +1,4 @@
-##' Woo et al. 2022 (Cell Syst.): LPS-treated macrophages
+1##' Woo et al. 2022 (Cell Syst.): LPS-treated macrophages
 ##'
 ##' Single-cell data from macrophages subjected to 3 LPS
 ##' treatments. The data were
@@ -91,4 +91,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"woo2022_macrophage"
+##' @name woo2022_macrophage
+NULL

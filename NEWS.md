@@ -1,5 +1,20 @@
 # scpdata 1.21
 
+## scpdata 1.21.6
+
+- Add khoury2026 data.
+
+## scpdata 1.21.5
+
+- Update maintainer.
+- Add bubis2025 data.
+- Using @name in documentation.
+- Fix broken links in man pages and scripts.
+
+## scpdata 1.21.4
+
+- Update contribution guidelines.
+
 ## scpdata 1.21.3
 
 - Add wu2026 dataset.

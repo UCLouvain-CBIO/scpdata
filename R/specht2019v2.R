@@ -29,7 +29,7 @@
 ##' The `colData(specht2019v2())` contains cell type annotation and
 ##' batch annotation that are common to all assays. The description of
 ##' the `rowData` fields for the PSM data can be found in the
-##' [`MaxQuant` documentation](http://www.coxdocs.org/doku.php?id=maxquant:table:evidencetable).
+##' [`MaxQuant` documentation](https://cox-labs.github.io/coxdocs/output_tables.html).
 ##'
 ##' @section Acquisition protocol:
 ##'
@@ -102,4 +102,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"specht2019v2"
+##' @name specht2019v2
+NULL

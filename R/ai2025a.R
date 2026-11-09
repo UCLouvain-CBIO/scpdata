@@ -34,4 +34,6 @@
 ##' \donttest{
 ##' ai2025a()
 ##' }
-"ai2025a"
+##'
+##' @name ai2025a
+NULL

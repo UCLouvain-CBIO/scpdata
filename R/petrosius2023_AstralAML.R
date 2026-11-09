@@ -118,4 +118,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"petrosius2023_AstralAML"
+##' @name petrosius2023_AstralAML
+NULL

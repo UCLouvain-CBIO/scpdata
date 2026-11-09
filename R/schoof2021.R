@@ -121,4 +121,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"schoof2021"
+##' @name schoof2021
+NULL

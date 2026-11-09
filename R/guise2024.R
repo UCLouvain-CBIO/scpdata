@@ -96,4 +96,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"guise2024"
+##' @name guise2024
+NULL

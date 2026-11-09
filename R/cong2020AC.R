@@ -84,4 +84,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"cong2020AC"
+##' @name cong2020AC
+NULL
