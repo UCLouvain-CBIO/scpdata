@@ -1,5 +1,9 @@
 # scpdata 1.21
 
+## scpdata 1.21.7
+
+- Add leduc2024_plexDIA and leduc2024_pSCoPE datasets.
+
 ## scpdata 1.21.6
 
 - Add khoury2026 data.
