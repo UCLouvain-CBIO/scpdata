@@ -158,7 +158,7 @@ bubis2025
 #>     }
 #>     else eh1[[1L]]
 #> }
-#> <bytecode: 0x559a23507cd0>
-#> <environment: 0x559a233fd730>
+#> <bytecode: 0x639d87c139b8>
+#> <environment: 0x639d87b31968>
 # }
 ```

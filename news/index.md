@@ -2,6 +2,11 @@
 
 ## scpdata 1.21
 
+### scpdata 1.21.6
+
+- Add khoury2026 data.
+- Fix bubis2025 data.
+
 ### scpdata 1.21.5
 
 - Update maintainer.

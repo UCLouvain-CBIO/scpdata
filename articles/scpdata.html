@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">scpdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@ Gatto</h4>
                                     <h4 data-toc-skip class="author">Christophe
 Vanderaa</h4>
                         
-            <h4 data-toc-skip class="date">4 November 2026</h4>
+            <h4 data-toc-skip class="date">9 November 2026</h4>
       
 
       <div class="d-none name"><code>scpdata.Rmd</code></div>
@@ -104,9 +104,9 @@ infrastructure. We first create a connection with
 the query function.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">query</span><span class="op">(</span><span class="va">eh</span>, <span class="st">"scpdata"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; ExperimentHub with 32 records</span></span>
-<span><span class="co">#&gt; # snapshotDate(): 2026-11-02</span></span>
-<span><span class="co">#&gt; # $dataprovider: MassIVE, PRIDE, SlavovLab website, Dataverse, Zenodo</span></span>
+<span><span class="co">#&gt; ExperimentHub with 34 records</span></span>
+<span><span class="co">#&gt; # snapshotDate(): 2026-11-09</span></span>
+<span><span class="co">#&gt; # $dataprovider: MassIVE, PRIDE, Zenodo, SlavovLab website, Dataverse</span></span>
 <span><span class="co">#&gt; # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus</span></span>
 <span><span class="co">#&gt; # $rdataclass: QFeatures, SingleCellExperiment</span></span>
 <span><span class="co">#&gt; # additional mcols(): taxonomyid, genome, description,</span></span>
@@ -121,11 +121,11 @@ the query function.</p>
 <span><span class="co">#&gt;   EH3902  | dou2019_mouse   </span></span>
 <span><span class="co">#&gt;   EH3903  | dou2019_boosting</span></span>
 <span><span class="co">#&gt;   ...       ...             </span></span>
-<span><span class="co">#&gt;   EH9610  | hu2023_K562     </span></span>
-<span><span class="co">#&gt;   EH9611  | hu2023_oocyte   </span></span>
 <span><span class="co">#&gt;   EH9627  | ai2025a         </span></span>
 <span><span class="co">#&gt;   EH10516 | leduc2025       </span></span>
-<span><span class="co">#&gt;   EH10517 | wu2026</span></span></code></pre></div>
+<span><span class="co">#&gt;   EH10517 | wu2026          </span></span>
+<span><span class="co">#&gt;   EH10668 | bubis2025       </span></span>
+<span><span class="co">#&gt;   EH10669 | khoury2026</span></span></code></pre></div>
 <p>Another way to get information about the available data sets is to
 call <code><a href="../reference/scpdata.html">scpdata()</a></code>. This will retrieve all the available
 metadata. For example, we can retrieve the data set titles along with
@@ -337,6 +337,18 @@ single cells in a mammalian tissue Leduc et al, (2025)</td>
 human brain tissue (gestational weeks 13, 15, and 19) from Wu et
 al. (2026)</td>
 </tr>
+<tr class="odd">
+<td align="left">EH10668</td>
+<td align="left">bubis2025</td>
+<td align="left">Single-cell proteomics data of HeLa, K562, A549, H460,
+TE-like and hPS cells acquired on the Astral MS.</td>
+</tr>
+<tr class="even">
+<td align="left">EH10669</td>
+<td align="left">khoury2026</td>
+<td align="left">Single-cell proteomics reveals cell-type-specific
+functional coordination in PBMCs Khoury et al, (2026)</td>
+</tr>
 </tbody>
 </table>
 <p>To get one of the data sets (<em>e.g.</em>
@@ -411,8 +423,8 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] scpdata_1.21.5              ExperimentHub_3.3.2        
- [3] AnnotationHub_4.3.3         BiocFileCache_3.3.0        
+ [1] scpdata_1.21.6              ExperimentHub_3.3.2        
+ [3] AnnotationHub_4.3.3         BiocFileCache_3.3.2        
  [5] dbplyr_2.6.0                QFeatures_1.23.2           
  [7] MultiAssayExperiment_1.39.1 SummarizedExperiment_1.43.0
  [9] Biobase_2.73.2              GenomicRanges_1.65.4       

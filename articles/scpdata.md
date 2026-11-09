@@ -34,9 +34,9 @@ function.
 
 \
 `query``(``eh``, ``"scpdata"``)`\
-`#> ExperimentHub with 32 records`\
-`#> # snapshotDate(): 2026-11-02`\
-`#> # $dataprovider: MassIVE, PRIDE, SlavovLab website, Dataverse, Zenodo`\
+`#> ExperimentHub with 34 records`\
+`#> # snapshotDate(): 2026-11-09`\
+`#> # $dataprovider: MassIVE, PRIDE, Zenodo, SlavovLab website, Dataverse`\
 `#> # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus`\
 `#> # $rdataclass: QFeatures, SingleCellExperiment`\
 `#> # additional mcols(): taxonomyid, genome, description,`\
@@ -51,11 +51,11 @@ function.
 `#>   EH3902  | dou2019_mouse   `\
 `#>   EH3903  | dou2019_boosting`\
 `#>   ...       ...             `\
-`#>   EH9610  | hu2023_K562     `\
-`#>   EH9611  | hu2023_oocyte   `\
 `#>   EH9627  | ai2025a         `\
 `#>   EH10516 | leduc2025       `\
-`#>   EH10517 | wu2026`
+`#>   EH10517 | wu2026          `\
+`#>   EH10668 | bubis2025       `\
+`#>   EH10669 | khoury2026`
 
 Another way to get information about the available data sets is to call
 [`scpdata()`](https://UCLouvain-CBIO.github.io/scpdata/reference/scpdata.md).
@@ -101,6 +101,8 @@ informed choice about which data set to choose.
 | EH9627 | ai2025a | Single-cell proteomics data of adult cardiomyocytes from Ai et al. (2025) |
 | EH10516 | leduc2025 | Principles of protein abundance regulation across single cells in a mammalian tissue Leduc et al, (2025) |
 | EH10517 | wu2026 | Label-free single-cell proteomics data from prenatal human brain tissue (gestational weeks 13, 15, and 19) from Wu et al. (2026) |
+| EH10668 | bubis2025 | Single-cell proteomics data of HeLa, K562, A549, H460, TE-like and hPS cells acquired on the Astral MS. |
+| EH10669 | khoury2026 | Single-cell proteomics reveals cell-type-specific functional coordination in PBMCs Khoury et al, (2026) |
 
 To get one of the data sets (*e.g.* `dou2019_lysates`) you can either
 retrieve it using the `ExperimentHub` query function
@@ -176,8 +178,8 @@ of the `scp` vignette.
     [8] base     
 
     other attached packages:
-     [1] scpdata_1.21.5              ExperimentHub_3.3.2        
-     [3] AnnotationHub_4.3.3         BiocFileCache_3.3.0        
+     [1] scpdata_1.21.6              ExperimentHub_3.3.2        
+     [3] AnnotationHub_4.3.3         BiocFileCache_3.3.2        
      [5] dbplyr_2.6.0                QFeatures_1.23.2           
      [7] MultiAssayExperiment_1.39.1 SummarizedExperiment_1.43.0
      [9] Biobase_2.73.2              GenomicRanges_1.65.4       

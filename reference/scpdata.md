@@ -42,7 +42,7 @@ Christophe Vanderaa
 ``` r
 ## List available datasets and their metadata
 scpdata()
-#> DataFrame with 32 rows and 15 columns
+#> DataFrame with 34 rows and 15 columns
 #>                 title  dataprovider       species taxonomyid      genome
 #>           <character>   <character>   <character>  <integer> <character>
 #> EH3899  specht2019... SlavovLab ... Homo sapie...       9606          NA
@@ -51,11 +51,11 @@ scpdata()
 #> EH3902  dou2019_mo...       MassIVE Mus muscul...      10090          NA
 #> EH3903  dou2019_bo...       MassIVE Mus muscul...      10090          NA
 #> ...               ...           ...           ...        ...         ...
-#> EH9610  hu2023_K56...       MassIVE Homo sapie...       9606          NA
-#> EH9611  hu2023_ooc...       MassIVE Homo sapie...       9606          NA
 #> EH9627        ai2025a       MassIVE Homo sapie...       9606          NA
 #> EH10516     leduc2025        Zenodo Mus muscul...      10090          NA
 #> EH10517        wu2026         PRIDE Homo sapie...       9606          NA
+#> EH10668     bubis2025       MassIVE Homo sapie...       9606          NA
+#> EH10669    khoury2026        Zenodo Homo sapie...       9606          NA
 #>           description coordinate_1_based    maintainer rdatadateadded
 #>           <character>          <integer>   <character>    <character>
 #> EH3899  SCP expres...                  1 Christophe...     2020-11-05
@@ -64,37 +64,37 @@ scpdata()
 #> EH3902  SCP expres...                  1 Christophe...     2020-11-05
 #> EH3903  SCP expres...                  1 Christophe...     2020-11-05
 #> ...               ...                ...           ...            ...
-#> EH9610  Single-cel...                  1 Enes Sefa ...     2024-11-13
-#> EH9611  Single-cel...                  1 Enes Sefa ...     2024-11-13
 #> EH9627  Single-cel...                  1 Laurent Ga...     2025-03-06
 #> EH10516 Principles...                  1 Enes Sefa ...     2026-08-18
 #> EH10517 Label-free...                  1 Léopold Gu...     2026-09-04
-#>         preparerclass                                          tags
-#>           <character>                                        <AsIs>
-#> EH3899        scpdata Experiment...,Expression...,Experiment...,...
-#> EH3900        scpdata Experiment...,Expression...,Experiment...,...
-#> EH3901        scpdata Experiment...,Expression...,Experiment...,...
-#> EH3902        scpdata Experiment...,Expression...,Experiment...,...
-#> EH3903        scpdata Experiment...,Expression...,Experiment...,...
-#> ...               ...                                           ...
-#> EH9610        scpdata      Expression...,MassSpectr...,Proteome,...
-#> EH9611        scpdata      Expression...,MassSpectr...,Proteome,...
-#> EH9627        scpdata      Expression...,MassSpectr...,Proteome,...
-#> EH10516       scpdata      Expression...,MassSpectr...,Proteome,...
-#> EH10517       scpdata      Expression...,MassSpectr...,Proteome,...
-#>            rdataclass     rdatapath     sourceurl  sourcetype
-#>           <character>   <character>   <character> <character>
-#> EH3899      QFeatures scpdata/sp... https://sc...         CSV
-#> EH3900      QFeatures scpdata/sp... https://sc...         CSV
-#> EH3901      QFeatures scpdata/do... ftp://mass...    XLS/XLSX
-#> EH3902      QFeatures scpdata/do... ftp://mass...    XLS/XLSX
-#> EH3903      QFeatures scpdata/do... ftp://mass...    XLS/XLSX
-#> ...               ...           ...           ...         ...
-#> EH9610  SingleCell... scpdata/hu... ftp://mass...         TXT
-#> EH9611  SingleCell... scpdata/hu... ftp://mass...         TXT
-#> EH9627      QFeatures scpdata/ai... ftp://mass...         TXT
-#> EH10516     QFeatures records/21... https://ze...         CSV
-#> EH10517     QFeatures records/22... https://ww...         TXT
+#> EH10668 Single-cel...                  1 Samuel Gre...     2026-11-06
+#> EH10669 Single-cel...                  1 Enes Sefa ...     2026-11-06
+#>         preparerclass                                          tags  rdataclass
+#>           <character>                                        <AsIs> <character>
+#> EH3899        scpdata Experiment...,Expression...,Experiment...,...   QFeatures
+#> EH3900        scpdata Experiment...,Expression...,Experiment...,...   QFeatures
+#> EH3901        scpdata Experiment...,Expression...,Experiment...,...   QFeatures
+#> EH3902        scpdata Experiment...,Expression...,Experiment...,...   QFeatures
+#> EH3903        scpdata Experiment...,Expression...,Experiment...,...   QFeatures
+#> ...               ...                                           ...         ...
+#> EH9627        scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures
+#> EH10516       scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures
+#> EH10517       scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures
+#> EH10668       scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures
+#> EH10669       scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures
+#>             rdatapath     sourceurl  sourcetype
+#>           <character>   <character> <character>
+#> EH3899  scpdata/sp... https://sc...         CSV
+#> EH3900  scpdata/sp... https://sc...         CSV
+#> EH3901  scpdata/do... ftp://mass...    XLS/XLSX
+#> EH3902  scpdata/do... ftp://mass...    XLS/XLSX
+#> EH3903  scpdata/do... ftp://mass...    XLS/XLSX
+#> ...               ...           ...         ...
+#> EH9627  scpdata/ai... ftp://mass...         TXT
+#> EH10516 records/21... https://ze...         CSV
+#> EH10517 records/22... https://ww...         TXT
+#> EH10668 records/24... https://ww...         TXT
+#> EH10669 records/24... https://ze...         CSV
 
 ## Load data using the ExperimentHub interface
 hub <- ExperimentHub()

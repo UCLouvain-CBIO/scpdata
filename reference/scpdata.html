@@ -33,7 +33,7 @@ corresponding manual pages."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">scpdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.6</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,7 +104,7 @@ in the <code>scp</code> package.</p></div>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## List available datasets and their metadata</span></span></span>
 <span class="r-in"><span><span class="fu">scpdata</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> DataFrame with 32 rows and 15 columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> DataFrame with 34 rows and 15 columns</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 title  dataprovider       species taxonomyid      genome</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;character&gt;   &lt;character&gt;   &lt;character&gt;  &lt;integer&gt; &lt;character&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH3899  specht2019... SlavovLab ... Homo sapie...       9606          NA</span>
@@ -113,11 +113,11 @@ in the <code>scp</code> package.</p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH3902  dou2019_mo...       MassIVE Mus muscul...      10090          NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH3903  dou2019_bo...       MassIVE Mus muscul...      10090          NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ...               ...           ...           ...        ...         ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH9610  hu2023_K56...       MassIVE Homo sapie...       9606          NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH9611  hu2023_ooc...       MassIVE Homo sapie...       9606          NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH9627        ai2025a       MassIVE Homo sapie...       9606          NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH10516     leduc2025        Zenodo Mus muscul...      10090          NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH10517        wu2026         PRIDE Homo sapie...       9606          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10668     bubis2025       MassIVE Homo sapie...       9606          NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10669    khoury2026        Zenodo Homo sapie...       9606          NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           description coordinate_1_based    maintainer rdatadateadded</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;character&gt;          &lt;integer&gt;   &lt;character&gt;    &lt;character&gt;</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH3899  SCP expres...                  1 Christophe...     2020-11-05</span>
@@ -126,37 +126,37 @@ in the <code>scp</code> package.</p></div>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH3902  SCP expres...                  1 Christophe...     2020-11-05</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH3903  SCP expres...                  1 Christophe...     2020-11-05</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ...               ...                ...           ...            ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH9610  Single-cel...                  1 Enes Sefa ...     2024-11-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH9611  Single-cel...                  1 Enes Sefa ...     2024-11-13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH9627  Single-cel...                  1 Laurent Ga...     2025-03-06</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH10516 Principles...                  1 Enes Sefa ...     2026-08-18</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> EH10517 Label-free...                  1 Léopold Gu...     2026-09-04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         preparerclass                                          tags</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;character&gt;                                        &lt;AsIs&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH3899        scpdata Experiment...,Expression...,Experiment...,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH3900        scpdata Experiment...,Expression...,Experiment...,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH3901        scpdata Experiment...,Expression...,Experiment...,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH3902        scpdata Experiment...,Expression...,Experiment...,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH3903        scpdata Experiment...,Expression...,Experiment...,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...               ...                                           ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH9610        scpdata      Expression...,MassSpectr...,Proteome,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH9611        scpdata      Expression...,MassSpectr...,Proteome,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH9627        scpdata      Expression...,MassSpectr...,Proteome,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH10516       scpdata      Expression...,MassSpectr...,Proteome,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH10517       scpdata      Expression...,MassSpectr...,Proteome,...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            rdataclass     rdatapath     sourceurl  sourcetype</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;character&gt;   &lt;character&gt;   &lt;character&gt; &lt;character&gt;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH3899      QFeatures scpdata/sp... https://sc...         CSV</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH3900      QFeatures scpdata/sp... https://sc...         CSV</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH3901      QFeatures scpdata/do... ftp://mass...    XLS/XLSX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH3902      QFeatures scpdata/do... ftp://mass...    XLS/XLSX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH3903      QFeatures scpdata/do... ftp://mass...    XLS/XLSX</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...               ...           ...           ...         ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH9610  SingleCell... scpdata/hu... ftp://mass...         TXT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH9611  SingleCell... scpdata/hu... ftp://mass...         TXT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH9627      QFeatures scpdata/ai... ftp://mass...         TXT</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH10516     QFeatures records/21... https://ze...         CSV</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> EH10517     QFeatures records/22... https://ww...         TXT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10668 Single-cel...                  1 Samuel Gre...     2026-11-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10669 Single-cel...                  1 Enes Sefa ...     2026-11-06</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         preparerclass                                          tags  rdataclass</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;character&gt;                                        &lt;AsIs&gt; &lt;character&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH3899        scpdata Experiment...,Expression...,Experiment...,...   QFeatures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH3900        scpdata Experiment...,Expression...,Experiment...,...   QFeatures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH3901        scpdata Experiment...,Expression...,Experiment...,...   QFeatures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH3902        scpdata Experiment...,Expression...,Experiment...,...   QFeatures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH3903        scpdata Experiment...,Expression...,Experiment...,...   QFeatures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ...               ...                                           ...         ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH9627        scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10516       scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10517       scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10668       scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10669       scpdata      Expression...,MassSpectr...,Proteome,...   QFeatures</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             rdatapath     sourceurl  sourcetype</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           &lt;character&gt;   &lt;character&gt; &lt;character&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH3899  scpdata/sp... https://sc...         CSV</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH3900  scpdata/sp... https://sc...         CSV</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH3901  scpdata/do... ftp://mass...    XLS/XLSX</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH3902  scpdata/do... ftp://mass...    XLS/XLSX</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH3903  scpdata/do... ftp://mass...    XLS/XLSX</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ...               ...           ...         ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH9627  scpdata/ai... ftp://mass...         TXT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10516 records/21... https://ze...         CSV</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10517 records/22... https://ww...         TXT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10668 records/24... https://ww...         TXT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> EH10669 records/24... https://ze...         CSV</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Load data using the ExperimentHub interface</span></span></span>
 <span class="r-in"><span><span class="va">hub</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ExperimentHub/man/ExperimentHub-class.html" class="external-link">ExperimentHub</a></span><span class="op">(</span><span class="op">)</span></span></span>

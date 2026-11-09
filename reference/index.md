@@ -32,6 +32,9 @@
   protein modules
 - [`khan2023`](https://UCLouvain-CBIO.github.io/scpdata/reference/khan2023.md)
   : Khan et al, 2023 (biorRxiv): Epithelial–Mesenchymal Transition
+- [`khoury2026`](https://UCLouvain-CBIO.github.io/scpdata/reference/khoury2026.md)
+  : Khoury et al, 2026 (bioRxiv): Single-cell proteomics reveals
+  cell-type-specific functional coordination in PBMCs
 - [`krull2024`](https://UCLouvain-CBIO.github.io/scpdata/reference/krull2024.md)
   : Krull et al, 2024 (Nature Communications): IFN-\\(\gamma\\) response
 - [`leduc2022()`](https://UCLouvain-CBIO.github.io/scpdata/reference/leduc2022.md)
