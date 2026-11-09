@@ -2,6 +2,7 @@
 
 ## scpdata 1.21.6
 
+- Add leduc2025_pSCoPE data.
 - Add khoury2026 data.
 
 ## scpdata 1.21.5
