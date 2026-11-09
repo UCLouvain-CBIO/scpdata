@@ -1,8 +1,11 @@
 # scpdata 1.21
 
-## scpdata 1.21.6
+## scpdata 1.21.7
 
 - Add leduc2025_pSCoPE data.
+
+## scpdata 1.21.6
+
 - Add khoury2026 data.
 
 ## scpdata 1.21.5
