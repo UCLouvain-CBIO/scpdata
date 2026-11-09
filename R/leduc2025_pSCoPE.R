@@ -4,135 +4,91 @@
 ##'
 ##' @description
 ##'
-##' Samples were prepared using the nPOP sample preparation method for
-##' multiplexed single cell proteomics1.Samples were run on an Exploris 480 mass
-##' spectrometer with a Van- quish Neo liquid chromatography and autosampler. A
-##' 25 cm 75 μmID IonOptics column was used for the chromatography column. The
-##' gradient ramped from 8% to 40% buffer B (80% Acetonitrile 20% 0.1% formic
-##' acid) over the course of 28 min with a 4 min wash at 90% buffer B at the
-##' end. Mass spectrometry data acquisition of single cells was performed using
-##' MaxQuant Live for Prioritized data acquisition with 60k MS1 and MS2
-##' resolution, 118 ms maximum injection time and 1e6 maximum AGC.
+##' Single-cell proteomics data from primary mouse tracheal epithelial cells
+##' prepared fresh immediately after tissue dissociation. Each cell was stained
+##' with Sytox Green before sorting, so the dataset carries a per-cell measure
+##' of membrane permeabilisation alongside the protein quantifications. The
+##' dataset contains quantitative information on 928 fresh single cells. Only
+##' about 4% of these cells were permeabilised, which makes the dataset a
+##' baseline for comparison with cells affected by protein leakage.
 ##'
-##' I stopped here ############################################
+##' Only the fresh cells are included. The frozen cells from the same study are
+##' not part of this dataset because no identification file was available for
+##' them.
 ##'
-##' Single-cell samples were prepared using the nPOP glass-slide sample
-##' preparation method. Proteomics data were acquired using the timsControl 3.1
-##' on a timsTOF SCP mass spectrometer. The dataset contains quantitative
-##' information on 4,184 single cell from murine trachea. The data are available
-##' at the peptide, and protein levels. The paper investigates the protein
-##' regulation by translation and protein clearance using a matching single
-##' cell RNA Sequencing data.
+##' @format A [QFeatures] object with 34 sets, each being a [SingleCellExperiment]
+##' object:
 ##'
-##' @format A [QFeatures] object with 11 assays, each assay being a
-##' [SingleCellExperiment] object:
+##' - Sets 1-32: PSM data with identifications and quantitive data - results from
+##'   a MaxQuant database search.
+##' - Set 33 ("Peptides"): processed peptide data containing quantitative data coming
+##'   from the PSM data. Taken from the source material.
+##' - Set 44 ("Proteins"): processed protein data containing quantitative data coming
+##'   from the peptide data.
 ##'
-##' - Assay 1-4: unprocessed peptide data containing quantitative data coming
-##'   from four replicates.
-##' - Assay 5-8: processed peptide data containing quantitative data coming
-##'   from four replicates.
-##' - `proteins_absolute`: protein data containing quantitative data for 2,339
-##'   proteins and 4,184 single-cells.
-##' - `proteins_relative`: protein data containing quantitative data for 2,331
-##'   proteins and 4,184 single-cells. Relative abundance values against the
-##'   protein mean across all samples.
-##' - `proteins_imputed`: protein data containing quantitative data for 667
-##'   proteins and 4,184 single-cells with k-nearest neighbors (KNN) imputation
-##'   and comBat batch-correction.
-##'
-##' The `colData(leduc2025())` contains cell type and batch annotations that
+##' The `colData(leduc2025_pSCoPE())` contains cell type and batch annotations that
 ##' are common to all assays.
 ##'
 ##' @section Acquisition protocol:
 ##'
-##' The data were acquired using the following setup. More information
-##' can be found in the source article (see `References`).
+##' The data were acquired using the following setup. More information can be
+##' found in the source article (see `References`).
 ##'
-##' - **Cell isolation**: CellenONE cell sorting.
-##' - **Sample preparation** performed using the nPOP sample preperation method.
-##'   cell lysis (DMSO) + trypsin digestion + mTRAQ reagents.
-##' - **Separation**: online nLC (Vanquish Neo UHPLC with a 25cm x 75um
-##'   IonOpticks Aurora Series UHPLC column (AUR2-25075C18A).
-##' - **Mass spectrometry**: timsTOF SCP mass spectrometer (MS1 scan range =
-##'   100-1700 m/z; MS2 scan range = 300-1000 m/z).
-##' - **Data analysis**: DIA-NN(v1.9.0).
+##' - **Tissue dissociation**: whole tracheas from 4-month-old male C57BL/6
+##'   mice were dissociated for 30 minutes at 37 °C with a papain, collagenase I,
+##'   hyaluronidase, DNase and dispase enzyme cocktail.
+##' - **Cell isolation**: CellenOne sorting
+##' - **Sample preparation**: nPOP sample preparation. Cell lysis (DMSO and heat)
+##'   was followed by overnight trypsin digestion, then TMTpro 35-plex labelling.
+##'   Labelled samples were pooled and dried for injection. Channel 126C was used
+##'   as a carrier and 127N as a reference. Cells were labeled in sets of 29.
+##' - **Separation**: online nLC (Vanquish Neo UHPLC) with a 25 cm x 75 µm
+##'   IonOpticks column.
+##' - **Mass spectrometry**: Orbitrap Exploris 480 with prioritised data
+##'   acquisition (pSCoPE).
+##' - **Data analysis**: MaxQuant 2.4.3.0 searched against the murine SwissProt
+##'   database (downloaded 30 July 2018; 20,386 entries) at 1% FDR. Downstream
+##'   analysis was performed in R using the QuantQC package.
 ##'
 ##' @section Data collection:
 ##'
-##' The Peptide data were collected from a Zenodo folder that is accessible from
-##' the SlavovLab website (see `Source` section).
+##' Raw and searched mass spectrometry data are available from the MassIVE
+##' repository (accession MSV000094790). Processed data are available from the
+##' Slavov lab website (see `Source`).
 ##'
-##' The folder ('02_raw_reptide_X_singleCell/') contains the following
-##' files of interest:
-##' - `r1_peptide.csv`: peptide level unprocessed quantitative data for
-##' replicate 1.
-##' - `r2_peptide.csv`: peptide level unprocessed quantitative data for
-##' replicate 2.
-##' - `r3_peptide.csv`: peptide level unprocessed quantitative data for
-##' replicate 3.
-##' - `r4_peptide.csv`: peptide level unprocessed quantitative data for
-##' replicate 4.
+##' The necessary files for reproducing the QFeatures object are:
+##'     - evidence.txt
+##'     - celltype_annotation_fresh.csv
+##'     - meta_fresh.csv
+##'     - peptides.txt
+##'     - proteinGroups.txt
 ##'
-##' ('03_QuantQC_objects/') contains the following files of interest:
-##' - `r1_5day_male.RData`: peptide level processed quantitative data for
-##' replicate 1 and row data information for peptide to protein mapping.
-##' - `r2_5day_female.RData`: peptide level processed quantitative data for
-##' replicate 2 and row data information for peptide to protein mapping.
-##' - `r3_10day_male.RData`: peptide level processed quantitative data for
-##' replicate 3 and row data information for peptide to protein mapping.
-##' - `r4_10day_female.RData`: peptide level processed quantitative data for
-##' replicate 4 and row data information for peptide to protein mapping.
-##'
-##' ('04_Gene_X_SingleCell_and_annotations/') contains the following files of
-##' interest:
-##' `sc_protein_absolute.csv`: protein level quantitative data with absolute
-##' protein concentrations.
-##' `sc_protein_relative.csv`: protein level quantitative data with relative
-##' protein abundance.
-##' `sc_protein_annotations.csv`: sample and batch annotations.
-##'
-##' We also obtained imputed and batch corrected protein level data. To do that
-##' we run the script `get_protein_Data.R` based on the original script
-##' `02_cell_type_assign.R` in the github repository of the article.
-##'
-##' We formatted the peptide level quantification tables so that columns match
-##' with those of the annotation and protein level data. Each peptide level
-##' data for replicates turned into [SingleCellExperiment] objects including
-##' row data information that is extracted from shared QuantQC objects. All
-##' the peptide level assays used to generate [QFeatures] object.
-##'
-##' Protein level data were taken from '04_Gene_X_SingleCell_and_annotations/'
-##' folder. Imputed and batch effect corrected protein level data is generated
-##' using `get_protein_Data.R` script. The protein assays were formatted as
-##' [SingleCellExperiment] objects and the sample metadata were matched to the
-##' column names. The objects are then added to the [QFeatures] object
-##' and the rows of the peptide data are linked to the rows of the corresponding
-##' protein data based on the protein sequence information through an
-##' `AssayLink` object.
+##' All data come from the author distribution.
 ##'
 ##' @source
 ##' The data were downloaded from the
-##' [Slavov Lab](https://scp.slavovlab.net/Leduc_et_al_2025) website via a
-##' shared Zenodo folder
-##' [folder](https://zenodo.org/records/14902834).
-##' The raw data and the quantification data can also be found in the
-##' MassIVE repository `MSV000098940`:
-##' ftp://massive-ftp.ucsd.edu/v10/MSV000098940/.
+##' [Slavov Lab](https://scp.slavovlab.net/Leduc_et_al_2024) website via a
+##' shared Goodle Drive
+##' [folder](https://drive.google.com/drive/folders/1IW3An_b7vKpfDbanjT2XqSt1mz0N6VUX).
+##' The raw data, identification and quantification data can also be found in the
+##' MassIVE repository `MSV000094790`:
+##' ftp://massive-ftp.ucsd.edu/v07/MSV000094790/.
 ##'
 ##' The data used and generated as part of the scpdata repackaging is available
-##' in the [Zenodo archive](https://doi.org/10.5281/zenodo.21904283).
+##' in the [Zenodo archive](https://zenodo.org/records/24079803).
 ##'
 ##' @references
-##' Leduc A, et al., Principles of protein abundance regulation across single
-##' cells in a mammalian tissue, bioRxiv, doi: 10.1101/2025.09.17.676955
-##' ([link to article](https://www.biorxiv.org/content/10.1101/2025.09.17.676955v2)).
+##' Leduc, Andrew, Yanxin Xu, Gergana Shipkovenska, Zhixun Dou, and Nikolai
+##' Slavov. 2025. “Limiting the Impact of Protein Leakage in Single-Cell
+##' Proteomics.” Nature Communications 16 (1): 4169.
+##' ([link to article](https://www.nature.com/articles/s41467-025-56736-7#Abs1)).
 ##'
 ##' @examples
 ##' \donttest{
-##' leduc2025()
+##' leduc2025_pSCoPE()
 ##' }
 ##'
 ##' @keywords datasets
 ##'
-##' @name leduc2025
+##' @name leduc2025_pSCoPE
 NULL

@@ -958,6 +958,34 @@ meta <- list(
       ProteinsAvailable = TRUE,
       ContainsSingleCells = TRUE,
       Notes = NA_character_
+    ),
+    data.frame(
+      Title = "leduc2025_pSCoPE",
+      Description = paste0("Limiting the Impact of Protein Leakage",
+                           " in Single-Cell Proteomics."),
+      BiocVersion = "3.23",
+      Genome = NA_character_,
+      SourceType = "TXT",
+      SourceUrl = "https://zenodo.org/records/24079803/files/leduc2025_pSCoPE.rda",
+      SourceVersion = NA_character_,
+      Species = "Mus musculus",
+      TaxonomyId = 10090,
+      Coordinate_1_based = TRUE,
+      DataProvider = "Zenodo",
+      Maintainer = "Guillaume Deflandre <guillaume.deflandre@uclouvain.be>",
+      RDataClass = "QFeatures",
+      DispatchClass = "Rda",
+      Location_Prefix = "https://zenodo.org/",
+      RDataPath = "records/24079803/files/leduc2025_pSCoPE.rda",
+      PublicationDate = as.Date("2026/11/09"),
+      NumberAssays = 34,
+      PreprocessingSoftware = "DIA-NN",
+      LabelingProtocol = "TMTpro-35",
+      PsmsAvailable = TRUE,
+      PeptidesAvailable = TRUE,
+      ProteinsAvailable = TRUE,
+      ContainsSingleCells = TRUE,
+      Notes = NA_character_
     )
 )
 
