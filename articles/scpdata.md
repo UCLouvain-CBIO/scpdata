@@ -35,7 +35,7 @@ function.
 \
 `query``(``eh``, ``"scpdata"``)`\
 `#> ExperimentHub with 34 records`\
-`#> # snapshotDate(): 2026-11-09`\
+`#> # snapshotDate(): 2026-11-10`\
 `#> # $dataprovider: MassIVE, PRIDE, Zenodo, SlavovLab website, Dataverse`\
 `#> # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus`\
 `#> # $rdataclass: QFeatures, SingleCellExperiment`\
@@ -178,7 +178,7 @@ of the `scp` vignette.
     [8] base     
 
     other attached packages:
-     [1] scpdata_1.21.6              ExperimentHub_3.3.2        
+     [1] scpdata_1.21.7              ExperimentHub_3.3.2        
      [3] AnnotationHub_4.3.3         BiocFileCache_3.3.2        
      [5] dbplyr_2.6.0                QFeatures_1.23.2           
      [7] MultiAssayExperiment_1.39.1 SummarizedExperiment_1.43.0

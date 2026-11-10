@@ -20,6 +20,9 @@
 - **Léopold Guyot**. Data contributor.
   [](https://orcid.org/0009-0005-2217-3855)
 
+- **Shabnam Zaman**. Data contributor.
+  [](https://orcid.org/0000-0001-5399-0130)
+
 ## Citation
 
 Vanderaa Christophe and Laurent Gatto. The current state of single-cell

@@ -43,6 +43,12 @@
   : Leduc et al. 2022 - pSCoPE (biorRxiv): melanoma cells vs monocytes
 - [`leduc2022_plexDIA`](https://UCLouvain-CBIO.github.io/scpdata/reference/leduc2022_plexDIA.md)
   : Leduc et al. 2022 - plexDIA (biorRxiv): melanoma cells
+- [`leduc2024_pSCoPE`](https://UCLouvain-CBIO.github.io/scpdata/reference/leduc2024_pSCoPE.md)
+  : Leduc et al. 2024 - pSCoPE (Nat. Protoc.): monocyte, melanoma and
+  PDAC cells
+- [`leduc2024_plexDIA`](https://UCLouvain-CBIO.github.io/scpdata/reference/leduc2024_plexDIA.md)
+  : Leduc et al. 2024 - plexDIA (Nat. Protoc.): monocyte, melanoma and
+  PDAC cells
 - [`leduc2025`](https://UCLouvain-CBIO.github.io/scpdata/reference/leduc2025.md)
   : Leduc et al, 2025 (bioRxiv): Principles of protein abundance
   regulation across single cells in a mammalian tissue
