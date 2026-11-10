@@ -963,7 +963,7 @@ meta <- list(
       Title = "leduc2025_pSCoPE",
       Description = paste0("Limiting the Impact of Protein Leakage",
                            " in Single-Cell Proteomics."),
-      BiocVersion = "3.23",
+      BiocVersion = "3.24",
       Genome = NA_character_,
       SourceType = "TXT",
       SourceUrl = "https://zenodo.org/records/24079803/files/leduc2025_pSCoPE.rda",
