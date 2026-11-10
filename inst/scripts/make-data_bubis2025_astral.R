@@ -1,11 +1,8 @@
-
 ####---- Bubis et al. 2025 ---####
 
-libPath <- "/storage/research/dduv/cbio-lg/user/samgregoire/2022-phd-samuel-gregoire/libs/"
-
 library("SingleCellExperiment")
-library("QFeatures", lib.loc = libPath)
-library("scp", lib.loc = libPath)
+library("QFeatures")
+library("scp")
 library("dplyr")
 library("tidyr")
 library("purrr")
@@ -14,8 +11,10 @@ library("stringr")
 # All files were downloaded from the proteomeXchange plateform
 # ftp://ftp.pride.ebi.ac.uk/pride/data/archive/2025/06/PXD064564
 
-dataDir <-
-  "/storage/research/dduv/cbio-lg/cluster/DataSets/SCPCBIO/bubis2025_astral/"
+## dataDir <-
+##   "/storage/research/dduv/cbio-lg/cluster/DataSets/SCPCBIO/bubis2025_astral/"
+
+dataDir <- "~/tmp/bubis2025_astral"
 
 fileNames <- sub("\\.tsv", "", dir(dataDir))
 
@@ -61,7 +60,7 @@ for (i in grep("_noMBR|method_eval", names(PSMList))) {
   PSMList[[i]]$searchStrategy <- "method evaluation"
 }
 
-for (i in grep("MM_Astral_paper_A549_Figure7_MBR_perGroup_directDIA_strictFDR|JB_250pgK562_50SPD_MBR_OS|JB_250pgHeLa_50SPD_SO_MBR", names(PSMList))) {
+sfor (i in grep("MM_Astral_paper_A549_Figure7_MBR_perGroup_directDIA_strictFDR|JB_250pgK562_50SPD_MBR_OS|JB_250pgHeLa_50SPD_SO_MBR", names(PSMList))) {
   PSMList[[i]]$searchStrategy <- "directDIA+ OS"
 }
 
@@ -167,28 +166,28 @@ bubis2025 <-
 
 ## Join assays
 bubis2025 <- joinAssays(bubis2025,
-                  i = grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 1"],
+                  i = na.omit(grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 1"]),
                   name = "peptides_fig1")
-colData(bubis2025[["peptides_fig1"]]) <- colData(bubis2025)[bubis2025$fig == "fig 1", ]
+## colData(bubis2025[["peptides_fig1"]]) <- colData(bubis2025)[which(bubis2025$fig == "fig 1"), ] ## use getWithColData()
 
 bubis2025 <- joinAssays(bubis2025,
-                  i = grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 2"],
+                  i = na.omit(grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 2"]),
                   name = "peptides_fig2")
-colData(bubis2025[["peptides_fig2"]]) <- colData(bubis2025)[bubis2025$fig == "fig 2", ]
+## colData(bubis2025[["peptides_fig2"]]) <- colData(bubis2025)[which(bubis2025$fig == "fig 2"), ]
 
 bubis2025 <- joinAssays(bubis2025,
-                  i = grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 4"],
+                  i = na.omit(grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 4"]),
                   name = "peptides_fig4")
-colData(bubis2025[["peptides_fig4"]]) <- colData(bubis2025)[bubis2025$fig == "fig 4", ]
+## colData(bubis2025[["peptides_fig4"]]) <- colData(bubis2025)[which(bubis2025$fig == "fig 4"), ]
 
 bubis2025 <- joinAssays(bubis2025,
-                  i = grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 5"],
+                  i = na.omit(grep("peptide_", names(bubis2025))[bubis2025$fig == "fig 5"]),
                   name = "peptides_fig5")
-colData(bubis2025[["peptides_fig5"]]) <- colData(bubis2025)[bubis2025$fig == "fig 5", ]
+## colData(bubis2025[["peptides_fig5"]]) <- colData(bubis2025)[which(bubis2025$fig == "fig 5"), ]
 
 ## Remove individual peptide sets
-
 bubis2025 <- bubis2025[, , !grepl("peptide_", names(bubis2025))]
+
 
 ####---- Retrieve Protein data ----####
 
@@ -280,7 +279,7 @@ bubis2025_prot <- readSCP(assayData = prot,
                           quantCols = "PG.Quantity")
 rm(prot)
 
-## Add rownames
+## Add rownames HERE
 
 for (i in seq_along(bubis2025_prot)) {
   rownames(bubis2025_prot[[i]]) <- rowData(bubis2025_prot[[i]])$PG.ProteinGroups
@@ -288,24 +287,24 @@ for (i in seq_along(bubis2025_prot)) {
 
 ## Join assays
 bubis2025_prot <- joinAssays(bubis2025_prot,
-                  i = names(bubis2025_prot)[bubis2025_prot$fig == "fig 1"],
+                  i = na.omit(names(bubis2025_prot)[bubis2025_prot$fig == "fig 1"]),
                   name = "proteins_fig1")
-colData(bubis2025_prot[["proteins_fig1"]]) <- colData(bubis2025_prot)[bubis2025_prot$fig == "fig 1", ]
+## colData(bubis2025_prot[["proteins_fig1"]]) <- colData(bubis2025_prot)[which(bubis2025_prot$fig == "fig 1"), ]
 
 bubis2025_prot <- joinAssays(bubis2025_prot,
-                       i = names(bubis2025_prot)[bubis2025_prot$fig == "fig 2"],
+                       i = na.omit(names(bubis2025_prot)[bubis2025_prot$fig == "fig 2"]),
                        name = "proteins_fig2")
-colData(bubis2025_prot[["proteins_fig2"]]) <- colData(bubis2025_prot)[bubis2025_prot$fig == "fig 2", ]
+## colData(bubis2025_prot[["proteins_fig2"]]) <- colData(bubis2025_prot)[which(bubis2025_prot$fig == "fig 2"), ]
 
 bubis2025_prot <- joinAssays(bubis2025_prot,
-                       i = names(bubis2025_prot)[bubis2025_prot$fig == "fig 4"],
+                       i = na.omit(names(bubis2025_prot)[bubis2025_prot$fig == "fig 4"]),
                        name = "proteins_fig4")
-colData(bubis2025_prot[["proteins_fig4"]]) <- colData(bubis2025_prot)[bubis2025_prot$fig == "fig 4", ]
+## colData(bubis2025_prot[["proteins_fig4"]]) <- colData(bubis2025_prot)[which(bubis2025_prot$fig == "fig 4"), ]
 
 bubis2025_prot <- joinAssays(bubis2025_prot,
-                       i = names(bubis2025_prot)[bubis2025_prot$fig == "fig 5"],
+                       i = na.omit(names(bubis2025_prot)[bubis2025_prot$fig == "fig 5"]),
                        name = "proteins_fig5")
-colData(bubis2025_prot[["proteins_fig5"]]) <- colData(bubis2025_prot)[bubis2025_prot$fig == "fig 5", ]
+## colData(bubis2025_prot[["proteins_fig5"]]) <- colData(bubis2025_prot)[which(bubis2025_prot$fig == "fig 5"), ]
 
 ####---- Add protein data ----####
 
@@ -319,5 +318,3 @@ save(bubis2025,
      file = file.path("../data/bubis2025.rda"),
      compress = "xz",
      compression_level = 9)
-
-
