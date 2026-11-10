@@ -14,6 +14,9 @@
 - **Samuel Grégoire**. Data contributor.
   [](https://orcid.org/0000-0002-0900-7677)
 
+- **Guillaume Deflandre**. Data contributor.
+  [](https://orcid.org/0009-0008-1257-2416)
+
 - **Léopold Guyot**. Data contributor.
   [](https://orcid.org/0009-0005-2217-3855)
 

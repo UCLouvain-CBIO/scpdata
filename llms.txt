@@ -149,6 +149,10 @@ including the manual pages and the vignettes, are distributed under a
 - [`leduc2025`](https://UCLouvain-CBIO.github.io/scpdata/reference/leduc2025.md)
   : Leduc et al, 2025 (bioRxiv): Principles of protein abundance
   regulation across single cells in a mammalian tissue
+- [`leduc2025_pSCoPE`](https://UCLouvain-CBIO.github.io/scpdata/reference/leduc2025_pSCoPE.md)
+  : Leduc, Andrew, Yanxin Xu, Gergana Shipkovenska, Zhixun Dou, and
+  Nikolai Slavov. 2025. “Limiting the Impact of Protein Leakage in
+  Single-Cell Proteomics.” Nature Communications 16 (1): 4169.
 - [`liang2020_hela`](https://UCLouvain-CBIO.github.io/scpdata/reference/liang2020_hela.md)
   : Liang et al. 2020 (Anal. Chem.): HeLa cells (MaxQuant preprocessing)
 - [`petrosius2023_AstralAML`](https://UCLouvain-CBIO.github.io/scpdata/reference/petrosius2023_AstralAML.md)
