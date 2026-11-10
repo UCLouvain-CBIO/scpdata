@@ -20,6 +20,8 @@
   : Dou et al. 2019 (Anal. Chem.): HeLa lysates
 - [`dou2019_mouse`](https://UCLouvain-CBIO.github.io/scpdata/reference/dou2019_mouse.md)
   : Dou et al. 2019 (Anal. Chem.): murine cell lines
+- [`fulcher2026`](https://UCLouvain-CBIO.github.io/scpdata/reference/fulcher2026.md)
+  : Fulcher et al. 2026 (bioRxiv): human PBMCs.
 - [`gregoire2023_mixCTRL`](https://UCLouvain-CBIO.github.io/scpdata/reference/gregoire2023_mixCTRL.md)
   : Grégoire et al. 2023 - mixCTRL (arXiv): benchmark using
   monocytes/macrophages
