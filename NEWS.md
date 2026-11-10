@@ -2,6 +2,7 @@
 
 ## scpdata 1.21.7
 
+- Add leduc2024_plexDIA and leduc2024_pSCoPE datasets.
 - Add leduc2025_pSCoPE data.
 
 ## scpdata 1.21.6
