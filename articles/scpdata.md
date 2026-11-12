@@ -233,4 +233,4 @@ of the `scp` vignette.
 ## License
 
 This vignette is distributed under a [CC BY-SA
-license](https://creativecommons.org/licenses/by-sa/2.0/).
+license](https://creativecommons.org/licenses/by-sa/4.0/).

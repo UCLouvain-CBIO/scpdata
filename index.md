@@ -100,4 +100,4 @@ The `scpdata` code is provided under a
 [GPL-3.0](https://opensource.org/license/gpl-3.0) license. The
 documentation, including the manual pages and the vignettes, are
 distributed under a [CC BY-SA
-license](https://creativecommons.org/licenses/by-sa/2.0/).
+license](https://creativecommons.org/licenses/by-sa/4.0/).
