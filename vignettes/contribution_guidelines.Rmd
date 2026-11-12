@@ -326,3 +326,8 @@ to the following steps:
 4. We will update the NEWS.md file and bump package version
 5. If this is your first contribution, we will add your name to the
    package authors.
+
+# License
+
+This vignette is distributed under a
+[CC BY-SA license](https://creativecommons.org/licenses/by-sa/4.0/).
