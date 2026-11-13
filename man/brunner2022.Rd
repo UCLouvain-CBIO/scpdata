@@ -92,4 +92,7 @@ Single-Cell Proteome Changes upon Perturbation." Molecular Systems
 Biology 18 (3): e10798.
 \href{http://dx.doi.org/10.15252/msb.202110798}{Link to article}
 }
+\seealso{
+The updated \code{brunner2022_v2} data.
+}
 \keyword{datasets}

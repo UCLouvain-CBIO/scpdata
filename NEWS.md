@@ -1,14 +1,11 @@
 # scpdata 1.21
 
-## scpdata 1.21.8
-
-- Add brunner2022_v2 dataset
-
 ## scpdata 1.21.7
 
 - Add fulcher2026.
 - Add leduc2024_plexDIA and leduc2024_pSCoPE datasets.
 - Add leduc2025_pSCoPE data.
+- Add brunner2022_v2 dataset
 - Update CC BY-SA link.
 
 ## scpdata 1.21.6

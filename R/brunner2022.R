@@ -62,6 +62,10 @@
 ##' link the precursors to proteins using the `Protein.Group` variable
 ##' from the `rowData`.
 ##'
+##' @seealso
+##'
+##' The updated `brunner2022_v2` data.
+##'
 ##' @source
 ##' The data were downloaded from PRIDE
 ##' [repository](https://www.ebi.ac.uk/pride/archive/projects/PXD024043)

@@ -6,7 +6,7 @@
 ##' at 4 cell cycle stages: G1, G1-S, G2, G2-M. The data was acquired
 ##' using a label-free sample preparation protocole combined to a
 ##' data independent (DIA) acquisition mode. V2 version contains
-##' aggregated data at the modified peptide, peptide and protein level. 
+##' aggregated data at the modified peptide, peptide and protein level.
 ##'
 ##' @format A [QFeatures] object with 435 assays, each assay being a
 ##' [SingleCellExperiment] object.
@@ -81,6 +81,10 @@
 ##' link the precursors to proteins using the `Protein.Group` variable
 ##' from the `rowData`.
 ##'
+##' @seealso
+##'
+##' The first version of the data, `brunner2022`.
+##'
 ##' @source
 ##' The data were downloaded from PRIDE
 ##' [repository](https://www.ebi.ac.uk/pride/archive/projects/PXD024043)
@@ -101,4 +105,5 @@
 ##'
 ##' @keywords datasets
 ##'
-"brunner2022_v2"
+##' @name brunner2022_v2
+NULL
