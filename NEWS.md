@@ -1,5 +1,9 @@
 # scpdata 1.21
 
+## scpdata 1.21.8
+
+- Add brunner2022_v2 dataset
+
 ## scpdata 1.21.7
 
 - Add fulcher2026.
