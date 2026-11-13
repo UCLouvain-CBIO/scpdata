@@ -1070,6 +1070,34 @@ meta <- list(
         ProteinsAvailable = TRUE,
         ContainsSingleCells = TRUE,
         Notes = NA_character_
+    ),
+    data.frame(
+        Title = "brunner2022_v2",
+        Description = paste0("Single-cell proteomics data of cell ",
+                             "cycle stages in HeLa."),
+        BiocVersion = "3.24",
+        Genome = NA_character_,
+        SourceType = "TXT",
+        SourceUrl = "https://www.ebi.ac.uk/pride/archive/projects/PXD024043",
+        SourceVersion = NA_character_,
+        Species = "Homo sapiens",
+        TaxonomyId = 9606,
+        Coordinate_1_based = TRUE,
+        DataProvider = "PRIDE",
+        Maintainer = "Léopold Guyot <leopold.guyot@uclouvain.be>",
+        RDataClass = "QFeatures",
+        DispatchClass = "Rda",
+        Location_Prefix = "https://zenodo.org/",
+        RDataPath = "records/24088205/files/brunner2022.Rda",
+        PublicationDate = as.Date("2022/02/08"),
+        NumberAssays = 873,
+        PreprocessingSoftware = "DIA-NN",
+        LabelingProtocol = "LFQ",
+        PsmsAvailable = TRUE,
+        PeptidesAvailable = FALSE,
+        ProteinsAvailable = TRUE,
+        ContainsSingleCells = TRUE,
+        Notes = NA_character_
     )
 )
 
