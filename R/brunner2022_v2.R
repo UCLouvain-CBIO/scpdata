@@ -5,7 +5,8 @@
 ##' dataset contains quantitative information from single-cells blocked
 ##' at 4 cell cycle stages: G1, G1-S, G2, G2-M. The data was acquired
 ##' using a label-free sample preparation protocole combined to a
-##' data independent (DIA) acquisition mode.
+##' data independent (DIA) acquisition mode. V2 version contains
+##' aggregated data at the modified peptide, peptide and protein level. 
 ##'
 ##' @format A [QFeatures] object with 435 assays, each assay being a
 ##' [SingleCellExperiment] object.
@@ -37,7 +38,7 @@
 ##'   cells. Proteins are filtered at 1% FDR, using global q-values for protein
 ##'   groups and both global and run-specific q-values for precursors.
 ##'
-##' The `colData(brunner2022())` contains cell type annotations and
+##' The `colData(brunner2022_v2())` contains cell type annotations and
 ##' batch annotations. The description of the `rowData` fields for the
 ##' different assays can be found in the
 ##' [`DIA-NN` documentation](https://github.com/vdemichev/DiaNN#readme).
@@ -95,9 +96,9 @@
 ##'
 ##' @examples
 ##' \donttest{
-##' brunner2022()
+##' brunner2022_v2()
 ##' }
 ##'
 ##' @keywords datasets
 ##'
-"brunner2022"
+"brunner2022_v2"
