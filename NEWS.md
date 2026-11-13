@@ -1,5 +1,9 @@
 # scpdata 1.21
 
+## scpdata 1.21.8
+
+- add brunner2022_v2 dataset.
+
 ## scpdata 1.21.4
 
 - Update contribution guidelines.
