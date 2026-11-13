@@ -18,7 +18,9 @@ In this vignette, we describe how to access the SCP data sets. To start,
 we load the `scpdata` package.
 
 \
-[`library`](https://rdrr.io/r/base/library.html)`(`[`"scpdata"`](https://UCLouvain-CBIO.github.io/scpdata/)`)`
+[`library`](https://rdrr.io/r/base/library.html)`(`[`"scpdata"`](https://UCLouvain-CBIO.github.io/scpdata/)`)`\
+`#> Warning: replacing previous import 'BiocGenerics::version' by`\
+`#> 'BiocManager::version' when loading 'AnnotationHub'`
 
 ## Load data from `ExperimentHub`
 
@@ -179,12 +181,12 @@ of the `scp` vignette.
 
     other attached packages:
      [1] scpdata_1.21.7              ExperimentHub_3.3.2        
-     [3] AnnotationHub_4.3.3         BiocFileCache_3.3.2        
+     [3] AnnotationHub_4.3.3         BiocFileCache_3.3.3        
      [5] dbplyr_2.6.0                QFeatures_1.23.2           
      [7] MultiAssayExperiment_1.39.1 SummarizedExperiment_1.43.0
      [9] Biobase_2.73.2              GenomicRanges_1.65.4       
     [11] Seqinfo_1.3.2               IRanges_2.47.5             
-    [13] S4Vectors_0.51.10           BiocGenerics_0.59.12       
+    [13] S4Vectors_0.51.10           BiocGenerics_0.59.13       
     [15] generics_0.1.4              MatrixGenerics_1.25.0      
     [17] matrixStats_1.5.0           BiocStyle_2.41.0           
 

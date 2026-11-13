@@ -6,6 +6,8 @@
   : Ai et al., Cardiomyocytes Single Cell Proteomics, MCP (2025)
 - [`brunner2022`](https://UCLouvain-CBIO.github.io/scpdata/reference/brunner2022.md)
   : Brunner et al. 2022 (Mol. Syst. Biol.): cell cycle state study
+- [`brunner2022_v2`](https://UCLouvain-CBIO.github.io/scpdata/reference/brunner2022_v2.md)
+  : Brunner et al. 2022 (Mol. Syst. Biol.): cell cycle state study
 - [`bubis2025`](https://UCLouvain-CBIO.github.io/scpdata/reference/bubis2025.md)
   : Bubis et al. 2023 (Nat Methods): Challenging the Astral mass
   analyzer.

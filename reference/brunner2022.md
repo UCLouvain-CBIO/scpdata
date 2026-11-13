@@ -88,6 +88,10 @@ Constantin Ammar, Fabian Coscia, Andreas Mund, Ole B. Hoerning, et al.
 Proteome Changes upon Perturbation." Molecular Systems Biology 18 (3):
 e10798. [Link to article](http://dx.doi.org/10.15252/msb.202110798)
 
+## See also
+
+The updated `brunner2022_v2` data.
+
 ## Examples
 
 ``` r
