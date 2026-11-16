@@ -1,5 +1,9 @@
 # scpdata 1.21
 
+## scpdata 1.21.8
+
+- Update specht2019v3 manual
+
 ## scpdata 1.21.7
 
 - Add fulcher2026.
