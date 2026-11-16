@@ -36,8 +36,8 @@ function.
 
 \
 `query``(``eh``, ``"scpdata"``)`\
-`#> ExperimentHub with 34 records`\
-`#> # snapshotDate(): 2026-11-10`\
+`#> ExperimentHub with 39 records`\
+`#> # snapshotDate(): 2026-11-16`\
 `#> # $dataprovider: MassIVE, PRIDE, Zenodo, SlavovLab website, Dataverse`\
 `#> # $species: Homo sapiens, Mus musculus, Rattus norvegicus, Gallus gallus`\
 `#> # $rdataclass: QFeatures, SingleCellExperiment`\
@@ -46,18 +46,18 @@ function.
 `#> #   rdatapath, sourceurl, sourcetype `\
 `#> # retrieve records with, e.g., 'object[["EH3899"]]' `\
 `#> `\
-`#>             title           `\
-`#>   EH3899  | specht2019v2    `\
-`#>   EH3900  | specht2019v3    `\
-`#>   EH3901  | dou2019_lysates `\
-`#>   EH3902  | dou2019_mouse   `\
-`#>   EH3903  | dou2019_boosting`\
-`#>   ...       ...             `\
-`#>   EH9627  | ai2025a         `\
-`#>   EH10516 | leduc2025       `\
-`#>   EH10517 | wu2026          `\
-`#>   EH10668 | bubis2025       `\
-`#>   EH10669 | khoury2026`
+`#>             title            `\
+`#>   EH3899  | specht2019v2     `\
+`#>   EH3900  | specht2019v3     `\
+`#>   EH3901  | dou2019_lysates  `\
+`#>   EH3902  | dou2019_mouse    `\
+`#>   EH3903  | dou2019_boosting `\
+`#>   ...       ...              `\
+`#>   EH10674 | leduc2025_pSCoPE `\
+`#>   EH10675 | leduc2024_pSCoPE `\
+`#>   EH10676 | leduc2024_plexDIA`\
+`#>   EH10677 | fulcher2026      `\
+`#>   EH10678 | brunner2022_v2`
 
 Another way to get information about the available data sets is to call
 [`scpdata()`](https://UCLouvain-CBIO.github.io/scpdata/reference/scpdata.md).
@@ -105,6 +105,11 @@ informed choice about which data set to choose.
 | EH10517 | wu2026 | Label-free single-cell proteomics data from prenatal human brain tissue (gestational weeks 13, 15, and 19) from Wu et al. (2026) |
 | EH10668 | bubis2025 | Single-cell proteomics data of HeLa, K562, A549, H460, TE-like and hPS cells acquired on the Astral MS. |
 | EH10669 | khoury2026 | Single-cell proteomics reveals cell-type-specific functional coordination in PBMCs Khoury et al, (2026) |
+| EH10674 | leduc2025_pSCoPE | Limiting the Impact of Protein Leakage in Single-Cell Proteomics. |
+| EH10675 | leduc2024_pSCoPE | Single-cell proteomics data of 1769 monocyte,melanoma and PDAC cells (pSCoPE). |
+| EH10676 | leduc2024_plexDIA | Single-cell proteomics data of 141 monocytemelanoma and PDAC cells (plexDIA). |
+| EH10677 | fulcher2026 | Single-cell proteomics data of human peripheral blood mononuclear cells exceeding 600 cells per day. |
+| EH10678 | brunner2022_v2 | Single-cell proteomics data of cell cycle stages in HeLa. |
 
 To get one of the data sets (*e.g.* `dou2019_lysates`) you can either
 retrieve it using the `ExperimentHub` query function
@@ -180,9 +185,9 @@ of the `scp` vignette.
     [8] base     
 
     other attached packages:
-     [1] scpdata_1.21.7              ExperimentHub_3.3.2        
+     [1] scpdata_1.21.8              ExperimentHub_3.3.2        
      [3] AnnotationHub_4.3.3         BiocFileCache_3.3.3        
-     [5] dbplyr_2.6.0                QFeatures_1.23.2           
+     [5] dbplyr_2.6.0                QFeatures_1.23.3           
      [7] MultiAssayExperiment_1.39.1 SummarizedExperiment_1.43.0
      [9] Biobase_2.73.2              GenomicRanges_1.65.4       
     [11] Seqinfo_1.3.2               IRanges_2.47.5             
@@ -228,7 +233,7 @@ of the `scp` vignette.
     [69] textshaping_1.0.5           evaluate_1.0.5             
     [71] lattice_0.23-1              png_0.1-9                  
     [73] memoise_2.0.1               bslib_0.12.0               
-    [75] Rcpp_1.1.2                  SparseArray_1.13.4         
+    [75] Rcpp_1.1.2                  SparseArray_1.13.5         
     [77] xfun_0.62                   MsCoreUtils_1.25.4         
     [79] fs_2.1.0                    pkgconfig_2.0.3            
 

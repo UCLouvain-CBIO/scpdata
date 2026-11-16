@@ -97,6 +97,16 @@ article](https://www.nature.com/articles/s41467-025-56736-7#Abs1)).
 ``` r
 # \donttest{
 leduc2025_pSCoPE()
-#> Error in leduc2025_pSCoPE(): "leduc2025_pSCoPE" not found in ExperimentHub
+#> see ?scpdata and browseVignettes('scpdata') for documentation
+#> loading from cache
+#> An instance of class QFeatures (type: scp) with 34 sets:
+#> 
+#>  [1] 2024-04-10_pSCoPE_SC_AL_Alive_A1: SummarizedExperiment with 2735 rows and 32 columns 
+#>  [2] 2024-04-10_pSCoPE_SC_AL_Alive_A10: SummarizedExperiment with 2685 rows and 32 columns 
+#>  [3] 2024-04-10_pSCoPE_SC_AL_Alive_A11: SummarizedExperiment with 2589 rows and 32 columns 
+#>  ...
+#>  [32] 2024-04-10_pSCoPE_SC_AL_Alive_C9: SummarizedExperiment with 2485 rows and 32 columns 
+#>  [33] Peptides: SummarizedExperiment with 8111 rows and 32 columns 
+#>  [34] Proteins: SummarizedExperiment with 1386 rows and 32 columns 
 # }
 ```

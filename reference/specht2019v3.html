@@ -13,7 +13,7 @@ peptide and protein level."></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">scpdata</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.7</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.21.8</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -91,6 +91,8 @@ in the data. Version 2 is maintained for backward compatibility.
 Although the final version of the article was published in 2021,
 we have kept <code>specht2019v3</code> as the data set name for consistency
 with the previous data version <code>specht2019v2</code>.</p>
+<p>Note that this dataset contains empty rows in the PSM sets (1-177).
+To remove these rows refere to the example.</p>
     </div>
     <div class="section level2">
     <h2 id="acquisition-protocol">Acquisition protocol<a class="anchor" aria-label="anchor" href="#acquisition-protocol"></a></h2>
@@ -164,6 +166,17 @@ Heterogeneity Using SCoPE2." Genome Biology 22 (1): 50.
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [177] 191110S_LCB7_X_APNOV16plex2_Set_9: SingleCellExperiment with 4934 rows and 16 columns </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [178] peptides: SingleCellExperiment with 9354 rows and 1490 columns </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [179] proteins: SingleCellExperiment with 3042 rows and 1490 columns </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># qf &lt;- specht2019v3()</span></span></span>
+<span class="r-in"><span><span class="co"># qf &lt;- zeroIsNA(qf, i = names(qf))</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># assays_to_filter &lt;- names(qf)[1:177] # PSM sets</span></span></span>
+<span class="r-in"><span><span class="co"># keep &lt;- setNames(lapply(assays_to_filter, function(i) {</span></span></span>
+<span class="r-in"><span><span class="co">#  mat &lt;- SummarizedExperiment::assay(qf[[i]])</span></span></span>
+<span class="r-in"><span><span class="co">#  rowSums(!is.na(mat)) &gt; 0</span></span></span>
+<span class="r-in"><span><span class="co"># }), assays_to_filter)</span></span></span>
+<span class="r-in"><span><span class="co">#</span></span></span>
+<span class="r-in"><span><span class="co"># qf &lt;- qf[keep, ]</span></span></span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>

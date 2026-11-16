@@ -152,6 +152,12 @@ doi:10.64898/2026.02.01.703169
 ``` r
 # \donttest{
 fulcher2026()
-#> Error in fulcher2026(): "fulcher2026" not found in ExperimentHub
+#> see ?scpdata and browseVignettes('scpdata') for documentation
+#> loading from cache
+#> An instance of class QFeatures (type: scp) with 3 sets:
+#> 
+#>  [1] peptides: SummarizedExperiment with 8723 rows and 2485 columns 
+#>  [2] proteins: SummarizedExperiment with 1661 rows and 2485 columns 
+#>  [3] peptides_modelled: SingleCellExperiment with 8723 rows and 1055 columns 
 # }
 ```

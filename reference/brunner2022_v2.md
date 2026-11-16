@@ -115,6 +115,16 @@ The first version of the data, `brunner2022`.
 ``` r
 # \donttest{
 brunner2022_v2()
-#> Error in brunner2022_v2(): "brunner2022_v2" not found in ExperimentHub
+#> see ?scpdata and browseVignettes('scpdata') for documentation
+#> loading from cache
+#> An instance of class QFeatures (type: scp) with 873 sets:
+#> 
+#>  [1] prec_3873: SummarizedExperiment with 3772 rows and 1 columns 
+#>  [2] prec_3874: SummarizedExperiment with 7759 rows and 1 columns 
+#>  [3] prec_3875: SummarizedExperiment with 4481 rows and 1 columns 
+#>  ...
+#>  [871] logpep: SummarizedExperiment with 10133 rows and 434 columns 
+#>  [872] logproteins: SummarizedExperiment with 2662 rows and 434 columns 
+#>  [873] proteinsDiann: SingleCellExperiment with 2476 rows and 434 columns 
 # }
 ```

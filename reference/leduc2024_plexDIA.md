@@ -111,6 +111,16 @@ article](https://doi.org/10.1186/s13059-022-02817-5)
 ``` r
 # \donttest{
 leduc2024_plexDIA()
-#> Error in leduc2024_plexDIA(): "leduc2024_plexDIA" not found in ExperimentHub
+#> see ?scpdata and browseVignettes('scpdata') for documentation
+#> loading from cache
+#> An instance of class QFeatures (type: scp) with 50 sets:
+#> 
+#>  [1] DDM_Slot1-100_1_1409_initial_import: SummarizedExperiment with 84984 rows and 3 columns 
+#>  [2] DDM_Slot1-101_1_1410_initial_import: SummarizedExperiment with 80308 rows and 3 columns 
+#>  [3] DDM_Slot1-102_1_1411_initial_import: SummarizedExperiment with 70418 rows and 3 columns 
+#>  ...
+#>  [48] peptides: SummarizedExperiment with 94080 rows and 141 columns 
+#>  [49] proteins: SummarizedExperiment with 8046 rows and 141 columns 
+#>  [50] imported_proteins: SummarizedExperiment with 4619 rows and 121 columns 
 # }
 ```

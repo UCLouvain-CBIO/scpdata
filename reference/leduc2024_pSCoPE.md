@@ -119,6 +119,16 @@ completeness of single-cell proteomics." Nature Methods 20: 714-722.
 ``` r
 # \donttest{
 leduc2024_pSCoPE()
-#> Error in leduc2024_pSCoPE(): "leduc2024_pSCoPE" not found in ExperimentHub
+#> see ?scpdata and browseVignettes('scpdata') for documentation
+#> loading from cache
+#> An instance of class QFeatures (type: scp) with 64 sets:
+#> 
+#>  [1] dAL_1k_Proto29_1_initial_import: SummarizedExperiment with 4237 rows and 29 columns 
+#>  [2] dAL_1k_Proto29_10_initial_import: SummarizedExperiment with 4221 rows and 29 columns 
+#>  [3] dAL_1k_Proto29_11_initial_import: SummarizedExperiment with 4071 rows and 29 columns 
+#>  ...
+#>  [62] peptides: SummarizedExperiment with 13427 rows and 1769 columns 
+#>  [63] proteins: SummarizedExperiment with 1909 rows and 1769 columns 
+#>  [64] imported_proteins: SummarizedExperiment with 1775 rows and 1526 columns 
 # }
 ```

@@ -52,6 +52,9 @@ version of the article was published in 2021, we have kept
 `specht2019v3` as the data set name for consistency with the previous
 data version `specht2019v2`.
 
+Note that this dataset contains empty rows in the PSM sets (1-177). To
+remove these rows refere to the example.
+
 ## Acquisition protocol
 
 The data were acquired using the following setup. More information can
@@ -134,5 +137,16 @@ specht2019v3()
 #>  [177] 191110S_LCB7_X_APNOV16plex2_Set_9: SingleCellExperiment with 4934 rows and 16 columns 
 #>  [178] peptides: SingleCellExperiment with 9354 rows and 1490 columns 
 #>  [179] proteins: SingleCellExperiment with 3042 rows and 1490 columns 
+
+# qf <- specht2019v3()
+# qf <- zeroIsNA(qf, i = names(qf))
+#
+# assays_to_filter <- names(qf)[1:177] # PSM sets
+# keep <- setNames(lapply(assays_to_filter, function(i) {
+#  mat <- SummarizedExperiment::assay(qf[[i]])
+#  rowSums(!is.na(mat)) > 0
+# }), assays_to_filter)
+#
+# qf <- qf[keep, ]
 # }
 ```
