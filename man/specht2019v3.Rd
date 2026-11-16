@@ -114,12 +114,14 @@ information.
 specht2019v3()
 
 # qf <- specht2019v3()
+# qf <- zeroIsNA(qf, i = names(qf))
+#
 # assays_to_filter <- names(qf)[1:177] # PSM sets
 # keep <- setNames(lapply(assays_to_filter, function(i) {
 #  mat <- SummarizedExperiment::assay(qf[[i]])
 #  rowSums(!is.na(mat)) > 0
 # }), assays_to_filter)
-
+#
 # qf <- qf[keep, ]
 }
 
